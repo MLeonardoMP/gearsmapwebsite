@@ -15,7 +15,7 @@ const Footer = () => {
               <div className="mb-12 max-w-[360px] lg:mb-16">
                 <Link href="/" className="mb-8 inline-block">
                   <Image
-                    src="/images/logo/gearmaplogo.png"
+                    src="/images/logo/gears_map_hor.svg"
                     alt="logo"
                     className="dark:hidden"
                     width={140}
@@ -50,7 +50,7 @@ const Footer = () => {
                   </a>
                   <a
                     href="/"
-                    aria-label="social-link"
+                    aria-label="Redes Sociales"
                     className="dark:text-body-color-dark mr-6 text-body-color duration-300 hover:text-primary dark:hover:text-primary"
                   >
                     <svg
@@ -197,13 +197,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#2CB4CC]"></div>
           <div className="py-8">
             <p className="text-center text-base text-body-color dark:text-white">
-              Template by UIdeck and{" "}
-              <a href="https://nextjstemplates.com" rel="nofollow noopener">
-                Next.js Templates
-              </a>
+            GearsMap © 2024. All Rights Reserved.
             </p>
           </div>
         </div>
@@ -215,7 +212,7 @@ const Footer = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle opacity="0.8" cx="49.5" cy="49.5" r="49.5" fill="#959CB1" />
+            <circle opacity="0.8" cx="49.5" cy="49.5" r="49.5" fill="#2CB4CC" />
             <mask
               id="mask0_94:899"
               style={{ maskType: "alpha" }}
@@ -230,7 +227,7 @@ const Footer = () => {
                 cx="49.5"
                 cy="49.5"
                 r="49.5"
-                fill="#4A6CF7"
+                fill="#2CB4CC"
               />
             </mask>
             <g mask="url(#mask0_94:899)">
@@ -336,8 +333,8 @@ const Footer = () => {
                 y2="59.8878"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stopColor="#4A6CF7" stopOpacity="0.62" />
-                <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+                <stop stopColor="#2CB4CC" stopOpacity="0.62" />
+                <stop offset="1" stopColor="#2CB4CC" stopOpacity="0" />
               </linearGradient>
               <linearGradient
                 id="paint1_linear_94:889"
@@ -347,8 +344,8 @@ const Footer = () => {
                 y2="20.668"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stopColor="#4A6CF7" stopOpacity="0" />
-                <stop offset="1" stopColor="#4A6CF7" stopOpacity="0.51" />
+                <stop stopColor="#2CB4CC" stopOpacity="0" />
+                <stop offset="1" stopColor="#2CB4CC" stopOpacity="0.51" />
               </linearGradient>
               <linearGradient
                 id="paint2_linear_94:889"
@@ -358,8 +355,8 @@ const Footer = () => {
                 y2="25.1062"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stopColor="#4A6CF7" stopOpacity="0.62" />
-                <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+                <stop stopColor="#2CB4CC" stopOpacity="0.62" />
+                <stop offset="1" stopColor="#2CB4CC" stopOpacity="0" />
               </linearGradient>
               <linearGradient
                 id="paint3_linear_94:889"
@@ -369,8 +366,8 @@ const Footer = () => {
                 y2="80.6826"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stopColor="#4A6CF7" stopOpacity="0" />
-                <stop offset="1" stopColor="#4A6CF7" stopOpacity="0.51" />
+                <stop stopColor="#2CB4CC" stopOpacity="0" />
+                <stop offset="1" stopColor="#2CB4CC" stopOpacity="0.51" />
               </linearGradient>
               <linearGradient
                 id="paint4_linear_94:889"
@@ -380,8 +377,8 @@ const Footer = () => {
                 y2="58.2156"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stopColor="#4A6CF7" stopOpacity="0.62" />
-                <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+                <stop stopColor="#2CB4CC" stopOpacity="0.62" />
+                <stop offset="1" stopColor="#2CB4CC" stopOpacity="0" />
               </linearGradient>
               <linearGradient
                 id="paint5_linear_94:889"
@@ -391,8 +388,8 @@ const Footer = () => {
                 y2="41.6598"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stopColor="#4A6CF7" stopOpacity="0" />
-                <stop offset="1" stopColor="#4A6CF7" stopOpacity="0.51" />
+                <stop stopColor="#2CB4CC" stopOpacity="0" />
+                <stop offset="1" stopColor="#2CB4CC" stopOpacity="0.51" />
               </linearGradient>
             </defs>
           </svg>

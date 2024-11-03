@@ -18,7 +18,7 @@ const Hero = () => {
                   ¿Qué es GearMap?
                 </h1>
                 <p className="dark:text-body-color-dark mb-12 text-base !leading-relaxed text-body-color sm:text-lg md:text-xl">
-                Empresa especializada en el desarrollo de soluciones de software, basadas en Sistemas de Información Geográfica (SIG) y gestión y análisis de datos geoespaciales (inteligencia artificial), tanto 2D como 3D. Desarrollo de aplicación y webs. Garantizamos soporte y mantenimiento.  Optimización y automatización de proyectos. 
+                Empresa especializada en el desarrollo de soluciones de software, basadas en Sistemas de Información Geográfica (SIG), gestión y análisis de datos geoespaciales (inteligencia artificial), tanto 2D como 3D. Desarrollo de aplicación y webs. Garantizamos soporte y mantenimiento.  Optimización y automatización de proyectos. 
                 </p>
                 {/* <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
