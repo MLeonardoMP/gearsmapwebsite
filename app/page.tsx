@@ -12,8 +12,8 @@ import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "GearMap",
-  description: "This is Home for Startup Nextjs Template",
+  title: "GearsMap",
+  description: "Esta es la página web de GearsMap",
   // other metadata
 };
 
