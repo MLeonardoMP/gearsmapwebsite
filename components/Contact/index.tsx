@@ -1,84 +1,146 @@
-import NewsLatterBox from "./NewsLatterBox";
+'use client';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ToastProvider, showToast } from '@/utils/toastConfig'; // Ajusta la ruta si es necesario
+
+const schema = z.object({
+  name: z.string().min(1, 'El nombre es requerido'),
+  email: z.string().email('Correo electrónico inválido'),
+  phone: z.string().optional(),
+  message: z.string().min(1, 'El mensaje es requerido'),
+});
+
+type FormData = z.infer<typeof schema>;
 
 const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        showToast('success', 'Mensaje enviado con éxito');
+        reset();
+      } else {
+        showToast('error', 'Error al enviar el mensaje');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      showToast('error', 'Error al enviar el mensaje');
+    }
+  };
+
   return (
-    <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
-      <div className="container">
-        <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4 lg:w-7/12 xl:w-8/12">
-            <div
-              className="wow fadeInUp shadow-three dark:bg-gray-dark mb-12 rounded-sm bg-white px-8 py-11 sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
-              data-wow-delay=".15s
-              "
-            >
-              <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl">
-                ¿Necesitas ayuda? Contáctenos
-              </h2>
-              <p className="mb-12 text-base font-medium text-body-color">
-                Nuestro equipo se pondrá en contacto contigo lo antes posible por correo electrónico.
-              </p>
-              <form>
-                <div className="-mx-4 flex flex-wrap">
-                  <div className="w-full px-4 md:w-1/2">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="name"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        Tu Nombre
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Ingresa tu nombre"
-                        className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full px-4 md:w-1/2">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="email"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        Tu Correo Electrónico
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="Ingresa tu correo electrónico"
-                        className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full px-4">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="message"
-                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                      >
-                        Tu Mensaje
-                      </label>
-                      <textarea
-                        name="message"
-                        rows={5}
-                        placeholder="Ingresa tu mensaje"
-                        className="border-stroke dark:text-body-color-dark dark:shadow-two w-full resize-none rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div className="w-full px-4">
-                    <button className="shadow-submit dark:shadow-submit-dark rounded-sm bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90">
-                      Enviar
-                    </button>
-                  </div>
+    <section id="contact" className="overflow-hidden py-10">
+      <div className="container mx-auto px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="shadow-three dark:bg-gray-dark rounded-sm bg-white px-8 py-11 sm:p-14">
+            <h2 className="mb-6 text-3xl font-bold text-center text-black dark:text-white">
+              ¿Necesitas ayuda? Contáctanos
+            </h2>
+            <p className="mb-12 text-base font-medium text-center text-body-color">
+              Nuestro equipo se pondrá en contacto contigo lo antes posible por correo electrónico.
+            </p>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block text-sm font-medium text-dark dark:text-white"
+                  >
+                    Tu Nombre
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    {...register('name')}
+                    placeholder="Ingresa tu nombre"
+                    className="w-full rounded-sm border border-stroke bg-[#f8f8f8] px-4 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark"
+                  />
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                  )}
                 </div>
-              </form>
-            </div>
-          </div>
-          <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
-            <NewsLatterBox />
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-medium text-dark dark:text-white"
+                  >
+                    Tu Correo Electrónico
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    {...register('email')}
+                    placeholder="Ingresa tu correo electrónico"
+                    className="w-full rounded-sm border border-stroke bg-[#f8f8f8] px-4 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark"
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                  )}
+                </div>
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="mb-2 block text-sm font-medium text-dark dark:text-white"
+                  >
+                    Tu Teléfono
+                  </label>
+                  <input
+                    type="text"
+                    id="phone"
+                    {...register('phone')}
+                    placeholder="Ingresa tu teléfono"
+                    className="w-full rounded-sm border border-stroke bg-[#f8f8f8] px-4 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="mb-2 block text-sm font-medium text-dark dark:text-white"
+                  >
+                    Tu Mensaje
+                  </label>
+                  <textarea
+                    id="message"
+                    {...register('message')}
+                    placeholder="Ingresa tu mensaje"
+                    className="w-full rounded-sm border border-stroke bg-[#f8f8f8] px-4 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark"
+                    rows={4}
+                  />
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+                  )}
+                </div>
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-sm"
+                  >
+                    Enviar
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+      <ToastProvider />
     </section>
   );
 };
