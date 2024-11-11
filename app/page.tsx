@@ -6,7 +6,6 @@ import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
-import Portfolio from "@/components/Portfolio";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import Video from "@/components/Video";
@@ -29,6 +28,9 @@ export const metadata: Metadata = {
       "Calidad",
       "Fiabilidad",
       "Colombia",
+      "Desarrollo de Software",
+      "Desarrollo de Software Libre",
+      "Desarrollo de Software Geoespacial",
     ],
     metadataBase: new URL("https://gearsmap.com"),
   openGraph: {
