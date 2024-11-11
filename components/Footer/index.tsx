@@ -30,8 +30,7 @@ const Footer = () => {
                   />
                 </Link>
                 <p className="dark:text-body-color-dark mb-9 text-base leading-relaxed text-body-color">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer lobortis.
+                Nuestro compromiso: innovación, soporte constante y herramientas de alta calidad para transformar tus datos en decisiones estratégicas.
                 </p>
                 <div className="flex items-center">
                   <a

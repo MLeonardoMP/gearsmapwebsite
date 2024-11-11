@@ -6,22 +6,39 @@ import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
+import Portfolio from "@/components/Portfolio";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "GearsMap",
-  description: "Esta es la página web de GearsMap",
-  metadataBase: new URL("https://gearsmap.com"),
+  title: "GearsMap - Diseñamos plataformas personalizadas que optimizan procesos y transforman tus datos en decisiones estratégicas",
+  description:
+    "Diseñamos plataformas personalizadas que optimizan procesos, visualizan datos complejos y conectan a los usuarios con información precisa y actualizada. Nuestro compromiso: innovación, soporte constante y herramientas de alta calidad para transformar tus datos en decisiones estratégicas.",
+    keywords: [
+      "GearsMap",
+      "Software Geoespacial",
+      "Análisis Geoespacial",
+      "Inteligencia Artificial",
+      "Software Libre",
+      "Visualización Avanzada",
+      "Optimización Inteligente",
+      "Soporte Continuo",
+      "Conectividad",
+      "Calidad",
+      "Fiabilidad",
+      "Colombia",
+    ],
+    metadataBase: new URL("https://gearsmap.com"),
   openGraph: {
-    title: "GearsMap",
-    description: "Esta es la página web de GearsMap",
+    title: "GearsMap - Diseñamos plataformas personalizadas que optimizan procesos y transforman tus datos en decisiones estratégicas",
+    description:
+      "Diseñamos plataformas personalizadas que optimizan procesos, visualizan datos complejos y conectan a los usuarios con información precisa y actualizada.",
     url: "https://gearsmap.com",
     images: [
       {
-        url: "/images/logo/gearmaplogo.png",
+        url: "https://www.gearsmap.com/images/logo/gearmaplogo.png",
         width: 800,
         height: 600,
         alt: "Logo GearsMap",
@@ -30,9 +47,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "GearsMap",
-    description: "Esta es la página web de GearsMap",
-    images: "/images/logo/gearmaplogo.png",
+    title: "GearsMap - Innovación y herramientas de alta calidad para decisiones estratégicas",
+    description:
+      "Nuestro compromiso: innovación, soporte constante y herramientas de alta calidad para transformar tus datos en decisiones estratégicas.",
+    images: "https://www.gearsmap.com/images/logo/gearmaplogo.png",
   },
   // other metadata
 };

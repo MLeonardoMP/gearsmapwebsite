@@ -54,7 +54,7 @@ const Contact = () => {
               ¿Necesitas ayuda? Contáctanos
             </h2>
             <p className="mb-12 text-base font-medium text-center text-body-color">
-              Nuestro equipo se pondrá en contacto contigo lo antes posible por correo electrónico.
+              Nuestro equipo se pondrá en contacto contigo lo antes posible.
             </p>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="space-y-6">
@@ -63,7 +63,7 @@ const Contact = () => {
                     htmlFor="name"
                     className="mb-2 block text-sm font-medium text-dark dark:text-white"
                   >
-                    Tu Nombre
+                    Tu Nombre *
                   </label>
                   <input
                     type="text"
@@ -81,7 +81,7 @@ const Contact = () => {
                     htmlFor="email"
                     className="mb-2 block text-sm font-medium text-dark dark:text-white"
                   >
-                    Tu Correo Electrónico
+                    Tu Correo Electrónico *
                   </label>
                   <input
                     type="email"
@@ -114,7 +114,7 @@ const Contact = () => {
                     htmlFor="message"
                     className="mb-2 block text-sm font-medium text-dark dark:text-white"
                   >
-                    Tu Mensaje
+                    Tu Mensaje *
                   </label>
                   <textarea
                     id="message"
