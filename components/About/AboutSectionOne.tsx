@@ -24,29 +24,17 @@ const AboutSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Crafted for Startup, SaaS and Business Sites."
-                paragraph="The main ‘thrust’ is to focus on educating attendees on how to best protect highly vulnerable business applications with interactive panel discussions and roundtables."
+                title="Fundación: "
+                paragraph="Fundada en 2024, GearsMap reúne a profesionales experimentados del sector tecnológico con más de 20 años de experiencia , impulsados por la pasión de contribuir a la Cuarta Revolución Industrial. Innovamos en nuevas formas de utilizar y visualizar datos, añadiendo valor a los procesos empresariales. Nuestros desarrolladores tienen una amplia experiencia en numerosos proyectos tecnológicos, siendo uno de nuestros primeros proyectos como GearsMap desarrollado para el Ministerio de Minas y Energía y el Centro de Transparencia."
+                mb="44px"
+              />
+                <SectionTitle
+                title="Productos y Servicios:"
+                paragraph=" Nos especializamos en el desarrollo de soluciones de software basadas en Sistemas de Información Geográfica (SIG) y en la gestión y análisis de datos geoespaciales. Nuestras ofertas incluyen aplicaciones para la gestión y visualización de información, optimización y automatización de proyectos. Acompañamos a las empresas en el diseño y desarrollo de herramientas tecnológicas que añaden valor a sus actividades, garantizando soporte técnico durante el uso de nuestros desarrollos y productos."
                 mb="44px"
               />
 
-              <div
-                className="wow fadeInUp mb-12 max-w-[570px] lg:mb-0"
-                data-wow-delay=".15s"
-              >
-                <div className="mx-[-12px] flex flex-wrap">
-                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Premium quality" />
-                    <List text="Tailwind CSS" />
-                    <List text="Use for lifetime" />
-                  </div>
-
-                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Next.js" />
-                    <List text="Rich documentation" />
-                    <List text="Developer friendly" />
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
