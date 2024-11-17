@@ -13,24 +13,24 @@ const menuData: Menu[] = [
     path: "/about",
     newTab: false,
   },
-  {
-    id: 3,
-    title: "Blog",
-    path: "/blog",
-    newTab: false,
-  },
+  // {
+  //   id: 3,
+  //   title: "Blog",
+  //   path: "/blog",
+  //   newTab: false,
+  // },
   {
     id: 4,
     title: "Contactenos",
     path: "/contact",
     newTab: false,
   },
-  {
-    id: 5,
-    title: "Portafolio",
-    path: "/portfolio",
-    newTab: false,
-  }
+  // {
+  //   id: 5,
+  //   title: "Portafolio",
+  //   path: "/portfolio",
+  //   newTab: false,
+  // }
   // {
   //   id: 4,
   //   title: "Pages",
