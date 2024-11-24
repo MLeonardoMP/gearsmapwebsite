@@ -11,6 +11,7 @@ Welcome to **GearsMap**, the official website of our startup dedicated to provid
 - **High-Quality, Responsive, and Clean Design**
 - **Dark and Light Mode for Enhanced User Experience**
 - **TypeScript and Next.js for Robust Development**
+- **Portfolio Page Showcasing Our Projects**
 
 ## 🚀 Visit Our Website
 
