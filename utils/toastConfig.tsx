@@ -1,4 +1,4 @@
-import { ToastContainer, toast, ToastOptions } from 'react-toastify';
+import { ToastContainer, toast, ToastOptions, TypeOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const showToast = (type: 'success' | 'error', message: string) => {
@@ -18,8 +18,8 @@ export const showToast = (type: 'success' | 'error', message: string) => {
 
 export const ToastProvider = () => (
   <ToastContainer
-    toastClassName={({ type }) =>
-      type === 'success' ? 'bg-black text-gray-100 dark:bg-white dark:text-black' : 'bg-black text-gray-100 dark:bg-white dark:text-black'
+    toastClassName={(context) =>
+      (context?.type || 'default') === 'success' ? 'bg-black text-gray-100 dark:bg-white dark:text-black' : 'bg-black text-gray-100 dark:bg-white dark:text-black'
     }
     bodyClassName="text-sm font-medium"
     progressClassName="bg-primary"
