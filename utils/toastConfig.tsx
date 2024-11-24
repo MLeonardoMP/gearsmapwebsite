@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const showToast = (type: 'success' | 'error', message: string) => {
@@ -7,11 +7,13 @@ export const showToast = (type: 'success' | 'error', message: string) => {
     error: 'bg-black text-gray-100 dark:bg-white dark:text-black',
   };
 
-  toast(message, {
+  const options: ToastOptions = {
     className: toastClass[type],
     bodyClassName: 'text-sm font-medium',
     progressClassName: 'bg-primary',
-  });
+  };
+
+  toast(message, options);
 };
 
 export const ToastProvider = () => (
