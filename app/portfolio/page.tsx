@@ -1,5 +1,6 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import Image from "next/image";
+import Link from "next/link";
 const portfolio = () => {
   return (
     <>
@@ -71,6 +72,22 @@ const portfolio = () => {
               específicos de manera accesible y dinámica, sin necesidad de
               software especializado.
             </p>
+            
+            <iframe
+              src="https://oaas_visor_conflictos.minenergia.gov.co/"
+              width="100%"
+              height="500"
+            ></iframe>
+            {/* crea un boton con Link que abra una nueva pestaña a https://oaas_visor_conflictos.minenergia.gov.co/ usando nextjs 15 server component*/}
+            <Link
+              href="https://oaas_visor_conflictos.minenergia.gov.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 text-primary hover:text-primary-dark"
+            >
+              Visitar página web
+            </Link>
+            
           </section>
 
           {/* Insertar GIF o imagen para "Gif modelo 3d" si está disponible */}
