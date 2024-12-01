@@ -5,7 +5,7 @@ const portfolio = () => {
   return (
     <>
       <Breadcrumb
-        pageName="portafolio"
+        pageName="Portafolio"
         description="Conozca más sobre nuestros servicios y soluciones de visualización y análisis de datos."
       />
       <section className="pt-16 md:pt-20 lg:pt-28">
