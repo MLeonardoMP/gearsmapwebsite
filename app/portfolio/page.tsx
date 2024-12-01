@@ -72,20 +72,20 @@ const portfolio = () => {
               software especializado.
             </p>
             
-            <iframe
+            {/* <iframe
               src="https://oaas_visor_conflictos.minenergia.gov.co/"
               width="100%"
               height="700"
-            ></iframe>
+            ></iframe> */}
             {/* crea un boton con Link que abra una nueva pestaña a https://oaas_visor_conflictos.minenergia.gov.co/ usando nextjs 15 server component*/}
-            <Link
+            {/* <Link
               href="https://oaas_visor_conflictos.minenergia.gov.co/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 text-primary hover:text-primary-dark"
             >
               Visitar página web
-            </Link>
+            </Link> */}
             
           </section>
 
