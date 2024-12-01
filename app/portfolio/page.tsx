@@ -37,12 +37,11 @@ const portfolio = () => {
               experiencia de visualización altamente personalizada.
             </p>
             <br />
-            <div className="flex justify-center">
+            <div className="relative flex justify-center" style={{ width: '100%', height: '700px' }}>
               <Image
                 src="/images/portfolio/gif_modelo_3d.gif"
                 alt="Example GIF"
-                width={700}
-                height={700}
+                fill
               />
             </div>
           </section>
@@ -76,7 +75,7 @@ const portfolio = () => {
             <iframe
               src="https://oaas_visor_conflictos.minenergia.gov.co/"
               width="100%"
-              height="500"
+              height="700"
             ></iframe>
             {/* crea un boton con Link que abra una nueva pestaña a https://oaas_visor_conflictos.minenergia.gov.co/ usando nextjs 15 server component*/}
             <Link
