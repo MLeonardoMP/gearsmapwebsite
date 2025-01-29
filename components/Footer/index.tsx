@@ -18,14 +18,14 @@ const Footer = () => {
                     src="/images/logo/gears_map_hor.svg"
                     alt="logo"
                     className="dark:hidden"
-                    width={140}
+                    width={200}
                     height={30}
                   />
                   <Image
-                    src="/images/logo/gearmaplogo.png"
+                    src="/images/logo/gears_map_hor.svg"
                     alt="logo"
                     className="hidden dark:block"
-                    width={140}
+                    width={200}
                     height={30}
                   />
                 </Link>
