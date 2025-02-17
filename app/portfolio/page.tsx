@@ -5,13 +5,13 @@ const portfolio = () => {
   return (
     <>
       <Breadcrumb
-        pageName="Portafolio"
+        pageName="Portafolio y Servicios"
         description="Conozca más sobre nuestros servicios y soluciones de visualización y análisis de datos."
       />
       <section className="pt-16 md:pt-20 lg:pt-28">
         <div className="container">
           {/* ...componentes de diseño existente... */}
-          <h1 className="mb-8 text-3xl font-bold">Portafolio</h1>
+          <h1 className="mb-8 text-3xl font-bold">Portafolio y Servicios</h1>
 
           <section className="mb-8">
             <div className="mx-auto mb-10 flex h-[100px] w-[100px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
@@ -24,8 +24,33 @@ const portfolio = () => {
                 unoptimized={true}
               />
             </div>
+            <section className="mb-8">
             <h2 className="mb-4 text-2xl font-semibold">
-              1. Visualización 2D y 3D
+              Inteligencia artificial y Machine Learning
+            </h2>
+            <p className="text-lg text-body-color">
+              Implementamos soluciones de inteligencia artificial y machine
+              learning para ayudarle a extraer información valiosa de sus datos y
+              mejorar la toma de decisiones. Nuestros modelos predictivos y de
+              análisis avanzado le permitirán identificar patrones, tendencias y
+              oportunidades ocultas en sus datos, proporcionando insights
+              estratégicos para su organización.
+            </p>
+          </section>
+          <section className="mb-8">
+            <h2 className="mb-4 text-2xl font-semibold">
+              Geovisores
+            </h2>
+            <p className="text-lg text-body-color">
+              Desarrollamos geovisores personalizados para visualizar y analizar
+              información geoespacial de manera interactiva y dinámica. Estas
+              herramientas le permitirán explorar mapas, datos y estadísticas de
+              manera intuitiva, facilitando la toma de decisiones basadas en
+              información geográfica precisa y actualizada.
+            </p>
+          </section>
+            <h2 className="mb-4 text-2xl font-semibold">
+              Visualización 2D y 3D
             </h2>
             <p className="text-lg text-body-color">
               Potencie el análisis y comprensión de sus datos mediante
@@ -48,7 +73,7 @@ const portfolio = () => {
 
           <section className="mb-8">
             <h2 className="mb-4 text-2xl font-semibold">
-              2. Dashboards y estadísticas
+              Dashboards y estadísticas
             </h2>
             <p className="text-lg text-body-color">
               Esta herramienta le permitirá presentar y analizar sus datos de
@@ -61,7 +86,7 @@ const portfolio = () => {
 
           <section className="mb-8">
             <h2 className="mb-4 text-2xl font-semibold">
-              3. Herramientas embebidas en página web
+              Herramientas embebidas en página web
             </h2>
             <p className="text-lg text-body-color">
               La integración de herramientas embebidas en su página web le
@@ -71,7 +96,14 @@ const portfolio = () => {
               específicos de manera accesible y dinámica, sin necesidad de
               software especializado.
             </p>
-            
+            <br />
+            <div className="relative flex justify-center" style={{ width: '100%', height: '700px' }}>
+              <Image
+                src="/images/portfolio/trazasismica.gif"
+                alt="Example GIF"
+                fill
+              />
+            </div>
             {/* <iframe
               src="https://oaas_visor_conflictos.minenergia.gov.co/"
               width="100%"
@@ -90,12 +122,9 @@ const portfolio = () => {
           </section>
 
           {/* Insertar GIF o imagen para "Gif modelo 3d" si está disponible */}
-
-          <h1 className="mb-8 text-3xl font-bold">Servicios</h1>
-
           <section className="mb-8">
             <h2 className="mb-4 text-2xl font-semibold">
-              1. Análisis de Datos
+              Análisis de Datos
             </h2>
             <p className="text-lg text-body-color">
               Ofrecemos soluciones avanzadas de análisis de datos para ayudarle
@@ -106,10 +135,9 @@ const portfolio = () => {
               oportunidades de crecimiento y reducir riesgos.
             </p>
           </section>
-
           <section className="mb-8">
             <h2 className="mb-4 text-2xl font-semibold">
-              2. Automatización de Procesos
+              Automatización de Procesos
             </h2>
             <p className="text-lg text-body-color">
               A través de la automatización de procesos, le ayudamos a mejorar
@@ -120,10 +148,9 @@ const portfolio = () => {
               estratégico.
             </p>
           </section>
-
           <section className="mb-8">
             <h2 className="mb-4 text-2xl font-semibold">
-              3. Monitoreo y Mantenimiento de los Productos
+              Monitoreo y Mantenimiento de los Productos
             </h2>
             <p className="text-lg text-body-color">
               Proveemos servicios de monitoreo continuo y mantenimiento de
@@ -134,6 +161,7 @@ const portfolio = () => {
               maximizar la vida útil y el rendimiento de sus productos.
             </p>
           </section>
+        
 
           {/* ...componentes de diseño existente... */}
         </div>
