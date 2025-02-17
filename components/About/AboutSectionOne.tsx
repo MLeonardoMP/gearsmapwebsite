@@ -25,7 +25,7 @@ const AboutSectionOne = () => {
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
                 title="Fundación: "
-                paragraph="Fundada en 2024, GearsMap reúne a profesionales experimentados del sector tecnológico con más de 20 años de experiencia , impulsados por la pasión de contribuir a la Cuarta Revolución Industrial. Innovamos en nuevas formas de utilizar y visualizar datos, añadiendo valor a los procesos empresariales. Nuestros desarrolladores tienen una amplia experiencia en numerosos proyectos tecnológicos, siendo uno de nuestros primeros proyectos como GearsMap desarrollado para el Ministerio de Minas y Energía y el Centro de Transparencia."
+                paragraph="Fundada en 2024, GearsMap reúne a profesionales experimentados del sector tecnológico, impulsados por la pasión de contribuir a la Cuarta Revolución Industrial. Innovamos en nuevas formas de utilizar y visualizar datos, añadiendo valor a los procesos empresariales. Nuestros desarrolladores tienen una amplia experiencia en numerosos proyectos tecnológicos."
                 mb="44px"
               />
                 <SectionTitle
