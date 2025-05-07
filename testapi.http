@@ -1,0 +1,69 @@
+############################################
+# Archivo de pruebas para APIs de GearsMap
+# Usar con la extensión "REST Client" de VS Code
+############################################
+
+@baseUrl = http://localhost:3000/api
+
+############################################
+# 1. API de Departamentos
+############################################
+
+### Obtener todos los departamentos (sin geometría)
+GET {{baseUrl}}/departamentos
+
+### Obtener un departamento específico por ID (incluyendo geometría)
+GET {{baseUrl}}/departamentos?departamento_id=68
+
+############################################
+# 2. API de Estadísticas Departamentales y Municipales
+############################################
+
+### Obtener todas las estadísticas departamentales
+GET {{baseUrl}}/estadisticas-departamentales
+
+### Obtener estadísticas de un departamento específico
+GET {{baseUrl}}/estadisticas-departamentales?departamento_id=68
+
+### Obtener estadísticas de un municipio específico
+GET {{baseUrl}}/estadisticas-departamentales?municipio_id=68655
+
+############################################
+# 3. API de Datos ACGGP
+############################################
+
+### Obtener todos los registros ACGGP
+GET {{baseUrl}}/datos-acggp
+
+### Filtrar por municipio
+GET {{baseUrl}}/datos-acggp?municipio_id=68655
+
+### Filtrar por departamento
+GET {{baseUrl}}/datos-acggp?departamento_id=68
+
+############################################
+# 4. API de Producción
+############################################
+
+### Obtener todos los datos de producción
+GET {{baseUrl}}/produccion
+
+### Filtrar por municipio
+GET {{baseUrl}}/produccion?municipio_id=68655
+
+### Filtrar por departamento
+GET {{baseUrl}}/produccion?departamento_id=68
+
+### Filtrar por recurso
+GET {{baseUrl}}/produccion?recurso=petroleo
+
+### Filtrar por año
+GET {{baseUrl}}/produccion?anio=2024
+
+### Filtrar por año y mes
+GET {{baseUrl}}/produccion?anio=2024&mes=enero
+
+### Filtros combinados
+GET {{baseUrl}}/produccion?municipio_id=68001&anio=2024&mes=enero
+GET {{baseUrl}}/produccion?departamento_id=68&recurso=gas
+GET {{baseUrl}}/produccion?municipio_id=68001&departamento_id=68&recurso=petroleo&anio=2024&mes=febrero
