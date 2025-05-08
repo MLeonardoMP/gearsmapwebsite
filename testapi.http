@@ -9,11 +9,24 @@
 # 1. API de Departamentos
 ############################################
 
-### Obtener todos los departamentos (sin geometría)
+### Obtener todos los departamentos (con coordenadas x, y)
 GET {{baseUrl}}/departamentos
 
-### Obtener un departamento específico por ID (incluyendo geometría)
+### Obtener un departamento específico por ID (con coordenadas x, y)
 GET {{baseUrl}}/departamentos?departamento_id=68
+
+############################################
+# 5. API de Municipios
+############################################
+
+### Obtener todos los municipios (con coordenadas x, y)
+GET {{baseUrl}}/municipios
+
+### Obtener un municipio específico por ID (con coordenadas x, y)
+GET {{baseUrl}}/municipios?municipio_id=68001
+
+### Obtener todos los municipios de un departamento (con coordenadas x, y)
+GET {{baseUrl}}/municipios?departamento_id=68
 
 ############################################
 # 2. API de Estadísticas Departamentales y Municipales

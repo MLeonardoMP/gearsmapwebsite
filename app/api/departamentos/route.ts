@@ -8,11 +8,10 @@ export async function GET(request: Request) {
     
     // Verificar si se proporciona un departamento_id
     const departamentoId = searchParams.get('departamento_id');
-    
-    if (departamentoId) {
-      // Si hay un ID, retornar solo ese departamento con todos los campos incluyendo geom
+      if (departamentoId) {
+      // Si hay un ID, retornar solo ese departamento con x e y en lugar de geom
       const result = await sql`
-        SELECT gid, departamento_id, departamento, area_departamento, geom 
+        SELECT gid, departamento_id, departamento, area_departamento, x, y 
         FROM departamentos
         WHERE departamento_id = ${departamentoId}
       `;
@@ -23,9 +22,9 @@ export async function GET(request: Request) {
       
       return NextResponse.json(result.rows[0], { status: 200 });
     } else {
-      // Si no hay ID, retornar todos los departamentos pero sin el campo geom
+      // Si no hay ID, retornar todos los departamentos con x e y
       const result = await sql`
-        SELECT gid, departamento_id, departamento, area_departamento
+        SELECT gid, departamento_id, departamento, area_departamento, x, y
         FROM departamentos
         ORDER BY departamento
       `;
