@@ -1,13 +1,22 @@
 ############################################
-# Archivo de pruebas para APIs de GearsMap
-# Usar con la extensión "REST Client" de VS Code
+# GUÍA DE USO DE LAS APIs DE GEARSMAP
+# 
+# Este archivo contiene ejemplos para probar todas las APIs
+# de la aplicación GearsMap. Usar con la extensión 
+# "REST Client" de VS Code.
+#
+# Puede alternar entre entorno local y producción 
+# comentando/descomentando las líneas de baseUrl.
 ############################################
 
 @baseUrl = http://localhost:3000/api
+# @baseUrl = https://gearsmap.com/api
 
 ############################################
 # 1. API de Departamentos
 ############################################
+# Permite obtener información básica de los departamentos
+# incluyendo coordenadas x,y (centroide) pero sin la geometría completa
 
 ### Obtener todos los departamentos (con coordenadas x, y)
 GET {{baseUrl}}/departamentos
@@ -16,8 +25,10 @@ GET {{baseUrl}}/departamentos
 GET {{baseUrl}}/departamentos?departamento_id=68
 
 ############################################
-# 5. API de Municipios
+# 2. API de Municipios
 ############################################
+# Permite obtener información básica de los municipios
+# incluyendo coordenadas x,y (centroide) pero sin la geometría completa
 
 ### Obtener todos los municipios (con coordenadas x, y)
 GET {{baseUrl}}/municipios
@@ -29,8 +40,43 @@ GET {{baseUrl}}/municipios?municipio_id=68001
 GET {{baseUrl}}/municipios?departamento_id=68
 
 ############################################
-# 2. API de Estadísticas Departamentales y Municipales
+# 3. API de Geometrías de Departamentos
 ############################################
+# Devuelve las geometrías completas (geom) de los departamentos
+# para su uso en representación cartográfica
+
+### Obtener todas las geometrías de departamentos
+GET {{baseUrl}}/geoms-departamentos
+
+### Obtener la geometría de un departamento específico por ID
+GET {{baseUrl}}/geoms-departamentos?departamento_id=68
+
+############################################
+# 4. API de Geometrías de Municipios
+############################################
+# Devuelve las geometrías completas (geom) de los municipios para su uso en
+# representación cartográfica. Usa paginación para evitar timeouts.
+
+### Obtener información básica de todos los municipios (sin geometrías)
+GET {{baseUrl}}/geoms-municipios
+
+### Obtener la geometría de un municipio específico por ID
+GET {{baseUrl}}/geoms-municipios?municipio_id=68001
+
+### Obtener geometrías de municipios de un departamento (paginado)
+GET {{baseUrl}}/geoms-municipios?departamento_id=11
+
+### Obtener geometrías de municipios de un departamento (paginado) - Página 2
+GET {{baseUrl}}/geoms-municipios?departamento_id=68&page=2
+
+### Obtener geometrías de municipios de un departamento (paginado) - Cambiando límite
+GET {{baseUrl}}/geoms-municipios?departamento_id=68&limit=5
+
+############################################
+# 5. API de Estadísticas Departamentales y Municipales
+############################################
+# Proporciona estadísticas detalladas a nivel departamental y municipal
+# Para municipios, busca primero el departamento asociado y devuelve sus estadísticas
 
 ### Obtener todas las estadísticas departamentales
 GET {{baseUrl}}/estadisticas-departamentales
@@ -38,12 +84,14 @@ GET {{baseUrl}}/estadisticas-departamentales
 ### Obtener estadísticas de un departamento específico
 GET {{baseUrl}}/estadisticas-departamentales?departamento_id=68
 
-### Obtener estadísticas de un municipio específico
+### Obtener estadísticas asociadas a un municipio (devuelve las del departamento)
 GET {{baseUrl}}/estadisticas-departamentales?municipio_id=68655
 
 ############################################
-# 3. API de Datos ACGGP
+# 6. API de Datos ACGGP
 ############################################
+# Proporciona registros de actividades de la ACGGP (Asociación Colombiana de
+# Geólogos y Geofísicos del Petróleo) con filtros por ubicación geográfica
 
 ### Obtener todos los registros ACGGP
 GET {{baseUrl}}/datos-acggp
@@ -55,8 +103,10 @@ GET {{baseUrl}}/datos-acggp?municipio_id=68655
 GET {{baseUrl}}/datos-acggp?departamento_id=68
 
 ############################################
-# 4. API de Producción
+# 7. API de Producción
 ############################################
+# Proporciona datos de producción petrolera y gasífera
+# con múltiples opciones de filtrado y combinaciones
 
 ### Obtener todos los datos de producción
 GET {{baseUrl}}/produccion
