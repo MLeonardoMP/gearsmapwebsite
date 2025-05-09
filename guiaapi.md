@@ -12,6 +12,8 @@ Esta guía describe las diferentes APIs disponibles en la aplicación GearsMap y
 5. [API de Estadísticas Departamentales](#5-api-de-estadísticas-departamentales-y-municipales)
 6. [API de Datos ACGGP](#6-api-de-datos-acggp)
 7. [API de Producción](#7-api-de-producción)
+8. [API de Producción Departamental por Año](#8-api-de-producción-departamental-por-año)
+9. [API de Actividades ACGGP Departamental por Año](#9-api-de-actividades-acggp-departamental-por-año)
 
 ---
 
@@ -263,6 +265,98 @@ GET https://gearsmap.com/api/produccion?municipio_id=68001&departamento_id=68&re
 ```
 
 **Respuesta**: Datos de producción filtrados según los parámetros especificados.
+
+---
+
+## 8. API de Producción Departamental por Año
+
+Proporciona datos agregados de producción a nivel departamental por año, incluyendo información sobre recursos, producción total y número de campos, operadoras y contratos.
+
+### Endpoints:
+
+#### Obtener todos los datos de producción departamental
+```
+GET https://gearsmap.com/api/produccion-departamental
+```
+
+**Respuesta**: Lista completa de datos de producción departamental agregados por año.
+
+#### Filtrar por departamento_id
+```
+GET https://gearsmap.com/api/produccion-departamental?departamento_id=68
+```
+
+**Parámetros**:
+- `departamento_id`: Código DANE del departamento
+
+**Respuesta**: Datos de producción para el departamento específico, para todos los años.
+
+#### Filtrar por año
+```
+GET https://gearsmap.com/api/produccion-departamental?anio=2022
+```
+
+**Parámetros**:
+- `anio`: Año de producción
+
+**Respuesta**: Datos de producción de todos los departamentos para el año especificado.
+
+#### Filtrar por departamento_id y año
+```
+GET https://gearsmap.com/api/produccion-departamental?departamento_id=68&anio=2022
+```
+
+**Parámetros**:
+- `departamento_id`: Código DANE del departamento
+- `anio`: Año de producción
+
+**Respuesta**: Datos de producción para el departamento y año específicos.
+
+---
+
+## 9. API de Actividades ACGGP Departamental por Año
+
+Proporciona datos agregados de actividades de la ACGGP a nivel departamental por año, incluyendo número de participantes, tipos de actividades y detalles de participación.
+
+### Endpoints:
+
+#### Obtener todos los datos de actividades ACGGP departamental
+```
+GET https://gearsmap.com/api/acggp-departamental
+```
+
+**Respuesta**: Lista completa de datos de actividades ACGGP departamentales agregados por año.
+
+#### Filtrar por departamento_id
+```
+GET https://gearsmap.com/api/acggp-departamental?departamento_id=68
+```
+
+**Parámetros**:
+- `departamento_id`: Código DANE del departamento
+
+**Respuesta**: Datos de actividades ACGGP para el departamento específico, para todos los años.
+
+#### Filtrar por año
+```
+GET https://gearsmap.com/api/acggp-departamental?anio=2022
+```
+
+**Parámetros**:
+- `anio`: Año de las actividades
+
+**Respuesta**: Datos de actividades ACGGP de todos los departamentos para el año especificado.
+
+#### Filtrar por departamento_id y año
+```
+GET https://gearsmap.com/api/acggp-departamental?departamento_id=68&anio=2022
+```
+
+**Parámetros**:
+- `departamento_id`: Código DANE del departamento
+- `anio`: Año de las actividades
+
+**Respuesta**: Datos de actividades ACGGP para el departamento y año específicos.
 
 ---
 

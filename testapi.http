@@ -130,3 +130,39 @@ GET {{baseUrl}}/produccion?anio=2024&mes=enero
 GET {{baseUrl}}/produccion?municipio_id=68001&anio=2024&mes=enero
 GET {{baseUrl}}/produccion?departamento_id=68&recurso=gas
 GET {{baseUrl}}/produccion?municipio_id=68001&departamento_id=68&recurso=petroleo&anio=2024&mes=febrero
+
+############################################
+# 8. API de Producción Departamental por Año
+############################################
+# Proporciona datos agregados de producción a nivel departamental por año
+# Tabla: production_deps_anio
+
+### Obtener todos los registros
+GET {{baseUrl}}/produccion-departamental
+
+### Filtrar por departamento_id
+GET {{baseUrl}}/produccion-departamental?departamento_id=68
+
+### Filtrar por año
+GET {{baseUrl}}/produccion-departamental?anio=2015
+
+### Filtrar por departamento_id y año
+GET {{baseUrl}}/produccion-departamental?departamento_id=5&anio=2015
+
+############################################
+# 9. API de Actividades ACGGP Departamental por Año
+############################################
+# Proporciona datos agregados de actividades ACGGP a nivel departamental por año
+# Tabla: acggp_deps_anio
+
+### Obtener todos los registros
+GET {{baseUrl}}/acggp-departamental
+
+### Filtrar por departamento_id
+GET {{baseUrl}}/acggp-departamental?departamento_id=68
+
+### Filtrar por año
+GET {{baseUrl}}/acggp-departamental?anio=2010
+
+### Filtrar por departamento_id y año
+GET {{baseUrl}}/acggp-departamental?departamento_id=-1&anio=TOTAL
