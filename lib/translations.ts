@@ -2,6 +2,9 @@ export type Language = "ES" | "EN" | "FR"
 
 export const translations = {
   ES: {
+    common: {
+      learnMore: "Saber más",
+    },
     nav: {
       home: "Inicio",
       about: "Sobre Nosotros",
@@ -103,7 +106,7 @@ export const translations = {
     gallery: {
       title: "Proyectos Destacados",
       subtitle: "Explora nuestras soluciones en acción",
-      project1: { title: "Dashboard Urbano", desc: "Visualización de tráfico en tiempo real" },
+      project1: { title: "Visor PPR ACGGP", desc: "Programa de Pedagogía Regional" },
       project2: { title: "Análisis Agrícola", desc: "Monitoreo de cultivos satelital" },
       project3: { title: "Gestión de Flotas", desc: "Optimización de rutas logísticas" }
     },
@@ -125,6 +128,9 @@ export const translations = {
     },
   },
   EN: {
+    common: {
+      learnMore: "Learn more",
+    },
     nav: {
       home: "Home",
       about: "About Us",
@@ -226,7 +232,7 @@ export const translations = {
     gallery: {
       title: "Featured Projects",
       subtitle: "Explore our solutions in action",
-      project1: { title: "Urban Dashboard", desc: "Real-time traffic visualization" },
+      project1: { title: "PPR ACGGP Viewer", desc: "Regional Pedagogy Program" },
       project2: { title: "Agricultural Analysis", desc: "Satellite crop monitoring" },
       project3: { title: "Fleet Management", desc: "Logistics route optimization" }
     },
@@ -248,6 +254,9 @@ export const translations = {
     },
   },
   FR: {
+    common: {
+      learnMore: "En savoir plus",
+    },
     nav: {
       home: "Accueil",
       about: "À Propos",
@@ -349,7 +358,7 @@ export const translations = {
     gallery: {
       title: "Projets en vedette",
       subtitle: "Découvrez nos solutions en action",
-      project1: { title: "Tableau de bord urbain", desc: "Visualisation du trafic en temps réel" },
+      project1: { title: "Visualiseur PPR ACGGP", desc: "Programme de Pédagogie Régionale" },
       project2: { title: "Analyse agricole", desc: "Surveillance des cultures par satellite" },
       project3: { title: "Gestion de flotte", desc: "Optimisation des itinéraires logistiques" }
     },

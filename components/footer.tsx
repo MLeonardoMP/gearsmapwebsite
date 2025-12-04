@@ -28,14 +28,8 @@ export default function Footer() {
               {t.footer.description}
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+              <a href="https://www.linkedin.com/company/gearsmap" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors">
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
-                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -88,16 +82,18 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-accent shrink-0" />
-                <a href="mailto:contacto@gearsmap.com" className="hover:text-accent transition-colors">
-                  contacto@gearsmap.com
+                <a href="mailto:gearsmap@gearsmap.com" className="hover:text-accent transition-colors">
+                  gearsmap@gearsmap.com
                 </a>
               </li>
+              {/* Phone not available for now
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-accent shrink-0" />
                 <a href="tel:+573000000000" className="hover:text-accent transition-colors">
                   +57 300 000 0000
                 </a>
               </li>
+              */}
             </ul>
           </div>
         </div>

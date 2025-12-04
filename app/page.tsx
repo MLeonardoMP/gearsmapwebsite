@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap, Brain, Map, BarChart, Globe2, Cog, Shield, User } from "lucide-react"
 import Globe from "@/components/ui/globe"
@@ -7,9 +8,55 @@ import { FadeIn } from "@/components/ui/fade-in"
 import { Counter } from "@/components/ui/counter"
 import { useLanguage } from "@/lib/language-context"
 import { TechIcons } from "@/components/tech-icons"
+import { useToast } from "@/components/ui/use-toast"
 
 export default function HomePage() {
   const { t } = useLanguage()
+  const { toast } = useToast()
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) throw new Error("Failed to send message")
+
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
+      })
+      
+      setFormData({ name: "", email: "", phone: "", message: "" })
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target
+    setFormData(prev => ({ ...prev, [id]: value }))
+  }
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
@@ -262,16 +309,31 @@ export default function HomePage() {
               }
             ].map((service, index) => (
               <FadeIn key={index} delay={index * 0.1}>
-                <div className="glass-card rounded-xl p-6 h-full hover:-translate-y-2 transition-transform duration-300 group">
-                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                    <service.icon className="w-6 h-6 text-accent" />
+                <div className="glass-card rounded-xl p-8 h-full hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden">
+                  {/* Background Gradient */}
+                  <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Large Watermark Icon */}
+                  <service.icon className="absolute -bottom-4 -right-4 w-32 h-32 text-accent/5 group-hover:text-accent/10 transition-colors duration-500 -rotate-12" />
+
+                  <div className="relative z-10">
+                      <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+                        <service.icon className="w-7 h-7 text-accent" />
+                      </div>
+                      
+                      <h3 className="text-2xl font-bold font-sans text-foreground mb-3 group-hover:text-accent transition-colors">
+                        {service.title}
+                      </h3>
+                      
+                      <p className="text-muted-foreground text-base leading-relaxed mb-6">
+                        {service.desc}
+                      </p>
+
+                      <div className="flex items-center text-accent font-medium text-sm opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                        <span>{t.common.learnMore}</span>
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </div>
                   </div>
-                  <h3 className="text-xl font-bold font-sans text-foreground mb-3 group-hover:text-accent transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {service.desc}
-                  </p>
                 </div>
               </FadeIn>
             ))}
@@ -286,19 +348,64 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { title: t.gallery.project1.title, desc: t.gallery.project1.desc, color: "bg-blue-500/20" },
-                { title: t.gallery.project2.title, desc: t.gallery.project2.desc, color: "bg-green-500/20" },
-                { title: t.gallery.project3.title, desc: t.gallery.project3.desc, color: "bg-purple-500/20" },
+                { title: t.gallery.project1.title, desc: t.gallery.project1.desc, color: "bg-blue-500/20", tags: ["React", "Mapbox", "Node.js"], link: "https://acggp.gearsmap.com/", image: "/images/acggp_visor.png" },
+                { title: t.gallery.project2.title, desc: t.gallery.project2.desc, color: "bg-green-500/20", tags: ["Python", "Satellite", "AI"] },
+                { title: t.gallery.project3.title, desc: t.gallery.project3.desc, color: "bg-purple-500/20", tags: ["IoT", "Real-time", "Dashboard"] },
               ].map((project, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
-                  <div className="group relative overflow-hidden rounded-xl aspect-video glass-card hover:border-accent/50 transition-all cursor-pointer">
-                    <div className={`absolute inset-0 ${project.color} group-hover:scale-110 transition-transform duration-700`} />
-                    <div className="absolute inset-0 bg-linear-to-t from-background/90 via-background/20 to-transparent opacity-80" />
-                    <div className="absolute bottom-0 left-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform">
-                      <h3 className="text-xl font-bold text-foreground mb-1">{project.title}</h3>
-                      <p className="text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity delay-100">{project.desc}</p>
+                  <a 
+                    href={project.link || "#"} 
+                    target={project.link ? "_blank" : "_self"}
+                    rel={project.link ? "noopener noreferrer" : ""}
+                    className="block h-full"
+                  >
+                    <div className="group relative overflow-hidden rounded-2xl glass-card hover:border-accent/50 transition-all cursor-pointer h-full flex flex-col">
+                      {/* Mockup Area */}
+                      <div className={`relative h-48 ${project.color} overflow-hidden`}>
+                          <div className="absolute inset-0 bg-linear-to-t from-background to-transparent opacity-20" />
+                          
+                          {project.image ? (
+                            <img 
+                              src={project.image} 
+                              alt={project.title}
+                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+                          ) : (
+                            /* Abstract UI shapes */
+                            <div className="absolute top-8 left-8 right-8 bottom-0 bg-background/40 backdrop-blur-sm rounded-t-lg border border-white/20 shadow-2xl transform translate-y-4 group-hover:translate-y-2 transition-transform duration-500">
+                                <div className="flex gap-2 p-3 border-b border-white/10">
+                                    <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                                    <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+                                    <div className="w-2 h-2 rounded-full bg-green-500/50" />
+                                </div>
+                                <div className="p-4 space-y-2">
+                                    <div className="h-2 w-3/4 bg-white/10 rounded" />
+                                    <div className="h-2 w-1/2 bg-white/10 rounded" />
+                                    <div className="grid grid-cols-2 gap-2 mt-4">
+                                        <div className="h-16 bg-white/5 rounded" />
+                                        <div className="h-16 bg-white/5 rounded" />
+                                    </div>
+                                </div>
+                            </div>
+                          )}
+                      </div>
+
+                      {/* Content Area */}
+                      <div className="p-6 flex-1 flex flex-col">
+                          <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
+                          <p className="text-sm text-muted-foreground mb-4 flex-1">{project.desc}</p>
+                          
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-2 mt-auto">
+                              {project.tags.map(tag => (
+                                  <span key={tag} className="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent border border-accent/20">
+                                      {tag}
+                                  </span>
+                              ))}
+                          </div>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </FadeIn>
               ))}
             </div>
@@ -469,7 +576,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -478,6 +585,9 @@ export default function HomePage() {
                     <input
                       type="text"
                       id="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                       placeholder={t.contact.form.namePlaceholder}
                       className="w-full px-4 py-3 bg-background/50 border border-white/10 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                     />
@@ -489,6 +599,8 @@ export default function HomePage() {
                     <input
                       type="tel"
                       id="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
                       placeholder={t.contact.form.phonePlaceholder}
                       className="w-full px-4 py-3 bg-background/50 border border-white/10 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                     />
@@ -502,6 +614,9 @@ export default function HomePage() {
                   <input
                     type="email"
                     id="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     placeholder={t.contact.form.emailPlaceholder}
                     className="w-full px-4 py-3 bg-background/50 border border-white/10 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                   />
@@ -514,6 +629,9 @@ export default function HomePage() {
                   <textarea
                     id="message"
                     rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     placeholder={t.contact.form.messagePlaceholder}
                     className="w-full px-4 py-3 bg-background/50 border border-white/10 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none transition-all"
                   ></textarea>
@@ -522,9 +640,10 @@ export default function HomePage() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium h-12 text-lg shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all hover:-translate-y-1"
+                  disabled={isSubmitting}
+                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium h-12 text-lg shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {t.contact.form.submit}
+                  {isSubmitting ? "Sending..." : t.contact.form.submit}
                 </Button>
               </form>
             </div>
