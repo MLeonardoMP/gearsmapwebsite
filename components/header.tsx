@@ -5,17 +5,21 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
-
-const menuItems = [
-  { title: "Inicio", path: "#inicio" },
-  { title: "Sobre Nosotros", path: "#nosotros" },
-  { title: "Portafolio", path: "#portafolio" },
-  { title: "Contacto", path: "#contacto" },
-]
+import { ModeToggle } from "@/components/mode-toggle"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import { useLanguage } from "@/lib/language-context"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const { t } = useLanguage()
+
+  const menuItems = [
+    { title: t.nav.home, path: "#inicio" },
+    { title: t.nav.about, path: "#nosotros" },
+    { title: t.nav.portfolio, path: "#portafolio" },
+    { title: t.nav.contact, path: "#contacto" },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,6 +84,10 @@ export default function Header() {
                 <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </a>
             ))}
+            <div className="flex items-center gap-2 pl-4 border-l border-border/50">
+              <LanguageSwitcher />
+              <ModeToggle />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -115,6 +123,10 @@ export default function Header() {
                     {item.title}
                   </a>
                 ))}
+                <div className="flex items-center justify-between px-4 py-3 border-t border-border/50 mt-2">
+                  <LanguageSwitcher />
+                  <ModeToggle />
+                </div>
               </nav>
             </div>
           </div>

@@ -1,17 +1,12 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist } from "next/font/google"
 import { Manrope } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import ScrollToTop from "@/components/scroll-to-top"
-
-const geist = Geist({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-geist",
-})
+import { ThemeProvider } from "@/components/theme-provider"
+import { LanguageProvider } from "@/lib/language-context"
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -69,12 +64,21 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${geist.variable} ${manrope.variable} antialiased dark`}>
-      <body className="bg-background text-foreground">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <ScrollToTop />
+    <html lang="es" className={`${manrope.variable} antialiased`} suppressHydrationWarning>
+      <body className="min-h-screen bg-background font-sans antialiased selection:bg-accent/30 selection:text-accent-foreground">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LanguageProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <ScrollToTop />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
