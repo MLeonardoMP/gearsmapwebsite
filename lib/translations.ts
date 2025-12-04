@@ -96,6 +96,24 @@ export const translations = {
         submit: "Enviar Mensaje",
       },
     },
+    techStack: {
+      title: "Stack Tecnológico",
+      subtitle: "Herramientas modernas para soluciones robustas"
+    },
+    gallery: {
+      title: "Proyectos Destacados",
+      subtitle: "Explora nuestras soluciones en acción",
+      project1: { title: "Dashboard Urbano", desc: "Visualización de tráfico en tiempo real" },
+      project2: { title: "Análisis Agrícola", desc: "Monitoreo de cultivos satelital" },
+      project3: { title: "Gestión de Flotas", desc: "Optimización de rutas logísticas" }
+    },
+    team: {
+      title: "Nuestro Equipo",
+      subtitle: "Expertos apasionados por los datos",
+      role1: "CEO & Fundador",
+      role2: "Lead Developer",
+      role3: "Data Scientist"
+    },
     footer: {
       description: "Transformamos datos complejos en decisiones estratégicas mediante innovación, tecnología y soporte experto.",
       quickLinks: "Enlaces Rápidos",
@@ -201,6 +219,24 @@ export const translations = {
         submit: "Send Message",
       },
     },
+    techStack: {
+      title: "Technology Stack",
+      subtitle: "Modern tools for robust solutions"
+    },
+    gallery: {
+      title: "Featured Projects",
+      subtitle: "Explore our solutions in action",
+      project1: { title: "Urban Dashboard", desc: "Real-time traffic visualization" },
+      project2: { title: "Agricultural Analysis", desc: "Satellite crop monitoring" },
+      project3: { title: "Fleet Management", desc: "Logistics route optimization" }
+    },
+    team: {
+      title: "Our Team",
+      subtitle: "Experts passionate about data",
+      role1: "CEO & Founder",
+      role2: "Lead Developer",
+      role3: "Data Scientist"
+    },
     footer: {
       description: "We transform complex data into strategic decisions through innovation, technology, and expert support.",
       quickLinks: "Quick Links",
@@ -305,6 +341,24 @@ export const translations = {
         messagePlaceholder: "Entrez votre message",
         submit: "Envoyer le message",
       },
+    },
+    techStack: {
+      title: "Stack Technologique",
+      subtitle: "Des outils modernes pour des solutions robustes"
+    },
+    gallery: {
+      title: "Projets en vedette",
+      subtitle: "Découvrez nos solutions en action",
+      project1: { title: "Tableau de bord urbain", desc: "Visualisation du trafic en temps réel" },
+      project2: { title: "Analyse agricole", desc: "Surveillance des cultures par satellite" },
+      project3: { title: "Gestion de flotte", desc: "Optimisation des itinéraires logistiques" }
+    },
+    team: {
+      title: "Notre équipe",
+      subtitle: "Des experts passionnés par les données",
+      role1: "PDG et fondateur",
+      role2: "Développeur principal",
+      role3: "Data Scientist"
     },
     footer: {
       description: "Nous transformons des données complexes en décisions stratégiques grâce à l'innovation, la technologie et un support expert.",

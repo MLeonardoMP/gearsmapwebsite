@@ -16,8 +16,8 @@ export default function Header() {
 
   const menuItems = [
     { title: t.nav.home, path: "#inicio" },
-    { title: t.nav.about, path: "#nosotros" },
     { title: t.nav.portfolio, path: "#portafolio" },
+    { title: t.nav.about, path: "#nosotros" },
     { title: t.nav.contact, path: "#contacto" },
   ]
 

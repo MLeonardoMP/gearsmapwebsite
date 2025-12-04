@@ -1,13 +1,12 @@
 "use client"
 
-"use client"
-
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap, Brain, Map, BarChart, Globe2, Cog, Shield } from "lucide-react"
+import { ArrowRight, Zap, Brain, Map, BarChart, Globe2, Cog, Shield, User } from "lucide-react"
 import Globe from "@/components/ui/globe"
 import { FadeIn } from "@/components/ui/fade-in"
 import { Counter } from "@/components/ui/counter"
 import { useLanguage } from "@/lib/language-context"
+import { TechIcons } from "@/components/tech-icons"
 
 export default function HomePage() {
   const { t } = useLanguage()
@@ -137,104 +136,79 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="nosotros" className="px-6 lg:px-12 py-20 lg:py-32 relative">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <FadeIn>
-                <h2 className="text-3xl lg:text-5xl font-bold font-sans text-foreground">{t.about.title}</h2>
-              </FadeIn>
+      {/* Tech Stack Section */}
+      <section className="py-8 border-y border-white/5 bg-white/5 backdrop-blur-sm overflow-hidden">
+        <div className="w-full">
+          <FadeIn>
+            <div className="text-center mb-8">
+              <h2 className="text-xl lg:text-2xl font-bold font-sans text-foreground mb-2">{t.techStack.title}</h2>
+              <p className="text-muted-foreground text-sm">{t.techStack.subtitle}</p>
+            </div>
+            
+            <div className="flex flex-col gap-6">
+              {/* Row 1: Web & Cloud */}
+              <div className="relative flex overflow-hidden group" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
+                <div className="flex shrink-0 gap-12 animate-marquee group-hover:[animation-play-state:paused] items-center">
+                  {[
+                    { icon: TechIcons.Python, label: "Python" },
+                    { icon: TechIcons.React, label: "React" },
+                    { icon: TechIcons.NextJS, label: "Next.js" },
+                    { icon: TechIcons.TypeScript, label: "TypeScript" },
+                    { icon: TechIcons.Tailwind, label: "Tailwind" },
+                    { icon: TechIcons.AWS, label: "AWS" },
+                    { icon: TechIcons.PostgreSQL, label: "PostgreSQL" },
+                    { icon: TechIcons.Docker, label: "Docker" },
+                    // Duplicate for infinite loop
+                    { icon: TechIcons.Python, label: "Python" },
+                    { icon: TechIcons.React, label: "React" },
+                    { icon: TechIcons.NextJS, label: "Next.js" },
+                    { icon: TechIcons.TypeScript, label: "TypeScript" },
+                    { icon: TechIcons.Tailwind, label: "Tailwind" },
+                    { icon: TechIcons.AWS, label: "AWS" },
+                    { icon: TechIcons.PostgreSQL, label: "PostgreSQL" },
+                    { icon: TechIcons.Docker, label: "Docker" },
+                  ].map((tech, i) => (
+                    <div key={i} className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors duration-300">
+                      <tech.icon className="w-5 h-5" />
+                      <span className="font-semibold text-sm">{tech.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-              <div className="space-y-6">
-                <FadeIn delay={0.1}>
-                  <p className="text-muted-foreground leading-relaxed text-lg">
-                    {t.about.intro}
-                  </p>
-                </FadeIn>
-
-                <FadeIn delay={0.2}>
-                  <div className="glass-card p-6 rounded-xl space-y-4">
-                    <h3 className="text-xl font-bold font-sans text-foreground">{t.about.foundation.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {t.about.foundation.text}
-                    </p>
-                  </div>
-                </FadeIn>
-
-                <FadeIn delay={0.3}>
-                  <div className="glass-card p-6 rounded-xl space-y-4">
-                    <h3 className="text-xl font-bold font-sans text-foreground">{t.about.products.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {t.about.products.text}
-                    </p>
-                  </div>
-                </FadeIn>
+              {/* Row 2: AI & GIS */}
+              <div className="relative flex overflow-hidden group" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
+                <div className="flex shrink-0 gap-12 animate-marquee-reverse group-hover:[animation-play-state:paused] items-center">
+                  {[
+                    { icon: TechIcons.Mapbox, label: "Mapbox" },
+                    { icon: TechIcons.QGIS, label: "QGIS" },
+                    { icon: TechIcons.LangChain, label: "LangChain" },
+                    { icon: TechIcons.LangGraph, label: "LangGraph" },
+                    { icon: TechIcons.LlamaIndex, label: "LlamaIndex" },
+                    { icon: TechIcons.OpenAI, label: "OpenAI" },
+                    { icon: TechIcons.HuggingFace, label: "Hugging Face" },
+                    { icon: TechIcons.PyTorch, label: "PyTorch" },
+                    { icon: TechIcons.TensorFlow, label: "TensorFlow" },
+                    // Duplicate for infinite loop
+                    { icon: TechIcons.Mapbox, label: "Mapbox" },
+                    { icon: TechIcons.QGIS, label: "QGIS" },
+                    { icon: TechIcons.LangChain, label: "LangChain" },
+                    { icon: TechIcons.LangGraph, label: "LangGraph" },
+                    { icon: TechIcons.LlamaIndex, label: "LlamaIndex" },
+                    { icon: TechIcons.OpenAI, label: "OpenAI" },
+                    { icon: TechIcons.HuggingFace, label: "Hugging Face" },
+                    { icon: TechIcons.PyTorch, label: "PyTorch" },
+                    { icon: TechIcons.TensorFlow, label: "TensorFlow" },
+                  ].map((tech, i) => (
+                    <div key={i} className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors duration-300">
+                      <tech.icon className="w-5 h-5" />
+                      <span className="font-semibold text-sm">{tech.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-
-            {/* Right Image */}
-            <FadeIn direction="left" delay={0.2} className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
-                <img
-                  src="/images/agm2.jpg"
-                  alt="GearsMap team working with data visualization"
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent"></div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden">
-        {/* Background Blobs */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full overflow-hidden pointer-events-none z-0">
-           <div className="absolute top-[20%] right-[-10%] w-[30%] h-[30%] bg-accent/5 rounded-full blur-[100px]" />
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left Image */}
-            <FadeIn direction="right" className="relative order-2 lg:order-1">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
-                <img 
-                  src="/images/agm1.jpg" 
-                  alt="GearsMap team collaboration" 
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" 
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent"></div>
-              </div>
-            </FadeIn>
-
-            {/* Right Content */}
-            <div className="space-y-8 order-1 lg:order-2">
-              <FadeIn>
-                <h2 className="text-3xl lg:text-5xl font-bold font-sans text-foreground">{t.mission.title}</h2>
-              </FadeIn>
-
-              <div className="space-y-6">
-                <FadeIn delay={0.1}>
-                  <div className="glass-card p-6 rounded-xl space-y-4 border-l-4 border-l-accent">
-                    <h3 className="text-xl font-bold font-sans text-foreground">{t.mission.mission.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t.mission.mission.text}
-                    </p>
-                  </div>
-                </FadeIn>
-
-                <FadeIn delay={0.2}>
-                  <div className="glass-card p-6 rounded-xl space-y-4 border-l-4 border-l-blue-500">
-                    <h3 className="text-xl font-bold font-sans text-foreground">{t.mission.vision.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t.mission.vision.text}
-                    </p>
-                  </div>
-                </FadeIn>
-              </div>
-            </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -302,8 +276,173 @@ export default function HomePage() {
               </FadeIn>
             ))}
           </div>
+
+          {/* Featured Projects */}
+          <div className="mt-32">
+            <FadeIn className="text-center mb-16">
+              <h2 className="text-3xl lg:text-5xl font-bold font-sans text-foreground mb-4">{t.gallery.title}</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">{t.gallery.subtitle}</p>
+            </FadeIn>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { title: t.gallery.project1.title, desc: t.gallery.project1.desc, color: "bg-blue-500/20" },
+                { title: t.gallery.project2.title, desc: t.gallery.project2.desc, color: "bg-green-500/20" },
+                { title: t.gallery.project3.title, desc: t.gallery.project3.desc, color: "bg-purple-500/20" },
+              ].map((project, i) => (
+                <FadeIn key={i} delay={i * 0.1}>
+                  <div className="group relative overflow-hidden rounded-xl aspect-video glass-card hover:border-accent/50 transition-all cursor-pointer">
+                    <div className={`absolute inset-0 ${project.color} group-hover:scale-110 transition-transform duration-700`} />
+                    <div className="absolute inset-0 bg-linear-to-t from-background/90 via-background/20 to-transparent opacity-80" />
+                    <div className="absolute bottom-0 left-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform">
+                      <h3 className="text-xl font-bold text-foreground mb-1">{project.title}</h3>
+                      <p className="text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity delay-100">{project.desc}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
+      <section id="nosotros" className="px-6 lg:px-12 py-20 lg:py-32 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <FadeIn>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                  <span>{t.nav.home}</span>
+                  <ArrowRight className="w-4 h-4" />
+                  <span className="text-accent">{t.nav.about}</span>
+                </div>
+                <h2 className="text-3xl lg:text-5xl font-bold font-sans text-foreground">{t.about.title}</h2>
+              </FadeIn>
+
+              <div className="space-y-6">
+                <FadeIn delay={0.1}>
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    {t.about.intro}
+                  </p>
+                </FadeIn>
+
+                <FadeIn delay={0.2}>
+                  <div className="glass-card p-6 rounded-xl space-y-4">
+                    <h3 className="text-xl font-bold font-sans text-foreground">{t.about.foundation.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      {t.about.foundation.text}
+                    </p>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.3}>
+                  <div className="glass-card p-6 rounded-xl space-y-4">
+                    <h3 className="text-xl font-bold font-sans text-foreground">{t.about.products.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      {t.about.products.text}
+                    </p>
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+
+            {/* Right Image */}
+            <FadeIn direction="left" delay={0.2} className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+                <img
+                  src="/images/agm2.jpg"
+                  alt="GearsMap team working with data visualization"
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent"></div>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Team Section */}
+          <div className="mt-20">
+            <FadeIn className="text-center mb-16">
+              <h2 className="text-3xl lg:text-5xl font-bold font-sans text-foreground mb-4">{t.team.title}</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">{t.team.subtitle}</p>
+            </FadeIn>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { role: t.team.role1, name: "Alex Morgan" },
+                { role: t.team.role2, name: "Sarah Chen" },
+                { role: t.team.role3, name: "David Kim" },
+              ].map((member, i) => (
+                <FadeIn key={i} delay={i * 0.1}>
+                  <div className="glass-card p-6 rounded-xl text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div className="w-24 h-24 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4">
+                      <User className="w-10 h-10 text-accent" />
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground">{member.name}</h3>
+                    <p className="text-sm text-accent font-medium mb-4">{member.role}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden">
+        {/* Background Blobs */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full overflow-hidden pointer-events-none z-0">
+           <div className="absolute top-[20%] right-[-10%] w-[30%] h-[30%] bg-accent/5 rounded-full blur-[100px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left Image */}
+            <FadeIn direction="right" className="relative order-2 lg:order-1">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+                <img 
+                  src="/images/agm1.jpg" 
+                  alt="GearsMap team collaboration" 
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent"></div>
+              </div>
+            </FadeIn>
+
+            {/* Right Content */}
+            <div className="space-y-8 order-1 lg:order-2">
+              <FadeIn>
+                <h2 className="text-3xl lg:text-5xl font-bold font-sans text-foreground">{t.mission.title}</h2>
+              </FadeIn>
+
+              <div className="space-y-6">
+                <FadeIn delay={0.1}>
+                  <div className="glass-card p-6 rounded-xl space-y-4 border-l-4 border-l-accent">
+                    <h3 className="text-xl font-bold font-sans text-foreground">{t.mission.mission.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {t.mission.mission.text}
+                    </p>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.2}>
+                  <div className="glass-card p-6 rounded-xl space-y-4 border-l-4 border-l-blue-500">
+                    <h3 className="text-xl font-bold font-sans text-foreground">{t.mission.vision.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {t.mission.vision.text}
+                    </p>
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
 
       <section id="contacto" className="px-6 lg:px-12 py-20 lg:py-32 relative">
         <div className="max-w-7xl mx-auto relative z-10">
