@@ -9,6 +9,14 @@ import { Counter } from "@/components/ui/counter"
 import { useLanguage } from "@/lib/language-context"
 import { TechIcons } from "@/components/tech-icons"
 import { useToast } from "@/components/ui/use-toast"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export default function HomePage() {
   const { t } = useLanguage()
@@ -280,61 +288,92 @@ export default function HomePage() {
               {
                 icon: Brain,
                 title: t.portfolio.services.ai.title,
-                desc: t.portfolio.services.ai.desc
+                desc: t.portfolio.services.ai.desc,
+                details: t.portfolio.services.ai.details
               },
               {
                 icon: Map,
                 title: t.portfolio.services.geoviewers.title,
-                desc: t.portfolio.services.geoviewers.desc
+                desc: t.portfolio.services.geoviewers.desc,
+                details: t.portfolio.services.geoviewers.details
               },
               {
                 icon: Globe2,
                 title: t.portfolio.services.visualization.title,
-                desc: t.portfolio.services.visualization.desc
+                desc: t.portfolio.services.visualization.desc,
+                details: t.portfolio.services.visualization.details
               },
               {
                 icon: BarChart,
                 title: t.portfolio.services.dashboards.title,
-                desc: t.portfolio.services.dashboards.desc
+                desc: t.portfolio.services.dashboards.desc,
+                details: t.portfolio.services.dashboards.details
               },
               {
                 icon: Cog,
                 title: t.portfolio.services.automation.title,
-                desc: t.portfolio.services.automation.desc
+                desc: t.portfolio.services.automation.desc,
+                details: t.portfolio.services.automation.details
               },
               {
                 icon: Shield,
                 title: t.portfolio.services.monitoring.title,
-                desc: t.portfolio.services.monitoring.desc
+                desc: t.portfolio.services.monitoring.desc,
+                details: t.portfolio.services.monitoring.details
               }
             ].map((service, index) => (
               <FadeIn key={index} delay={index * 0.1}>
-                <div className="glass-card rounded-xl p-8 h-full hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden">
-                  {/* Background Gradient */}
-                  <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Large Watermark Icon */}
-                  <service.icon className="absolute -bottom-4 -right-4 w-32 h-32 text-accent/5 group-hover:text-accent/10 transition-colors duration-500 -rotate-12" />
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="glass-card rounded-xl p-8 h-full hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden cursor-pointer">
+                      {/* Background Gradient */}
+                      <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      
+                      {/* Large Watermark Icon */}
+                      <service.icon className="absolute -bottom-4 -right-4 w-32 h-32 text-accent/5 group-hover:text-accent/10 transition-colors duration-500 -rotate-12" />
 
-                  <div className="relative z-10">
-                      <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                        <service.icon className="w-7 h-7 text-accent" />
+                      <div className="relative z-10">
+                          <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+                            <service.icon className="w-7 h-7 text-accent" />
+                          </div>
+                          
+                          <h3 className="text-2xl font-bold font-sans text-foreground mb-3 group-hover:text-accent transition-colors">
+                            {service.title}
+                          </h3>
+                          
+                          <p className="text-muted-foreground text-base leading-relaxed mb-6">
+                            {service.desc}
+                          </p>
+
+                          <div className="flex items-center text-accent font-medium text-sm opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                            <span>{t.common.learnMore}</span>
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </div>
                       </div>
-                      
-                      <h3 className="text-2xl font-bold font-sans text-foreground mb-3 group-hover:text-accent transition-colors">
-                        {service.title}
-                      </h3>
-                      
-                      <p className="text-muted-foreground text-base leading-relaxed mb-6">
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[600px] border-accent/20 bg-background/95 backdrop-blur-xl">
+                    <DialogHeader>
+                      <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                        <service.icon className="w-6 h-6 text-accent" />
+                      </div>
+                      <DialogTitle className="text-2xl font-bold text-foreground">{service.title}</DialogTitle>
+                      <DialogDescription className="text-lg pt-2 text-muted-foreground">
                         {service.desc}
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="py-4">
+                      <p className="text-foreground/80 leading-relaxed">
+                        {service.details}
                       </p>
-
-                      <div className="flex items-center text-accent font-medium text-sm opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                        <span>{t.common.learnMore}</span>
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </div>
-                  </div>
-                </div>
+                    </div>
+                    <div className="flex justify-end pt-4">
+                      <Button asChild className="bg-accent hover:bg-accent/90 text-white">
+                        <a href="#contact">{t.nav.contact}</a>
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </FadeIn>
             ))}
           </div>

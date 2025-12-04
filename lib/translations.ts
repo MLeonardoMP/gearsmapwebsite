@@ -59,26 +59,32 @@ export const translations = {
         ai: {
           title: "Inteligencia artificial y Machine Learning",
           desc: "Implementamos soluciones de inteligencia artificial y machine learning para ayudarle a extraer información valiosa de sus datos y mejorar la toma de decisiones.",
+          details: "Nuestras soluciones de IA incluyen análisis predictivo, procesamiento de lenguaje natural (NLP) y visión por computadora. Ayudamos a automatizar la clasificación de datos, detectar anomalías en tiempo real y generar insights accionables que impulsan el crecimiento de su negocio.",
         },
         geoviewers: {
           title: "Geovisores",
           desc: "Desarrollamos geovisores personalizados para visualizar y analizar información geoespacial de manera interactiva y dinámica.",
+          details: "Creamos visores de mapas interactivos utilizando tecnologías como Mapbox, Leaflet y OpenLayers. Integramos capas de datos complejos, herramientas de dibujo, análisis espacial en el navegador y filtrado avanzado para que pueda explorar su información geográfica sin límites.",
         },
         visualization: {
           title: "Visualización 2D y 3D",
           desc: "Potencie el análisis y comprensión de sus datos mediante herramientas avanzadas de visualización 2D y 3D, diseñadas a la medida.",
+          details: "Transformamos datos abstractos en experiencias visuales inmersivas. Desde gráficos interactivos hasta modelos 3D de ciudades y terrenos, nuestras herramientas permiten una comprensión profunda de patrones y tendencias que serían invisibles en tablas tradicionales.",
         },
         dashboards: {
           title: "Dashboards y estadísticas",
           desc: "Esta herramienta le permitirá presentar y analizar sus datos de manera clara y visual, facilitando una toma de decisiones más informada.",
+          details: "Diseñamos tableros de control ejecutivos y operativos que centralizan sus KPIs más importantes. Con actualizaciones en tiempo real, filtros dinámicos y exportación de reportes, tendrá el control total de sus métricas de rendimiento en una sola pantalla.",
         },
         automation: {
           title: "Automatización de Procesos",
           desc: "A través de la automatización de procesos, le ayudamos a mejorar la eficiencia operativa y reducir el tiempo dedicado a tareas repetitivas.",
+          details: "Identificamos cuellos de botella y tareas manuales propensas a errores para reemplazarlas con flujos de trabajo automatizados. Desde la ingesta de datos hasta la generación de notificaciones, optimizamos sus operaciones para que su equipo se enfoque en tareas de alto valor.",
         },
         monitoring: {
           title: "Monitoreo y Mantenimiento",
           desc: "Proveemos servicios de monitoreo continuo y mantenimiento de productos, asegurando su funcionamiento óptimo a lo largo del tiempo.",
+          details: "Ofrecemos soporte técnico proactivo, actualizaciones de seguridad y monitoreo de rendimiento 24/7. Garantizamos que sus plataformas estén siempre disponibles, seguras y funcionando con la máxima eficiencia, adaptándonos a los cambios tecnológicos.",
         },
       },
     },
@@ -185,26 +191,32 @@ export const translations = {
         ai: {
           title: "AI and Machine Learning",
           desc: "We implement artificial intelligence and machine learning solutions to help you extract valuable information from your data and improve decision-making.",
+          details: "Our AI solutions include predictive analytics, natural language processing (NLP), and computer vision. We help automate data classification, detect anomalies in real-time, and generate actionable insights that drive your business growth.",
         },
         geoviewers: {
           title: "Geoviewers",
           desc: "We develop custom geoviewers to visualize and analyze geospatial information interactively and dynamically.",
+          details: "We create interactive map viewers using technologies like Mapbox, Leaflet, and OpenLayers. We integrate complex data layers, drawing tools, in-browser spatial analysis, and advanced filtering so you can explore your geographic information without limits.",
         },
         visualization: {
           title: "2D and 3D Visualization",
           desc: "Enhance the analysis and understanding of your data through advanced 2D and 3D visualization tools, designed to measure.",
+          details: "We transform abstract data into immersive visual experiences. From interactive charts to 3D models of cities and terrain, our tools enable a deep understanding of patterns and trends that would be invisible in traditional tables.",
         },
         dashboards: {
           title: "Dashboards and Statistics",
           desc: "This tool will allow you to present and analyze your data clearly and visually, facilitating more informed decision-making.",
+          details: "We design executive and operational dashboards that centralize your most important KPIs. With real-time updates, dynamic filters, and report exporting, you'll have total control over your performance metrics on a single screen.",
         },
         automation: {
           title: "Process Automation",
           desc: "Through process automation, we help you improve operational efficiency and reduce time spent on repetitive tasks.",
+          details: "We identify bottlenecks and error-prone manual tasks to replace them with automated workflows. From data ingestion to notification generation, we optimize your operations so your team can focus on high-value tasks.",
         },
         monitoring: {
           title: "Monitoring and Maintenance",
           desc: "We provide continuous monitoring and product maintenance services, ensuring optimal operation over time.",
+          details: "We offer proactive technical support, security updates, and 24/7 performance monitoring. We ensure your platforms are always available, secure, and running at maximum efficiency, adapting to technological changes.",
         },
       },
     },
@@ -311,26 +323,32 @@ export const translations = {
         ai: {
           title: "IA et Machine Learning",
           desc: "Nous mettons en œuvre des solutions d'intelligence artificielle et d'apprentissage automatique pour vous aider à extraire des informations précieuses de vos données et à améliorer la prise de décision.",
+          details: "Nos solutions d'IA incluent l'analyse prédictive, le traitement du langage naturel (NLP) et la vision par ordinateur. Nous aidons à automatiser la classification des données, à détecter les anomalies en temps réel et à générer des informations exploitables qui stimulent la croissance de votre entreprise.",
         },
         geoviewers: {
           title: "Géovisionneuses",
           desc: "Nous développons des géovisionneuses personnalisées pour visualiser et analyser les informations géospatiales de manière interactive et dynamique.",
+          details: "Nous créons des visualiseurs de cartes interactifs utilisant des technologies comme Mapbox, Leaflet et OpenLayers. Nous intégrons des couches de données complexes, des outils de dessin, une analyse spatiale dans le navigateur et un filtrage avancé pour que vous puissiez explorer vos informations géographiques sans limites.",
         },
         visualization: {
           title: "Visualisation 2D et 3D",
           desc: "Améliorez l'analyse et la compréhension de vos données grâce à des outils de visualisation 2D et 3D avancés, conçus sur mesure.",
+          details: "Nous transformons des données abstraites en expériences visuelles immersives. Des graphiques interactifs aux modèles 3D de villes et de terrains, nos outils permettent une compréhension approfondie des modèles et des tendances qui seraient invisibles dans les tableaux traditionnels.",
         },
         dashboards: {
           title: "Tableaux de bord et statistiques",
           desc: "Cet outil vous permettra de présenter et d'analyser vos données de manière claire et visuelle, facilitant une prise de décision plus éclairée.",
+          details: "Nous concevons des tableaux de bord exécutifs et opérationnels qui centralisent vos KPI les plus importants. Avec des mises à jour en temps réel, des filtres dynamiques et l'exportation de rapports, vous aurez un contrôle total sur vos mesures de performance sur un seul écran.",
         },
         automation: {
           title: "Automatisation des processus",
           desc: "Grâce à l'automatisation des processus, nous vous aidons à améliorer l'efficacité opérationnelle et à réduire le temps consacré aux tâches répétitives.",
+          details: "Nous identifions les goulots d'étranglement et les tâches manuelles sujettes aux erreurs pour les remplacer par des flux de travail automatisés. De l'ingestion de données à la génération de notifications, nous optimisons vos opérations pour que votre équipe se concentre sur des tâches à haute valeur ajoutée.",
         },
         monitoring: {
           title: "Surveillance et maintenance",
           desc: "Nous fournissons des services de surveillance continue et de maintenance des produits, assurant leur fonctionnement optimal dans le temps.",
+          details: "Nous offrons un support technique proactif, des mises à jour de sécurité et une surveillance des performances 24/7. Nous garantissons que vos plateformes sont toujours disponibles, sécurisées et fonctionnent avec une efficacité maximale, en s'adaptant aux changements technologiques.",
         },
       },
     },
