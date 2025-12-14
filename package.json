@@ -13,7 +13,7 @@
     "@vercel/postgres": "^0.10.0",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
-    "next": "^15.0.2",
+    "next": "15.0.7",
     "next-themes": "^0.2.1",
     "pnpm": "^9.12.3",
     "react": "^18.2.0",
