@@ -23,8 +23,10 @@ export async function POST(req: Request) {
     const { name, email, phone, message } = parsed.data
 
     const requireDb = process.env.CONTACT_REQUIRE_DB === "true"
+    const requireEmail = process.env.CONTACT_REQUIRE_EMAIL === "true"
     const hasDb = Boolean(process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING)
     let dbSaved = false
+    let emailSent = false
 
     if (hasDb) {
       try {
@@ -49,47 +51,76 @@ export async function POST(req: Request) {
       )
     }
 
-    // Create a transporter
-    // Note: In a real application, you should use environment variables for these values.
-    // For now, we will check if they exist, otherwise we might log a warning or fail.
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
+    // Email is best-effort by default (so local dev doesn't fail if SMTP isn't configured).
+    // Set CONTACT_REQUIRE_EMAIL=true to fail if email can't be sent.
+    const emailEnabled = process.env.CONTACT_EMAIL_ENABLED !== "false"
+    const smtpHost = process.env.SMTP_HOST
+    const hasSmtp = Boolean(smtpHost)
 
-    // Email content
-    const mailOptions = {
-      from: process.env.SMTP_FROM || '"GearsMap Website" <no-reply@gearsmap.com>',
-      to: "gearsmap@gearsmap.com, juan.mosquera@gearsmap.com",
-      subject: `New Contact Form Submission from ${name}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Phone: ${phone || "Not provided"}
-        
-        Message:
-        ${message}
-      `,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-        <br/>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `,
-    };
+    if (emailEnabled && hasSmtp) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: Number(process.env.SMTP_PORT) || 587,
+          secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
+          auth: process.env.SMTP_USER
+            ? {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
+              }
+            : undefined,
+        })
 
-    // Send email
-    await transporter.sendMail(mailOptions)
+        const mailOptions = {
+          from:
+            process.env.SMTP_FROM || '"GearsMap Website" <no-reply@gearsmap.com>',
+          to: "gearsmap@gearsmap.com, juan.mosquera@gearsmap.com",
+          subject: `New Contact Form Submission from ${name}`,
+          text: `
+Name: ${name}
+Email: ${email}
+Phone: ${phone || "Not provided"}
 
-    return NextResponse.json({ success: true, dbSaved })
+Message:
+${message}
+          `,
+          html: `
+<h3>New Contact Form Submission</h3>
+<p><strong>Name:</strong> ${name}</p>
+<p><strong>Email:</strong> ${email}</p>
+<p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+<br/>
+<p><strong>Message:</strong></p>
+<p>${message.replace(/\n/g, "<br>")}</p>
+          `,
+        }
+
+        await transporter.sendMail(mailOptions)
+        emailSent = true
+      } catch (emailError) {
+        console.error("Error sending email:", emailError)
+        if (requireEmail) {
+          return NextResponse.json(
+            { error: "Failed to send email" },
+            { status: 500 }
+          )
+        }
+      }
+    } else if (requireEmail) {
+      return NextResponse.json(
+        { error: "Email not configured" },
+        { status: 500 }
+      )
+    }
+
+    if (!dbSaved && !emailSent) {
+      return NextResponse.json(
+        { error: "No delivery method configured" },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({ success: true, dbSaved, emailSent })
   } catch (error) {
     console.error("Error sending email:", error)
     return NextResponse.json(
