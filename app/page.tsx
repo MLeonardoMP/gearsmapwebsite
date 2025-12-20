@@ -56,7 +56,7 @@ export default function HomePage() {
               <BlurFade delay={0.4}>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <ShimmerButton
-                    shimmerColor="#33bfff"
+                    shimmerColor="hsl(var(--accent))"
                     background="linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent)) 100%)"
                     className="text-base"
                   >
@@ -96,7 +96,7 @@ export default function HomePage() {
               <div className="relative w-full h-96 lg:h-[500px] flex items-center justify-center">
                 {/* Background glow effect */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-accent/20 to-accent/5 blur-3xl animate-pulse"></div>
+                  <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-linear-to-br from-accent/20 to-accent/5 blur-3xl animate-pulse"></div>
                 </div>
 
                 {/* Magic UI Globe */}
@@ -200,7 +200,7 @@ export default function HomePage() {
                     alt="GearsMap team working with data visualization"
                     className="w-full h-auto object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-background/20 to-transparent"></div>
                 </div>
               </div>
             </BlurFade>
@@ -215,7 +215,7 @@ export default function HomePage() {
             <BlurFade delay={0.2} className="relative order-2 lg:order-1">
               <div className="relative rounded-2xl overflow-hidden">
                 <img src="/images/agm1.jpg" alt="GearsMap team collaboration" className="w-full h-auto object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-background/20 to-transparent"></div>
               </div>
             </BlurFade>
 
