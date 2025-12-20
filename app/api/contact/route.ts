@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     if (hasDb) {
       try {
         await sql`
-          INSERT INTO contact (name, email, phone, message)
+          INSERT INTO public.conect (name, email, phone, message)
           VALUES (${name}, ${email}, ${phone ?? null}, ${message})
         `
         dbSaved = true
