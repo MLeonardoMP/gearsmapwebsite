@@ -9,6 +9,7 @@ import { Counter } from "@/components/ui/counter"
 import { useLanguage } from "@/lib/language-context"
 import { TechIcons } from "@/components/tech-icons"
 import { useToast } from "@/components/ui/use-toast"
+import { Marquee } from "@/components/ui/marquee"
 import {
   Dialog,
   DialogContent,
@@ -18,6 +19,15 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog"
+
+function TechPill({ icon: Icon, label }: { icon: (props: React.ImgHTMLAttributes<HTMLImageElement>) => JSX.Element; label: string }) {
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-border/30 bg-card/20 px-5 py-3 text-muted-foreground transition-colors duration-300 hover:border-accent/30 hover:bg-card/35 hover:text-foreground">
+      <Icon className="h-6 w-6" />
+      <span className="text-sm font-semibold whitespace-nowrap">{label}</span>
+    </div>
+  )
+}
 
 export default function HomePage() {
   const { t } = useLanguage()
@@ -197,78 +207,50 @@ export default function HomePage() {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="py-8 border-y border-white/5 bg-white/5 backdrop-blur-sm overflow-hidden">
+      <section className="relative py-10 border-y border-white/5 bg-white/5 backdrop-blur-sm overflow-hidden">
         <div className="w-full">
           <FadeIn>
             <div className="text-center mb-8">
               <h2 className="text-xl lg:text-2xl font-bold font-sans text-foreground mb-2">{t.techStack.title}</h2>
               <p className="text-muted-foreground text-sm">{t.techStack.subtitle}</p>
             </div>
-            
-            <div className="flex flex-col gap-6">
-              {/* Row 1: Web & Cloud */}
-              <div className="relative flex overflow-hidden group" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
-                <div className="flex shrink-0 gap-12 animate-marquee group-hover:[animation-play-state:paused] items-center">
-                  {[
-                    { icon: TechIcons.Python, label: "Python" },
-                    { icon: TechIcons.React, label: "React" },
-                    { icon: TechIcons.NextJS, label: "Next.js" },
-                    { icon: TechIcons.TypeScript, label: "TypeScript" },
-                    { icon: TechIcons.Tailwind, label: "Tailwind" },
-                    { icon: TechIcons.AWS, label: "AWS" },
-                    { icon: TechIcons.PostgreSQL, label: "PostgreSQL" },
-                    { icon: TechIcons.Docker, label: "Docker" },
-                    // Duplicate for infinite loop
-                    { icon: TechIcons.Python, label: "Python" },
-                    { icon: TechIcons.React, label: "React" },
-                    { icon: TechIcons.NextJS, label: "Next.js" },
-                    { icon: TechIcons.TypeScript, label: "TypeScript" },
-                    { icon: TechIcons.Tailwind, label: "Tailwind" },
-                    { icon: TechIcons.AWS, label: "AWS" },
-                    { icon: TechIcons.PostgreSQL, label: "PostgreSQL" },
-                    { icon: TechIcons.Docker, label: "Docker" },
-                  ].map((tech, i) => (
-                    <div key={i} className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors duration-300">
-                      <tech.icon className="w-5 h-5" />
-                      <span className="font-semibold text-sm">{tech.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Row 2: AI & GIS */}
-              <div className="relative flex overflow-hidden group" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
-                <div className="flex shrink-0 gap-12 animate-marquee-reverse group-hover:[animation-play-state:paused] items-center">
-                  {[
-                    { icon: TechIcons.Mapbox, label: "Mapbox" },
-                    { icon: TechIcons.QGIS, label: "QGIS" },
-                    { icon: TechIcons.LangChain, label: "LangChain" },
-                    { icon: TechIcons.LlamaIndex, label: "LlamaIndex" },
-                    { icon: TechIcons.OpenAI, label: "OpenAI" },
-                    { icon: TechIcons.Claude, label: "Claude" },
-                    { icon: TechIcons.DeepSeek, label: "DeepSeek" },
-                    { icon: TechIcons.HuggingFace, label: "Hugging Face" },
-                    { icon: TechIcons.PyTorch, label: "PyTorch" },
-                    { icon: TechIcons.TensorFlow, label: "TensorFlow" },
-                    // Duplicate for infinite loop
-                    { icon: TechIcons.Mapbox, label: "Mapbox" },
-                    { icon: TechIcons.QGIS, label: "QGIS" },
-                    { icon: TechIcons.LangChain, label: "LangChain" },
-                    { icon: TechIcons.LlamaIndex, label: "LlamaIndex" },
-                    { icon: TechIcons.OpenAI, label: "OpenAI" },
-                    { icon: TechIcons.Claude, label: "Claude" },
-                    { icon: TechIcons.DeepSeek, label: "DeepSeek" },
-                    { icon: TechIcons.HuggingFace, label: "Hugging Face" },
-                    { icon: TechIcons.PyTorch, label: "PyTorch" },
-                    { icon: TechIcons.TensorFlow, label: "TensorFlow" },
-                  ].map((tech, i) => (
-                    <div key={i} className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors duration-300">
-                      <tech.icon className="w-5 h-5" />
-                      <span className="font-semibold text-sm">{tech.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="relative flex flex-col gap-6">
+              <Marquee pauseOnHover className="[--duration:32s] [--gap:2.5rem]">
+                {[
+                  { icon: TechIcons.Python, label: "Python" },
+                  { icon: TechIcons.React, label: "React" },
+                  { icon: TechIcons.NextJS, label: "Next.js" },
+                  { icon: TechIcons.TypeScript, label: "TypeScript" },
+                  { icon: TechIcons.Tailwind, label: "Tailwind" },
+                  { icon: TechIcons.AWS, label: "AWS" },
+                  { icon: TechIcons.PostgreSQL, label: "PostgreSQL" },
+                  { icon: TechIcons.Docker, label: "Docker" },
+                ].map((tech) => (
+                  <TechPill key={tech.label} icon={tech.icon} label={tech.label} />
+                ))}
+              </Marquee>
+
+              <Marquee reverse pauseOnHover className="[--duration:36s] [--gap:2.5rem]">
+                {[
+                  { icon: TechIcons.Mapbox, label: "Mapbox" },
+                  { icon: TechIcons.QGIS, label: "QGIS" },
+                  { icon: TechIcons.LangChain, label: "LangChain" },
+                  { icon: TechIcons.LlamaIndex, label: "LlamaIndex" },
+                  { icon: TechIcons.OpenAI, label: "OpenAI" },
+                  { icon: TechIcons.Claude, label: "Claude" },
+                  { icon: TechIcons.DeepSeek, label: "DeepSeek" },
+                  { icon: TechIcons.HuggingFace, label: "Hugging Face" },
+                  { icon: TechIcons.PyTorch, label: "PyTorch" },
+                  { icon: TechIcons.TensorFlow, label: "TensorFlow" },
+                ].map((tech) => (
+                  <TechPill key={tech.label} icon={tech.icon} label={tech.label} />
+                ))}
+              </Marquee>
+
+              {/* Edge fade */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-linear-to-r from-background to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-linear-to-l from-background to-transparent" />
             </div>
           </FadeIn>
         </div>

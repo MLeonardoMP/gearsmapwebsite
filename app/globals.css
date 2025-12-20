@@ -53,6 +53,17 @@ body {
   background-attachment: fixed;
 }
 
+/* Dark mode: keep GearsMap tones, but avoid “dirty”/uneven look */
+.dark body {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(at 0% 0%, hsla(185, 70%, 25%, 0.08) 0px, transparent 55%),
+    radial-gradient(at 100% 0%, hsla(205, 70%, 25%, 0.07) 0px, transparent 55%),
+    radial-gradient(at 100% 100%, hsla(185, 70%, 25%, 0.08) 0px, transparent 55%),
+    radial-gradient(at 0% 100%, hsla(205, 70%, 25%, 0.07) 0px, transparent 55%);
+  background-attachment: fixed;
+}
+
 /* Noise Texture Overlay */
 body::before {
   content: "";
@@ -65,6 +76,11 @@ body::before {
   z-index: 50;
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* In dark mode, disable the noise overlay (it reads as “dirty” on gradients) */
+.dark body::before {
+  opacity: 0;
 }
 
 .glass-card {
@@ -192,26 +208,31 @@ body::before {
       transform: translateX(0);
     }
     to {
-      transform: translateX(-50%);
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
 
-  @keyframes marquee-reverse {
+  @keyframes marquee-vertical {
     from {
-      transform: translateX(-50%);
+      transform: translateY(0);
     }
     to {
-      transform: translateX(0);
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }
 
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee var(--duration) linear infinite;
 }
 
 .animate-marquee-reverse {
-  animation: marquee-reverse 40s linear infinite;
+  animation: marquee var(--duration) linear infinite;
+  animation-direction: reverse;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
 }
 
 .animate-marquee:hover,
