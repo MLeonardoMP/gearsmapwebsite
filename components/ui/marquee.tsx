@@ -24,7 +24,7 @@ export function Marquee({
     <div
       {...props}
       className={cn(
-        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem]",
+        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] gap-(--gap)",
         vertical ? "flex-col" : "flex-row",
         className
       )}
@@ -34,10 +34,12 @@ export function Marquee({
           // eslint-disable-next-line react/no-array-index-key
           key={i}
           className={cn(
-            "flex shrink-0 justify-around gap-(--gap)",
-            vertical ? "animate-marquee-vertical flex-col" : "animate-marquee flex-row",
-            reverse && "direction-[reverse]",
-            pauseOnHover && "group-hover:paused"
+            "flex shrink-0 gap-(--gap)",
+            vertical
+              ? "animate-marquee-vertical flex-col"
+              : "animate-marquee flex-row flex-nowrap justify-start",
+            reverse && "[animation-direction:reverse]",
+            pauseOnHover && "group-hover:[animation-play-state:paused]"
           )}
         >
           {children}

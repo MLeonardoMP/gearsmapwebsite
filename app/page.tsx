@@ -20,10 +20,16 @@ import {
   DialogClose,
 } from "@/components/ui/dialog"
 
-function TechPill({ icon: Icon, label }: { icon: (props: React.ImgHTMLAttributes<HTMLImageElement>) => JSX.Element; label: string }) {
+function TechPill({
+  icon: Icon,
+  label,
+}: {
+  icon?: (props: { className?: string }) => JSX.Element
+  label: string
+}) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-border/30 bg-card/20 px-5 py-3 text-muted-foreground transition-colors duration-300 hover:border-accent/30 hover:bg-card/35 hover:text-foreground">
-      <Icon className="h-6 w-6" />
+    <div className="shrink-0 flex items-center gap-3 rounded-xl border border-border/30 bg-card/20 px-5 py-3 text-muted-foreground">
+      {Icon ? <Icon className="h-6 w-6" /> : <div className="h-6 w-6" />}
       <span className="text-sm font-semibold whitespace-nowrap">{label}</span>
     </div>
   )
@@ -207,7 +213,7 @@ export default function HomePage() {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="relative py-10 border-y border-white/5 bg-white/5 backdrop-blur-sm overflow-hidden">
+      <section className="relative py-10 border-y border-border/30 bg-transparent overflow-hidden">
         <div className="w-full">
           <FadeIn>
             <div className="text-center mb-8">
@@ -215,14 +221,20 @@ export default function HomePage() {
               <p className="text-muted-foreground text-sm">{t.techStack.subtitle}</p>
             </div>
 
-            <div className="relative flex flex-col gap-6">
-              <Marquee pauseOnHover className="[--duration:32s] [--gap:2.5rem]">
+            <div className="relative flex flex-col gap-6 pointer-events-none">
+              <Marquee className="[--duration:32s] [--gap:2.5rem]">
                 {[
                   { icon: TechIcons.Python, label: "Python" },
+                  { icon: TechIcons.DotNet, label: ".NET" },
+                  { icon: TechIcons.Blazor, label: "Blazor" },
+                  { icon: TechIcons.CSharp, label: "C#" },
+                  { icon: TechIcons.PowerShell, label: "PowerShell" },
                   { icon: TechIcons.React, label: "React" },
                   { icon: TechIcons.NextJS, label: "Next.js" },
                   { icon: TechIcons.TypeScript, label: "TypeScript" },
                   { icon: TechIcons.Tailwind, label: "Tailwind" },
+                  { icon: TechIcons.Azure, label: "Azure" },
+                  { icon: TechIcons.Vercel, label: "Vercel" },
                   { icon: TechIcons.AWS, label: "AWS" },
                   { icon: TechIcons.PostgreSQL, label: "PostgreSQL" },
                   { icon: TechIcons.Docker, label: "Docker" },
@@ -231,7 +243,7 @@ export default function HomePage() {
                 ))}
               </Marquee>
 
-              <Marquee reverse pauseOnHover className="[--duration:36s] [--gap:2.5rem]">
+              <Marquee reverse className="[--duration:36s] [--gap:2.5rem]">
                 {[
                   { icon: TechIcons.Mapbox, label: "Mapbox" },
                   { icon: TechIcons.QGIS, label: "QGIS" },

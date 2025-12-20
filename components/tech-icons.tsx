@@ -58,5 +58,24 @@ export const TechIcons = {
   ),
   DeepSeek: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <img src="/images/deepseek-color.svg" alt="DeepSeek" {...props} />
-  )
-}
+  ),
+
+  DotNet: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img src="/images/dotnet.svg" alt=".NET" {...props} />
+  ),
+  CSharp: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img src="/images/csharp.svg" alt="C#" {...props} />
+  ),
+  PowerShell: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img src="/images/powershell.svg" alt="PowerShell" {...props} />
+  ),
+  Azure: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img src="/images/azure.svg" alt="Azure" {...props} />
+  ),
+  Vercel: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img src="/images/Vercel_dark.svg" alt="Vercel" {...props} />
+  ),
+  Blazor: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img src="/images/blazor.svg" alt="Blazor" {...props} />
+  ),
+};

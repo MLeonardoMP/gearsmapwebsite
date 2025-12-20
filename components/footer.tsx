@@ -9,11 +9,11 @@ export default function Footer() {
   const { t } = useLanguage()
 
   return (
-    <footer className="relative bg-card/30 border-t border-border/50 pt-16 pb-8">
+    <footer className="relative bg-card/30 border-t border-border/50 pt-12 pb-8">
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid gap-12 lg:grid-cols-4 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 mb-12">
           {/* Brand Column */}
-          <div className="space-y-6 lg:col-span-1">
+          <div className="space-y-6 col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/images/gearsmap-logo.png"
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 col-span-2 lg:col-span-1">
             <h3 className="text-lg font-bold font-sans text-foreground">{t.footer.contact}</h3>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-start gap-3">

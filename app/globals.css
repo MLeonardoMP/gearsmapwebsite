@@ -235,11 +235,6 @@ body::before {
   animation: marquee-vertical var(--duration) linear infinite;
 }
 
-.animate-marquee:hover,
-.animate-marquee-reverse:hover {
-  animation-play-state: paused;
-}
-
 /* Smooth scrolling for the whole page */
 html {
   scroll-behavior: smooth;
