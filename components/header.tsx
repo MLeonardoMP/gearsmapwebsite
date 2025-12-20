@@ -39,11 +39,17 @@ export default function Header() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     if (path.startsWith("#")) {
-      e.preventDefault()
-      const element = document.querySelector(path)
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" })
-        setIsOpen(false)
+      // Check if we're on the home page
+      if (window.location.pathname === "/" || window.location.pathname === "") {
+        e.preventDefault()
+        const element = document.querySelector(path)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" })
+          setIsOpen(false)
+        }
+      } else {
+        // If we're not on home page, navigate to home with the hash
+        window.location.href = "/" + path
       }
     }
   }

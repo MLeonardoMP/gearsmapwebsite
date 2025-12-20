@@ -12,7 +12,7 @@ export const translations = {
       contact: "Contacto",
     },
     hero: {
-      badge: "Plataformas de datos a tu medida",
+      badge: "Soluciones Geoespaciales & IA",
       title: "GearsMap",
       subtitle: "¿Qué es ",
       description1: "Diseñamos plataformas personalizadas que optimizan procesos y visualizan datos complejos.",
@@ -20,13 +20,13 @@ export const translations = {
       cta_primary: "Solicitar demo",
       cta_secondary: "Saber más",
       stats: {
-        projects: "Proyectos completados",
-        satisfaction: "Satisfacción del cliente",
-        support: "Soporte técnico",
+        projects: "Fundada en",
+        satisfaction: "Tecnologías",
+        support: "Tiempo de respuesta",
       },
       floating: {
-        revenue: "Crecimiento",
-        data: "Puntos de Datos",
+        revenue: "Disponibilidad",
+        data: "Soluciones Activas",
       }
     },
     about: {
@@ -34,7 +34,7 @@ export const translations = {
       intro: "Innovamos en nuevas formas de utilizar y visualizar datos para agregar valor a procesos y decisiones.",
       foundation: {
         title: "Fundación",
-        text: "Fundada en 2024, GearsMap reúne a profesionales experimentados del sector tecnológico, impulsados por la pasión de contribuir a la Cuarta Revolución Industrial. Innovamos en nuevas formas de utilizar y visualizar datos, añadiendo valor a los procesos empresariales.",
+        text: "Fundada en 2025, GearsMap reúne a profesionales experimentados del sector tecnológico, impulsados por la pasión de contribuir a la Cuarta Revolución Industrial. Innovamos en nuevas formas de utilizar y visualizar datos, añadiendo valor a los procesos empresariales.",
       },
       products: {
         title: "Productos y servicios",
@@ -118,7 +118,7 @@ export const translations = {
     },
     team: {
       title: "Nuestro Equipo",
-      subtitle: "Expertos apasionados por los datos",
+      subtitle: "Fundadores expertos apasionados por la innovación y los datos",
       role1: "CEO & Fundador",
       role2: "Lead Developer",
       role3: "Data Scientist"
@@ -144,7 +144,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      badge: "Custom Data Platforms",
+      badge: "Geospatial Solutions & AI",
       title: "GearsMap",
       subtitle: "What is ",
       description1: "We design custom platforms that optimize processes and visualize complex data.",
@@ -152,13 +152,13 @@ export const translations = {
       cta_primary: "Request Demo",
       cta_secondary: "Learn More",
       stats: {
-        projects: "Projects Completed",
-        satisfaction: "Customer Satisfaction",
-        support: "Technical Support",
+        projects: "Founded",
+        satisfaction: "Technologies",
+        support: "Response Time",
       },
       floating: {
-        revenue: "Growth",
-        data: "Data Points",
+        revenue: "Uptime",
+        data: "Active Solutions",
       }
     },
     about: {
@@ -166,7 +166,7 @@ export const translations = {
       intro: "We innovate in new ways to use and visualize data to add value to processes and decisions.",
       foundation: {
         title: "Foundation",
-        text: "Founded in 2024, GearsMap brings together experienced professionals from the technology sector, driven by the passion to contribute to the Fourth Industrial Revolution. We innovate in new ways to use and visualize data, adding value to business processes.",
+        text: "Founded in 2025, GearsMap brings together experienced professionals from the technology sector, driven by the passion to contribute to the Fourth Industrial Revolution. We innovate in new ways to use and visualize data, adding value to business processes.",
       },
       products: {
         title: "Products and Services",
@@ -250,7 +250,7 @@ export const translations = {
     },
     team: {
       title: "Our Team",
-      subtitle: "Experts passionate about data",
+      subtitle: "Founders and experts passionate about innovation and data",
       role1: "CEO & Founder",
       role2: "Lead Developer",
       role3: "Data Scientist"
@@ -276,7 +276,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      badge: "Plateformes de données sur mesure",
+      badge: "Solutions Géospatiales & IA",
       title: "GearsMap",
       subtitle: "Qu'est-ce que ",
       description1: "Nous concevons des plateformes personnalisées qui optimisent les processus et visualisent des données complexes.",
@@ -284,13 +284,13 @@ export const translations = {
       cta_primary: "Demander une démo",
       cta_secondary: "En savoir plus",
       stats: {
-        projects: "Projets terminés",
-        satisfaction: "Satisfaction client",
-        support: "Support technique",
+        projects: "Fondée en",
+        satisfaction: "Technologies",
+        support: "Temps de réponse",
       },
       floating: {
-        revenue: "Croissance",
-        data: "Points de données",
+        revenue: "Disponibilité",
+        data: "Solutions actives",
       }
     },
     about: {
@@ -298,7 +298,7 @@ export const translations = {
       intro: "Nous innovons dans de nouvelles façons d'utiliser et de visualiser les données pour ajouter de la valeur aux processus et aux décisions.",
       foundation: {
         title: "Fondation",
-        text: "Fondée en 2024, GearsMap rassemble des professionnels expérimentés du secteur technologique, animés par la passion de contribuer à la quatrième révolution industrielle. Nous innovons dans de nouvelles façons d'utiliser et de visualiser les données, ajoutant de la valeur aux processus commerciaux.",
+        text: "Fondée en 2025, GearsMap rassemble des professionnels expérimentés du secteur technologique, animés par la passion de contribuer à la quatrième révolution industrielle. Nous innovons dans de nouvelles façons d'utiliser et de visualiser les données, ajoutant de la valeur aux processus commerciaux.",
       },
       products: {
         title: "Produits et services",
@@ -382,7 +382,7 @@ export const translations = {
     },
     team: {
       title: "Notre équipe",
-      subtitle: "Des experts passionnés par les données",
+      subtitle: "Fondateurs et experts passionnés par l'innovation et les données",
       role1: "PDG et fondateur",
       role2: "Développeur principal",
       role3: "Data Scientist"

@@ -16,6 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog"
 
 export default function HomePage() {
@@ -105,12 +106,16 @@ export default function HomePage() {
 
               <FadeIn delay={0.3}>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium transition-transform hover:scale-105">
-                    {t.hero.cta_primary}
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                  <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium transition-transform hover:scale-105">
+                    <a href="#contacto">
+                      {t.hero.cta_primary}
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-border hover:bg-accent/5 bg-transparent transition-transform hover:scale-105">
-                    {t.hero.cta_secondary}
+                  <Button asChild variant="outline" size="lg" className="border-border hover:bg-accent/5 bg-transparent transition-transform hover:scale-105">
+                    <a href="#portafolio">
+                      {t.hero.cta_secondary}
+                    </a>
                   </Button>
                 </div>
               </FadeIn>
@@ -119,18 +124,18 @@ export default function HomePage() {
               <FadeIn delay={0.4} className="flex gap-8 pt-8 border-t border-border/50">
                 <div>
                   <div className="text-2xl font-bold text-accent font-sans flex items-center">
-                    <Counter value={500} />+
+                    <Counter value={2025} />
                   </div>
                   <div className="text-sm text-muted-foreground">{t.hero.stats.projects}</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-accent font-sans flex items-center">
-                    <Counter value={98} />%
+                    <Counter value={25} />+
                   </div>
                   <div className="text-sm text-muted-foreground">{t.hero.stats.satisfaction}</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-accent font-sans">24/7</div>
+                  <div className="text-2xl font-bold text-accent font-sans">&lt;24h</div>
                   <div className="text-sm text-muted-foreground">{t.hero.stats.support}</div>
                 </div>
               </FadeIn>
@@ -178,12 +183,12 @@ export default function HomePage() {
                 {/* Floating data cards */}
                 <div className="absolute top-4 left-4 glass-card rounded-lg p-3 animate-float z-20">
                   <div className="text-xs text-muted-foreground">{t.hero.floating.revenue}</div>
-                  <div className="text-lg font-bold text-accent font-sans">+127%</div>
+                  <div className="text-lg font-bold text-accent font-sans">99.9%</div>
                 </div>
 
                 <div className="absolute bottom-8 right-8 glass-card rounded-lg p-3 animate-float delay-1000 z-20">
                   <div className="text-xs text-muted-foreground">{t.hero.floating.data}</div>
-                  <div className="text-lg font-bold text-accent font-sans">2.4M</div>
+                  <div className="text-lg font-bold text-accent font-sans">8+</div>
                 </div>
               </div>
             </FadeIn>
@@ -238,9 +243,10 @@ export default function HomePage() {
                     { icon: TechIcons.Mapbox, label: "Mapbox" },
                     { icon: TechIcons.QGIS, label: "QGIS" },
                     { icon: TechIcons.LangChain, label: "LangChain" },
-                    { icon: TechIcons.LangGraph, label: "LangGraph" },
                     { icon: TechIcons.LlamaIndex, label: "LlamaIndex" },
                     { icon: TechIcons.OpenAI, label: "OpenAI" },
+                    { icon: TechIcons.Claude, label: "Claude" },
+                    { icon: TechIcons.DeepSeek, label: "DeepSeek" },
                     { icon: TechIcons.HuggingFace, label: "Hugging Face" },
                     { icon: TechIcons.PyTorch, label: "PyTorch" },
                     { icon: TechIcons.TensorFlow, label: "TensorFlow" },
@@ -248,9 +254,10 @@ export default function HomePage() {
                     { icon: TechIcons.Mapbox, label: "Mapbox" },
                     { icon: TechIcons.QGIS, label: "QGIS" },
                     { icon: TechIcons.LangChain, label: "LangChain" },
-                    { icon: TechIcons.LangGraph, label: "LangGraph" },
                     { icon: TechIcons.LlamaIndex, label: "LlamaIndex" },
                     { icon: TechIcons.OpenAI, label: "OpenAI" },
+                    { icon: TechIcons.Claude, label: "Claude" },
+                    { icon: TechIcons.DeepSeek, label: "DeepSeek" },
                     { icon: TechIcons.HuggingFace, label: "Hugging Face" },
                     { icon: TechIcons.PyTorch, label: "PyTorch" },
                     { icon: TechIcons.TensorFlow, label: "TensorFlow" },
@@ -368,9 +375,11 @@ export default function HomePage() {
                       </p>
                     </div>
                     <div className="flex justify-end pt-4">
-                      <Button asChild className="bg-accent hover:bg-accent/90 text-white">
-                        <a href="#contact">{t.nav.contact}</a>
-                      </Button>
+                      <DialogClose asChild>
+                        <Button asChild className="bg-accent hover:bg-accent/90 text-white">
+                          <a href="#contacto">{t.nav.contact}</a>
+                        </Button>
+                      </DialogClose>
                     </div>
                   </DialogContent>
                 </Dialog>
@@ -387,9 +396,9 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { title: t.gallery.project1.title, desc: t.gallery.project1.desc, color: "bg-blue-500/20", tags: ["React", "Mapbox", "Node.js"], link: "https://acggp.gearsmap.com/", image: "/images/acggp_visor.png" },
-                { title: t.gallery.project2.title, desc: t.gallery.project2.desc, color: "bg-green-500/20", tags: ["Python", "Satellite", "AI"] },
-                { title: t.gallery.project3.title, desc: t.gallery.project3.desc, color: "bg-purple-500/20", tags: ["IoT", "Real-time", "Dashboard"] },
+                { title: t.gallery.project1.title, desc: t.gallery.project1.desc, color: "bg-blue-500/20", tags: ["React", "Mapbox", "Node.js"], link: "https://acggp.gearsmap.com/", image: "/images/acggp_visor.png", status: null },
+                { title: t.gallery.project2.title, desc: t.gallery.project2.desc, color: "bg-green-500/20", tags: ["Python", "Satellite", "AI"], status: "In Development" },
+                { title: t.gallery.project3.title, desc: t.gallery.project3.desc, color: "bg-purple-500/20", tags: ["IoT", "Real-time", "Dashboard"], status: "In Development" },
               ].map((project, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
                   <a 
@@ -399,6 +408,13 @@ export default function HomePage() {
                     className="block h-full"
                   >
                     <div className="group relative overflow-hidden rounded-2xl glass-card hover:border-accent/50 transition-all cursor-pointer h-full flex flex-col">
+                      {/* Status Badge */}
+                      {project.status && (
+                        <div className="absolute top-4 right-4 z-30 px-3 py-1 bg-yellow-500/90 backdrop-blur-sm rounded-full text-xs font-semibold text-background shadow-lg">
+                          {project.status}
+                        </div>
+                      )}
+                      
                       {/* Mockup Area */}
                       <div className={`relative h-48 ${project.color} overflow-hidden`}>
                           <div className="absolute inset-0 bg-linear-to-t from-background to-transparent opacity-20" />
@@ -513,16 +529,21 @@ export default function HomePage() {
               <p className="text-muted-foreground max-w-2xl mx-auto">{t.team.subtitle}</p>
             </FadeIn>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { role: t.team.role1, name: "Alex Morgan" },
-                { role: t.team.role2, name: "Sarah Chen" },
-                { role: t.team.role3, name: "David Kim" },
+                { role: "CEO - Strategy & Vision", name: "Leonardo Mosquera", image: "/images/Leonardo.jpg" },
+                { role: "CPO - Product & Innovation", name: "Juan Esteban Mosquera", image: "/images/Juan_Esteban.jpg" },
+                { role: "CDO - Data Science & AI", name: "Juan Manuel Jimenez", image: "/images/Juan_Manuel.jpg" },
+                { role: "CCO - Business & Growth", name: "Mateo Granados", image: "/images/Mateo.jpg" },
               ].map((member, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
-                  <div className="glass-card p-6 rounded-xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div className="w-24 h-24 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4">
-                      <User className="w-10 h-10 text-accent" />
+                  <div className="glass-card p-6 rounded-xl text-center">
+                    <div className="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full border-2 border-accent/20">
+                      <img 
+                        src={member.image} 
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <h3 className="text-lg font-bold text-foreground">{member.name}</h3>
                     <p className="text-sm text-accent font-medium mb-4">{member.role}</p>

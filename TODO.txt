@@ -1,0 +1,281 @@
+================================================================================
+                    GEARSMAP WEBSITE - TO-DO LIST
+                         Last Updated: December 19, 2025
+================================================================================
+
+📋 TASKS TO COMPLETE THE WEBSITE
+================================================================================
+
+1. 🎨 ADD GEARSMAP LOGO TO TECHNOLOGIES SECTION
+   Status: Pending
+   Location: app/page.tsx (Tech Stack Section) + components/tech-icons.tsx
+   Description:
+   - Add GearsMap logo to the technology marquee
+   - Use existing logo: /public/images/gearsmap-logo.png or gears-map-horizontal.svg
+   - Create a GearsMap icon component in tech-icons.tsx
+   - Position prominently in the tech stack showcase
+   
+   Files to modify:
+   - components/tech-icons.tsx (add GearsMap icon component)
+   - app/page.tsx (add to marquee rotation)
+
+--------------------------------------------------------------------------------
+
+2. 👥 REPLACE PLACEHOLDER TEAM MEMBER NAMES WITH REAL NAMES
+   Status: Pending
+   Location: app/page.tsx (Team Section, lines ~520-530)
+   Current Placeholders:
+   - "Alex Morgan"
+   - "Sarah Chen" 
+   - "David Kim"
+   
+   Action Required:
+   - Get actual team member names
+   - Update in the team array
+   - Verify roles match actual positions
+   
+   Files to modify:
+   - app/page.tsx (team member data)
+
+--------------------------------------------------------------------------------
+
+3. 📸 ADD REAL TEAM MEMBER PHOTOS
+   Status: Pending
+   Location: app/page.tsx (Team Section) + /public/images/
+   Current State: Using generic User icon placeholders
+   
+   Action Required:
+   - Add team member photos to /public/images/team/ folder
+   - Recommended format: Square headshots, professional quality
+   - Suggested naming: team-member-1.jpg, team-member-2.jpg, etc.
+   - Update code to use <img> tags instead of User icon
+   - Add proper alt text for accessibility
+   
+   Files to modify:
+   - app/page.tsx (team member component)
+   - Add images to /public/images/team/
+
+--------------------------------------------------------------------------------
+
+4. 🗂️ ADD MORE PROJECT EXAMPLES TO GALLERY
+   Status: Pending - Only 3 projects currently
+   Location: app/page.tsx (Featured Projects Section, lines ~395-450)
+   Current Projects:
+   ✅ Project 1: ACGGP Visor (has image + link)
+   ⚠️ Project 2: Satellite Analysis (no image, no link)
+   ⚠️ Project 3: IoT Monitoring (no image, no link)
+   
+   Action Required:
+   - Add 3-6 more real project examples
+   - Include actual screenshots for each
+   - Add live links or case study links
+   - Diversify categories: AI solutions, GIS tools, dashboards, automation
+   - Ensure each project has: title, description, tags, image, and link
+   
+   Files to modify:
+   - app/page.tsx (gallery projects array)
+   - Add project images to /public/images/projects/
+
+--------------------------------------------------------------------------------
+
+5. 🖼️ ADD IMAGES AND LINKS TO EXISTING INCOMPLETE PROJECTS
+   Status: Pending
+   Location: app/page.tsx (Featured Projects Section)
+   Projects Missing Data:
+   - Project 2: Satellite Analysis Project
+     * Needs: Screenshot/mockup image
+     * Needs: Live demo link or case study URL
+   
+   - Project 3: IoT Monitoring System
+     * Needs: Screenshot/mockup image
+     * Needs: Live demo link or case study URL
+   
+   Action Required:
+   - Add project screenshots to /public/images/projects/
+   - Update project objects with image paths
+   - Add functional links to live demos or detailed case studies
+   - If projects are conceptual, replace with actual completed work
+   
+   Files to modify:
+   - app/page.tsx (project data with images and links)
+   - Add images to /public/images/projects/
+
+--------------------------------------------------------------------------------
+
+6. � CONFIGURE SMTP EMAIL FOR CONTACT FORM
+   Status: Pending
+   Location: app/api/contact/route.ts + Environment Variables
+   Current State: Contact form configured to send to gearsmap@gearsmap.com 
+                  and juan.mosquera@gearsmap.com, but needs SMTP setup
+   
+   Action Required:
+   - Choose an SMTP email provider (Gmail, Outlook, SendGrid, Resend, etc.)
+   - Create app-specific password or API key
+   - Add environment variables to .env.local:
+     * SMTP_HOST (e.g., smtp.gmail.com)
+     * SMTP_PORT (usually 587 or 465)
+     * SMTP_SECURE (true/false)
+     * SMTP_USER (your email address)
+     * SMTP_PASS (app password or API key)
+     * SMTP_FROM (optional, sender email)
+   - Test contact form submission
+   - Verify emails are received at both addresses
+   
+   Provider Options:
+   - Gmail: Free, requires 2FA + App Password
+   - SendGrid: Free tier 100 emails/day
+   - Resend: Modern, developer-friendly
+   - Office365: If using Microsoft email
+   
+   Files to modify:
+   - .env.local (create and add SMTP credentials)
+   - app/api/contact/route.ts (already configured, just needs env vars)
+
+--------------------------------------------------------------------------------
+
+7. 🔒 RUN NPM SECURITY AUDIT AND FIX VULNERABILITIES
+   Status: Pending
+   Location: Project root - package dependencies
+   
+   Action Required:
+   - Run: npm audit
+   - Check for security vulnerabilities in dependencies
+   - Run: npm audit fix (for automatic fixes)
+   - Run: npm audit fix --force (if needed for breaking changes)
+   - Manually update packages that can't be auto-fixed
+   - Test application after updates to ensure nothing breaks
+   - Document any vulnerabilities that can't be fixed immediately
+   
+   Commands:
+   ```
+   npm audit                    # Check for vulnerabilities
+   npm audit fix               # Auto-fix compatible issues
+   npm audit fix --force       # Force fix (may cause breaking changes)
+   npm outdated                # Check for outdated packages
+   npm update                  # Update to latest compatible versions
+   ```
+   
+   Files to review:
+   - package.json
+   - package-lock.json
+   - pnpm-lock.yaml (if using pnpm)
+
+--------------------------------------------------------------------------------
+
+8. 📊 UPDATE METRICS TO REAL VALUES (COMPLETED ✓)
+   Status: Completed
+   Location: app/page.tsx (Hero Section Stats) + lib/translations.ts
+   Updated Values:
+   - Founded: 2024
+   - Technologies: 25+
+   - Response Time: <24h
+   - Uptime: 99.9%
+   - Active Solutions: 8+
+
+================================================================================
+
+📌 ADDITIONAL RECOMMENDATIONS (OPTIONAL BUT RECOMMENDED)
+================================================================================
+
+7. ⭐ ADD CLIENT TESTIMONIALS SECTION
+   - Add quotes from satisfied clients
+   - Include client logos
+   - Enhance credibility and social proof
+
+8. 📄 ADD DETAILED CASE STUDIES PAGE
+   - In-depth project breakdowns
+   - Problem-solution-results format
+   - Before/after metrics
+   - Client testimonials
+
+9. 💰 ADD PRICING/SERVICES INFORMATION
+   - Service packages if applicable
+   - Consultation booking system
+   - Clear call-to-action for pricing inquiries
+
+10. 📝 ADD BLOG/RESOURCES SECTION
+    - Technical articles
+    - Industry insights
+    - Tutorials and guides
+    - Establish thought leadership
+
+11. 🔍 OPTIMIZE SEO METADATA
+    - Meta descriptions for all pages
+    - Open Graph tags for social sharing
+    - Structured data (Schema.org)
+    - Sitemap and robots.txt
+
+12. 📊 INTEGRATE ANALYTICS
+    - Google Analytics or alternative
+    - User behavior tracking
+    - Conversion tracking
+    - A/B testing setup
+
+13. ⚡ PERFORMANCE OPTIMIZATION
+    - Image optimization (WebP format)
+    - Lazy loading for images
+    - Code splitting
+    - Caching strategies
+    - Lighthouse score improvements
+
+14. 🌍 COMPLETE TRANSLATION SYSTEM
+    - Verify all translations are complete
+    - Test language switcher functionality
+    - Add more language options if needed
+
+15. ♿ ACCESSIBILITY IMPROVEMENTS
+    - ARIA labels
+    - Keyboard navigation
+    - Screen reader testing
+    - Color contrast verification
+
+================================================================================
+
+🎯 PRIORITY ORDER (RECOMMENDED)
+================================================================================
+
+HIGH PRIORITY (Complete First):
+1. Configure SMTP email for contact form (#6)
+2. Run npm security audit and fix vulnerabilities (#7)
+3. Replace team member names (#2)
+4. Add team member photos (#3)
+5. Add GearsMap logo to tech section (#1)
+
+MEDIUM PRIORITY:
+6. Add images/links to existing projects (#5)
+7. Add more project examples (#4)
+
+COMPLETED:
+✓ Update metrics to real values (#8)
+✓ Update badge to "Geospatial Solutions & AI"
+✓ Add navigation links to hero buttons
+
+LOW PRIORITY (Polish):
+7. Optional enhancements (#7-15)
+
+================================================================================
+
+📝 NOTES
+================================================================================
+
+- All file paths are relative to project root: c:\Users\juane\OneDrive\Desktop\Gearsmap\pagina\
+- Existing images available in /public/images/:
+  * acggp_visor.png
+  * agm1.jpg
+  * agm2.jpg
+  * gears-map-horizontal.svg
+  * gearsmap-logo.png
+  * gears_map_hor.svg
+
+- Main files to edit:
+  * app/page.tsx (main page component)
+  * components/tech-icons.tsx (technology icons)
+  * lib/translations.ts (if updating translated content)
+
+- Remember to test all changes in both light and dark modes
+- Verify responsive design on mobile/tablet/desktop
+- Test language switcher after content updates
+
+================================================================================
+                              END OF TO-DO LIST
+================================================================================

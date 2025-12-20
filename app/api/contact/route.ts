@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     // Email content
     const mailOptions = {
       from: process.env.SMTP_FROM || '"GearsMap Website" <no-reply@gearsmap.com>',
-      to: 'gearsmap@gearsmap.com',
+      to: 'gearsmap@gearsmap.com, juan.mosquera@gearsmap.com',
       subject: `New Contact Form Submission from ${name}`,
       text: `
         Name: ${name}
