@@ -16,9 +16,9 @@ const GLOBE_CONFIG = {
   diffuse: 0.4,
   mapSamples: 16000,
   mapBrightness: 1.2,
-  baseColor: [1, 1, 1],
-  markerColor: [251 / 255, 100 / 255, 21 / 255],
-  glowColor: [1, 1, 1],
+  baseColor: [1, 1, 1] as [number, number, number],
+  markerColor: [251 / 255, 100 / 255, 21 / 255] as [number, number, number],
+  glowColor: [1, 1, 1] as [number, number, number],
   markers: [
     { location: [14.5995, 120.9842], size: 0.03 },
     { location: [19.076, 72.8777], size: 0.1 },
@@ -30,7 +30,7 @@ const GLOBE_CONFIG = {
     { location: [40.7128, -74.006], size: 0.1 },
     { location: [34.6937, 135.5023], size: 0.05 },
     { location: [41.8781, -87.6298], size: 0.08 },
-  ],
+  ] as { location: [number, number]; size: number }[],
 }
 
 export default function Globe({
