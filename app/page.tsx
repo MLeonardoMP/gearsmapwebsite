@@ -124,7 +124,7 @@ export default function HomePage() {
               <FadeIn delay={0.4} className="flex gap-8 pt-8 border-t border-border/50">
                 <div>
                   <div className="text-2xl font-bold text-accent font-sans flex items-center">
-                    <Counter value={2025} />
+                    <Counter value={2026} />
                   </div>
                   <div className="text-sm text-muted-foreground">{t.hero.stats.projects}</div>
                 </div>
