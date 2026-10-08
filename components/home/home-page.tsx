@@ -1,54 +1,48 @@
 import Image from "next/image"
+import Link from "next/link"
 import {
-  ArrowDownRight,
   ArrowRight,
   BarChart3,
   BrainCircuit,
   Check,
-  ChevronDown,
-  Database,
   Layers3,
+  Mail,
   Map,
-  Network,
-  ScanLine,
+  MapPin,
+  Plus,
   ShieldCheck,
-  Sparkles,
   Workflow,
-  Zap,
   type LucideIcon,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import AuroraText from "@/components/ui/aurora-text"
 import { ContactCta, ContactForm } from "@/components/home/contact-form"
 import { GlobeVisual } from "@/components/home/globe-visual"
+import { ProofBar } from "@/components/home/proof-bar"
 import { TeamSection } from "@/components/home/team-section"
+import { TechStack } from "@/components/home/tech-stack"
+import { LinkedInIcon } from "@/components/icons/brand-icons"
 import { ProjectsShowcase } from "@/components/projects/projects-showcase"
+import {
+  contactEmail,
+  foundingYear,
+  linkedInUrl,
+  localePath,
+  organizationName,
+  projectPaths,
+  servicePaths,
+  taxId,
+} from "@/lib/site"
+import { cn } from "@/lib/utils"
 import type { Dictionary, Locale } from "@/lib/translations"
+import acggpVisor from "@/public/images/acggp_visor.png"
+import aboutPhoto from "@/public/images/agm2.jpg"
 
-type Tech = {
-  src: string
-  alt: string
-}
+type ServiceKey = keyof Dictionary["portfolio"]["services"]
 
-const techStack: Tech[] = [
-  { src: "/images/python.svg", alt: "Python" },
-  { src: "/images/dotnet.svg", alt: ".NET" },
-  { src: "/images/blazor.svg", alt: "Blazor" },
-  { src: "/images/react.svg", alt: "React" },
-  { src: "/images/nextjs.svg", alt: "Next.js" },
-  { src: "/images/typescript.svg", alt: "TypeScript" },
-  { src: "/images/tailwind.svg", alt: "Tailwind CSS" },
-  { src: "/images/azure.svg", alt: "Azure" },
-  { src: "/images/Vercel_dark.svg", alt: "Vercel" },
-  { src: "/images/postgresql.svg", alt: "PostgreSQL" },
-  { src: "/images/docker.svg", alt: "Docker" },
-  { src: "/images/mapbox.svg", alt: "Mapbox" },
-  { src: "/images/qgis.svg", alt: "QGIS" },
-  { src: "/images/openai.svg", alt: "OpenAI" },
-  { src: "/images/pytorch.svg", alt: "PyTorch" },
-]
+/** Proof-first order: the positioning in seo.title leads with geoviewers and AI. */
+const serviceOrder: ServiceKey[] = ["geoviewers", "ai", "dashboards", "visualization", "automation", "monitoring"]
 
-const serviceIcons: Record<string, LucideIcon> = {
+const serviceIcons: Record<ServiceKey, LucideIcon> = {
   ai: BrainCircuit,
   geoviewers: Map,
   visualization: Layers3,
@@ -57,104 +51,31 @@ const serviceIcons: Record<string, LucideIcon> = {
   monitoring: ShieldCheck,
 }
 
-function TechPill({ tech }: { tech: Tech }) {
-  return (
-    <li className="tech-pill">
-      <Image src={tech.src} alt="" width={24} height={24} className="tech-pill__icon" aria-hidden="true" />
-      <span>{tech.alt}</span>
-    </li>
-  )
-}
-
-function TechMarquee() {
-  return (
-    <div className="tech-strip__rail">
-      <div className="tech-strip__track">
-        <ul>
-          {techStack.map((tech) => <TechPill key={tech.alt} tech={tech} />)}
-        </ul>
-        <ul aria-hidden="true">
-          {techStack.map((tech) => <TechPill key={`${tech.alt}-clone`} tech={tech} />)}
-        </ul>
-      </div>
-    </div>
-  )
-}
-
 function SectionHeading({
   id,
   eyebrow,
   title,
   description,
-  align = "center",
+  align = "left",
 }: {
-  id?: string
-  eyebrow?: string
+  id: string
+  eyebrow: string
   title: string
   description?: string
-  align?: "center" | "left"
+  align?: "center" | "left" | "split"
 }) {
   return (
-    <div className={`section-heading section-heading--${align}`}>
-      {eyebrow ? <p className="section-heading__eyebrow">{eyebrow}</p> : null}
+    <div className={cn("section-heading", `section-heading--${align}`)}>
+      <p className="eyebrow section-heading__eyebrow">{eyebrow}</p>
       <h2 id={id}>{title}</h2>
       {description ? <p className="section-heading__description">{description}</p> : null}
     </div>
   )
 }
 
-function ServiceCard({
-  icon: Icon,
-  title,
-  description,
-  details,
-  learnMore,
-  id,
-}: {
-  icon: LucideIcon
-  title: string
-  description: string
-  details: string
-  learnMore: string
-  id: string
-}) {
-  return (
-    <details id={id} className="service-card group">
-      <summary className="service-card__summary">
-        <span className="service-card__icon" aria-hidden="true">
-          <Icon className="h-6 w-6" />
-        </span>
-        <span className="service-card__title">{title}</span>
-        <span className="service-card__description">{description}</span>
-        <span className="service-card__action">
-          {learnMore}
-          <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" aria-hidden="true" />
-        </span>
-      </summary>
-      <div className="service-card__details">{details}</div>
-    </details>
-  )
-}
-
-function Breadcrumb({ current, home }: { current: string; home: string }) {
-  return (
-    <div className="breadcrumb" aria-hidden="true">
-      <span>{home}</span>
-      <ArrowRight className="h-3.5 w-3.5" />
-      <span>{current}</span>
-    </div>
-  )
-}
-
 export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
-  const services = Object.entries(t.portfolio.services).map(([key, service]) => ({
-    serviceId: key,
-    icon: serviceIcons[key],
-    description: service.desc,
-    ...service,
-  }))
-
   const processSteps = [t.process.steps.scope, t.process.steps.model, t.process.steps.deliver]
+  const acggpHref = localePath(locale, projectPaths.acggp)
 
   return (
     <div className="site-shell">
@@ -165,42 +86,25 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
 
         <div className="site-container hero-section__inner">
           <div className="hero-section__copy">
-            <div className="hero-section__eyebrow">
-              <span className="hero-section__eyebrow-line" aria-hidden="true" />
-              <span>{t.hero.eyebrow}</span>
-            </div>
-            <div className="hero-section__index" aria-hidden="true">01 / 06</div>
             <h1 id="hero-title">
-              <span>{t.hero.headline}</span>
-              <span className="hero-section__brand"><AuroraText>{t.hero.title}</AuroraText></span>
+              <span className="hero-section__kicker">{t.hero.kicker}</span>{" "}
+              <span className="hero-section__headline">{t.hero.headline}</span>
             </h1>
-            <div className="hero-section__description">
-              <p>{t.hero.description1}</p>
-              <p>{t.hero.description2}</p>
-            </div>
+            <p className="hero-section__lede">{t.hero.lede}</p>
             <div className="hero-section__actions">
-              <Button asChild size="lg" className="hero-section__primary-action">
+              <Button asChild variant="accent" size="lg" className="hero-section__primary-action h-12 px-6 text-base font-semibold">
                 <ContactCta intent="project">
                   {t.hero.cta_primary}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  <ArrowRight aria-hidden="true" />
                 </ContactCta>
               </Button>
-              <Button asChild variant="outline" size="lg" className="hero-section__secondary-action">
-                <ContactCta intent="demo">
-                  {t.hero.cta_secondary}
-                  <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
-                </ContactCta>
+              <Button asChild variant="outline" size="lg" className="hero-section__secondary-action h-12 px-6 text-base font-semibold">
+                <ContactCta intent="demo">{t.hero.cta_secondary}</ContactCta>
               </Button>
             </div>
-            <p className="hero-section__signal">
-              <Sparkles className="h-4 w-4 text-accent" aria-hidden="true" />
-              {t.hero.signal}
-            </p>
           </div>
 
-          <div className="hero-section__visual" aria-label={t.hero.scrollLabel}>
-            <div className="hero-section__visual-ring hero-section__visual-ring--outer" aria-hidden="true" />
-            <div className="hero-section__visual-ring hero-section__visual-ring--inner" aria-hidden="true" />
+          <div className="hero-section__visual">
             <div className="hero-section__coordinates" aria-hidden="true">
               <span>04° 34′ N</span>
               <span>74° 17′ W</span>
@@ -208,105 +112,89 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
             <div className="hero-section__globe-wrap">
               <GlobeVisual fallbackAlt={t.hero.title} />
             </div>
-            <div className="hero-note hero-note--top">
-              <span className="hero-note__number">01</span>
-              <span>{t.hero.floating.revenue}</span>
-              <strong>{t.hero.floating.revenueValue}</strong>
-            </div>
-            <div className="hero-note hero-note--right">
-              <span className="hero-note__number">02</span>
-              <span>{t.hero.floating.insights}</span>
-              <strong>{t.hero.floating.insightsValue}</strong>
-            </div>
-            <div className="hero-note hero-note--bottom">
-              <span className="hero-note__number">03</span>
-              <span>{t.hero.floating.data}</span>
-              <strong>{t.hero.floating.dataValue}</strong>
-            </div>
+            <Link href={acggpHref} className="hero-product">
+              <Image
+                src={acggpVisor}
+                alt={t.hero.product.alt}
+                placeholder="blur"
+                sizes="(max-width: 1023px) 80vw, 360px"
+                className="hero-product__image"
+              />
+              <span className="hero-product__caption">
+                <span className="status-chip status-chip--on-media" data-status="live">{t.hero.product.status}</span>{" "}
+                <strong>{t.hero.product.title}</strong>{" "}
+                <span className="hero-product__cta">
+                  {t.hero.product.cta} <span aria-hidden="true">→</span>
+                </span>
+              </span>
+            </Link>
           </div>
         </div>
-
-        <a href="#portafolio" className="hero-section__scroll-link">
-          <span>{t.hero.scrollLabel}</span>
-          <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
-        </a>
       </section>
 
-      <section className="tech-strip" aria-labelledby="tech-stack-title">
-        <div className="site-container tech-strip__inner">
-          <div className="tech-strip__label">
-            <span className="eyebrow-number" aria-hidden="true">02 / 06</span>
-            <div>
-              <h2 id="tech-stack-title">{t.techStack.title}</h2>
-              <p>{t.techStack.subtitle}</p>
-            </div>
-          </div>
-          <TechMarquee />
-        </div>
-      </section>
+      <ProofBar t={t} locale={locale} />
 
       <ProjectsShowcase locale={locale} />
 
-      <section id="servicios" className="portfolio-section section-pad" aria-labelledby="services-title">
+      <section id="servicios" className="services-section section-pad" aria-labelledby="services-title">
         <div className="site-container">
-          <Breadcrumb current={t.nav.portfolio} home={t.nav.home} />
-          <SectionHeading id="services-title" eyebrow="03 / CAPABILITIES" title={t.portfolio.header} description={t.portfolio.subheader} align="left" />
+          <SectionHeading
+            id="services-title"
+            eyebrow={t.sections.capabilities}
+            title={t.portfolio.header}
+            description={t.portfolio.subheader}
+            align="split"
+          />
 
           <div className="services-grid">
-            {services.map((service) => (
-              <ServiceCard
-                key={service.title}
-                id={`servicio-${service.serviceId}`}
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-                details={service.details}
-                learnMore={t.common.learnMore}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+            {serviceOrder.map((key, index) => {
+              const service = t.portfolio.services[key]
+              const Icon = serviceIcons[key]
 
-      <section id="nosotros" className="about-section section-pad" aria-labelledby="about-title">
-        <div className="site-container">
-          <div className="about-grid">
-            <div className="about-copy">
-              <Breadcrumb current={t.nav.about} home={t.nav.home} />
-              <SectionHeading id="about-title" eyebrow="05 / THE TEAM" title={t.about.title} description={t.about.intro} align="left" />
-              <div className="about-copy__cards">
-                <article>
-                  <span className="about-copy__card-index">A /</span>
-                  <h3>{t.about.foundation.title}</h3>
-                  <p>{t.about.foundation.text}</p>
-                </article>
-                <article>
-                  <span className="about-copy__card-index">B /</span>
-                  <h3>{t.about.products.title}</h3>
-                  <p>{t.about.products.text}</p>
-                </article>
-              </div>
-            </div>
-            <div className="about-visual">
-              <Image src="/images/agm2.jpg" alt="GearsMap team working with data visualization" fill sizes="(max-width: 1024px) 100vw, 48vw" className="about-visual__image" />
-              <div className="about-visual__overlay" aria-hidden="true" />
-              <div className="about-visual__label" aria-hidden="true">
-                <Network className="h-4 w-4" />
-                <span>GEARSMAP / PEOPLE + DATA</span>
-              </div>
-            </div>
+              return (
+                <details
+                  key={key}
+                  id={`servicio-${key}`}
+                  className={cn("service-card reveal", index < 2 && "service-card--featured")}
+                >
+                  <summary className="service-card__summary">
+                    <span className="service-card__icon" aria-hidden="true">
+                      <Icon />
+                    </span>
+                    <span className="service-card__title">{service.title}</span>
+                    <span className="service-card__description">{service.desc}</span>
+                    <span className="service-card__toggle">
+                      <Plus aria-hidden="true" />
+                      <span className="service-card__toggle-label">{t.portfolio.detailsLabel}</span>
+                    </span>
+                  </summary>
+                  <div className="service-card__details">
+                    <p>{service.details}</p>
+                    {key === "geoviewers" ? (
+                      <Link className="text-link" href={localePath(locale, servicePaths.geoviewers)}>
+                        {t.portfolio.geoviewersLink} <span aria-hidden="true">→</span>
+                      </Link>
+                    ) : null}
+                  </div>
+                </details>
+              )
+            })}
           </div>
-
-          <TeamSection locale={locale} />
         </div>
       </section>
 
       <section id="proceso" className="process-section section-pad" aria-labelledby="process-title">
         <div className="site-container">
-          <SectionHeading id="process-title" eyebrow="06 / PROCESS" title={t.process.title} description={t.process.subtitle} />
+          <SectionHeading
+            id="process-title"
+            eyebrow={t.sections.process}
+            title={t.process.title}
+            description={t.process.subtitle}
+            align="split"
+          />
           <div className="process-grid">
             {processSteps.map((step, index) => (
-              <article key={step.number} className="process-card">
+              <article key={step.number} className="process-card reveal">
                 <div className="process-card__top">
                   <span>{step.number}</span>
                   {index < processSteps.length - 1 ? <ArrowRight className="h-4 w-4" aria-hidden="true" /> : <Check className="h-4 w-4" aria-hidden="true" />}
@@ -316,64 +204,115 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
               </article>
             ))}
           </div>
+
+          <TechStack t={t} />
         </div>
       </section>
 
-      <section className="mission-section section-pad" aria-labelledby="mission-title">
-        <div className="site-container mission-grid">
-          <div className="mission-visual">
-            <Image src="/images/agm1.jpg" alt="GearsMap team collaboration" fill sizes="(max-width: 1024px) 100vw, 48vw" className="mission-visual__image" />
-            <div className="mission-visual__overlay" aria-hidden="true" />
-            <div className="mission-visual__stamp" aria-hidden="true">
-              <Database className="h-5 w-5" />
-              <span>BUILD / CONNECT / DECIDE</span>
+      <section id="nosotros" className="about-section section-pad" aria-labelledby="about-title">
+        <div className="site-container">
+          <div className="about-grid">
+            <div className="about-copy">
+              <SectionHeading id="about-title" eyebrow={t.sections.about} title={t.about.title} description={t.about.intro} />
+              <div className="about-copy__cards">
+                <article>
+                  <h3>{t.about.foundation.title}</h3>
+                  <p>{t.about.foundation.text}</p>
+                </article>
+                <article>
+                  <h3>{t.about.products.title}</h3>
+                  <p>{t.about.products.text}</p>
+                </article>
+              </div>
+            </div>
+            <div className="about-visual">
+              <Image
+                src={aboutPhoto}
+                alt={t.about.imageAlt}
+                placeholder="blur"
+                fill
+                sizes="(max-width: 1023px) 100vw, 48vw"
+                className="about-visual__image"
+              />
+              <div className="about-visual__overlay" aria-hidden="true" />
             </div>
           </div>
-          <div className="mission-copy">
-            <SectionHeading id="mission-title" title={t.mission.title} align="left" />
-            <div className="mission-copy__cards">
-              <article>
-                <span className="mission-copy__line" aria-hidden="true" />
+
+          <div className="about-details">
+            <article className="about-statement">
+              <h3>{t.mission.mission.title}</h3>
+              <p>{t.mission.mission.text}</p>
+            </article>
+            <article className="about-statement">
+              <h3>{t.mission.vision.title}</h3>
+              <p>{t.mission.vision.text}</p>
+            </article>
+            <div className="company-facts-card">
+              <h3 className="company-facts__title">{t.about.facts.title}</h3>
+              <dl className="company-facts">
                 <div>
-                  <h3>{t.mission.mission.title}</h3>
-                  <p>{t.mission.mission.text}</p>
+                  <dt>{t.about.facts.legalName}</dt>
+                  <dd>{organizationName}</dd>
                 </div>
-              </article>
-              <article>
-                <span className="mission-copy__line mission-copy__line--blue" aria-hidden="true" />
                 <div>
-                  <h3>{t.mission.vision.title}</h3>
-                  <p>{t.mission.vision.text}</p>
+                  <dt>{t.about.facts.taxId}</dt>
+                  <dd>{taxId}</dd>
                 </div>
-              </article>
+                <div>
+                  <dt>{t.about.facts.founded}</dt>
+                  <dd>{foundingYear}</dd>
+                </div>
+                <div>
+                  <dt>{t.about.facts.hq}</dt>
+                  <dd>{t.proofBar.place}</dd>
+                </div>
+                <div>
+                  <dt>{t.about.facts.languages}</dt>
+                  <dd>{t.about.facts.languagesValue}</dd>
+                </div>
+                <div>
+                  <dt>{t.about.facts.contact}</dt>
+                  <dd>
+                    <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+                  </dd>
+                </div>
+              </dl>
             </div>
           </div>
+
+          <TeamSection locale={locale} />
         </div>
       </section>
 
       <section id="contacto" className="contact-section section-pad" aria-labelledby="contact-title">
         <div className="site-container contact-grid">
           <div className="contact-copy">
-            <Breadcrumb current={t.nav.contact} home={t.nav.home} />
-            <SectionHeading id="contact-title" eyebrow="07 / NEXT SIGNAL" title={t.contact.header} description={t.contact.subheader} align="left" />
-            <div className="contact-copy__signal">
-              <ScanLine className="h-5 w-5 text-accent" aria-hidden="true" />
-              <p>{t.contact.signal}</p>
-            </div>
+            <SectionHeading id="contact-title" eyebrow={t.sections.contact} title={t.contact.header} description={t.contact.subheader} />
             <p className="contact-copy__promise">{t.contact.promise}</p>
-            <div className="contact-copy__availability">
-              <span className="contact-copy__pulse" aria-hidden="true" />
-              <span>{t.hero.signal}</span>
+            <ul className="contact-channels">
+              <li>
+                <Mail aria-hidden="true" />
+                <a href={`mailto:${contactEmail}`} className="contact-channels__email">{contactEmail}</a>
+              </li>
+              <li>
+                <MapPin aria-hidden="true" />
+                <span>{t.proofBar.place}</span>
+              </li>
+              <li>
+                <LinkedInIcon />
+                <a href={linkedInUrl}>{t.contact.channels.linkedin}</a>
+              </li>
+            </ul>
+            <div className="contact-next">
+              <h3>{t.contact.next.title}</h3>
+              <ol>
+                {processSteps.map((step) => <li key={step.number}>{step.title}</li>)}
+              </ol>
             </div>
           </div>
           <div className="contact-panel">
-            <div className="contact-panel__header">
-              <span>GEARSMAP / CONTACT</span>
-              <Zap className="h-4 w-4 text-accent" aria-hidden="true" />
-            </div>
-            <h3>{t.contact.form.title}</h3>
-            <p>{t.contact.form.subtitle}</p>
-            <ContactForm t={t.contact} />
+            <p className="text-sm text-muted-foreground">* {t.contact.form.required}</p>
+            <ContactForm t={t.contact} locale={locale} />
           </div>
         </div>
       </section>

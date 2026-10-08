@@ -19,7 +19,7 @@ export const translations = {
     },
     nav: {
       home: "Inicio",
-      about: "Sobre Nosotros",
+      about: "Sobre nosotros",
       portfolio: "Portafolio",
       climate: "MRV / M&E",
       contact: "Contacto",
@@ -34,34 +34,46 @@ export const translations = {
       keywords: ["GearsMap", "software geoespacial", "sistemas de información geográfica", "SIG", "geovisores", "inteligencia artificial", "visualización de datos", "dashboards", "Colombia", "MRV", "monitoreo y evaluación"],
     },
     hero: {
-      badge: "Soluciones Geoespaciales & IA",
       title: "GearsMap",
-      subtitle: "¿Qué es ",
-      eyebrow: "SISTEMAS GEOESPACIALES / INTELIGENCIA ARTIFICIAL",
+      kicker: "Software geoespacial, geovisores e IA en Colombia",
       headline: "Del territorio al dato. Del dato a la decisión.",
-      description1: "Diseñamos plataformas personalizadas que optimizan procesos y visualizan datos complejos.",
-      description2: "Innovación, soporte constante y herramientas de alta calidad para transformar tus datos en decisiones estratégicas.",
+      lede: "GearsMap S.A.S. es una empresa de software geoespacial con sede en Bogotá. Diseñamos geovisores, tableros e inteligencia artificial a la medida, y acompañamos la implementación de sistemas climáticos MRV y M&E para el sector minero-energético.",
       cta_primary: "Conversemos sobre tu proyecto",
       cta_secondary: "Solicitar una demo",
-      scrollLabel: "Explorar la plataforma",
-      signal: "Sistemas que conectan territorio, datos y equipos.",
-      stats: {
-        projects: "Municipios (geometría oficial)",
-        satisfaction: "Departamentos (info oficial)",
-        support: "Fuentes conectadas (ANH · MinMinas · UNAL +)",
+      product: {
+        title: "Visor PPR ACGGP",
+        status: "En producción",
+        cta: "Ver el caso",
+        alt: "Captura del Visor PPR ACGGP: mapa de Colombia con las ubicaciones del programa y un panel de indicadores",
       },
-      floating: {
-        revenue: "Del dato al mapa",
-        data: "Del mapa a decisiones",
-        insights: "Exploración interactiva",
-        revenueValue: "Geometría + atributos",
-        insightsValue: "Capas · filtros",
-        dataValue: "Consulta + visualización",
-      }
+    },
+    proofBar: {
+      title: "GearsMap en breve",
+      live: "En producción · Visor PPR ACGGP",
+      climate: "Implementación operativa · MRV y M&E con MinMinas y apoyo de KfW",
+      place: "Bogotá, Colombia",
+      founded: "Fundada en 2025",
+    },
+    sections: {
+      capabilities: "Capacidades",
+      process: "Proceso",
+      about: "Nosotros",
+      contact: "Contacto",
     },
     about: {
       title: "Sobre GearsMap",
       intro: "Innovamos en nuevas formas de utilizar y visualizar datos para agregar valor a procesos y decisiones.",
+      imageAlt: "Equipo de GearsMap trabajando con visualización de datos",
+      facts: {
+        title: "Datos de la empresa",
+        legalName: "Razón social",
+        taxId: "NIT",
+        founded: "Fundación",
+        hq: "Sede",
+        languages: "Idiomas",
+        languagesValue: "Español, inglés y francés",
+        contact: "Contacto",
+      },
       foundation: {
         title: "Fundación",
         text: "Fundada en 2025, GearsMap reúne a profesionales experimentados del sector tecnológico, impulsados por la pasión de contribuir a la Cuarta Revolución Industrial. Innovamos en nuevas formas de utilizar y visualizar datos, añadiendo valor a los procesos empresariales.",
@@ -72,7 +84,6 @@ export const translations = {
       },
     },
     mission: {
-      title: "Misión y visión",
       mission: {
         title: "Misión",
         text: "Nuestro principal objetivo es asistir a entidades gubernamentales, empresas y organizaciones en su transformación digital hacia un futuro más próspero. Buscamos optimizar cada recurso y proceso mediante el uso innovador de la información.",
@@ -83,8 +94,10 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Portafolio y Servicios",
+      header: "Servicios geoespaciales y de datos",
       subheader: "Geovisores, sistemas de información geográfica, tableros, inteligencia artificial y automatización para convertir datos territoriales en decisiones.",
+      detailsLabel: "Detalles",
+      geoviewersLink: "Ver el servicio de geovisores",
       services: {
         ai: {
           title: "Inteligencia artificial y Machine Learning",
@@ -119,17 +132,22 @@ export const translations = {
       },
     },
     contact: {
-      header: "Contáctenos",
-      subheader: "Complete el formulario para ponerte en contacto con nosotros.",
-      signal: "Una conversación breve puede revelar el siguiente paso de tu operación.",
+      header: "Contáctanos",
+      subheader: "Completa el formulario o escríbenos directamente para ponerte en contacto con nosotros.",
       promise: "Te respondemos con contexto, preguntas concretas y una ruta posible.",
       sending: "Enviando...",
+      channels: {
+        linkedin: "GearsMap en LinkedIn",
+      },
+      next: {
+        title: "Qué pasa después",
+      },
       toast: {
         success: "Mensaje enviado",
-        successDescription: "Nos pondremos en contacto pronto.",
+        successDescription: "Te contactaremos pronto.",
         error: "Error",
-        errorDescription: "Algo salió mal. Intente de nuevo.",
-        validationError: "Revise los campos del formulario.",
+        errorDescription: "Algo salió mal. Inténtalo de nuevo.",
+        validationError: "Revisa los campos del formulario.",
       },
       intent: {
         label: "¿Cómo podemos ayudarte?",
@@ -139,22 +157,27 @@ export const translations = {
         demoDescription: "Conoce una solución y revisemos si encaja con tu operación.",
       },
       form: {
-        title: "¿Necesitas ayuda? Contáctanos",
-        subtitle: "Nuestro equipo se pondrá en contacto contigo lo antes posible.",
-        name: "Tu Nombre *",
+        required: "Campos obligatorios",
+        name: "Tu nombre *",
         namePlaceholder: "Ingresa tu nombre",
-        phone: "Tu Teléfono",
+        phone: "Tu teléfono",
         phonePlaceholder: "Ingresa tu teléfono",
-        email: "Tu Correo Electrónico *",
+        email: "Tu correo electrónico *",
         emailPlaceholder: "Ingresa tu correo electrónico",
-        message: "Tu Mensaje *",
+        message: "Tu mensaje *",
         messagePlaceholder: "Cuéntanos qué quieres visualizar, automatizar o mejorar",
         submit: "Enviar Mensaje",
       },
     },
     techStack: {
-      title: "Stack Tecnológico",
-      subtitle: "Herramientas modernas para soluciones robustas"
+      title: "Stack tecnológico",
+      subtitle: "Herramientas modernas para soluciones robustas",
+      groups: {
+        geo: "Geoespacial",
+        data: "Datos e IA",
+        web: "Web",
+        cloud: "Nube",
+      },
     },
     gallery: {
       title: "Proyectos Destacados",
@@ -252,34 +275,46 @@ export const translations = {
       keywords: ["GearsMap", "geospatial software", "GIS", "geoviewers", "artificial intelligence", "data visualization", "dashboards", "Colombia", "MRV", "monitoring and evaluation"],
     },
     hero: {
-      badge: "Geospatial Solutions & AI",
       title: "GearsMap",
-      subtitle: "What is ",
-      eyebrow: "GEOSPATIAL SYSTEMS / ARTIFICIAL INTELLIGENCE",
+      kicker: "Geospatial software, web GIS and AI in Colombia",
       headline: "From territory to data. From data to decisions.",
-      description1: "We design custom platforms that optimize processes and visualize complex data.",
-      description2: "Innovation, constant support, and high-quality tools to transform your data into strategic decisions.",
+      lede: "GearsMap S.A.S. is a geospatial software company based in Bogotá, Colombia. We design custom web GIS viewers, dashboards and AI, and we supported the implementation of climate MRV and M&E systems for the mining and energy sector.",
       cta_primary: "Talk about your project",
       cta_secondary: "Request a demo",
-      scrollLabel: "Explore the platform",
-      signal: "Systems that connect territory, data, and teams.",
-      stats: {
-        projects: "Municipalities (official geometry)",
-        satisfaction: "Departments (official data)",
-        support: "Connected sources (ANH · MinMinas · UNAL +)",
+      product: {
+        title: "PPR ACGGP Viewer",
+        status: "In production",
+        cta: "View the case study",
+        alt: "Screenshot of the PPR ACGGP Viewer: a map of Colombia with the program's locations and an indicator panel",
       },
-      floating: {
-        revenue: "From data to map",
-        data: "From map to decisions",
-        insights: "Interactive exploration",
-        revenueValue: "Geometry + attributes",
-        insightsValue: "Layers · filters",
-        dataValue: "Query + visualization",
-      }
+    },
+    proofBar: {
+      title: "GearsMap at a glance",
+      live: "In production · PPR ACGGP Viewer",
+      climate: "Operational implementation · MRV and M&E with MinMinas and KfW support",
+      place: "Bogotá, Colombia",
+      founded: "Founded in 2025",
+    },
+    sections: {
+      capabilities: "Capabilities",
+      process: "Process",
+      about: "About",
+      contact: "Contact",
     },
     about: {
       title: "About GearsMap",
       intro: "We innovate in new ways to use and visualize data to add value to processes and decisions.",
+      imageAlt: "GearsMap team working with data visualization",
+      facts: {
+        title: "Company facts",
+        legalName: "Legal name",
+        taxId: "Tax ID (NIT)",
+        founded: "Founded",
+        hq: "Headquarters",
+        languages: "Languages",
+        languagesValue: "Spanish, English and French",
+        contact: "Contact",
+      },
       foundation: {
         title: "Foundation",
         text: "Founded in 2025, GearsMap brings together experienced professionals from the technology sector, driven by the passion to contribute to the Fourth Industrial Revolution. We innovate in new ways to use and visualize data, adding value to business processes.",
@@ -290,7 +325,6 @@ export const translations = {
       },
     },
     mission: {
-      title: "Mission and Vision",
       mission: {
         title: "Mission",
         text: "Our main goal is to assist government entities, companies, and organizations in their digital transformation towards a more prosperous future. We seek to optimize every resource and process through the innovative use of information.",
@@ -301,8 +335,10 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Portfolio and Services",
-      subheader: "Geoviewers, geographic information systems, dashboards, artificial intelligence, and automation that turn territorial data into decisions.",
+      header: "Geospatial and data services",
+      subheader: "Web GIS viewers, geographic information systems, dashboards, artificial intelligence and automation that turn territorial data into decisions.",
+      detailsLabel: "Details",
+      geoviewersLink: "See the web GIS viewer service",
       services: {
         ai: {
           title: "AI and Machine Learning",
@@ -310,8 +346,8 @@ export const translations = {
           details: "Our AI solutions include predictive analytics, natural language processing (NLP), and computer vision. We help automate data classification, detect anomalies in real-time, and generate actionable insights that drive your business growth.",
         },
         geoviewers: {
-          title: "Geoviewers",
-          desc: "We develop custom geoviewers to visualize and analyze geospatial information interactively and dynamically.",
+          title: "Web GIS viewers",
+          desc: "We develop custom web GIS viewers to visualize and analyze geospatial information interactively and dynamically.",
           details: "We create interactive map viewers using technologies like Mapbox, Leaflet, and OpenLayers. We integrate complex data layers, drawing tools, in-browser spatial analysis, and advanced filtering so you can explore your geographic information without limits.",
         },
         visualization: {
@@ -337,11 +373,16 @@ export const translations = {
       },
     },
     contact: {
-      header: "Contact Us",
-      subheader: "Fill out the form to get in touch with us.",
-      signal: "A short conversation can reveal the next step for your operation.",
+      header: "Contact us",
+      subheader: "Fill out the form or write to us directly to get in touch.",
       promise: "We reply with context, concrete questions, and a possible path forward.",
       sending: "Sending...",
+      channels: {
+        linkedin: "GearsMap on LinkedIn",
+      },
+      next: {
+        title: "What happens next",
+      },
       toast: {
         success: "Message sent!",
         successDescription: "We'll get back to you soon.",
@@ -357,22 +398,27 @@ export const translations = {
         demoDescription: "See a solution in action and explore whether it fits your operation.",
       },
       form: {
-        title: "Need Help? Contact Us",
-        subtitle: "Our team will get in touch with you as soon as possible.",
-        name: "Your Name *",
+        required: "Required fields",
+        name: "Your name *",
         namePlaceholder: "Enter your name",
-        phone: "Your Phone",
+        phone: "Your phone",
         phonePlaceholder: "Enter your phone",
-        email: "Your Email *",
+        email: "Your email *",
         emailPlaceholder: "Enter your email",
-        message: "Your Message *",
+        message: "Your message *",
         messagePlaceholder: "Tell us what you want to visualize, automate, or improve",
         submit: "Send Message",
       },
     },
     techStack: {
-      title: "Technology Stack",
-      subtitle: "Modern tools for robust solutions"
+      title: "Technology stack",
+      subtitle: "Modern tools for robust solutions",
+      groups: {
+        geo: "Geospatial",
+        data: "Data & AI",
+        web: "Web",
+        cloud: "Cloud",
+      },
     },
     gallery: {
       title: "Featured Projects",
@@ -470,34 +516,46 @@ export const translations = {
       keywords: ["GearsMap", "logiciel géospatial", "SIG", "géovisionneuses", "intelligence artificielle", "visualisation de données", "tableaux de bord", "Colombie", "MRV", "suivi et évaluation"],
     },
     hero: {
-      badge: "Solutions Géospatiales & IA",
       title: "GearsMap",
-      subtitle: "Qu'est-ce que ",
-      eyebrow: "SYSTÈMES GÉOSPATIAUX / INTELLIGENCE ARTIFICIELLE",
+      kicker: "Logiciel géospatial, SIG web et IA en Colombie",
       headline: "Du territoire aux données. Des données aux décisions.",
-      description1: "Nous concevons des plateformes personnalisées qui optimisent les processus et visualisent des données complexes.",
-      description2: "Innovation, support constant et outils de haute qualité pour transformer vos données en décisions stratégiques.",
+      lede: "GearsMap S.A.S. est une entreprise de logiciels géospatiaux basée à Bogotá, en Colombie. Nous concevons des SIG web, des tableaux de bord et de l'IA sur mesure, et avons accompagné la mise en œuvre de systèmes climatiques MRV et S&E pour le secteur minier et énergétique.",
       cta_primary: "Parlons de votre projet",
       cta_secondary: "Demander une démo",
-      scrollLabel: "Explorer la plateforme",
-      signal: "Des systèmes qui relient territoire, données et équipes.",
-      stats: {
-        projects: "Municipalités (géométrie officielle)",
-        satisfaction: "Départements (données officielles)",
-        support: "Sources connectées (ANH · MinMinas · UNAL +)",
+      product: {
+        title: "Visualiseur PPR ACGGP",
+        status: "En production",
+        cta: "Voir l'étude de cas",
+        alt: "Capture du Visualiseur PPR ACGGP : carte de la Colombie avec les sites du programme et un panneau d'indicateurs",
       },
-      floating: {
-        revenue: "Des données à la carte",
-        data: "De la carte aux décisions",
-        insights: "Exploration interactive",
-        revenueValue: "Géométrie + attributs",
-        insightsValue: "Couches · filtres",
-        dataValue: "Requête + visualisation",
-      }
+    },
+    proofBar: {
+      title: "GearsMap en bref",
+      live: "En production · Visualiseur PPR ACGGP",
+      climate: "Mise en œuvre opérationnelle · MRV et S&E avec MinMinas et le soutien de la KfW",
+      place: "Bogotá, Colombie",
+      founded: "Fondée en 2025",
+    },
+    sections: {
+      capabilities: "Compétences",
+      process: "Méthode",
+      about: "À propos",
+      contact: "Contact",
     },
     about: {
       title: "À propos de GearsMap",
       intro: "Nous innovons dans de nouvelles façons d'utiliser et de visualiser les données pour ajouter de la valeur aux processus et aux décisions.",
+      imageAlt: "L'équipe GearsMap travaille sur la visualisation de données",
+      facts: {
+        title: "Fiche de l'entreprise",
+        legalName: "Raison sociale",
+        taxId: "NIT",
+        founded: "Fondation",
+        hq: "Siège",
+        languages: "Langues",
+        languagesValue: "Espagnol, anglais et français",
+        contact: "Contact",
+      },
       foundation: {
         title: "Fondation",
         text: "Fondée en 2025, GearsMap rassemble des professionnels expérimentés du secteur technologique, animés par la passion de contribuer à la quatrième révolution industrielle. Nous innovons dans de nouvelles façons d'utiliser et de visualiser les données, ajoutant de la valeur aux processus commerciaux.",
@@ -508,7 +566,6 @@ export const translations = {
       },
     },
     mission: {
-      title: "Mission et vision",
       mission: {
         title: "Mission",
         text: "Notre objectif principal est d'aider les entités gouvernementales, les entreprises et les organisations dans leur transformation numérique vers un avenir plus prospère. Nous cherchons à optimiser chaque ressource et processus grâce à l'utilisation innovante de l'information.",
@@ -519,8 +576,10 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Portefeuille et Services",
-      subheader: "Géovisionneuses, systèmes d'information géographique, tableaux de bord, intelligence artificielle et automatisation pour transformer des données territoriales en décisions.",
+      header: "Services géospatiaux et de données",
+      subheader: "SIG web, systèmes d'information géographique, tableaux de bord, intelligence artificielle et automatisation pour transformer des données territoriales en décisions.",
+      detailsLabel: "Détails",
+      geoviewersLink: "Voir le service SIG web",
       services: {
         ai: {
           title: "IA et Machine Learning",
@@ -528,8 +587,8 @@ export const translations = {
           details: "Nos solutions d'IA incluent l'analyse prédictive, le traitement du langage naturel (NLP) et la vision par ordinateur. Nous aidons à automatiser la classification des données, à détecter les anomalies en temps réel et à générer des informations exploitables qui stimulent la croissance de votre entreprise.",
         },
         geoviewers: {
-          title: "Géovisionneuses",
-          desc: "Nous développons des géovisionneuses personnalisées pour visualiser et analyser les informations géospatiales de manière interactive et dynamique.",
+          title: "Visualiseurs cartographiques web",
+          desc: "Nous développons des visualiseurs cartographiques web personnalisés pour visualiser et analyser les informations géospatiales de manière interactive et dynamique.",
           details: "Nous créons des visualiseurs de cartes interactifs utilisant des technologies comme Mapbox, Leaflet et OpenLayers. Nous intégrons des couches de données complexes, des outils de dessin, une analyse spatiale dans le navigateur et un filtrage avancé pour que vous puissiez explorer vos informations géographiques sans limites.",
         },
         visualization: {
@@ -556,10 +615,15 @@ export const translations = {
     },
     contact: {
       header: "Contactez-nous",
-      subheader: "Remplissez le formulaire pour nous contacter.",
-      signal: "Une courte conversation peut révéler la prochaine étape de votre activité.",
+      subheader: "Remplissez le formulaire ou écrivez-nous directement pour nous contacter.",
       promise: "Nous répondons avec du contexte, des questions concrètes et une piste possible.",
       sending: "Envoi en cours...",
+      channels: {
+        linkedin: "GearsMap sur LinkedIn",
+      },
+      next: {
+        title: "Et ensuite",
+      },
       toast: {
         success: "Message envoyé",
         successDescription: "Nous vous répondrons bientôt.",
@@ -575,22 +639,27 @@ export const translations = {
         demoDescription: "Découvrez une solution et voyons si elle correspond à votre activité.",
       },
       form: {
-        title: "Besoin d'aide ? Contactez-nous",
-        subtitle: "Notre équipe vous contactera dès que possible.",
-        name: "Votre Nom *",
+        required: "Champs obligatoires",
+        name: "Votre nom *",
         namePlaceholder: "Entrez votre nom",
-        phone: "Votre Téléphone",
+        phone: "Votre téléphone",
         phonePlaceholder: "Entrez votre téléphone",
-        email: "Votre Email *",
-        emailPlaceholder: "Entrez votre email",
-        message: "Votre Message *",
+        email: "Votre e-mail *",
+        emailPlaceholder: "Entrez votre e-mail",
+        message: "Votre message *",
         messagePlaceholder: "Dites-nous ce que vous souhaitez visualiser, automatiser ou améliorer",
         submit: "Envoyer le message",
       },
     },
     techStack: {
-      title: "Stack Technologique",
-      subtitle: "Des outils modernes pour des solutions robustes"
+      title: "Stack technologique",
+      subtitle: "Des outils modernes pour des solutions robustes",
+      groups: {
+        geo: "Géospatial",
+        data: "Données et IA",
+        web: "Web",
+        cloud: "Cloud",
+      },
     },
     gallery: {
       title: "Projets en vedette",
@@ -660,6 +729,9 @@ export const translations = {
 
 export type Dictionary = typeof translations.ES
 
+/** Typed view of `translations`: EN and FR must provide every key the Spanish dictionary has. */
+const dictionaries: Record<Language, Dictionary> = translations
+
 const localeLanguages: Record<Locale, Language> = {
   es: "ES",
   en: "EN",
@@ -673,7 +745,7 @@ export function isLocale(value: string): value is Locale {
 }
 
 export function getDictionary(locale: Locale): Dictionary {
-  return translations[localeLanguages[locale]]
+  return dictionaries[localeLanguages[locale]]
 }
 
 export function localeToLanguage(locale: Locale): Language {
