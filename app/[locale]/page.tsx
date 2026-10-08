@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 import { HomePage } from "@/components/home/home-page"
 import { InstantShell } from "@/components/instant-shell"
 import { JsonLd } from "@/components/seo/json-ld"
-import { pageMetadata, organizationNode, serviceNode, structuredData, webPageNode, websiteNode } from "@/lib/seo"
+import { pageMetadata, organizationNode, personNodes, serviceNode, structuredData, webPageNode, websiteNode } from "@/lib/seo"
 import { absoluteUrl, siteUrl } from "@/lib/site"
 import { getDictionary, isLocale } from "@/lib/translations"
 
@@ -35,6 +35,7 @@ async function LocalizedHomeContent({ params }: { params: Promise<{ locale: stri
   const data = structuredData([
     organizationNode(),
     websiteNode(value),
+    ...personNodes(value, t.team.roles),
     webPageNode({
       locale: value,
       title: t.seo.title,

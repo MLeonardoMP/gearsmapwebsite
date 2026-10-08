@@ -131,7 +131,7 @@ test.describe("GearsMap public site", () => {
 
     await expect(page.locator("html")).toHaveAttribute("lang", "es")
     await expect(page.locator("h1")).toContainText("información climática")
-    await expect(page.locator('script[type="application/ld+json"]')).toBeAttached()
+    await expect(page.locator('script[type="application/ld+json"]').first()).toBeAttached()
     await expect(page.getByRole("link", { name: /Monitoreo, reporte y verificación/ })).toBeVisible()
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://gearsmap.com/es/sistemas-climaticos")
 

@@ -9,6 +9,7 @@ import {
   siteName,
   siteUrl,
 } from "@/lib/site"
+import { teamMembers } from "@/lib/team"
 import type { Locale } from "@/lib/translations"
 
 type PageMetadataInput = {
@@ -75,6 +76,7 @@ export function organizationNode() {
       name: "Colombia",
     },
     sameAs: [linkedInUrl],
+    founder: teamMembers.map((member) => ({ "@id": personId(member.id) })),
     knowsAbout: [
       "Software geoespacial",
       "Sistemas de información geográfica",
@@ -90,6 +92,23 @@ export function organizationNode() {
       "Sector minero-energético",
     ],
   }
+}
+
+function personId(id: string) {
+  return `${siteUrl}/#${id}`
+}
+
+export function personNodes(locale: Locale, roles: Record<string, string>) {
+  return teamMembers.map((member) => ({
+    "@type": "Person",
+    "@id": personId(member.id),
+    name: member.name,
+    jobTitle: roles[member.roleKey],
+    image: absoluteUrl(member.image),
+    url: absoluteUrl(`/${locale}#${member.id}`),
+    worksFor: { "@id": `${siteUrl}/#organization` },
+    ...(member.linkedIn ? { sameAs: [member.linkedIn] } : {}),
+  }))
 }
 
 export function websiteNode(locale: Locale) {

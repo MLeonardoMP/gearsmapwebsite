@@ -26,6 +26,7 @@ import AuroraText from "@/components/ui/aurora-text"
 import { ContactCta, ContactForm } from "@/components/home/contact-form"
 import { GlobeVisual } from "@/components/home/globe-visual"
 import { projectDefinitions, type ProjectDefinition, type ProjectKey } from "@/lib/projects"
+import { teamMembers } from "@/lib/team"
 import { climateHref } from "@/lib/site"
 import type { Dictionary, Locale } from "@/lib/translations"
 
@@ -272,12 +273,7 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
     fleet: t.gallery.project5,
   }
 
-  const team = [
-    { role: t.team.roles.ceo, name: "Leonardo Mosquera", image: "/images/Leonardo.jpg" },
-    { role: t.team.roles.cpo, name: "Juan Esteban Mosquera", image: "/images/Juan_Esteban.jpg" },
-    { role: t.team.roles.cdo, name: "Juan Manuel Jimenez", image: "/images/Juan_Manuel.jpg" },
-    { role: t.team.roles.cco, name: "Mateo Granados", image: "/images/Mateo.jpg" },
-  ]
+  const team = teamMembers.map((member) => ({ ...member, role: t.team.roles[member.roleKey] }))
 
   const processSteps = [t.process.steps.scope, t.process.steps.model, t.process.steps.deliver]
 
@@ -470,7 +466,7 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
             <SectionHeading title={t.team.title} description={t.team.subtitle} />
             <div className="team-grid">
               {team.map((member, index) => (
-                <article key={member.name} className="team-card">
+                <article key={member.id} id={member.id} className="team-card">
                   <div className="team-card__image-wrap">
                     <Image src={member.image} alt={member.name} fill sizes="112px" className="team-card__image" />
                     <span aria-hidden="true">0{index + 1}</span>
