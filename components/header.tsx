@@ -67,14 +67,13 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 z-50">
             <Image
-              src="/images/gearsmap-logo.png"
+              src="/images/gears-map-horizontal.svg"
               alt="GearsMap"
-              width={32}
+              width={160}
               height={32}
-              className="w-8 h-8"
+              className="h-8 lg:h-9 w-auto"
               priority
             />
-            <span className="text-xl font-bold text-accent">GearsMap</span>
           </Link>
 
           {/* Desktop Navigation */}

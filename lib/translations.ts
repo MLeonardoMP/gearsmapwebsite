@@ -20,13 +20,17 @@ export const translations = {
       cta_primary: "Solicitar demo",
       cta_secondary: "Saber más",
       stats: {
-        projects: "Fundada en",
-        satisfaction: "Tecnologías",
-        support: "Tiempo de respuesta",
+        projects: "Municipios (geometría oficial)",
+        satisfaction: "Departamentos (info oficial)",
+        support: "Fuentes conectadas (ANH · MinMinas · UNAL +)",
       },
       floating: {
-        revenue: "Disponibilidad",
-        data: "Soluciones Activas",
+        revenue: "Del dato al mapa",
+        data: "Del mapa a decisiones",
+        insights: "Exploración interactiva",
+        revenueValue: "Geometría + atributos",
+        insightsValue: "Capas · filtros",
+        dataValue: "Consulta + visualización",
       }
     },
     about: {
@@ -89,8 +93,16 @@ export const translations = {
       },
     },
     contact: {
-      header: "Contactenos",
+      header: "Contáctenos",
       subheader: "Complete el formulario para ponerte en contacto con nosotros.",
+      sending: "Enviando...",
+      toast: {
+        success: "Mensaje enviado",
+        successDescription: "Nos pondremos en contacto pronto.",
+        error: "Error",
+        errorDescription: "Algo salió mal. Intente de nuevo.",
+        validationError: "Revise los campos del formulario.",
+      },
       form: {
         title: "¿Necesitas ayuda? Contáctanos",
         subtitle: "Nuestro equipo se pondrá en contacto contigo lo antes posible.",
@@ -116,12 +128,23 @@ export const translations = {
       project2: { title: "Análisis Agrícola", desc: "Monitoreo de cultivos satelital" },
       project3: { title: "Gestión de Flotas", desc: "Optimización de rutas logísticas" }
     },
+    projects: {
+      status: {
+        inDevelopment: "En Desarrollo",
+      },
+    },
     team: {
       title: "Nuestro Equipo",
       subtitle: "Fundadores expertos apasionados por la innovación y los datos",
       role1: "CEO & Fundador",
       role2: "Lead Developer",
-      role3: "Data Scientist"
+      role3: "Data Scientist",
+      roles: {
+        ceo: "CEO - Estrategia y Visión",
+        cpo: "CPO - Producto e Innovación",
+        cdo: "CDO - Ciencia de Datos e IA",
+        cco: "CCO - Negocios y Crecimiento",
+      },
     },
     footer: {
       description: "Transformamos datos complejos en decisiones estratégicas mediante innovación, tecnología y soporte experto.",
@@ -152,13 +175,17 @@ export const translations = {
       cta_primary: "Request Demo",
       cta_secondary: "Learn More",
       stats: {
-        projects: "Founded",
-        satisfaction: "Technologies",
-        support: "Response Time",
+        projects: "Municipalities (official geometry)",
+        satisfaction: "Departments (official data)",
+        support: "Connected sources (ANH · MinMinas · UNAL +)",
       },
       floating: {
-        revenue: "Uptime",
-        data: "Active Solutions",
+        revenue: "From data to map",
+        data: "From map to decisions",
+        insights: "Interactive exploration",
+        revenueValue: "Geometry + attributes",
+        insightsValue: "Layers · filters",
+        dataValue: "Query + visualization",
       }
     },
     about: {
@@ -223,6 +250,14 @@ export const translations = {
     contact: {
       header: "Contact Us",
       subheader: "Fill out the form to get in touch with us.",
+      sending: "Sending...",
+      toast: {
+        success: "Message sent!",
+        successDescription: "We'll get back to you soon.",
+        error: "Error",
+        errorDescription: "Something went wrong. Please try again.",
+        validationError: "Please check the form fields.",
+      },
       form: {
         title: "Need Help? Contact Us",
         subtitle: "Our team will get in touch with you as soon as possible.",
@@ -253,7 +288,18 @@ export const translations = {
       subtitle: "Founders and experts passionate about innovation and data",
       role1: "CEO & Founder",
       role2: "Lead Developer",
-      role3: "Data Scientist"
+      role3: "Data Scientist",
+      roles: {
+        ceo: "CEO - Strategy & Vision",
+        cpo: "CPO - Product & Innovation",
+        cdo: "CDO - Data Science & AI",
+        cco: "CCO - Business & Growth",
+      },
+    },
+    projects: {
+      status: {
+        inDevelopment: "In Development",
+      },
     },
     footer: {
       description: "We transform complex data into strategic decisions through innovation, technology, and expert support.",
@@ -284,13 +330,17 @@ export const translations = {
       cta_primary: "Demander une démo",
       cta_secondary: "En savoir plus",
       stats: {
-        projects: "Fondée en",
-        satisfaction: "Technologies",
-        support: "Temps de réponse",
+        projects: "Municipalités (géométrie officielle)",
+        satisfaction: "Départements (données officielles)",
+        support: "Sources connectées (ANH · MinMinas · UNAL +)",
       },
       floating: {
-        revenue: "Disponibilité",
-        data: "Solutions actives",
+        revenue: "Des données à la carte",
+        data: "De la carte aux décisions",
+        insights: "Exploration interactive",
+        revenueValue: "Géométrie + attributs",
+        insightsValue: "Couches · filtres",
+        dataValue: "Requête + visualisation",
       }
     },
     about: {
@@ -355,6 +405,14 @@ export const translations = {
     contact: {
       header: "Contactez-nous",
       subheader: "Remplissez le formulaire pour nous contacter.",
+      sending: "Envoi en cours...",
+      toast: {
+        success: "Message envoyé",
+        successDescription: "Nous vous répondrons bientôt.",
+        error: "Erreur",
+        errorDescription: "Une erreur est survenue. Réessayez.",
+        validationError: "Veuillez vérifier les champs.",
+      },
       form: {
         title: "Besoin d'aide ? Contactez-nous",
         subtitle: "Notre équipe vous contactera dès que possible.",
@@ -385,7 +443,18 @@ export const translations = {
       subtitle: "Fondateurs et experts passionnés par l'innovation et les données",
       role1: "PDG et fondateur",
       role2: "Développeur principal",
-      role3: "Data Scientist"
+      role3: "Data Scientist",
+      roles: {
+        ceo: "CEO - Stratégie et Vision",
+        cpo: "CPO - Produit et Innovation",
+        cdo: "CDO - Science des données et IA",
+        cco: "CCO - Commerce et Croissance",
+      },
+    },
+    projects: {
+      status: {
+        inDevelopment: "En développement",
+      },
     },
     footer: {
       description: "Nous transformons des données complexes en décisions stratégiques grâce à l'innovation, la technologie et un support expert.",

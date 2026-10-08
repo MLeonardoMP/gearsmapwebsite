@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
+import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap, Brain, Map, BarChart, Globe2, Cog, Shield, User } from "lucide-react"
 import Globe from "@/components/ui/globe"
@@ -8,8 +9,9 @@ import { FadeIn } from "@/components/ui/fade-in"
 import { Counter } from "@/components/ui/counter"
 import { useLanguage } from "@/lib/language-context"
 import { TechIcons } from "@/components/tech-icons"
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/hooks/use-toast"
 import { Marquee } from "@/components/ui/marquee"
+import AuroraText from "@/components/ui/aurora-text"
 import {
   Dialog,
   DialogContent,
@@ -38,6 +40,46 @@ function TechPill({
 export default function HomePage() {
   const { t } = useLanguage()
   const { toast } = useToast()
+  const { resolvedTheme } = useTheme()
+
+  const globeConfig = useMemo(() => {
+    const isDark = resolvedTheme === "dark"
+    return {
+      phi: 0,
+      theta: 0.3,
+      devicePixelRatio: 2,
+      mapSamples: 16000,
+      diffuse: isDark ? 0.6 : 0.4,
+      mapBrightness: isDark ? 1.5 : 1.2,
+      mapBaseBrightness: isDark ? 0.05 : 0.08,
+      baseColor: isDark ? [0.12, 0.5, 0.56] as [number, number, number] : [0.18, 0.69, 0.76] as [number, number, number],
+      glowColor: isDark ? [0.08, 0.35, 0.4] as [number, number, number] : [0.18, 0.69, 0.76] as [number, number, number],
+      markerColor: isDark ? [0.3, 0.85, 0.95] as [number, number, number] : [0.1, 0.55, 0.65] as [number, number, number],
+      markerElevation: 0.02,
+      markers: [
+        { location: [4.5709, -74.2973] as [number, number], size: 0.12, color: [0.18, 0.69, 0.76] as [number, number, number] },
+        { location: [40.7128, -74.006] as [number, number], size: 0.08 },
+        { location: [51.5074, -0.1278] as [number, number], size: 0.08 },
+        { location: [35.6762, 139.6503] as [number, number], size: 0.08 },
+        { location: [-33.8688, 151.2093] as [number, number], size: 0.06 },
+        { location: [19.4326, -99.1332] as [number, number], size: 0.07 },
+        { location: [-23.5505, -46.6333] as [number, number], size: 0.07 },
+        { location: [55.7558, 37.6176] as [number, number], size: 0.06 },
+        { location: [28.6139, 77.209] as [number, number], size: 0.07 },
+      ],
+      arcs: [
+        { from: [4.5709, -74.2973] as [number, number], to: [40.7128, -74.006] as [number, number] },
+        { from: [4.5709, -74.2973] as [number, number], to: [51.5074, -0.1278] as [number, number] },
+        { from: [4.5709, -74.2973] as [number, number], to: [19.4326, -99.1332] as [number, number] },
+        { from: [4.5709, -74.2973] as [number, number], to: [-23.5505, -46.6333] as [number, number] },
+        { from: [4.5709, -74.2973] as [number, number], to: [28.6139, 77.209] as [number, number] },
+      ],
+      arcColor: isDark ? [0.25, 0.75, 0.85] as [number, number, number] : [0.14, 0.6, 0.68] as [number, number, number],
+      arcWidth: 0.4,
+      arcHeight: 0.3,
+    }
+  }, [resolvedTheme])
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,18 +101,58 @@ export default function HomePage() {
         body: JSON.stringify(formData),
       })
 
-      if (!response.ok) throw new Error("Failed to send message")
+      const contentType = response.headers.get("content-type") || ""
+      const payload = contentType.includes("application/json")
+        ? await response.json().catch(() => null)
+        : await response.text().catch(() => "")
+
+      if (!response.ok) {
+        const errorMessage =
+          typeof payload === "string"
+            ? payload
+            : payload?.error || "Something went wrong. Please try again later."
+
+        const hint = typeof payload === "string" ? "" : payload?.hint
+        const issues = typeof payload === "string" ? null : payload?.issues
+
+        if (
+          payload?.debug &&
+          typeof payload.debug === "object" &&
+          Object.keys(payload.debug as Record<string, unknown>).length > 0
+        ) {
+          // Helpful in local dev; avoid triggering the red error overlay.
+          // eslint-disable-next-line no-console
+          console.debug("/api/contact debug:", payload.debug)
+        }
+
+        toast({
+          title: t.contact.toast.error,
+          description: [errorMessage, hint, issues ? t.contact.toast.validationError : ""]
+            .filter(Boolean)
+            .join(" "),
+          variant: "destructive",
+        })
+        return
+      }
+
+      const dbSaved = typeof payload === "string" ? undefined : payload?.dbSaved
+      const emailSent = typeof payload === "string" ? undefined : payload?.emailSent
 
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
+        title: t.contact.toast.success,
+        description:
+          dbSaved === false && emailSent === true
+            ? "Email sent, but saving to DB failed."
+            : dbSaved === true && emailSent === false
+              ? "Saved to DB, but email was not sent (check email settings)."
+              : t.contact.toast.successDescription,
       })
       
       setFormData({ name: "", email: "", phone: "", message: "" })
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Something went wrong. Please try again later.",
+        title: t.contact.toast.error,
+        description: t.contact.toast.errorDescription,
         variant: "destructive",
       })
     } finally {
@@ -107,7 +189,7 @@ export default function HomePage() {
               <FadeIn delay={0.2}>
                 <div className="space-y-6">
                   <h1 className="text-4xl lg:text-6xl font-extrabold font-sans leading-tight tracking-tight">
-                    {t.hero.subtitle} <span className="text-accent">{t.hero.title}</span>
+                    {t.hero.subtitle} <AuroraText>{t.hero.title}</AuroraText>
                     <span className="text-foreground">?</span>
                   </h1>
 
@@ -137,21 +219,23 @@ export default function HomePage() {
               </FadeIn>
 
               {/* Stats */}
-              <FadeIn delay={0.4} className="flex gap-8 pt-8 border-t border-border/50">
-                <div>
-                  <div className="text-2xl font-bold text-accent font-sans flex items-center">
-                    <Counter value={2025} />
+              <FadeIn delay={0.3} className="flex flex-wrap gap-x-8 gap-y-6 pt-8 border-t border-border/50">
+                <div className="min-w-[140px] flex-1 sm:flex-none">
+                  <div className="text-2xl lg:text-3xl font-bold text-accent font-sans flex items-center">
+                    <Counter value={1100} />+
                   </div>
                   <div className="text-sm text-muted-foreground">{t.hero.stats.projects}</div>
                 </div>
-                <div>
-                  <div className="text-2xl font-bold text-accent font-sans flex items-center">
-                    <Counter value={25} />+
+                <div className="min-w-[140px] flex-1 sm:flex-none">
+                  <div className="text-2xl lg:text-3xl font-bold text-accent font-sans flex items-center">
+                    <Counter value={32} />
                   </div>
                   <div className="text-sm text-muted-foreground">{t.hero.stats.satisfaction}</div>
                 </div>
-                <div>
-                  <div className="text-2xl font-bold text-accent font-sans">&lt;24h</div>
+                <div className="min-w-[140px] flex-1 sm:flex-none">
+                  <div className="text-2xl lg:text-3xl font-bold text-accent font-sans flex items-center">
+                    <Counter value={3} />+
+                  </div>
                   <div className="text-sm text-muted-foreground">{t.hero.stats.support}</div>
                 </div>
               </FadeIn>
@@ -159,52 +243,33 @@ export default function HomePage() {
 
             <FadeIn direction="left" delay={0.2} className="relative">
               <div className="relative w-full h-96 lg:h-[500px] flex items-center justify-center">
-                {/* Background glow effect */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-linear-to-br from-accent/20 to-accent/5 blur-3xl animate-pulse"></div>
+                {/* Background glow — smooth breathing */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-80 h-80 lg:w-[26rem] lg:h-[26rem] rounded-full bg-radial-[at_center] from-accent/25 via-accent/8 to-transparent blur-2xl animate-glow-breathe"></div>
                 </div>
 
-                {/* Magic UI Globe */}
+                {/* Globe */}
                 <div className="relative z-10 w-full h-full max-w-[500px] max-h-[500px]">
                   <Globe
-                    className="opacity-80"
-                    config={{
-                      width: 800,
-                      height: 600,
-                      onRender: () => {},
-                      devicePixelRatio: 2,
-                      phi: 0,
-                      theta: 0.3,
-                      dark: 1,
-                      diffuse: 0.4,
-                      mapSamples: 16000,
-                      mapBrightness: 1.2,
-                      baseColor: [0.18, 0.69, 0.76], // #2EB1C3 base color
-                      markerColor: [0.3, 0.8, 0.9], // Brighter teal for markers
-                      glowColor: [0.18, 0.69, 0.76], // #2EB1C3 glow
-                      markers: [
-                        { location: [40.7128, -74.006], size: 0.08 }, // New York
-                        { location: [51.5074, -0.1278], size: 0.08 }, // London
-                        { location: [35.6762, 139.6503], size: 0.08 }, // Tokyo
-                        { location: [-33.8688, 151.2093], size: 0.06 }, // Sydney
-                        { location: [19.4326, -99.1332], size: 0.07 }, // Mexico City
-                        { location: [-23.5505, -46.6333], size: 0.07 }, // São Paulo
-                        { location: [55.7558, 37.6176], size: 0.06 }, // Moscow
-                        { location: [28.6139, 77.209], size: 0.07 }, // New Delhi
-                      ],
-                    }}
+                    dark={resolvedTheme === "dark" ? 1 : 0}
+                    config={globeConfig}
                   />
                 </div>
 
-                {/* Floating data cards */}
-                <div className="absolute top-4 left-4 glass-card rounded-lg p-3 animate-float z-20">
-                  <div className="text-xs text-muted-foreground">{t.hero.floating.revenue}</div>
-                  <div className="text-lg font-bold text-accent font-sans">99.9%</div>
+                {/* Floating data cards — staggered entrance */}
+                <div className="absolute top-4 left-4 glass-card rounded-xl px-4 py-3 animate-float z-20">
+                  <div className="text-[11px] tracking-wide uppercase text-muted-foreground">{t.hero.floating.revenue}</div>
+                  <div className="text-lg font-semibold text-accent font-sans tabular-nums">{t.hero.floating.revenueValue}</div>
                 </div>
 
-                <div className="absolute bottom-8 right-8 glass-card rounded-lg p-3 animate-float delay-1000 z-20">
-                  <div className="text-xs text-muted-foreground">{t.hero.floating.data}</div>
-                  <div className="text-lg font-bold text-accent font-sans">8+</div>
+                <div className="absolute top-24 right-10 glass-card rounded-xl px-4 py-3 animate-float delay-1000 z-20">
+                  <div className="text-[11px] tracking-wide uppercase text-muted-foreground">{t.hero.floating.insights}</div>
+                  <div className="text-lg font-semibold text-accent font-sans tabular-nums">{t.hero.floating.insightsValue}</div>
+                </div>
+
+                <div className="absolute bottom-8 right-8 glass-card rounded-xl px-4 py-3 animate-float delay-1500 z-20">
+                  <div className="text-[11px] tracking-wide uppercase text-muted-foreground">{t.hero.floating.data}</div>
+                  <div className="text-lg font-semibold text-accent font-sans tabular-nums">{t.hero.floating.dataValue}</div>
                 </div>
               </div>
             </FadeIn>
@@ -268,7 +333,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="portafolio" className="px-6 lg:px-12 py-20 lg:py-32 relative">
+      <section id="portafolio" className="px-6 lg:px-12 py-16 lg:py-24 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Header */}
           <FadeIn className="text-center mb-16">
@@ -326,7 +391,7 @@ export default function HomePage() {
               <FadeIn key={index} delay={index * 0.1}>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <div className="glass-card rounded-xl p-8 h-full hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden cursor-pointer">
+                    <button className="glass-card rounded-xl p-8 h-full hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden cursor-pointer text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                       {/* Background Gradient */}
                       <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       
@@ -351,7 +416,7 @@ export default function HomePage() {
                             <ArrowRight className="w-4 h-4 ml-2" />
                           </div>
                       </div>
-                    </div>
+                    </button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[600px] border-accent/20 bg-background/95 backdrop-blur-xl">
                     <DialogHeader>
@@ -370,7 +435,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex justify-end pt-4">
                       <DialogClose asChild>
-                        <Button asChild className="bg-accent hover:bg-accent/90 text-white">
+                        <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
                           <a href="#contacto">{t.nav.contact}</a>
                         </Button>
                       </DialogClose>
@@ -382,7 +447,7 @@ export default function HomePage() {
           </div>
 
           {/* Featured Projects */}
-          <div className="mt-32">
+          <div className="mt-20">
             <FadeIn className="text-center mb-16">
               <h2 className="text-3xl lg:text-5xl font-bold font-sans text-foreground mb-4">{t.gallery.title}</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">{t.gallery.subtitle}</p>
@@ -391,8 +456,8 @@ export default function HomePage() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 { title: t.gallery.project1.title, desc: t.gallery.project1.desc, color: "bg-blue-500/20", tags: ["React", "Mapbox", "Node.js"], link: "https://acggp.gearsmap.com/", image: "/images/acggp_visor.png", status: null },
-                { title: t.gallery.project2.title, desc: t.gallery.project2.desc, color: "bg-green-500/20", tags: ["Python", "Satellite", "AI"], status: "In Development" },
-                { title: t.gallery.project3.title, desc: t.gallery.project3.desc, color: "bg-purple-500/20", tags: ["IoT", "Real-time", "Dashboard"], status: "In Development" },
+                { title: t.gallery.project2.title, desc: t.gallery.project2.desc, color: "bg-green-500/20", tags: ["Python", "Satellite", "AI"], status: t.projects.status.inDevelopment },
+                { title: t.gallery.project3.title, desc: t.gallery.project3.desc, color: "bg-purple-500/20", tags: ["IoT", "Real-time", "Dashboard"], status: t.projects.status.inDevelopment },
               ].map((project, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
                   <a 
@@ -462,7 +527,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="nosotros" className="px-6 lg:px-12 py-20 lg:py-32 relative">
+      <section id="nosotros" className="px-6 lg:px-12 py-16 lg:py-24 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left Content */}
@@ -517,7 +582,7 @@ export default function HomePage() {
           </div>
 
           {/* Team Section */}
-          <div className="mt-20">
+          <div className="mt-16">
             <FadeIn className="text-center mb-16">
               <h2 className="text-3xl lg:text-5xl font-bold font-sans text-foreground mb-4">{t.team.title}</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">{t.team.subtitle}</p>
@@ -525,14 +590,14 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { role: "CEO - Strategy & Vision", name: "Leonardo Mosquera", image: "/images/Leonardo.jpg" },
-                { role: "CPO - Product & Innovation", name: "Juan Esteban Mosquera", image: "/images/Juan_Esteban.jpg" },
-                { role: "CDO - Data Science & AI", name: "Juan Manuel Jimenez", image: "/images/Juan_Manuel.jpg" },
-                { role: "CCO - Business & Growth", name: "Mateo Granados", image: "/images/Mateo.jpg" },
+                { role: t.team.roles.ceo, name: "Leonardo Mosquera", image: "/images/Leonardo.jpg" },
+                { role: t.team.roles.cpo, name: "Juan Esteban Mosquera", image: "/images/Juan_Esteban.jpg" },
+                { role: t.team.roles.cdo, name: "Juan Manuel Jimenez", image: "/images/Juan_Manuel.jpg" },
+                { role: t.team.roles.cco, name: "Mateo Granados", image: "/images/Mateo.jpg" },
               ].map((member, i) => (
-                <FadeIn key={i} delay={i * 0.1}>
-                  <div className="glass-card p-6 rounded-xl text-center">
-                    <div className="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full border-2 border-accent/20">
+                <FadeIn key={i} delay={i * 0.1} className="h-full">
+                  <div className="glass-card p-6 rounded-xl text-center h-full flex flex-col items-center">
+                    <div className="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full border-2 border-accent/20 shrink-0">
                       <img 
                         src={member.image} 
                         alt={member.name}
@@ -549,7 +614,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden">
+      <section className="px-6 lg:px-12 py-16 lg:py-24 relative overflow-hidden">
         {/* Background Blobs */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full overflow-hidden pointer-events-none z-0">
            <div className="absolute top-[20%] right-[-10%] w-[30%] h-[30%] bg-accent/5 rounded-full blur-[100px]" />
@@ -605,7 +670,7 @@ export default function HomePage() {
 
 
 
-      <section id="contacto" className="px-6 lg:px-12 py-20 lg:py-32 relative">
+      <section id="contacto" className="px-6 lg:px-12 py-16 lg:py-24 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Header */}
           <FadeIn className="text-center mb-16">
@@ -697,7 +762,7 @@ export default function HomePage() {
                   disabled={isSubmitting}
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium h-12 text-lg shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? "Sending..." : t.contact.form.submit}
+                  {isSubmitting ? t.contact.sending : t.contact.form.submit}
                 </Button>
               </form>
             </div>

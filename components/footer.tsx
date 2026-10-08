@@ -16,19 +16,24 @@ export default function Footer() {
           <div className="space-y-6 col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2">
               <Image
-                src="/images/gearsmap-logo.png"
+                src="/images/gears-map-horizontal.svg"
                 alt="GearsMap"
-                width={40}
+                width={200}
                 height={40}
-                className="w-10 h-10"
+                className="h-10 w-auto"
               />
-              <span className="text-2xl font-bold text-accent">GearsMap</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {t.footer.description}
             </p>
             <div className="flex gap-4">
-              <a href="https://www.linkedin.com/company/gearsmap" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors">
+              <a
+                href="https://www.linkedin.com/company/gearsmap"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn de GearsMap"
+                className="text-muted-foreground hover:text-accent transition-colors"
+              >
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>

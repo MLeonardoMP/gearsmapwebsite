@@ -1,14 +1,14 @@
 "use client"
 
-import createGlobe from "cobe"
-import { useCallback, useEffect, useRef } from "react"
+import createGlobe, { type COBEOptions, type Marker, type Arc } from "cobe"
+import { useEffect, useRef } from "react"
 
 import { cn } from "@/lib/utils"
 
-const GLOBE_CONFIG = {
-  width: 800,
-  height: 600,
-  onRender: () => {},
+export type { Marker as GlobeMarker, Arc as GlobeArc }
+export type GlobeConfig = Omit<COBEOptions, "width" | "height">
+
+const DEFAULT_CONFIG: GlobeConfig = {
   devicePixelRatio: 2,
   phi: 0,
   theta: 0.3,
@@ -16,98 +16,118 @@ const GLOBE_CONFIG = {
   diffuse: 0.4,
   mapSamples: 16000,
   mapBrightness: 1.2,
-  baseColor: [1, 1, 1] as [number, number, number],
-  markerColor: [251 / 255, 100 / 255, 21 / 255] as [number, number, number],
-  glowColor: [1, 1, 1] as [number, number, number],
-  markers: [
-    { location: [14.5995, 120.9842], size: 0.03 },
-    { location: [19.076, 72.8777], size: 0.1 },
-    { location: [23.8103, 90.4125], size: 0.05 },
-    { location: [30.0444, 31.2357], size: 0.07 },
-    { location: [39.9042, 116.4074], size: 0.08 },
-    { location: [-23.5505, -46.6333], size: 0.1 },
-    { location: [19.4326, -99.1332], size: 0.1 },
-    { location: [40.7128, -74.006], size: 0.1 },
-    { location: [34.6937, 135.5023], size: 0.05 },
-    { location: [41.8781, -87.6298], size: 0.08 },
-  ] as { location: [number, number]; size: number }[],
+  baseColor: [1, 1, 1],
+  markerColor: [251 / 255, 100 / 255, 21 / 255],
+  glowColor: [1, 1, 1],
+  markers: [],
+  arcs: [],
+  arcColor: [0.3, 0.8, 0.9],
+  arcWidth: 0.4,
+  arcHeight: 0.3,
+  markerElevation: 0.02,
 }
 
 export default function Globe({
   className,
-  config = GLOBE_CONFIG,
+  config = DEFAULT_CONFIG,
+  dark,
+  children,
 }: {
   className?: string
-  config?: typeof GLOBE_CONFIG
+  config?: Partial<GlobeConfig>
+  dark?: number
+  children?: React.ReactNode
 }) {
-  let phi = 0
-  let width = 0
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const pointerInteracting = useRef(null)
-  const pointerInteractionMovement = useRef(0)
-  const r = useRef(0)
-
-  const updatePointerInteraction = (value: any) => {
-    pointerInteracting.current = value
-    if (canvasRef.current) {
-      canvasRef.current.style.cursor = value ? "grabbing" : "grab"
-    }
-  }
-
-  const updateMovement = (clientX: any) => {
-    if (pointerInteracting.current !== null) {
-      const delta = clientX - pointerInteracting.current
-      pointerInteractionMovement.current = delta
-      r.current = delta / 200
-    }
-  }
-
-  const onRender = useCallback(
-    (state: Record<string, any>) => {
-      if (!pointerInteracting.current) phi += 0.005
-      state.phi = phi + r.current
-      state.width = width * 2
-      state.height = width * 2
-    },
-    [pointerInteracting, phi, r],
-  )
-
-  const onResize = () => {
-    if (canvasRef.current) {
-      width = canvasRef.current.offsetWidth
-    }
-  }
+  const pointerInteracting = useRef<number | null>(null)
+  const phiRef = useRef(0)
+  const dragDelta = useRef(0)
+  const widthRef = useRef(0)
 
   useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const onResize = () => {
+      widthRef.current = canvas.offsetWidth
+    }
     window.addEventListener("resize", onResize)
     onResize()
 
-    const globe = createGlobe(canvasRef.current!, {
+    const mergedConfig: COBEOptions = {
+      ...DEFAULT_CONFIG,
       ...config,
-      width: width * 2,
-      height: width * 2,
-      onRender,
-    })
+      ...(dark !== undefined ? { dark } : {}),
+      width: widthRef.current * 2,
+      height: widthRef.current * 2,
+    }
 
+    const globe = createGlobe(canvas, mergedConfig)
+
+    let animationId: number
+
+    const animate = () => {
+      // Always rotate — drag offset is additive, decays smoothly
+      phiRef.current += 0.004
+      dragDelta.current *= 0.94
+      globe.update({
+        phi: phiRef.current + dragDelta.current,
+        width: widthRef.current * 2,
+        height: widthRef.current * 2,
+      })
+      animationId = requestAnimationFrame(animate)
+    }
+    animationId = requestAnimationFrame(animate)
+
+    // Clean fade-in
     setTimeout(() => {
-      if (canvasRef.current) {
-        canvasRef.current.style.opacity = "1"
-      }
-    })
-    return () => globe.destroy()
-  }, [])
+      canvas.style.opacity = "1"
+    }, 50)
+
+    return () => {
+      cancelAnimationFrame(animationId)
+      window.removeEventListener("resize", onResize)
+      globe.destroy()
+    }
+  }, [dark, config])
 
   return (
     <div className={cn("absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]", className)}>
       <canvas
-        className={cn("size-full opacity-0 transition-opacity duration-500 [contain:layout_style_size]")}
+        className={cn(
+          "size-full opacity-0 transition-opacity duration-700 ease-in",
+          "[contain:layout_style_size]"
+        )}
         ref={canvasRef}
-        onPointerDown={(e) => updatePointerInteraction(e.clientX - pointerInteractionMovement.current)}
-        onPointerUp={() => updatePointerInteraction(null)}
-        onPointerOut={() => updatePointerInteraction(null)}
-        onMouseMove={(e) => updateMovement(e.clientX)}
-        onTouchMove={(e) => e.touches[0] && updateMovement(e.touches[0].clientX)}
+        aria-hidden="true"
+        onPointerDown={(e) => {
+          pointerInteracting.current = e.clientX
+          if (canvasRef.current) canvasRef.current.style.cursor = "grabbing"
+        }}
+        onPointerUp={() => {
+          pointerInteracting.current = null
+          if (canvasRef.current) canvasRef.current.style.cursor = "grab"
+        }}
+        onPointerOut={() => {
+          pointerInteracting.current = null
+          if (canvasRef.current) canvasRef.current.style.cursor = "grab"
+        }}
+        onMouseMove={(e) => {
+          if (pointerInteracting.current !== null) {
+            const delta = e.clientX - pointerInteracting.current
+            pointerInteracting.current = e.clientX
+            dragDelta.current += delta / 120
+          }
+        }}
+        onTouchMove={(e) => {
+          if (pointerInteracting.current !== null && e.touches[0]) {
+            const delta = e.touches[0].clientX - pointerInteracting.current
+            pointerInteracting.current = e.touches[0].clientX
+            dragDelta.current += delta / 120
+          }
+        }}
       />
+      {children}
     </div>
   )
 }

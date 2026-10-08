@@ -31,3 +31,6 @@ gearsmapwebsite/
 
 #Playwright test files
 .playwright-mcp/
+
+# Screenshots (design reviews, etc.)
+/*.png

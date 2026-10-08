@@ -7,6 +7,7 @@ import Footer from "@/components/footer"
 import ScrollToTop from "@/components/scroll-to-top"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/lib/language-context"
+import { Toaster } from "@/components/ui/toaster"
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -77,6 +78,7 @@ export default function RootLayout({
             <main>{children}</main>
             <Footer />
             <ScrollToTop />
+            <Toaster />
           </LanguageProvider>
         </ThemeProvider>
       </body>
