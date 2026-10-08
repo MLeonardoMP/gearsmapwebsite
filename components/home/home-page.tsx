@@ -1,19 +1,15 @@
 import Image from "next/image"
-import Link from "next/link"
 import {
   ArrowDownRight,
   ArrowRight,
-  ArrowUpRight,
   BarChart3,
   BrainCircuit,
   Check,
   ChevronDown,
   Database,
-  Globe2,
   Layers3,
   Map,
   Network,
-  Radar,
   ScanLine,
   ShieldCheck,
   Sparkles,
@@ -25,19 +21,13 @@ import { Button } from "@/components/ui/button"
 import AuroraText from "@/components/ui/aurora-text"
 import { ContactCta, ContactForm } from "@/components/home/contact-form"
 import { GlobeVisual } from "@/components/home/globe-visual"
-import { projectDefinitions, type ProjectDefinition, type ProjectKey } from "@/lib/projects"
-import { teamMembers } from "@/lib/team"
-import { climateHref } from "@/lib/site"
+import { TeamSection } from "@/components/home/team-section"
+import { ProjectsShowcase } from "@/components/projects/projects-showcase"
 import type { Dictionary, Locale } from "@/lib/translations"
 
 type Tech = {
   src: string
   alt: string
-}
-
-type ProjectCopy = {
-  title: string
-  desc: string
 }
 
 const techStack: Tech[] = [
@@ -146,107 +136,6 @@ function ServiceCard({
   )
 }
 
-function ProjectVisual({
-  project,
-  copy,
-  illustrativeLabel,
-}: {
-  project: ProjectDefinition
-  copy: ProjectCopy
-  illustrativeLabel: string
-}) {
-  if (project.image) {
-    return (
-      <div className="project-visual">
-        <Image
-          src={project.image}
-          alt={copy.title}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="project-visual__image"
-        />
-        <div className="project-visual__scrim" aria-hidden="true" />
-      </div>
-    )
-  }
-
-  return (
-    <div className={`project-visual project-visual--abstract ${project.color}`} role="img" aria-label={`${copy.title}. ${illustrativeLabel}`}>
-      <div className="project-visual__grid" aria-hidden="true" />
-      <div className="project-visual__orbit project-visual__orbit--one" aria-hidden="true" />
-      <div className="project-visual__orbit project-visual__orbit--two" aria-hidden="true" />
-      <div className="project-visual__signal" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
-      <div className="project-visual__caption">
-        <span>{project.accent}</span>
-        <small>{illustrativeLabel}</small>
-      </div>
-    </div>
-  )
-}
-
-function ProjectCard({
-  project,
-  copy,
-  t,
-  locale,
-}: {
-  project: ProjectDefinition
-  copy: ProjectCopy
-  t: Dictionary
-  locale: Locale
-}) {
-  const status = project.status === "live"
-    ? t.projects.status.live
-    : project.status === "operational"
-      ? t.projects.status.operational
-      : t.projects.status.inDevelopment
-
-  return (
-    <article className={`project-card ${project.featured ? "project-card--featured" : "project-card--secondary"}`}>
-      <div className="project-card__media">
-        <ProjectVisual project={project} copy={copy} illustrativeLabel={t.gallery.illustrativeLabel} />
-        <span className={`project-card__status ${project.status === "live" ? "project-card__status--live" : ""}`}>
-          <span className="project-card__status-dot" aria-hidden="true" />
-          {status}
-        </span>
-      </div>
-      <div className="project-card__body">
-        <div className="project-card__meta">
-          <span>{project.accent}</span>
-          {project.link ? <ArrowUpRight className="h-4 w-4" aria-hidden="true" /> : null}
-        </div>
-        <h3>{copy.title}</h3>
-        <p>{copy.desc}</p>
-        <div className="project-card__tags">
-          {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
-        </div>
-        <div className="project-card__actions">
-          {project.link ? (
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-card__link">
-              {t.gallery.liveLabel}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-          ) : null}
-          {project.internalPath ? (
-            <Link href={`/${locale}${project.internalPath}`} className="project-card__link">
-              {t.gallery.caseLabel}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          ) : null}
-          <ContactCta intent="demo" className="project-card__demo-link">
-            {t.contact.intent.demo}
-            <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
-          </ContactCta>
-        </div>
-      </div>
-    </article>
-  )
-}
-
 function Breadcrumb({ current, home }: { current: string; home: string }) {
   return (
     <div className="breadcrumb" aria-hidden="true">
@@ -264,16 +153,6 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
     description: service.desc,
     ...service,
   }))
-
-  const projectCopy: Record<ProjectKey, ProjectCopy> = {
-    acggp: t.gallery.project1,
-    mrv: t.gallery.project2,
-    me: t.gallery.project3,
-    agricultural: t.gallery.project4,
-    fleet: t.gallery.project5,
-  }
-
-  const team = teamMembers.map((member) => ({ ...member, role: t.team.roles[member.roleKey] }))
 
   const processSteps = [t.process.steps.scope, t.process.steps.model, t.process.steps.deliver]
 
@@ -366,10 +245,12 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
         </div>
       </section>
 
-      <section id="portafolio" className="portfolio-section section-pad" aria-labelledby="portfolio-title">
+      <ProjectsShowcase locale={locale} />
+
+      <section id="servicios" className="portfolio-section section-pad" aria-labelledby="services-title">
         <div className="site-container">
           <Breadcrumb current={t.nav.portfolio} home={t.nav.home} />
-          <SectionHeading id="portfolio-title" eyebrow="03 / CAPABILITIES" title={t.portfolio.header} description={t.portfolio.subheader} align="left" />
+          <SectionHeading id="services-title" eyebrow="03 / CAPABILITIES" title={t.portfolio.header} description={t.portfolio.subheader} align="left" />
 
           <div className="services-grid">
             {services.map((service) => (
@@ -383,52 +264,6 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
                 learnMore={t.common.learnMore}
               />
             ))}
-          </div>
-
-          <div className="projects-block">
-            <div className="projects-block__heading">
-              <div>
-                <p className="section-heading__eyebrow">04 / SELECTED WORK</p>
-                <h2>{t.gallery.title}</h2>
-              </div>
-              <p>{t.gallery.subtitle}</p>
-            </div>
-            <div className="projects-grid">
-              {projectDefinitions.map((project) => (
-                <ProjectCard key={project.key} project={project} copy={projectCopy[project.key]} t={t} locale={locale} />
-              ))}
-            </div>
-            <div className="projects-cta">
-              <div>
-                <span className="projects-cta__marker" aria-hidden="true"><Radar className="h-5 w-5" /></span>
-                <h3>{t.gallery.ctaTitle}</h3>
-                <p>{t.gallery.ctaDescription}</p>
-              </div>
-              <Button asChild variant="outline" className="projects-cta__button">
-                <ContactCta intent="project">
-                  {t.gallery.ctaLabel}
-                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                </ContactCta>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="clima" className="climate-band section-pad" aria-labelledby="climate-band-title">
-        <div className="site-container climate-band__inner">
-          <div>
-            <p className="section-heading__eyebrow">{t.climateTeaser.eyebrow}</p>
-            <h2 id="climate-band-title">{t.climateTeaser.title}</h2>
-            <p>{t.climateTeaser.text}</p>
-          </div>
-          <div className="climate-band__links">
-            <Link href={climateHref(locale, "hub")}>
-              {t.climateTeaser.cta}
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link href={climateHref(locale, "mrv")}>{t.climateTeaser.mrv}</Link>
-            <Link href={climateHref(locale, "me")}>{t.climateTeaser.me}</Link>
           </div>
         </div>
       </section>
@@ -462,21 +297,7 @@ export function HomePage({ t, locale }: { t: Dictionary; locale: Locale }) {
             </div>
           </div>
 
-          <div className="team-block">
-            <SectionHeading title={t.team.title} description={t.team.subtitle} />
-            <div className="team-grid">
-              {team.map((member, index) => (
-                <article key={member.id} id={member.id} className="team-card">
-                  <div className="team-card__image-wrap">
-                    <Image src={member.image} alt={member.name} fill sizes="112px" className="team-card__image" />
-                    <span aria-hidden="true">0{index + 1}</span>
-                  </div>
-                  <h3>{member.name}</h3>
-                  <p>{member.role}</p>
-                </article>
-              ))}
-            </div>
-          </div>
+          <TeamSection locale={locale} />
         </div>
       </section>
 

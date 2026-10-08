@@ -3,11 +3,17 @@
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
+import {
+  contactIntentEvent,
+  contactIntentStorageKey,
+  type ContactIntent,
+} from "@/components/home/contact-cta"
 import type { Dictionary } from "@/lib/translations"
+
+export { ContactCta, type ContactIntent } from "@/components/home/contact-cta"
 
 type ContactCopy = Dictionary["contact"]
 type FieldName = "name" | "email" | "phone" | "message"
-export type ContactIntent = "project" | "demo"
 
 type FormData = Record<FieldName, string> & { intent: ContactIntent }
 type FormErrors = Partial<Record<FieldName, string>>
@@ -22,26 +28,6 @@ const initialFormData: FormData = {
 
 type ContactIntentEvent = CustomEvent<ContactIntent>
 
-export function ContactCta({
-  intent,
-  children,
-  className,
-}: {
-  intent: ContactIntent
-  children: React.ReactNode
-  className?: string
-}) {
-  const handleClick = () => {
-    window.dispatchEvent(new CustomEvent<ContactIntent>("gearsmap:contact-intent", { detail: intent }))
-  }
-
-  return (
-    <a href="#contacto" onClick={handleClick} className={className}>
-      {children}
-    </a>
-  )
-}
-
 export function ContactForm({ t }: { t: ContactCopy }) {
   const [formData, setFormData] = useState<FormData>(initialFormData)
   const [errors, setErrors] = useState<FormErrors>({})
@@ -53,6 +39,11 @@ export function ContactForm({ t }: { t: ContactCopy }) {
   useEffect(() => {
     const handleIntent = (event: Event) => {
       const intentEvent = event as ContactIntentEvent
+      try {
+        window.sessionStorage.removeItem(contactIntentStorageKey)
+      } catch {
+        // Storage unavailable; the event already carries the intent.
+      }
       if (intentEvent.detail === "project" || intentEvent.detail === "demo") {
         setFormData((current) => ({ ...current, intent: intentEvent.detail }))
       }
@@ -64,12 +55,25 @@ export function ContactForm({ t }: { t: ContactCopy }) {
       }
     }
 
-    window.addEventListener("gearsmap:contact-intent", handleIntent)
+    const readStoredIntent = () => {
+      try {
+        const stored = window.sessionStorage.getItem(contactIntentStorageKey)
+        window.sessionStorage.removeItem(contactIntentStorageKey)
+        if (stored === "project" || stored === "demo") {
+          setFormData((current) => ({ ...current, intent: stored }))
+        }
+      } catch {
+        // Storage unavailable; keep the default intent.
+      }
+    }
+
+    window.addEventListener(contactIntentEvent, handleIntent)
     window.addEventListener("hashchange", handleHash)
+    readStoredIntent()
     handleHash()
 
     return () => {
-      window.removeEventListener("gearsmap:contact-intent", handleIntent)
+      window.removeEventListener(contactIntentEvent, handleIntent)
       window.removeEventListener("hashchange", handleHash)
     }
   }, [])

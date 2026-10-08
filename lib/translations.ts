@@ -7,11 +7,14 @@ export const translations = {
       learnMore: "Saber más",
       language: "Idioma",
       backToTop: "Volver arriba",
+      current: "actual",
       theme: {
         label: "Cambiar tema",
         light: "Claro",
         dark: "Oscuro",
         system: "Sistema",
+        toLight: "Cambiar a tema claro",
+        toDark: "Cambiar a tema oscuro",
       },
     },
     nav: {
@@ -22,10 +25,12 @@ export const translations = {
       contact: "Contacto",
       openMenu: "Abrir menú",
       closeMenu: "Cerrar menú",
+      cta: "Conversemos",
+      projects: "Proyectos",
     },
     seo: {
-      title: "Software geoespacial, geovisores e inteligencia artificial",
-      description: "GearsMap diseña plataformas geoespaciales, geovisores, tableros e inteligencia artificial en Colombia. También implementa sistemas de MRV y monitoreo y evaluación climática para el sector minero-energético.",
+      title: "Software geoespacial y geovisores en Colombia",
+      description: "Desarrollamos software geoespacial, geovisores y tableros a la medida en Colombia, además de sistemas MRV y M&E climáticos para el sector minero-energético.",
       keywords: ["GearsMap", "software geoespacial", "sistemas de información geográfica", "SIG", "geovisores", "inteligencia artificial", "visualización de datos", "dashboards", "Colombia", "MRV", "monitoreo y evaluación"],
     },
     hero: {
@@ -211,6 +216,8 @@ export const translations = {
       rights: "Todos los derechos reservados.",
       privacy: "Política de Privacidad",
       terms: "Términos de Uso",
+      linkedinLabel: "LinkedIn de GearsMap",
+      languages: "Idiomas",
     },
   },
   EN: {
@@ -218,11 +225,14 @@ export const translations = {
       learnMore: "Learn more",
       language: "Language",
       backToTop: "Back to top",
+      current: "current",
       theme: {
         label: "Change theme",
         light: "Light",
         dark: "Dark",
         system: "System",
+        toLight: "Switch to light theme",
+        toDark: "Switch to dark theme",
       },
     },
     nav: {
@@ -233,10 +243,12 @@ export const translations = {
       contact: "Contact",
       openMenu: "Open menu",
       closeMenu: "Close menu",
+      cta: "Let's talk",
+      projects: "Projects",
     },
     seo: {
-      title: "Geospatial software, geoviewers and artificial intelligence",
-      description: "GearsMap designs geospatial platforms, geoviewers, dashboards, and artificial intelligence in Colombia. It also implements climate MRV and monitoring-and-evaluation systems for the mining and energy sector.",
+      title: "Geospatial software & web GIS viewers in Colombia",
+      description: "GearsMap builds custom geospatial software, web GIS viewers, dashboards and AI in Colombia, plus climate MRV and M&E systems for the mining and energy sector.",
       keywords: ["GearsMap", "geospatial software", "GIS", "geoviewers", "artificial intelligence", "data visualization", "dashboards", "Colombia", "MRV", "monitoring and evaluation"],
     },
     hero: {
@@ -422,6 +434,8 @@ export const translations = {
       rights: "All rights reserved.",
       privacy: "Privacy Policy",
       terms: "Terms of Use",
+      linkedinLabel: "GearsMap on LinkedIn",
+      languages: "Languages",
     },
   },
   FR: {
@@ -429,11 +443,14 @@ export const translations = {
       learnMore: "En savoir plus",
       language: "Langue",
       backToTop: "Retour en haut",
+      current: "actuel",
       theme: {
         label: "Changer de thème",
         light: "Clair",
         dark: "Sombre",
         system: "Système",
+        toLight: "Passer au thème clair",
+        toDark: "Passer au thème sombre",
       },
     },
     nav: {
@@ -444,10 +461,12 @@ export const translations = {
       contact: "Contact",
       openMenu: "Ouvrir le menu",
       closeMenu: "Fermer le menu",
+      cta: "Parlons-en",
+      projects: "Projets",
     },
     seo: {
-      title: "Logiciel géospatial, géovisionneuses et intelligence artificielle",
-      description: "GearsMap conçoit des plateformes géospatiales, des géovisionneuses, des tableaux de bord et de l'intelligence artificielle en Colombie. L'équipe met aussi en œuvre des systèmes climatiques de MRV et de suivi-évaluation pour le secteur minier et énergétique.",
+      title: "Logiciel géospatial et SIG web en Colombie",
+      description: "GearsMap conçoit des logiciels géospatiaux, des SIG web, des tableaux de bord et de l'IA en Colombie, ainsi que des systèmes climatiques MRV et S&E.",
       keywords: ["GearsMap", "logiciel géospatial", "SIG", "géovisionneuses", "intelligence artificielle", "visualisation de données", "tableaux de bord", "Colombie", "MRV", "suivi et évaluation"],
     },
     hero: {
@@ -633,6 +652,8 @@ export const translations = {
       rights: "Tous droits réservés.",
       privacy: "Politique de confidentialité",
       terms: "Conditions d'utilisation",
+      linkedinLabel: "GearsMap sur LinkedIn",
+      languages: "Langues",
     },
   },
 }

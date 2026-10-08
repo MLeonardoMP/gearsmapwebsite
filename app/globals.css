@@ -74,6 +74,64 @@
   --sidebar-ring: oklch(0.73 0.13 195);
 }
 
+/* Design-system tokens (WS1 day 0). Theme-independent unless noted. */
+:root {
+  --font-size-meta: 0.75rem;
+  --font-size-xs: 0.8125rem;
+  --font-size-sm: 0.9375rem;
+  --font-size-base: 1.0625rem;
+  --font-size-lg: clamp(1.125rem, 1.04rem + 0.36vw, 1.3125rem);
+  --font-size-h4: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  --font-size-h3: clamp(1.375rem, 1.2rem + 0.75vw, 1.875rem);
+  --font-size-h2: clamp(2rem, 1.45rem + 2.35vw, 3.5rem);
+  --font-size-display: clamp(2.625rem, 1.7rem + 3.9vw, 5rem);
+  --tracking-display: -0.035em;
+  --tracking-heading: -0.02em;
+  --tracking-meta: 0.06em;
+  --leading-display: 1.02;
+  --leading-heading: 1.12;
+  --leading-body: 1.65;
+
+  --container: 80rem;
+  --gutter: clamp(1rem, 0.6rem + 1.8vw, 1.5rem);
+  --space-section: clamp(4.5rem, 3rem + 6vw, 8rem);
+  --space-block: clamp(2.5rem, 1.75rem + 3vw, 4.5rem);
+  --grid-gap: 0.75rem;
+
+  --radius-control: 0.5rem;
+  --radius-card: 0.875rem;
+  --radius-media: 1.25rem;
+
+  --surface-1: color-mix(in oklab, var(--card) 45%, transparent);
+  --surface-2: color-mix(in oklab, var(--card) 75%, transparent);
+  --line: color-mix(in oklab, var(--border) 80%, transparent);
+  --line-accent: color-mix(in oklab, var(--accent) 45%, var(--border));
+  --accent-wash: color-mix(in oklab, var(--accent) 10%, transparent);
+
+  /* Text on photos and screenshots: same in both themes. */
+  --media-scrim: oklch(0.14 0.035 220 / 0.78);
+  --on-media: oklch(0.97 0.01 190);
+  --on-media-muted: oklch(0.86 0.02 195);
+
+  --status-live: oklch(0.72 0.14 175);
+  --status-operational: oklch(0.74 0.13 150);
+  --status-dev: oklch(0.8 0.14 80);
+
+  --shadow-1: 0 1px 2px oklch(0.2 0.03 220 / 0.06), 0 4px 16px oklch(0.2 0.03 220 / 0.06);
+  --shadow-2: 0 12px 40px oklch(0.2 0.03 220 / 0.12);
+  --shadow-accent: 0 1rem 2.5rem color-mix(in oklab, var(--accent) 22%, transparent);
+
+  --ease-out: cubic-bezier(0.2, 0.75, 0.25, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  interpolate-size: allow-keywords;
+}
+
+.dark {
+  --shadow-1: 0 1px 2px oklch(0 0 0 / 0.3), 0 4px 16px oklch(0 0 0 / 0.25);
+  --shadow-2: 0 16px 48px oklch(0 0 0 / 0.4);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -2206,5 +2264,93 @@ section[id] {
 
   .climate-hero h1 {
     max-width: none;
+  }
+}
+
+/* Shared primitives (WS1 day 0). WS2 and WS3 code against these. */
+@layer components {
+  .eyebrow {
+    font: 600 var(--font-size-meta) / 1.4 var(--font-sans);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: var(--font-size-meta);
+    color: var(--muted-foreground);
+  }
+
+  .status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: var(--font-size-meta);
+    font-weight: 600;
+    background: var(--surface-2);
+    color: var(--foreground);
+  }
+
+  .status-chip::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    flex: none;
+    border-radius: 999px;
+    background: var(--muted-foreground);
+  }
+
+  .status-chip[data-status="live"]::before {
+    background: var(--status-live);
+  }
+
+  .status-chip[data-status="operational"]::before {
+    background: var(--status-operational);
+  }
+
+  .status-chip[data-status="in-development"]::before {
+    background: var(--status-dev);
+  }
+
+  .status-chip--on-media {
+    background: var(--media-scrim);
+    color: var(--on-media);
+    border-color: transparent;
+  }
+
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.75rem;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .reveal {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 22%;
+      }
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 1.25rem;
   }
 }

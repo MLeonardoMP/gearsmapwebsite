@@ -6,6 +6,12 @@ export const organizationName = "GearsMap S.A.S."
 export const contactEmail = "gearsmap@gearsmap.com"
 export const linkedInUrl = "https://www.linkedin.com/company/gearsmap"
 export const contentUpdated = "2026-10-04"
+export const taxId = "901943973"
+export const foundingYear = "2025"
+export const companyLocality = "Bogotá, Colombia"
+
+export const organizationId = `${siteUrl}/#organization`
+export const websiteId = `${siteUrl}/#website`
 
 export const climatePaths = {
   hub: "/sistemas-climaticos",
@@ -14,6 +20,15 @@ export const climatePaths = {
 } as const
 
 export type ClimatePageKey = keyof typeof climatePaths
+
+export const projectPaths = {
+  index: "/proyectos",
+  acggp: "/proyectos/visor-ppr-acggp",
+} as const
+
+export const servicePaths = {
+  geoviewers: "/servicios/geovisores",
+} as const
 
 export function localePath(locale: Locale, path = "") {
   return path ? `/${locale}${path}` : `/${locale}`

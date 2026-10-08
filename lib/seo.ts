@@ -5,12 +5,16 @@ import {
   languageAlternates,
   linkedInUrl,
   openGraphLocale,
+  organizationId,
   organizationName,
   siteName,
   siteUrl,
+  websiteId,
 } from "@/lib/site"
-import { teamMembers } from "@/lib/team"
+import { founderRefs } from "@/lib/team-schema"
 import type { Locale } from "@/lib/translations"
+
+export { organizationId, websiteId }
 
 type PageMetadataInput = {
   locale: Locale
@@ -18,6 +22,9 @@ type PageMetadataInput = {
   title: string
   description: string
   keywords?: string[]
+  ogType?: "website" | "article"
+  /** ISO date; emitted as openGraph.modifiedTime when ogType is "article". */
+  modifiedTime?: string
 }
 
 export function pageMetadata({
@@ -26,9 +33,14 @@ export function pageMetadata({
   title,
   description,
   keywords,
+  ogType = "website",
+  modifiedTime,
 }: PageMetadataInput): Metadata {
   const pathname = path ? `/${locale}${path}` : `/${locale}`
   const fullTitle = `${title} | ${siteName}`
+  const openGraphType = ogType === "article"
+    ? { type: "article" as const, ...(modifiedTime ? { modifiedTime } : {}) }
+    : { type: "website" as const }
 
   return {
     title: { absolute: fullTitle },
@@ -44,7 +56,7 @@ export function pageMetadata({
       url: pathname,
       siteName,
       locale: openGraphLocale(locale),
-      type: "website",
+      ...openGraphType,
     },
     twitter: {
       card: "summary_large_image",
@@ -57,7 +69,7 @@ export function pageMetadata({
 export function organizationNode() {
   return {
     "@type": ["Organization", "ProfessionalService"],
-    "@id": `${siteUrl}/#organization`,
+    "@id": organizationId,
     name: organizationName,
     legalName: organizationName,
     url: siteUrl,
@@ -76,7 +88,7 @@ export function organizationNode() {
       name: "Colombia",
     },
     sameAs: [linkedInUrl],
-    founder: teamMembers.map((member) => ({ "@id": personId(member.id) })),
+    founder: founderRefs(),
     knowsAbout: [
       "Software geoespacial",
       "Sistemas de información geográfica",
@@ -94,31 +106,14 @@ export function organizationNode() {
   }
 }
 
-function personId(id: string) {
-  return `${siteUrl}/#${id}`
-}
-
-export function personNodes(locale: Locale, roles: Record<string, string>) {
-  return teamMembers.map((member) => ({
-    "@type": "Person",
-    "@id": personId(member.id),
-    name: member.name,
-    jobTitle: roles[member.roleKey],
-    image: absoluteUrl(member.image),
-    url: absoluteUrl(`/${locale}#${member.id}`),
-    worksFor: { "@id": `${siteUrl}/#organization` },
-    ...(member.linkedIn ? { sameAs: [member.linkedIn] } : {}),
-  }))
-}
-
 export function websiteNode(locale: Locale) {
   return {
     "@type": "WebSite",
-    "@id": `${siteUrl}/#website`,
+    "@id": websiteId,
     name: siteName,
     url: siteUrl,
     inLanguage: ["es-CO", "en", "fr"],
-    publisher: { "@id": `${siteUrl}/#organization` },
+    publisher: { "@id": organizationId },
     mainEntityOfPage: absoluteUrl(`/${locale}`),
   }
 }
@@ -142,9 +137,9 @@ export function webPageNode({
     name: title,
     description,
     inLanguage: locale === "es" ? "es-CO" : locale,
-    isPartOf: { "@id": `${siteUrl}/#website` },
-    about: { "@id": `${siteUrl}/#organization` },
-    publisher: { "@id": `${siteUrl}/#organization` },
+    isPartOf: { "@id": websiteId },
+    about: { "@id": organizationId },
+    publisher: { "@id": organizationId },
   }
 }
 
@@ -175,11 +170,13 @@ export function faqNode(faqs: Array<{ question: string; answer: string }>) {
 }
 
 export function serviceNode({
+  id,
   name,
   description,
   serviceType,
   url,
 }: {
+  id?: string
   name: string
   description: string
   serviceType: string
@@ -187,11 +184,12 @@ export function serviceNode({
 }) {
   return {
     "@type": "Service",
+    ...(id ? { "@id": id } : {}),
     name,
     description,
     serviceType,
     url,
-    provider: { "@id": `${siteUrl}/#organization` },
+    provider: { "@id": organizationId },
     areaServed: {
       "@type": "Country",
       name: "Colombia",

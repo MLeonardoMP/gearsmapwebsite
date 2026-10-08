@@ -11,12 +11,13 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 import { climateHref } from "@/lib/site"
 import type { Dictionary, Locale } from "@/lib/translations"
 
-type HeaderProps = {
+export type HeaderProps = {
   locale: Locale
-  t: Dictionary
+  nav: Dictionary["nav"]
+  common: Dictionary["common"]
 }
 
-export default function Header({ locale, t }: HeaderProps) {
+export default function Header({ locale, nav, common }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
@@ -26,11 +27,11 @@ export default function Header({ locale, t }: HeaderProps) {
   const getSectionHref = (id: string) => (isHome ? `#${id}` : `/${locale}#${id}`)
 
   const menuItems = [
-    { title: t.nav.home, id: "inicio", href: getSectionHref("inicio") },
-    { title: t.nav.portfolio, id: "portafolio", href: getSectionHref("portafolio") },
-    { title: t.nav.climate, href: climateHref(locale, "hub") },
-    { title: t.nav.about, id: "nosotros", href: getSectionHref("nosotros") },
-    { title: t.nav.contact, id: "contacto", href: getSectionHref("contacto") },
+    { title: nav.home, id: "inicio", href: getSectionHref("inicio") },
+    { title: nav.portfolio, id: "portafolio", href: getSectionHref("portafolio") },
+    { title: nav.climate, href: climateHref(locale, "hub") },
+    { title: nav.about, id: "nosotros", href: getSectionHref("nosotros") },
+    { title: nav.contact, id: "contacto", href: getSectionHref("contacto") },
   ]
   const climateActive = pathname.startsWith(climateHref(locale, "hub"))
 
@@ -88,7 +89,7 @@ export default function Header({ locale, t }: HeaderProps) {
           : "bg-transparent"
       }`}
     >
-      <nav className="site-header__nav container mx-auto px-6 lg:px-12" aria-label={t.nav.home}>
+      <nav className="site-header__nav container mx-auto px-6 lg:px-12" aria-label={nav.home}>
         <div className="flex h-16 items-center justify-between lg:h-20">
           <Link href={`/${locale}`} className="relative z-50 flex h-8 w-40 items-center lg:h-9 lg:w-[180px]">
             <Image
@@ -126,8 +127,8 @@ export default function Header({ locale, t }: HeaderProps) {
               )
             ))}
             <div className="flex items-center gap-2 border-l border-border/50 pl-4">
-              <LanguageSwitcher locale={locale} label={t.common.language} />
-              <ModeToggle labels={t.common.theme} />
+              <LanguageSwitcher locale={locale} label={common.language} />
+              <ModeToggle labels={common.theme} />
             </div>
           </div>
 
@@ -137,7 +138,7 @@ export default function Header({ locale, t }: HeaderProps) {
             size="icon"
             className="relative z-50 md:hidden"
             onClick={() => setIsOpen((open) => !open)}
-            aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
+            aria-label={isOpen ? nav.closeMenu : nav.openMenu}
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
           >
@@ -151,18 +152,18 @@ export default function Header({ locale, t }: HeaderProps) {
           <button
             type="button"
             className="fixed inset-0 z-40 cursor-default bg-background/95 backdrop-blur-md md:hidden"
-            aria-label={t.nav.closeMenu}
+            aria-label={nav.closeMenu}
             onClick={() => setIsOpen(false)}
           />
           <div
             id="mobile-navigation"
             role="dialog"
             aria-modal="true"
-            aria-label={t.nav.home}
+            aria-label={nav.home}
             className="fixed inset-x-0 top-16 z-40 md:hidden"
           >
             <div className="mx-4 rounded-lg border border-border bg-card/95 shadow-lg backdrop-blur-md">
-              <nav className="flex flex-col gap-2 p-4" aria-label={t.nav.home}>
+              <nav className="flex flex-col gap-2 p-4" aria-label={nav.home}>
                 {menuItems.map((item, index) => (
                   item.id ? (
                     <a
@@ -187,8 +188,8 @@ export default function Header({ locale, t }: HeaderProps) {
                   )
                 ))}
                 <div className="mt-2 flex items-center justify-between border-t border-border/50 px-4 py-3">
-                  <LanguageSwitcher locale={locale} label={t.common.language} />
-                  <ModeToggle labels={t.common.theme} />
+                  <LanguageSwitcher locale={locale} label={common.language} />
+                  <ModeToggle labels={common.theme} />
                 </div>
               </nav>
             </div>

@@ -3,57 +3,20 @@ import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Button } from "@/components/ui/button"
 import { climatePage, getClimate, relatedClimatePages, type ClimatePageKey } from "@/lib/climate"
-import {
-  breadcrumbNode,
-  faqNode,
-  organizationNode,
-  serviceNode,
-  structuredData,
-  webPageNode,
-  websiteNode,
-} from "@/lib/seo"
-import { absoluteUrl, climateHref, siteName } from "@/lib/site"
+import { climateCrumbs, climatePageGraph } from "@/lib/climate-schema"
+import { climateCaseNode } from "@/lib/project-schema"
+import { structuredData } from "@/lib/seo"
+import { climateHref, siteName } from "@/lib/site"
 import type { Locale } from "@/lib/translations"
-
-const serviceTypes: Record<ClimatePageKey, string> = {
-  hub: "Climate information systems",
-  mrv: "Monitoring, reporting and verification",
-  me: "Climate monitoring and evaluation",
-}
 
 export function ClimateDocument({ locale, page }: { locale: Locale; page: ClimatePageKey }) {
   const copy = getClimate(locale)
   const current = climatePage(locale, page)
   const related = relatedClimatePages(page)
-  const pagePath = climateHref(locale, page)
-  const crumbs = page === "hub"
-    ? [
-        { name: copy.home, path: `/${locale}` },
-        { name: current.title, path: pagePath },
-      ]
-    : [
-        { name: copy.home, path: `/${locale}` },
-        { name: copy.hub.title, path: climateHref(locale, "hub") },
-        { name: current.title, path: pagePath },
-      ]
-
+  const crumbs = climateCrumbs(locale, page)
   const data = structuredData([
-    organizationNode(),
-    websiteNode(locale),
-    webPageNode({
-      locale,
-      path: pagePath.replace(`/${locale}`, ""),
-      title: current.seoTitle,
-      description: current.description,
-    }),
-    breadcrumbNode(crumbs),
-    faqNode(current.faqs),
-    serviceNode({
-      name: current.seoTitle,
-      description: current.description,
-      serviceType: serviceTypes[page],
-      url: absoluteUrl(pagePath),
-    }),
+    ...climatePageGraph(locale, page),
+    ...(page !== "hub" ? [climateCaseNode(locale, page)] : []),
   ])
 
   return (

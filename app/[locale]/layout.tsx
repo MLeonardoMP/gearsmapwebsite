@@ -87,7 +87,7 @@ export default async function LocaleLayout({
       <body className="min-h-screen bg-background font-sans antialiased selection:bg-accent/30 selection:text-accent-foreground">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <SkipLink label={skipLabel} />
-          <Header locale={value} t={t} />
+          <Header locale={value} nav={t.nav} common={t.common} />
           <main id="main-content">
             <Suspense fallback={<InstantShell />}>{children}</Suspense>
           </main>

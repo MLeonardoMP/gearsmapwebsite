@@ -29,6 +29,8 @@ const nextConfig = {
       { source: "/:locale(es|en|fr)/systemes-climatiques", destination: "/:locale/sistemas-climaticos", permanent: true },
       { source: "/:locale(es|en|fr)/mrv", destination: "/:locale/sistemas-climaticos/mrv", permanent: true },
       { source: "/:locale(es|en|fr)/monitoreo-y-evaluacion", destination: "/:locale/sistemas-climaticos/monitoreo-y-evaluacion", permanent: true },
+      { source: "/:locale(es|en|fr)/proyectos/mrv", destination: "/:locale/sistemas-climaticos/mrv", permanent: true },
+      { source: "/:locale(es|en|fr)/proyectos/:a(me|monitoreo-y-evaluacion)", destination: "/:locale/sistemas-climaticos/monitoreo-y-evaluacion", permanent: true },
     ]
   },
   async headers() {
