@@ -1,7 +1,21 @@
 import { ImageResponse } from "next/og"
+import { isLocale, type Locale } from "@/lib/translations"
 
 export const ogSize = { width: 1200, height: 630 }
 export const ogContentType = "image/png"
+
+/** Route params as generateImageMetadata receives them (already resolved). */
+export type OgRouteParams = { locale?: string }
+
+/** Locale for an OG route; unknown values fall back to "es" (the route 404s elsewhere). */
+export function ogLocale(value: string | undefined): Locale {
+  return value && isLocale(value) ? value : "es"
+}
+
+/** Single-card generateImageMetadata result with a localized alt text. */
+export function ogCardMetadata(alt: string) {
+  return [{ id: "card", alt, size: ogSize, contentType: ogContentType }]
+}
 
 export type OgCardOptions = {
   /** Screenshot as a data: URL or absolute URL, rendered at 520x390 on the right. */

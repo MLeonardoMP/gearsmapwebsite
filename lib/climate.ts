@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/translations"
-import { absoluteUrl, climateHref, climatePaths, siteUrl, type ClimatePageKey } from "@/lib/site"
+import type { ClimatePageKey } from "@/lib/site"
 
 export type { ClimatePageKey }
 
@@ -9,7 +9,7 @@ type Faq = { question: string; answer: string }
 type Section = { id: string; heading: string; paragraphs: string[] }
 type Row = { topic: string; mrv: string; me: string }
 
-type PageCopy = {
+export type ClimatePageCopy = {
   seoTitle: string
   description: string
   keywords: string[]
@@ -41,9 +41,9 @@ export type ClimateCopy = {
   status: string
   columnTopic: string
   rows: Row[]
-  hub: PageCopy
-  mrv: PageCopy
-  me: PageCopy
+  hub: ClimatePageCopy
+  mrv: ClimatePageCopy
+  me: ClimatePageCopy
 }
 
 const climateContent: Record<Locale, ClimateCopy> = {
@@ -68,7 +68,7 @@ const climateContent: Record<Locale, ClimateCopy> = {
       { topic: "Territorio", mrv: "Lectura departamental y por línea del sector.", me: "Lectura municipal, por cuenca y sobre infraestructura." },
     ],
     hub: {
-      seoTitle: "Sistemas climáticos MRV y M&E del sector minero-energético",
+      seoTitle: "Sistemas MRV y M&E del sector minero-energético",
       description: "Implementación operativa de MRV y de monitoreo y evaluación climática para el sector minero-energético, con el Ministerio de Minas y Energía y apoyo de KfW.",
       keywords: ["MRV", "M&E", "monitoreo reporte y verificación", "monitoreo y evaluación", "sistema de información climática", "sector minero-energético", "Ministerio de Minas y Energía", "MinEnergía", "GEI", "riesgo climático", "PIGCCme", "KfW", "GearsMap", "Colombia"],
       eyebrow: "Trabajo complementario · MinEnergía",
@@ -143,11 +143,11 @@ const climateContent: Record<Locale, ClimateCopy> = {
       ],
     },
     mrv: {
-      seoTitle: "MRV: monitoreo, reporte y verificación de emisiones GEI",
-      description: "MRV del sector minero-energético: inventario de GEI, indicadores del PIGCCme 2050, trazabilidad y tableros. Implementación operativa de GearsMap con MinEnergía y apoyo de KfW.",
+      seoTitle: "Sistema MRV de emisiones GEI minero-energéticas",
+      description: "Sistema MRV del sector minero-energético: inventario de GEI, indicadores del PIGCCme 2050 y tableros. Implementado con MinEnergía y apoyo de KfW.",
       keywords: ["MRV", "monitoreo reporte y verificación", "inventario de GEI", "gases de efecto invernadero", "INGEI", "emisiones fugitivas", "PIGCCme 2050", "IPCC 2006", "transparencia climática", "sector minero-energético", "descarbonización", "GearsMap"],
       eyebrow: "MRV · Mitigación",
-      title: "Monitoreo, reporte y verificación de emisiones del sector",
+      title: "MRV: monitoreo, reporte y verificación de emisiones del sector minero-energético",
       lede: "El módulo MRV ordena el inventario sectorial de gases de efecto invernadero y el seguimiento de indicadores de mitigación, para que un equipo técnico pueda revisar la serie, la fórmula y el territorio sin reconstruir el cálculo desde cero.",
       definitionLabel: "Definición",
       definition: "MRV significa monitoreo, reporte y verificación. En el sector minero-energético sirve para seguir emisiones e indicadores de mitigación con una pista clara de datos, factores y resultados.",
@@ -209,8 +209,8 @@ const climateContent: Record<Locale, ClimateCopy> = {
       ],
     },
     me: {
-      seoTitle: "Monitoreo y evaluación del riesgo climático territorial",
-      description: "M&E de amenaza, vulnerabilidad y riesgo climático para el sector minero-energético: escenarios CMIP6, lectura municipal y visores. Trabajo de GearsMap con MinEnergía y apoyo de KfW.",
+      seoTitle: "Monitoreo y evaluación del riesgo climático",
+      description: "M&E de amenaza, vulnerabilidad y riesgo climático del sector minero-energético: escenarios CMIP6, lectura municipal y visores. Con MinEnergía y KfW.",
       keywords: ["monitoreo y evaluación", "M&E", "riesgo climático", "vulnerabilidad climática", "amenaza climática", "adaptación al cambio climático", "CMIP6", "IPCC AR6", "SSP2-4.5", "geovisor climático", "sector minero-energético", "GearsMap"],
       eyebrow: "M&E · Adaptación",
       title: "Monitoreo y evaluación de amenaza, vulnerabilidad y riesgo",
@@ -298,8 +298,8 @@ const climateContent: Record<Locale, ClimateCopy> = {
       { topic: "Territory", mrv: "Departmental reading and sector lines.", me: "Municipal, basin, and infrastructure reading." },
     ],
     hub: {
-      seoTitle: "Climate MRV and M&E systems for the mining and energy sector",
-      description: "Operational implementation of MRV and climate monitoring and evaluation for Colombia's mining and energy sector, with the Ministry of Mines and Energy and KfW support.",
+      seoTitle: "Climate MRV and M&E systems for mining & energy",
+      description: "MRV and climate monitoring and evaluation for the mining and energy sector, with Colombia's Ministry of Mines and Energy and KfW support.",
       keywords: ["MRV", "M&E", "monitoring reporting and verification", "monitoring and evaluation", "climate information system", "mining and energy sector", "Ministry of Mines and Energy", "GHG inventory", "climate risk", "Colombia", "KfW", "GearsMap"],
       eyebrow: "Complementary work · Ministry of Mines and Energy",
       title: "Climate information systems for territorial decisions",
@@ -373,11 +373,11 @@ const climateContent: Record<Locale, ClimateCopy> = {
       ],
     },
     mrv: {
-      seoTitle: "MRV: monitoring, reporting and verification of GHG emissions",
-      description: "Mining and energy MRV: GHG inventory, PIGCCme 2050 indicators, traceability, and dashboards. GearsMap's operational implementation with Colombia's Ministry of Mines and Energy and KfW support.",
+      seoTitle: "GHG emissions MRV system for mining & energy",
+      description: "Mining and energy MRV: GHG inventory, PIGCCme 2050 indicators, traceability, and dashboards, with Colombia's Ministry of Mines and Energy and KfW support.",
       keywords: ["MRV", "monitoring reporting and verification", "GHG inventory", "greenhouse gas emissions", "fugitive emissions", "PIGCCme 2050", "IPCC 2006", "climate transparency", "mining and energy", "decarbonization", "GearsMap", "Colombia"],
       eyebrow: "MRV · Mitigation",
-      title: "Monitoring, reporting and verification of sector emissions",
+      title: "MRV: monitoring, reporting and verification of mining and energy emissions",
       lede: "The MRV module organizes the sectoral greenhouse-gas inventory and mitigation-indicator tracking, so a technical team can review the series, the formula, and the territory without rebuilding the calculation from scratch.",
       definitionLabel: "Definition",
       definition: "MRV means monitoring, reporting and verification. In the mining and energy sector it is how emissions and mitigation indicators are followed with a clear trail of data, factors, and results.",
@@ -439,8 +439,8 @@ const climateContent: Record<Locale, ClimateCopy> = {
       ],
     },
     me: {
-      seoTitle: "Monitoring and evaluation of territorial climate risk",
-      description: "M&E of climate hazard, vulnerability, and risk for the mining and energy sector: CMIP6 scenarios, municipal reading, and viewers. GearsMap's work with Colombia's Ministry of Mines and Energy and KfW support.",
+      seoTitle: "Monitoring and evaluation of climate risk",
+      description: "Climate hazard, vulnerability and risk M&E for mining and energy: CMIP6 scenarios and viewers, with Colombia's Ministry of Mines and Energy and KfW support.",
       keywords: ["monitoring and evaluation", "M&E", "climate risk", "climate vulnerability", "climate hazard", "climate adaptation", "CMIP6", "IPCC AR6", "SSP2-4.5", "climate geoviewer", "mining and energy sector", "GearsMap"],
       eyebrow: "M&E · Adaptation",
       title: "Monitoring and evaluation of hazard, vulnerability, and risk",
@@ -528,8 +528,8 @@ const climateContent: Record<Locale, ClimateCopy> = {
       { topic: "Territoire", mrv: "Lecture départementale et par ligne du secteur.", me: "Lecture municipale, par bassin et sur l'infrastructure." },
     ],
     hub: {
-      seoTitle: "Systèmes climatiques MRV et S&E du secteur minier et énergétique",
-      description: "Mise en œuvre opérationnelle du MRV et du suivi-évaluation climatique pour le secteur minier et énergétique, avec le Ministère des Mines et de l'Énergie et le soutien de la KfW.",
+      seoTitle: "Systèmes MRV et S&E du secteur mines-énergie",
+      description: "MRV et suivi-évaluation climatique du secteur minier et énergétique, avec le Ministère des Mines et de l'Énergie de Colombie et le soutien de la KfW.",
       keywords: ["MRV", "suivi et évaluation", "suivi notification et vérification", "système d'information climatique", "secteur minier et énergétique", "Ministère des Mines et de l'Énergie", "GES", "risque climatique", "Colombie", "KfW", "GearsMap"],
       eyebrow: "Travail complémentaire · Ministère des Mines et de l'Énergie",
       title: "Systèmes d'information climatique pour décider sur le territoire",
@@ -603,11 +603,11 @@ const climateContent: Record<Locale, ClimateCopy> = {
       ],
     },
     mrv: {
-      seoTitle: "MRV : suivi, notification et vérification des émissions de GES",
-      description: "MRV du secteur minier et énergétique : inventaire de GES, indicateurs du PIGCCme 2050, traçabilité et tableaux de bord. Mise en œuvre de GearsMap avec le Ministère et le soutien de la KfW.",
+      seoTitle: "Système MRV des émissions de GES mines-énergie",
+      description: "MRV du secteur minier et énergétique : inventaire de GES, indicateurs du PIGCCme 2050 et tableaux de bord, avec le Ministère et le soutien de la KfW.",
       keywords: ["MRV", "suivi notification et vérification", "inventaire GES", "gaz à effet de serre", "émissions fugitives", "PIGCCme 2050", "GIEC 2006", "transparence climatique", "secteur minier et énergétique", "GearsMap"],
       eyebrow: "MRV · Atténuation",
-      title: "Suivi, notification et vérification des émissions du secteur",
+      title: "MRV : suivi, notification et vérification des émissions du secteur minier et énergétique",
       lede: "Le module MRV ordonne l'inventaire sectoriel de gaz à effet de serre et le suivi des indicateurs d'atténuation, pour qu'une équipe technique puisse revoir la série, la formule et le territoire sans reconstruire le calcul.",
       definitionLabel: "Définition",
       definition: "MRV signifie suivi, notification et vérification. Dans le secteur minier et énergétique, c'est la façon de suivre les émissions et les indicateurs d'atténuation avec une piste claire de données, de facteurs et de résultats.",
@@ -669,8 +669,8 @@ const climateContent: Record<Locale, ClimateCopy> = {
       ],
     },
     me: {
-      seoTitle: "Suivi et évaluation du risque climatique territorial",
-      description: "Suivi-évaluation de l'aléa, de la vulnérabilité et du risque climatique pour le secteur minier et énergétique : scénarios CMIP6 et lecture municipale. Travail de GearsMap avec le Ministère et la KfW.",
+      seoTitle: "Suivi et évaluation du risque climatique",
+      description: "Suivi-évaluation de l'aléa, de la vulnérabilité et du risque climatique du secteur minier et énergétique, avec le Ministère et le soutien de la KfW.",
       keywords: ["suivi et évaluation", "risque climatique", "vulnérabilité climatique", "adaptation au changement climatique", "CMIP6", "GIEC AR6", "SSP2-4.5", "géovisionneuse", "secteur minier et énergétique", "GearsMap", "Colombie"],
       eyebrow: "S&E · Adaptation",
       title: "Suivi et évaluation de l'aléa, de la vulnérabilité et du risque",
@@ -747,116 +747,8 @@ export function climatePage(locale: Locale, page: ClimatePageKey) {
   return climateContent[locale][page]
 }
 
-const pageOrder: ClimatePageKey[] = ["hub", "mrv", "me"]
+export const climatePageOrder: ClimatePageKey[] = ["hub", "mrv", "me"]
 
 export function relatedClimatePages(page: ClimatePageKey): ClimatePageKey[] {
-  return pageOrder.filter((item) => item !== page)
+  return climatePageOrder.filter((item) => item !== page)
 }
-
-function pagePlainText(page: PageCopy) {
-  return [
-    `# ${page.title}`,
-    "",
-    page.lede,
-    "",
-    `> ${page.definition}`,
-    "",
-    ...page.sections.flatMap((section) => [`## ${section.heading}`, "", ...section.paragraphs, ""]),
-    `## ${page.cardsTitle}`,
-    "",
-    ...page.cards.flatMap((card) => [
-      `### ${card.title}`,
-      card.text,
-      ...card.points.map((point) => `- ${point}`),
-      "",
-    ]),
-    `## ${page.factsTitle}`,
-    "",
-    ...page.facts.map((fact) => `- **${fact.term}.** ${fact.detail}`),
-    "",
-    "## FAQ",
-    "",
-    ...page.faqs.flatMap((faq) => [`### ${faq.question}`, faq.answer, ""]),
-  ].join("\n")
-}
-
-export function buildLlmsTxt() {
-  const es = climateContent.es
-  const lines = [
-    "# GearsMap",
-    "",
-    "> GearsMap S.A.S. designs geospatial platforms, geoviewers, dashboards, and artificial-intelligence systems in Colombia. It also implemented the operational MRV and M&E modules of the mining and energy sector climate information system, with the Ministry of Mines and Energy and support from KfW.",
-    "",
-    "This website describes that implementation. It is not an official Ministry publication, it does not grant access to the institutional system, and it does not publish operational data, internal infrastructure, or contract documents.",
-    "",
-    "## Services",
-    "",
-    `- [Geospatial software and geoviewers](${absoluteUrl("/es")}): custom GIS platforms, interactive map viewers, 2D/3D visualization, dashboards, process automation, and AI for territorial data.`,
-    `- [Climate information systems](${absoluteUrl(climateHref("es", "hub"))}): operational MRV and M&E for Colombia's mining and energy sector.`,
-    `- [MRV](${absoluteUrl(climateHref("es", "mrv"))}): monitoring, reporting and verification of sectoral GHG emissions and PIGCCme 2050 mitigation indicators.`,
-    `- [M&E](${absoluteUrl(climateHref("es", "me"))}): monitoring and evaluation of climate hazard, vulnerability, and risk.`,
-    "",
-    "## Languages",
-    "",
-    `- [Español](${absoluteUrl("/es")})`,
-    `- [English](${absoluteUrl("/en")})`,
-    `- [Français](${absoluteUrl("/fr")})`,
-    "",
-    "## Climate pages",
-    "",
-    ...(["es", "en", "fr"] as const).flatMap((locale) => {
-      const copy = climateContent[locale]
-      return pageOrder.map((page) => `- [${copy[page].title}](${absoluteUrl(climateHref(locale, page))}): ${copy[page].description}`)
-    }),
-    "",
-    "## Contact",
-    "",
-    `- Email: gearsmap@gearsmap.com`,
-    `- LinkedIn: https://www.linkedin.com/company/gearsmap`,
-    `- Location: Bogotá, Colombia`,
-    "",
-    "## Optional",
-    "",
-    `- [Full text for agents](${siteUrl}/llms-full.txt)`,
-    `- [Privacy](${absoluteUrl("/es/privacidad")})`,
-    `- [Terms](${absoluteUrl("/es/terminos")})`,
-    "",
-    "## Notes for agents",
-    "",
-    `- Preferred citation name: GearsMap S.A.S.`,
-    `- Do not describe the Ministry of Mines and Energy as endorsing GearsMap.`,
-    `- Do not invent public URLs for the institutional climate system.`,
-    `- ${es.disclaimer}`,
-    "",
-  ]
-  return lines.join("\n")
-}
-
-export function buildLlmsFullTxt() {
-  const sections = (["es", "en", "fr"] as const).flatMap((locale) => {
-    const copy = climateContent[locale]
-    return [
-      `# ${locale.toUpperCase()} — ${copy.hub.title}`,
-      "",
-      copy.disclaimer,
-      "",
-      ...pageOrder.flatMap((page) => [pagePlainText(copy[page]), ""]),
-    ]
-  })
-  return [
-    "# GearsMap — full public text",
-    "",
-    "Machine-readable compilation of the public website copy about geospatial practice and the complementary MRV / M&E climate work. Not an official government publication.",
-    "",
-    ...sections,
-  ].join("\n")
-}
-
-export const publicRoutes = [
-  { path: "", changeFrequency: "monthly" as const, priority: 1 },
-  { path: climatePaths.hub, changeFrequency: "monthly" as const, priority: 0.9 },
-  { path: climatePaths.mrv, changeFrequency: "monthly" as const, priority: 0.8 },
-  { path: climatePaths.me, changeFrequency: "monthly" as const, priority: 0.8 },
-  { path: "/privacidad", changeFrequency: "yearly" as const, priority: 0.3 },
-  { path: "/terminos", changeFrequency: "yearly" as const, priority: 0.3 },
-]
