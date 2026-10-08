@@ -124,7 +124,7 @@ The public site is available in Spanish, English and French at `/es`, `/en` and 
 
 **PROPRIETARY & CONFIDENTIAL**
 
-Copyright © 2025 **GEARSMAP S.A.S.** All Rights Reserved.
+Copyright © 2026 **GEARSMAP S.A.S.** All Rights Reserved.
 
 This software is the confidential and proprietary information of GEARSMAP S.A.S. ("Confidential Information"). You shall not disclose such Confidential Information and shall use it only in accordance with the terms of the license agreement you entered into with GEARSMAP S.A.S.
 
