@@ -33,4 +33,5 @@ gearsmapwebsite/
 .playwright-mcp/
 
 # Screenshots (design reviews, etc.)
-/*.png
+/*.png/test-results/
+/playwright-report/
