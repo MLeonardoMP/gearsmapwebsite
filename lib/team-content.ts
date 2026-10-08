@@ -1,4 +1,4 @@
-import type { TeamRoleKey } from "@/lib/team"
+import type { TeamLinkKind, TeamRoleKey } from "@/lib/team"
 import type { Locale } from "@/lib/translations"
 
 export type TeamRoleCopy = {
@@ -8,14 +8,47 @@ export type TeamRoleCopy = {
   summary: string
 }
 
-// Day-0 subset: only the fields lib/team-schema.ts needs.
-// WS3 extends this type (eyebrow, title, subtitle, labels, cta, bios...).
 export type TeamCopy = {
+  eyebrow: string
+  title: string
+  subtitle: string
+  founderLabel: string
+  /** Template: `{name}` is replaced with the member's name. */
+  portraitAlt: string
+  /** Template: `{name}` is replaced with the member's name. */
+  linksLabel: string
+  /** Templates: `{name}` is replaced with the member's name. */
+  linkLabels: Record<TeamLinkKind, string>
+  cta: { text: string; label: string }
+  /** Optional owner-written bios keyed by member id. A missing entry renders nothing. */
+  bios: Partial<Record<string, string>>
+  /** Role copy derived from the title only, with no claims beyond the role. */
   roles: Record<TeamRoleKey, TeamRoleCopy>
+}
+
+/** Fills the `{name}` slot of a team label template. */
+export function withName(template: string, name: string) {
+  return template.replace("{name}", name)
 }
 
 export const teamCopy: Record<Locale, TeamCopy> = {
   es: {
+    eyebrow: "Equipo fundador",
+    title: "Las personas detrás de GearsMap",
+    subtitle: "Cuatro cofundadores que unen estrategia, producto, ciencia de datos y negocio para llevar el dato territorial hasta la decisión.",
+    founderLabel: "Cofundador",
+    portraitAlt: "Retrato de {name}",
+    linksLabel: "Perfiles de {name}",
+    linkLabels: {
+      linkedIn: "LinkedIn de {name}",
+      github: "GitHub de {name}",
+      website: "Sitio web de {name}",
+    },
+    cta: {
+      text: "¿Quieres conversar con el equipo sobre tu proyecto?",
+      label: "Conversemos",
+    },
+    bios: {},
     roles: {
       ceo: {
         short: "CEO",
@@ -44,6 +77,22 @@ export const teamCopy: Record<Locale, TeamCopy> = {
     },
   },
   en: {
+    eyebrow: "Founding team",
+    title: "The people behind GearsMap",
+    subtitle: "Four co-founders combining strategy, product, data science and business to carry territorial data all the way to decisions.",
+    founderLabel: "Co-founder",
+    portraitAlt: "Portrait of {name}",
+    linksLabel: "{name}'s profiles",
+    linkLabels: {
+      linkedIn: "{name} on LinkedIn",
+      github: "{name} on GitHub",
+      website: "{name}'s website",
+    },
+    cta: {
+      text: "Want to talk to the team about your project?",
+      label: "Let's talk",
+    },
+    bios: {},
     roles: {
       ceo: {
         short: "CEO",
@@ -72,6 +121,22 @@ export const teamCopy: Record<Locale, TeamCopy> = {
     },
   },
   fr: {
+    eyebrow: "Équipe fondatrice",
+    title: "Les personnes derrière GearsMap",
+    subtitle: "Quatre cofondateurs qui réunissent stratégie, produit, science des données et développement commercial pour mener la donnée territoriale jusqu'à la décision.",
+    founderLabel: "Cofondateur",
+    portraitAlt: "Portrait de {name}",
+    linksLabel: "Profils de {name}",
+    linkLabels: {
+      linkedIn: "{name} sur LinkedIn",
+      github: "{name} sur GitHub",
+      website: "Site web de {name}",
+    },
+    cta: {
+      text: "Vous souhaitez échanger avec l'équipe sur votre projet ?",
+      label: "Parlons-en",
+    },
+    bios: {},
     roles: {
       ceo: {
         short: "CEO",

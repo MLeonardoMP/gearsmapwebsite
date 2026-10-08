@@ -1,9 +1,8 @@
 import type { StaticImageData } from "next/image"
-// WS3 moves these files to assets/team/<id>.jpg and updates the imports.
-import leonardoPhoto from "@/public/images/Leonardo.jpg"
-import juanEstebanPhoto from "@/public/images/Juan_Esteban.jpg"
-import juanManuelPhoto from "@/public/images/Juan_Manuel.jpg"
-import mateoPhoto from "@/public/images/Mateo.jpg"
+import leonardoPhoto from "@/assets/team/leonardo-mosquera.jpg"
+import juanEstebanPhoto from "@/assets/team/juan-esteban-mosquera.jpg"
+import juanManuelPhoto from "@/assets/team/juan-manuel-jimenez.jpg"
+import mateoPhoto from "@/assets/team/mateo-granados.jpg"
 
 export type TeamRoleKey = "ceo" | "cpo" | "cdo" | "cco"
 
@@ -15,6 +14,10 @@ export type TeamLinks = {
 
 export type TeamLinkKind = keyof TeamLinks
 
+/**
+ * Portrait framing in percent of the 4:5 frame. `x`/`y` set the object
+ * position and the zoom origin; `zoom` evens out head sizes between photos.
+ */
 export type PortraitFocus = {
   x: number
   y: number
@@ -43,7 +46,7 @@ export const founders: TeamMember[] = [
     roleKey: "ceo",
     founder: true,
     photo: leonardoPhoto,
-    focus: { x: 48, y: 42 },
+    focus: { x: 48, y: 40, zoom: 1.12 },
   },
   {
     id: "juan-esteban-mosquera",
@@ -73,7 +76,7 @@ export const founders: TeamMember[] = [
     roleKey: "cco",
     founder: true,
     photo: mateoPhoto,
-    focus: { x: 48, y: 30, zoom: 1.22 },
+    focus: { x: 48, y: 0, zoom: 1.22 },
   },
 ]
 
