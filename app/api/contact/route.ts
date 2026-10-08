@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import nodemailer from "nodemailer"
+import nodemailer, { type Transporter } from "nodemailer"
 import { createClient, sql } from "@vercel/postgres"
 import { ConfidentialClientApplication } from "@azure/msal-node"
 import React from "react"
@@ -8,13 +8,12 @@ import ContactSubmissionEmail from "@/emails/contact-submission"
 import ContactConfirmationEmail from "@/emails/contact-confirmation"
 import { z } from "zod"
 
-export const runtime = "nodejs"
-
 const contactSchema = z.object({
   name: z.string().trim().min(1),
   email: z.string().trim().email(),
   phone: z.string().trim().optional().nullable(),
   message: z.string().trim().min(1),
+  intent: z.enum(["project", "demo"]).default("project"),
 })
 
 export async function POST(req: Request) {
@@ -27,8 +26,10 @@ export async function POST(req: Request) {
       )
     }
 
-    const { name, email, phone, message } = parsed.data
+    const { name, email, phone, message, intent } = parsed.data
     const normalizedPhone = phone?.trim() ? phone.trim() : null
+    const intentLabel = intent === "demo" ? "Demo request" : "Project inquiry"
+    const storedMessage = `${message}\n\n[Contact intent: ${intentLabel}]`
 
     const requireDb = process.env.CONTACT_REQUIRE_DB === "true"
     const requireEmail = process.env.CONTACT_REQUIRE_EMAIL === "true"
@@ -84,7 +85,7 @@ export async function POST(req: Request) {
           try {
             await client.sql`
               INSERT INTO public.contact (name, email, phone, message, date)
-              VALUES (${name}, ${email}, ${normalizedPhone}, ${message}, NOW())
+              VALUES (${name}, ${email}, ${normalizedPhone}, ${storedMessage}, NOW())
             `
           } finally {
             await client.end()
@@ -92,7 +93,7 @@ export async function POST(req: Request) {
         } else {
           await sql`
             INSERT INTO public.contact (name, email, phone, message, date)
-            VALUES (${name}, ${email}, ${normalizedPhone}, ${message}, NOW())
+              VALUES (${name}, ${email}, ${normalizedPhone}, ${storedMessage}, NOW())
           `
         }
 
@@ -144,7 +145,7 @@ export async function POST(req: Request) {
       .map((s) => s.trim())
       .filter(Boolean)
 
-    const subjectAdmin = `Nuevo mensaje de contacto - ${name}`
+    const subjectAdmin = `${intentLabel}: ${name}`
     const subjectConfirmation = `Confirmación: recibimos tu mensaje - GearsMap`
 
     const logoUrl =
@@ -158,6 +159,7 @@ export async function POST(req: Request) {
       email,
       phone: normalizedPhone,
       message,
+      intent,
     })
 
     const confirmationEmailTemplate = React.createElement(ContactConfirmationEmail, {
@@ -226,7 +228,6 @@ export async function POST(req: Request) {
 
       const tokenClaims = !isProd ? decodeJwtPayload(accessToken) : null
       if (!isProd) {
-        // eslint-disable-next-line no-console
         console.info("[contact] Graph token claims (safe subset)", {
           aud: tokenClaims?.aud,
           tid: tokenClaims?.tid,
@@ -322,7 +323,6 @@ export async function POST(req: Request) {
       }
 
       if (!isProd) {
-        // eslint-disable-next-line no-console
         console.info("[contact] Email sent via Microsoft Graph", {
           sender: senderUpn,
           to: args.to,
@@ -349,7 +349,7 @@ export async function POST(req: Request) {
     }
 
     const sendViaSmtp = async (
-      transporter: nodemailer.Transporter,
+      transporter: Transporter,
       args: {
         to: string[]
         cc?: string[]
@@ -374,7 +374,6 @@ export async function POST(req: Request) {
       })
 
       if (!isProd) {
-        // eslint-disable-next-line no-console
         console.info("[contact] Email sent via SMTP", {
           host: smtpHost,
           to: args.to,
@@ -388,7 +387,6 @@ export async function POST(req: Request) {
     if (!emailEnabled) {
       lastEmailError = new Error("Email disabled via CONTACT_EMAIL_ENABLED=false")
       if (!isProd) {
-        // eslint-disable-next-line no-console
         console.info("[contact] Email disabled; skipping send", {
           provider: emailProvider,
           requireEmail,
@@ -422,7 +420,6 @@ export async function POST(req: Request) {
             } catch (confirmationError) {
               console.error("Error sending confirmation email:", confirmationError)
               if (!isProd) {
-                // eslint-disable-next-line no-console
                 console.info("[contact] Confirmation email failed (ignored)", {
                   to: email,
                   error:
@@ -457,7 +454,6 @@ export async function POST(req: Request) {
             } catch (confirmationError) {
               console.error("Error sending confirmation email:", confirmationError)
               if (!isProd) {
-                // eslint-disable-next-line no-console
                 console.info("[contact] Confirmation email failed (ignored)", {
                   to: email,
                   error:

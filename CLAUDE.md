@@ -11,8 +11,10 @@ Official website for **GearsMap S.A.S.** — a geospatial solutions and AI compa
 ```bash
 npm install --legacy-peer-deps   # MUST use --legacy-peer-deps (React 19 peer dep conflicts)
 npm run dev                      # Dev server at localhost:3000
-npm run build                    # Production build (TS errors are ignored in config)
+npm run build                    # Production build with TypeScript validation
 npm run lint                     # ESLint
+npm run typecheck                # TypeScript without emit
+npm run test:e2e                 # Playwright + axe smoke/a11y suite
 ```
 
 ## Stack
@@ -22,29 +24,28 @@ npm run lint                     # ESLint
 - **shadcn/ui** (New York style) + **Radix UI** primitives in `components/ui/`
 - **Framer Motion** for animations, **Cobe** for 3D globe
 - **@vercel/postgres** (Neon) for database, **Nodemailer** / **Microsoft Graph** for email
-- **React Hook Form** + **Zod** for forms
+- Accessible client form + **Zod** validation for the API
 
 ## Architecture
 
 ### Routing & Pages
-Single-page app with anchor-based navigation. `app/page.tsx` is the main page (~750 lines, client component) containing hero, services, team, and contact sections. Additional routes: `privacidad/`, `terminos/`.
+Localized App Router site. `app/[locale]/page.tsx` renders the server-based landing page for `/es`, `/en` and `/fr`; interactive behavior is isolated in `components/home/`. Additional localized routes cover `privacidad/` and `terminos/`.
 
 ### API
 - `app/api/contact/route.ts` — the only local API route. Handles contact form submissions with Zod validation, saves to Postgres, sends email via Microsoft Graph or SMTP with graceful degradation.
 - All other `/api/*` requests are proxied to `https://gearsmap-api.vercel.app/api/` via Next.js rewrites in `next.config.mjs`.
 
 ### Internationalization (i18n)
-Custom context-based system — **do not use external i18n libraries**.
-- `lib/language-context.tsx` — React context provider, persists selection to localStorage
-- `lib/translations.ts` — all translatable strings (ES default, EN, FR)
-- Usage: `const { t, language } = useLanguage(); <h1>{t.hero.title}</h1>`
+Custom dictionary-based system — **do not use external i18n libraries**.
+- `lib/translations.ts` — all translatable strings (ES default, EN, FR), `Locale` and `getDictionary()`.
+- Localized URL is the source of truth; localized pages receive their dictionary explicitly.
 
 ### Layout & Providers
-`app/layout.tsx` wraps the app with `ThemeProvider` (next-themes) and `LanguageProvider`. Global layout includes `Header`, `Footer`, and `ScrollToTop`.
+`app/layout.tsx` owns global providers. `app/[locale]/layout.tsx` renders the localized `Header`, `Footer`, skip link and `ScrollToTop`.
 
 ### Styling Conventions
 - Always use the `cn()` utility from `@/lib/utils` for merging Tailwind classes.
-- Icons: `lucide-react` for general icons, `@icons-pack/react-simple-icons` for brand icons.
+- Icons: `lucide-react` for general icons and optimized local assets for brand logos.
 - Path alias: `@/*` maps to the project root.
 
 ### Email Templates

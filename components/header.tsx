@@ -1,136 +1,194 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { ModeToggle } from "@/components/mode-toggle"
 import { LanguageSwitcher } from "@/components/language-switcher"
-import { useLanguage } from "@/lib/language-context"
+import { climateHref } from "@/lib/site"
+import type { Dictionary, Locale } from "@/lib/translations"
 
-export default function Header() {
+type HeaderProps = {
+  locale: Locale
+  t: Dictionary
+}
+
+export default function Header({ locale, t }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { t } = useLanguage()
+  const pathname = usePathname()
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null)
+  const isHome = pathname === `/${locale}` || pathname === `/${locale}/`
+  const getSectionHref = (id: string) => (isHome ? `#${id}` : `/${locale}#${id}`)
 
   const menuItems = [
-    { title: t.nav.home, path: "#inicio" },
-    { title: t.nav.portfolio, path: "#portafolio" },
-    { title: t.nav.about, path: "#nosotros" },
-    { title: t.nav.contact, path: "#contacto" },
+    { title: t.nav.home, id: "inicio", href: getSectionHref("inicio") },
+    { title: t.nav.portfolio, id: "portafolio", href: getSectionHref("portafolio") },
+    { title: t.nav.climate, href: climateHref(locale, "hub") },
+    { title: t.nav.about, id: "nosotros", href: getSectionHref("nosotros") },
+    { title: t.nav.contact, id: "contacto", href: getSectionHref("contacto") },
   ]
+  const climateActive = pathname.startsWith(climateHref(locale, "hub"))
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   useEffect(() => {
+    const previousOverflow = document.body.style.overflow
+
     if (isOpen) {
       document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "unset"
+      firstMobileLinkRef.current?.focus()
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        setIsOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener("keydown", handleKeyDown)
     }
   }, [isOpen])
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    if (path.startsWith("#")) {
-      // Check if we're on the home page
-      if (window.location.pathname === "/" || window.location.pathname === "") {
-        e.preventDefault()
-        const element = document.querySelector(path)
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" })
-          setIsOpen(false)
-        }
-      } else {
-        // If we're not on home page, navigate to home with the hash
-        window.location.href = "/" + path
-      }
-    }
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    id?: string,
+  ) => {
+    setIsOpen(false)
+    if (!id || !isHome) return
+
+    const section = document.getElementById(id)
+    if (!section) return
+
+    event.preventDefault()
+    section.scrollIntoView({ behavior: "smooth", block: "start" })
+    window.history.replaceState(null, "", `#${id}`)
   }
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`site-header fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/50 shadow-sm"
+          ? "border-b border-border/50 bg-background/85 shadow-sm backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 z-50">
+      <nav className="site-header__nav container mx-auto px-6 lg:px-12" aria-label={t.nav.home}>
+        <div className="flex h-16 items-center justify-between lg:h-20">
+          <Link href={`/${locale}`} className="relative z-50 flex h-8 w-40 items-center lg:h-9 lg:w-[180px]">
             <Image
               src="/images/gears-map-horizontal.svg"
               alt="GearsMap"
-              width={160}
-              height={32}
-              className="h-8 lg:h-9 w-auto"
+              fill
+              sizes="(max-width: 1024px) 160px, 180px"
+              className="object-contain object-left"
               priority
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden items-center gap-8 md:flex">
             {menuItems.map((item) => (
-              <a
-                key={item.path}
-                href={item.path}
-                onClick={(e) => handleNavClick(e, item.path)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
-              >
-                {item.title}
-                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-              </a>
+              item.id ? (
+                <a
+                  key={item.title}
+                  href={item.href}
+                  onClick={(event) => handleNavClick(event, item.id)}
+                  className="group relative text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+                >
+                  {item.title}
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 origin-left scale-x-0 bg-accent transition-transform group-hover:scale-x-100 group-focus-visible:scale-x-100" />
+                </a>
+              ) : (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  aria-current={climateActive ? "page" : undefined}
+                  className={`group relative text-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background ${climateActive ? "text-foreground" : "text-muted-foreground"}`}
+                >
+                  {item.title}
+                  <span className={`absolute inset-x-0 -bottom-1 h-0.5 origin-left bg-accent transition-transform group-hover:scale-x-100 group-focus-visible:scale-x-100 ${climateActive ? "scale-x-100" : "scale-x-0"}`} />
+                </Link>
+              )
             ))}
-            <div className="flex items-center gap-2 pl-4 border-l border-border/50">
-              <LanguageSwitcher />
-              <ModeToggle />
+            <div className="flex items-center gap-2 border-l border-border/50 pl-4">
+              <LanguageSwitcher locale={locale} label={t.common.language} />
+              <ModeToggle labels={t.common.theme} />
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <Button
+            ref={menuButtonRef}
             variant="ghost"
             size="icon"
-            className="md:hidden z-50"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+            className="relative z-50 md:hidden"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
           </Button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <>
-          <div
-            className="fixed inset-0 bg-background/95 backdrop-blur-md z-40 md:hidden"
+          <button
+            type="button"
+            className="fixed inset-0 z-40 cursor-default bg-background/95 backdrop-blur-md md:hidden"
+            aria-label={t.nav.closeMenu}
             onClick={() => setIsOpen(false)}
           />
-          <div className="fixed inset-x-0 top-16 z-40 md:hidden">
-            <div className="bg-card/95 backdrop-blur-md border-b border-border mx-4 rounded-lg shadow-lg">
-              <nav className="flex flex-col p-4 space-y-2">
-                {menuItems.map((item) => (
-                  <a
-                    key={item.path}
-                    href={item.path}
-                    onClick={(e) => handleNavClick(e, item.path)}
-                    className="px-4 py-3 text-base font-medium text-foreground hover:bg-accent/10 rounded-md transition-colors"
-                  >
-                    {item.title}
-                  </a>
+          <div
+            id="mobile-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label={t.nav.home}
+            className="fixed inset-x-0 top-16 z-40 md:hidden"
+          >
+            <div className="mx-4 rounded-lg border border-border bg-card/95 shadow-lg backdrop-blur-md">
+              <nav className="flex flex-col gap-2 p-4" aria-label={t.nav.home}>
+                {menuItems.map((item, index) => (
+                  item.id ? (
+                    <a
+                      key={item.title}
+                      ref={index === 0 ? firstMobileLinkRef : undefined}
+                      href={item.href}
+                      onClick={(event) => handleNavClick(event, item.id)}
+                      className="rounded-md px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      {item.title}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.title}
+                      href={item.href}
+                      aria-current={climateActive ? "page" : undefined}
+                      onClick={() => setIsOpen(false)}
+                      className="rounded-md px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      {item.title}
+                    </Link>
+                  )
                 ))}
-                <div className="flex items-center justify-between px-4 py-3 border-t border-border/50 mt-2">
-                  <LanguageSwitcher />
-                  <ModeToggle />
+                <div className="mt-2 flex items-center justify-between border-t border-border/50 px-4 py-3">
+                  <LanguageSwitcher locale={locale} label={t.common.language} />
+                  <ModeToggle labels={t.common.theme} />
                 </div>
               </nav>
             </div>

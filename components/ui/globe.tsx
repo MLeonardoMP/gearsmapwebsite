@@ -1,7 +1,7 @@
 "use client"
 
 import createGlobe, { type COBEOptions, type Marker, type Arc } from "cobe"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState, type ReactNode } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -32,21 +32,27 @@ export default function Globe({
   config = DEFAULT_CONFIG,
   dark,
   children,
+  fallback,
 }: {
   className?: string
   config?: Partial<GlobeConfig>
   dark?: number
-  children?: React.ReactNode
+  children?: ReactNode
+  fallback?: ReactNode
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const pointerInteracting = useRef<number | null>(null)
   const phiRef = useRef(0)
   const dragDelta = useRef(0)
   const widthRef = useRef(0)
+  const isInViewportRef = useRef(true)
+  const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
+
+    setHasError(false)
 
     const onResize = () => {
       widthRef.current = canvas.offsetWidth
@@ -54,48 +60,109 @@ export default function Globe({
     window.addEventListener("resize", onResize)
     onResize()
 
+    const isSmallViewport = window.matchMedia("(max-width: 639px)").matches
     const mergedConfig: COBEOptions = {
       ...DEFAULT_CONFIG,
       ...config,
       ...(dark !== undefined ? { dark } : {}),
-      width: widthRef.current * 2,
-      height: widthRef.current * 2,
+      devicePixelRatio: Math.min(config.devicePixelRatio ?? DEFAULT_CONFIG.devicePixelRatio ?? 2, isSmallViewport ? 1.2 : 1.5),
+      mapSamples: Math.min(config.mapSamples ?? DEFAULT_CONFIG.mapSamples ?? 16000, isSmallViewport ? 7000 : 12000),
+      width: Math.max(widthRef.current * 1.35, 1),
+      height: Math.max(widthRef.current * 1.35, 1),
     }
 
-    const globe = createGlobe(canvas, mergedConfig)
+    let globe: ReturnType<typeof createGlobe>
 
-    let animationId: number
+    try {
+      globe = createGlobe(canvas, mergedConfig)
+    } catch {
+      window.setTimeout(() => setHasError(true), 0)
+      window.removeEventListener("resize", onResize)
+      return
+    }
+
+    let animationId: number | null = null
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const isDocumentVisible = () => document.visibilityState === "visible"
 
     const animate = () => {
-      // Always rotate — drag offset is additive, decays smoothly
-      phiRef.current += 0.004
+      animationId = null
+      if (!isDocumentVisible() || !isInViewportRef.current) {
+        return
+      }
+
+      if (!reducedMotion) phiRef.current += 0.004
       dragDelta.current *= 0.94
       globe.update({
         phi: phiRef.current + dragDelta.current,
-        width: widthRef.current * 2,
-        height: widthRef.current * 2,
+        width: Math.max(widthRef.current * 1.35, 1),
+        height: Math.max(widthRef.current * 1.35, 1),
       })
-      animationId = requestAnimationFrame(animate)
-    }
-    animationId = requestAnimationFrame(animate)
 
-    // Clean fade-in
-    setTimeout(() => {
-      canvas.style.opacity = "1"
-    }, 50)
+      if (!reducedMotion) animationId = requestAnimationFrame(animate)
+    }
+
+    const startAnimation = () => {
+      if (!reducedMotion && animationId === null && isDocumentVisible() && isInViewportRef.current) {
+        animationId = requestAnimationFrame(animate)
+      }
+    }
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden" && animationId !== null) {
+        cancelAnimationFrame(animationId)
+        animationId = null
+      }
+      startAnimation()
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isInViewportRef.current = entry.isIntersecting
+      if (entry.isIntersecting) {
+        if (reducedMotion) animate()
+        else startAnimation()
+      } else if (animationId !== null) {
+        cancelAnimationFrame(animationId)
+        animationId = null
+      }
+    }, { rootMargin: "120px" })
+
+    const resizeObserver = new ResizeObserver(onResize)
+    resizeObserver.observe(canvas)
+    observer.observe(canvas)
+    document.addEventListener("visibilitychange", handleVisibilityChange)
+
+    if (reducedMotion) animate()
+    else startAnimation()
 
     return () => {
-      cancelAnimationFrame(animationId)
+      if (animationId !== null) cancelAnimationFrame(animationId)
       window.removeEventListener("resize", onResize)
+      document.removeEventListener("visibilitychange", handleVisibilityChange)
+      observer.disconnect()
+      resizeObserver.disconnect()
       globe.destroy()
     }
   }, [dark, config])
 
+  if (hasError) {
+    return (
+      <div className={cn("absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]", className)}>
+        {fallback}
+      </div>
+    )
+  }
+
   return (
     <div className={cn("absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]", className)}>
+      {fallback ? (
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          {fallback}
+        </div>
+      ) : null}
       <canvas
         className={cn(
-          "size-full opacity-0 transition-opacity duration-700 ease-in",
+          "size-full",
           "[contain:layout_style_size]"
         )}
         ref={canvasRef}

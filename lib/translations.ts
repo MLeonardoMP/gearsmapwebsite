@@ -1,24 +1,45 @@
 export type Language = "ES" | "EN" | "FR"
+export type Locale = "es" | "en" | "fr"
 
 export const translations = {
   ES: {
     common: {
       learnMore: "Saber más",
+      language: "Idioma",
+      backToTop: "Volver arriba",
+      theme: {
+        label: "Cambiar tema",
+        light: "Claro",
+        dark: "Oscuro",
+        system: "Sistema",
+      },
     },
     nav: {
       home: "Inicio",
       about: "Sobre Nosotros",
       portfolio: "Portafolio",
+      climate: "MRV / M&E",
       contact: "Contacto",
+      openMenu: "Abrir menú",
+      closeMenu: "Cerrar menú",
+    },
+    seo: {
+      title: "Software geoespacial, geovisores e inteligencia artificial",
+      description: "GearsMap diseña plataformas geoespaciales, geovisores, tableros e inteligencia artificial en Colombia. También implementa sistemas de MRV y monitoreo y evaluación climática para el sector minero-energético.",
+      keywords: ["GearsMap", "software geoespacial", "sistemas de información geográfica", "SIG", "geovisores", "inteligencia artificial", "visualización de datos", "dashboards", "Colombia", "MRV", "monitoreo y evaluación"],
     },
     hero: {
       badge: "Soluciones Geoespaciales & IA",
       title: "GearsMap",
       subtitle: "¿Qué es ",
+      eyebrow: "SISTEMAS GEOESPACIALES / INTELIGENCIA ARTIFICIAL",
+      headline: "Del territorio al dato. Del dato a la decisión.",
       description1: "Diseñamos plataformas personalizadas que optimizan procesos y visualizan datos complejos.",
       description2: "Innovación, soporte constante y herramientas de alta calidad para transformar tus datos en decisiones estratégicas.",
-      cta_primary: "Solicitar demo",
-      cta_secondary: "Saber más",
+      cta_primary: "Conversemos sobre tu proyecto",
+      cta_secondary: "Solicitar una demo",
+      scrollLabel: "Explorar la plataforma",
+      signal: "Sistemas que conectan territorio, datos y equipos.",
       stats: {
         projects: "Municipios (geometría oficial)",
         satisfaction: "Departamentos (info oficial)",
@@ -58,7 +79,7 @@ export const translations = {
     },
     portfolio: {
       header: "Portafolio y Servicios",
-      subheader: "Conozca más sobre nuestros servicios y soluciones de visualización y análisis de datos.",
+      subheader: "Geovisores, sistemas de información geográfica, tableros, inteligencia artificial y automatización para convertir datos territoriales en decisiones.",
       services: {
         ai: {
           title: "Inteligencia artificial y Machine Learning",
@@ -95,6 +116,8 @@ export const translations = {
     contact: {
       header: "Contáctenos",
       subheader: "Complete el formulario para ponerte en contacto con nosotros.",
+      signal: "Una conversación breve puede revelar el siguiente paso de tu operación.",
+      promise: "Te respondemos con contexto, preguntas concretas y una ruta posible.",
       sending: "Enviando...",
       toast: {
         success: "Mensaje enviado",
@@ -102,6 +125,13 @@ export const translations = {
         error: "Error",
         errorDescription: "Algo salió mal. Intente de nuevo.",
         validationError: "Revise los campos del formulario.",
+      },
+      intent: {
+        label: "¿Cómo podemos ayudarte?",
+        project: "Conversemos sobre un proyecto",
+        projectDescription: "Cuéntanos qué quieres resolver y qué datos tienes disponibles.",
+        demo: "Solicitar una demo",
+        demoDescription: "Conoce una solución y revisemos si encaja con tu operación.",
       },
       form: {
         title: "¿Necesitas ayuda? Contáctanos",
@@ -113,7 +143,7 @@ export const translations = {
         email: "Tu Correo Electrónico *",
         emailPlaceholder: "Ingresa tu correo electrónico",
         message: "Tu Mensaje *",
-        messagePlaceholder: "Ingresa tu mensaje",
+        messagePlaceholder: "Cuéntanos qué quieres visualizar, automatizar o mejorar",
         submit: "Enviar Mensaje",
       },
     },
@@ -123,14 +153,41 @@ export const translations = {
     },
     gallery: {
       title: "Proyectos Destacados",
-      subtitle: "Explora nuestras soluciones en acción",
-      project1: { title: "Visor PPR ACGGP", desc: "Programa de Pedagogía Regional" },
-      project2: { title: "Análisis Agrícola", desc: "Monitoreo de cultivos satelital" },
-      project3: { title: "Gestión de Flotas", desc: "Optimización de rutas logísticas" }
+      subtitle: "Soluciones construidas para convertir datos complejos en operaciones más claras.",
+      liveLabel: "Ver solución",
+      caseLabel: "Ver el trabajo",
+      illustrativeLabel: "Visualización ilustrativa del proyecto",
+      ctaTitle: "¿Tienes un territorio complejo por entender?",
+      ctaDescription: "Cuéntanos dónde están los datos difíciles. Diseñamos la forma de volverlos utilizables.",
+      ctaLabel: "Conversemos",
+      project1: { title: "Visor PPR ACGGP", desc: "Un geovisor para explorar información regional con capas, filtros y contexto territorial." },
+      project2: { title: "MRV · Monitoreo, Reporte y Verificación", desc: "Implementación operativa para organizar y visualizar indicadores y emisiones del sector minero-energético, con MinMinas y apoyo de KfW." },
+      project3: { title: "M&E · Monitoreo y Evaluación", desc: "Implementación operativa para leer amenaza, vulnerabilidad y riesgo climático, con MinMinas y apoyo de KfW." },
+      project4: { title: "Análisis agrícola", desc: "Monitoreo de cultivos satelital para detectar patrones y apoyar decisiones de campo." },
+      project5: { title: "Gestión de flotas", desc: "Concepto de operación en tiempo real para optimizar rutas logísticas y recursos." },
     },
     projects: {
       status: {
         inDevelopment: "En Desarrollo",
+        live: "En producción",
+        operational: "Implementación operativa",
+      },
+    },
+    climateTeaser: {
+      eyebrow: "Trabajo complementario",
+      title: "Información climática para el sector minero-energético",
+      text: "Además de geovisores y plataformas de datos, acompañamos la implementación operativa de los módulos de MRV y de monitoreo y evaluación del sistema de información climática, con MinMinas y apoyo de KfW.",
+      cta: "Ver el trabajo de MRV y M&E",
+      mrv: "Monitoreo, reporte y verificación de emisiones",
+      me: "Monitoreo y evaluación del riesgo climático",
+    },
+    process: {
+      title: "Cómo trabajamos",
+      subtitle: "Un ciclo claro para pasar de una pregunta difícil a una herramienta que el equipo puede usar.",
+      steps: {
+        scope: { number: "01", title: "Entender el territorio", text: "Aterrizamos la pregunta, las fuentes y las decisiones que necesitan mejor información." },
+        model: { number: "02", title: "Dar forma al sistema", text: "Diseñamos el modelo de datos, la experiencia y los flujos que conectan a las personas." },
+        deliver: { number: "03", title: "Ponerlo en movimiento", text: "Entregamos una plataforma útil, medible y preparada para evolucionar con la operación." },
       },
     },
     team: {
@@ -159,21 +216,41 @@ export const translations = {
   EN: {
     common: {
       learnMore: "Learn more",
+      language: "Language",
+      backToTop: "Back to top",
+      theme: {
+        label: "Change theme",
+        light: "Light",
+        dark: "Dark",
+        system: "System",
+      },
     },
     nav: {
       home: "Home",
       about: "About Us",
       portfolio: "Portfolio",
+      climate: "MRV / M&E",
       contact: "Contact",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+    },
+    seo: {
+      title: "Geospatial software, geoviewers and artificial intelligence",
+      description: "GearsMap designs geospatial platforms, geoviewers, dashboards, and artificial intelligence in Colombia. It also implements climate MRV and monitoring-and-evaluation systems for the mining and energy sector.",
+      keywords: ["GearsMap", "geospatial software", "GIS", "geoviewers", "artificial intelligence", "data visualization", "dashboards", "Colombia", "MRV", "monitoring and evaluation"],
     },
     hero: {
       badge: "Geospatial Solutions & AI",
       title: "GearsMap",
       subtitle: "What is ",
+      eyebrow: "GEOSPATIAL SYSTEMS / ARTIFICIAL INTELLIGENCE",
+      headline: "From territory to data. From data to decisions.",
       description1: "We design custom platforms that optimize processes and visualize complex data.",
       description2: "Innovation, constant support, and high-quality tools to transform your data into strategic decisions.",
-      cta_primary: "Request Demo",
-      cta_secondary: "Learn More",
+      cta_primary: "Talk about your project",
+      cta_secondary: "Request a demo",
+      scrollLabel: "Explore the platform",
+      signal: "Systems that connect territory, data, and teams.",
       stats: {
         projects: "Municipalities (official geometry)",
         satisfaction: "Departments (official data)",
@@ -213,7 +290,7 @@ export const translations = {
     },
     portfolio: {
       header: "Portfolio and Services",
-      subheader: "Learn more about our data visualization and analysis services and solutions.",
+      subheader: "Geoviewers, geographic information systems, dashboards, artificial intelligence, and automation that turn territorial data into decisions.",
       services: {
         ai: {
           title: "AI and Machine Learning",
@@ -250,6 +327,8 @@ export const translations = {
     contact: {
       header: "Contact Us",
       subheader: "Fill out the form to get in touch with us.",
+      signal: "A short conversation can reveal the next step for your operation.",
+      promise: "We reply with context, concrete questions, and a possible path forward.",
       sending: "Sending...",
       toast: {
         success: "Message sent!",
@@ -257,6 +336,13 @@ export const translations = {
         error: "Error",
         errorDescription: "Something went wrong. Please try again.",
         validationError: "Please check the form fields.",
+      },
+      intent: {
+        label: "How can we help?",
+        project: "Talk about a project",
+        projectDescription: "Tell us what you want to solve and which data you already have.",
+        demo: "Request a demo",
+        demoDescription: "See a solution in action and explore whether it fits your operation.",
       },
       form: {
         title: "Need Help? Contact Us",
@@ -268,7 +354,7 @@ export const translations = {
         email: "Your Email *",
         emailPlaceholder: "Enter your email",
         message: "Your Message *",
-        messagePlaceholder: "Enter your message",
+        messagePlaceholder: "Tell us what you want to visualize, automate, or improve",
         submit: "Send Message",
       },
     },
@@ -278,10 +364,18 @@ export const translations = {
     },
     gallery: {
       title: "Featured Projects",
-      subtitle: "Explore our solutions in action",
-      project1: { title: "PPR ACGGP Viewer", desc: "Regional Pedagogy Program" },
-      project2: { title: "Agricultural Analysis", desc: "Satellite crop monitoring" },
-      project3: { title: "Fleet Management", desc: "Logistics route optimization" }
+      subtitle: "Solutions built to turn complex data into clearer operations.",
+      liveLabel: "View solution",
+      caseLabel: "View the work",
+      illustrativeLabel: "Illustrative visualization of the project",
+      ctaTitle: "Do you have complex territory to understand?",
+      ctaDescription: "Tell us where the difficult data is. We design a way to make it useful.",
+      ctaLabel: "Talk to us",
+      project1: { title: "PPR ACGGP Viewer", desc: "A geoviewer for exploring regional information with layers, filters, and territorial context." },
+      project2: { title: "MRV · Monitoring, Reporting and Verification", desc: "Operational implementation to organize and visualize indicators and emissions for the mining and energy sector, with MinMinas and KfW support." },
+      project3: { title: "M&E · Monitoring and Evaluation", desc: "Operational implementation to read climate hazard, vulnerability, and risk, with MinMinas and KfW support." },
+      project4: { title: "Agricultural analysis", desc: "Satellite crop monitoring to detect patterns and support field decisions." },
+      project5: { title: "Fleet management", desc: "A real-time operations concept for optimizing logistics routes and resources." },
     },
     team: {
       title: "Our Team",
@@ -299,6 +393,25 @@ export const translations = {
     projects: {
       status: {
         inDevelopment: "In Development",
+        live: "In production",
+        operational: "Operational implementation",
+      },
+    },
+    climateTeaser: {
+      eyebrow: "Complementary work",
+      title: "Climate information for the mining and energy sector",
+      text: "Alongside geoviewers and data platforms, we supported the operational implementation of the MRV and monitoring-and-evaluation modules of the climate information system, with MinMinas and KfW support.",
+      cta: "View the MRV and M&E work",
+      mrv: "Monitoring, reporting and verification of emissions",
+      me: "Monitoring and evaluation of climate risk",
+    },
+    process: {
+      title: "How we work",
+      subtitle: "A clear cycle from a difficult question to a tool your team can use.",
+      steps: {
+        scope: { number: "01", title: "Understand the territory", text: "We frame the question, sources, and decisions that need better information." },
+        model: { number: "02", title: "Shape the system", text: "We design the data model, experience, and flows that connect people." },
+        deliver: { number: "03", title: "Put it in motion", text: "We deliver a useful, measurable platform ready to evolve with the operation." },
       },
     },
     footer: {
@@ -314,21 +427,41 @@ export const translations = {
   FR: {
     common: {
       learnMore: "En savoir plus",
+      language: "Langue",
+      backToTop: "Retour en haut",
+      theme: {
+        label: "Changer de thème",
+        light: "Clair",
+        dark: "Sombre",
+        system: "Système",
+      },
     },
     nav: {
       home: "Accueil",
       about: "À Propos",
       portfolio: "Portefeuille",
+      climate: "MRV / S&E",
       contact: "Contact",
+      openMenu: "Ouvrir le menu",
+      closeMenu: "Fermer le menu",
+    },
+    seo: {
+      title: "Logiciel géospatial, géovisionneuses et intelligence artificielle",
+      description: "GearsMap conçoit des plateformes géospatiales, des géovisionneuses, des tableaux de bord et de l'intelligence artificielle en Colombie. L'équipe met aussi en œuvre des systèmes climatiques de MRV et de suivi-évaluation pour le secteur minier et énergétique.",
+      keywords: ["GearsMap", "logiciel géospatial", "SIG", "géovisionneuses", "intelligence artificielle", "visualisation de données", "tableaux de bord", "Colombie", "MRV", "suivi et évaluation"],
     },
     hero: {
       badge: "Solutions Géospatiales & IA",
       title: "GearsMap",
       subtitle: "Qu'est-ce que ",
+      eyebrow: "SYSTÈMES GÉOSPATIAUX / INTELLIGENCE ARTIFICIELLE",
+      headline: "Du territoire aux données. Des données aux décisions.",
       description1: "Nous concevons des plateformes personnalisées qui optimisent les processus et visualisent des données complexes.",
       description2: "Innovation, support constant et outils de haute qualité pour transformer vos données en décisions stratégiques.",
-      cta_primary: "Demander une démo",
-      cta_secondary: "En savoir plus",
+      cta_primary: "Parlons de votre projet",
+      cta_secondary: "Demander une démo",
+      scrollLabel: "Explorer la plateforme",
+      signal: "Des systèmes qui relient territoire, données et équipes.",
       stats: {
         projects: "Municipalités (géométrie officielle)",
         satisfaction: "Départements (données officielles)",
@@ -368,7 +501,7 @@ export const translations = {
     },
     portfolio: {
       header: "Portefeuille et Services",
-      subheader: "En savoir plus sur nos services et solutions de visualisation et d'analyse de données.",
+      subheader: "Géovisionneuses, systèmes d'information géographique, tableaux de bord, intelligence artificielle et automatisation pour transformer des données territoriales en décisions.",
       services: {
         ai: {
           title: "IA et Machine Learning",
@@ -405,6 +538,8 @@ export const translations = {
     contact: {
       header: "Contactez-nous",
       subheader: "Remplissez le formulaire pour nous contacter.",
+      signal: "Une courte conversation peut révéler la prochaine étape de votre activité.",
+      promise: "Nous répondons avec du contexte, des questions concrètes et une piste possible.",
       sending: "Envoi en cours...",
       toast: {
         success: "Message envoyé",
@@ -412,6 +547,13 @@ export const translations = {
         error: "Erreur",
         errorDescription: "Une erreur est survenue. Réessayez.",
         validationError: "Veuillez vérifier les champs.",
+      },
+      intent: {
+        label: "Comment pouvons-nous vous aider ?",
+        project: "Parlons d'un projet",
+        projectDescription: "Dites-nous ce que vous souhaitez résoudre et quelles données vous avez déjà.",
+        demo: "Demander une démo",
+        demoDescription: "Découvrez une solution et voyons si elle correspond à votre activité.",
       },
       form: {
         title: "Besoin d'aide ? Contactez-nous",
@@ -423,7 +565,7 @@ export const translations = {
         email: "Votre Email *",
         emailPlaceholder: "Entrez votre email",
         message: "Votre Message *",
-        messagePlaceholder: "Entrez votre message",
+        messagePlaceholder: "Dites-nous ce que vous souhaitez visualiser, automatiser ou améliorer",
         submit: "Envoyer le message",
       },
     },
@@ -433,10 +575,18 @@ export const translations = {
     },
     gallery: {
       title: "Projets en vedette",
-      subtitle: "Découvrez nos solutions en action",
-      project1: { title: "Visualiseur PPR ACGGP", desc: "Programme de Pédagogie Régionale" },
-      project2: { title: "Analyse agricole", desc: "Surveillance des cultures par satellite" },
-      project3: { title: "Gestion de flotte", desc: "Optimisation des itinéraires logistiques" }
+      subtitle: "Des solutions conçues pour transformer des données complexes en opérations plus claires.",
+      liveLabel: "Voir la solution",
+      caseLabel: "Voir le travail",
+      illustrativeLabel: "Visualisation illustrative du projet",
+      ctaTitle: "Un territoire complexe à comprendre ?",
+      ctaDescription: "Dites-nous où se trouvent les données difficiles. Nous concevons une façon de les rendre utiles.",
+      ctaLabel: "Parlons-en",
+      project1: { title: "Visualiseur PPR ACGGP", desc: "Un géovisualiseur pour explorer des informations régionales avec des couches, des filtres et un contexte territorial." },
+      project2: { title: "MRV · Suivi, notification et vérification", desc: "Mise en œuvre opérationnelle pour organiser et visualiser les indicateurs et les émissions du secteur minier et énergétique, avec MinMinas et le soutien de KfW." },
+      project3: { title: "M&E · Suivi et évaluation", desc: "Mise en œuvre opérationnelle pour lire l'aléa, la vulnérabilité et le risque climatique, avec MinMinas et le soutien de KfW." },
+      project4: { title: "Analyse agricole", desc: "Suivi des cultures par satellite pour détecter des tendances et appuyer les décisions de terrain." },
+      project5: { title: "Gestion de flotte", desc: "Un concept opérationnel en temps réel pour optimiser les itinéraires logistiques et les ressources." },
     },
     team: {
       title: "Notre équipe",
@@ -454,6 +604,25 @@ export const translations = {
     projects: {
       status: {
         inDevelopment: "En développement",
+        live: "En production",
+        operational: "Mise en œuvre opérationnelle",
+      },
+    },
+    climateTeaser: {
+      eyebrow: "Travail complémentaire",
+      title: "Information climatique pour le secteur minier et énergétique",
+      text: "En plus des géovisionneuses et des plateformes de données, nous avons accompagné la mise en œuvre opérationnelle des modules MRV et de suivi-évaluation du système d'information climatique, avec MinMinas et le soutien de KfW.",
+      cta: "Voir le travail MRV et S&E",
+      mrv: "Suivi, notification et vérification des émissions",
+      me: "Suivi et évaluation du risque climatique",
+    },
+    process: {
+      title: "Notre méthode",
+      subtitle: "Un cycle clair pour passer d'une question complexe à un outil utilisable par votre équipe.",
+      steps: {
+        scope: { number: "01", title: "Comprendre le territoire", text: "Nous cadrons la question, les sources et les décisions qui ont besoin de meilleures informations." },
+        model: { number: "02", title: "Donner forme au système", text: "Nous concevons le modèle de données, l'expérience et les flux qui relient les personnes." },
+        deliver: { number: "03", title: "Le mettre en mouvement", text: "Nous livrons une plateforme utile, mesurable et prête à évoluer avec l'activité." },
       },
     },
     footer: {
@@ -466,4 +635,26 @@ export const translations = {
       terms: "Conditions d'utilisation",
     },
   },
+}
+
+export type Dictionary = typeof translations.ES
+
+const localeLanguages: Record<Locale, Language> = {
+  es: "ES",
+  en: "EN",
+  fr: "FR",
+}
+
+export const locales = Object.keys(localeLanguages) as Locale[]
+
+export function isLocale(value: string): value is Locale {
+  return value in localeLanguages
+}
+
+export function getDictionary(locale: Locale): Dictionary {
+  return translations[localeLanguages[locale]]
+}
+
+export function localeToLanguage(locale: Locale): Language {
+  return localeLanguages[locale]
 }

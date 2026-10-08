@@ -22,6 +22,7 @@ export type ContactSubmissionEmailProps = {
   email: string
   phone?: string | null
   message: string
+  intent: "project" | "demo"
 }
 
 export default function ContactSubmissionEmail({
@@ -30,8 +31,10 @@ export default function ContactSubmissionEmail({
   email,
   phone,
   message,
+  intent,
 }: ContactSubmissionEmailProps) {
   const safePhone = phone?.trim() ? phone.trim() : "No proporcionado"
+  const intentLabel = intent === "demo" ? "Solicitud de demo" : "Conversación sobre proyecto"
   const replyToHref = `mailto:${email}`
   const logoUrl = "https://www.gearsmap.com/images/logo/gears_map_hor.svg"
 
@@ -96,6 +99,14 @@ export default function ContactSubmissionEmail({
               </Column>
               <Column style={colValue}>
                 <Text style={value}>{safePhone}</Text>
+              </Column>
+            </Row>
+            <Row style={row}>
+              <Column style={colLabel}>
+                <Text style={label}>Interés</Text>
+              </Column>
+              <Column style={colValue}>
+                <Text style={value}>{intentLabel}</Text>
               </Column>
             </Row>
 

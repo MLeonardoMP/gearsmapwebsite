@@ -1,81 +1,38 @@
-import React from "react"
+import Image from "next/image"
+import type { ComponentProps } from "react"
 
-// Using official brand logos from downloaded SVGs and CDN
+type TechIconProps = Omit<ComponentProps<typeof Image>, "src" | "alt" | "width" | "height">
+
+function createTechIcon(src: string, alt: string) {
+  return function TechIcon(props: TechIconProps) {
+    return <Image src={src} alt={alt} width={28} height={28} {...props} />
+  }
+}
+
 export const TechIcons = {
-  Python: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/python.svg" alt="Python" {...props} />
-  ),
-  React: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/react.svg" alt="React" {...props} />
-  ),
-  TypeScript: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/typescript.svg" alt="TypeScript" {...props} />
-  ),
-  AWS: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/aws-color.svg" alt="AWS" {...props} />
-  ),
-  PostgreSQL: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/postgresql.svg" alt="PostgreSQL" {...props} />
-  ),
-  Docker: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/docker.svg" alt="Docker" {...props} />
-  ),
-  NextJS: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/nextjs.svg" alt="Next.js" {...props} />
-  ),
-  Tailwind: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/tailwind.svg" alt="Tailwind CSS" {...props} />
-  ),
-  Mapbox: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/mapbox.svg" alt="Mapbox" {...props} />
-  ),
-  QGIS: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/qgis.svg" alt="QGIS" {...props} />
-  ),
-  Git: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/git.svg" alt="Git" {...props} />
-  ),
-  LangChain: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/langchain.svg" alt="LangChain" {...props} />
-  ),
-  LlamaIndex: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/llamaindex-color.svg" alt="LlamaIndex" {...props} />
-  ),
-  Claude: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/claude-color.svg" alt="Claude" {...props} />
-  ),
-  OpenAI: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/openai.svg" alt="OpenAI" {...props} />
-  ),
-  HuggingFace: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/huggingface.svg" alt="Hugging Face" {...props} />
-  ),
-  PyTorch: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/pytorch.svg" alt="PyTorch" {...props} />
-  ),
-  TensorFlow: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/tensorflow.svg" alt="TensorFlow" {...props} />
-  ),
-  DeepSeek: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/deepseek-color.svg" alt="DeepSeek" {...props} />
-  ),
-
-  DotNet: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/dotnet.svg" alt=".NET" {...props} />
-  ),
-  CSharp: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/csharp.svg" alt="C#" {...props} />
-  ),
-  PowerShell: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/powershell.svg" alt="PowerShell" {...props} />
-  ),
-  Azure: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/azure.svg" alt="Azure" {...props} />
-  ),
-  Vercel: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/Vercel_dark.svg" alt="Vercel" {...props} />
-  ),
-  Blazor: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img src="/images/blazor.svg" alt="Blazor" {...props} />
-  ),
-};
+  Python: createTechIcon("/images/python.svg", "Python"),
+  React: createTechIcon("/images/react.svg", "React"),
+  TypeScript: createTechIcon("/images/typescript.svg", "TypeScript"),
+  AWS: createTechIcon("/images/aws-color.svg", "AWS"),
+  PostgreSQL: createTechIcon("/images/postgresql.svg", "PostgreSQL"),
+  Docker: createTechIcon("/images/docker.svg", "Docker"),
+  NextJS: createTechIcon("/images/nextjs.svg", "Next.js"),
+  Tailwind: createTechIcon("/images/tailwind.svg", "Tailwind CSS"),
+  Mapbox: createTechIcon("/images/mapbox.svg", "Mapbox"),
+  QGIS: createTechIcon("/images/qgis.svg", "QGIS"),
+  Git: createTechIcon("/images/git.svg", "Git"),
+  LangChain: createTechIcon("/images/langchain.svg", "LangChain"),
+  LlamaIndex: createTechIcon("/images/llamaindex-color.svg", "LlamaIndex"),
+  Claude: createTechIcon("/images/claude-color.svg", "Claude"),
+  OpenAI: createTechIcon("/images/openai.svg", "OpenAI"),
+  HuggingFace: createTechIcon("/images/huggingface.svg", "Hugging Face"),
+  PyTorch: createTechIcon("/images/pytorch.svg", "PyTorch"),
+  TensorFlow: createTechIcon("/images/tensorflow.svg", "TensorFlow"),
+  DeepSeek: createTechIcon("/images/deepseek-color.svg", "DeepSeek"),
+  DotNet: createTechIcon("/images/dotnet.svg", ".NET"),
+  CSharp: createTechIcon("/images/csharp.svg", "C#"),
+  PowerShell: createTechIcon("/images/powershell.svg", "PowerShell"),
+  Azure: createTechIcon("/images/azure.svg", "Azure"),
+  Vercel: createTechIcon("/images/Vercel_dark.svg", "Vercel"),
+  Blazor: createTechIcon("/images/blazor.svg", "Blazor"),
+}

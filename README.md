@@ -8,7 +8,7 @@
   </p>
 
   <p align="center">
-    <img src="https://img.shields.io/badge/Next.js-15.2-black?style=flat-square&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js" alt="Next.js" />
     <img src="https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react" alt="React" />
     <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript" alt="TypeScript" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
@@ -26,11 +26,11 @@ The platform is engineered for performance, accessibility, and scalability, leve
 
 ## ✨ Key Features
 
-- **⚡ High Performance:** Built on **Next.js 15** with App Router for optimal rendering strategies (SSR/ISR).
-- **🎨 Modern UI/UX:** Styled with **Tailwind CSS v4** and **Radix UI** primitives for accessible, unstyled components.
+- **⚡ High Performance:** Built on **Next.js 16.3.3** with App Router, Server Components, Cache Components and Partial Prefetching.
+- **🎨 Distinctive UI/UX:** A territory-to-data visual language with Sora, Manrope, geospatial layers and a deferred Cobe globe.
 - **🌙 Dark Mode:** Fully supported theming via `next-themes`.
-- **📊 Data Visualization:** Interactive charts and visualizations using **Recharts** and **Cobe**.
-- **📝 Robust Forms:** Type-safe form handling with **React Hook Form** and **Zod** validation.
+- **📊 Data Visualization:** Geospatial experiences powered by **Cobe** and modern web tooling.
+- **📝 Robust Forms:** Accessible contact forms with client-side feedback, **Zod** validation and project/demo intent routing.
 - **✨ Animations:** Smooth transitions and micro-interactions powered by `tailwindcss-animate`.
 - **📱 Responsive:** Mobile-first design ensuring compatibility across all devices.
 
@@ -39,7 +39,7 @@ The platform is engineered for performance, accessibility, and scalability, leve
 ## 🛠️ Technology Stack
 
 ### Core
-- **Framework:** [Next.js 15](https://nextjs.org/)
+- **Framework:** [Next.js 16](https://nextjs.org/)
 - **Library:** [React 19](https://react.dev/)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 
@@ -47,10 +47,9 @@ The platform is engineered for performance, accessibility, and scalability, leve
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Components:** [Radix UI](https://www.radix-ui.com/), [shadcn/ui](https://ui.shadcn.com/)
 - **Icons:** [Lucide React](https://lucide.dev/)
-- **Animations:** [TailwindCSS Animate](https://github.com/jamiebuilds/tailwindcss-animate)
+- **Animations:** CSS microinteractions with reduced-motion support
 
 ### State & Logic
-- **Forms:** [React Hook Form](https://react-hook-form.com/)
 - **Validation:** [Zod](https://zod.dev/)
 - **Utilities:** [date-fns](https://date-fns.org/), [clsx](https://github.com/lukeed/clsx)
 
@@ -63,8 +62,8 @@ Follow these steps to set up the project locally.
 ### Prerequisites
 
 Ensure you have the following installed:
-- **Node.js** (v18 or higher recommended)
-- **npm** or **pnpm**
+- **Node.js** (v20.9 or higher)
+- **npm**
 
 ### Installation
 
@@ -87,6 +86,8 @@ Ensure you have the following installed:
 4. **Access the application**
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+The public site is available in Spanish, English and French at `/es`, `/en` and `/fr`. The root path redirects to `/es`.
+
 ---
 
 ## 📜 Scripts
@@ -97,19 +98,23 @@ Ensure you have the following installed:
 | `npm run build` | Compiles the application for production deployment. |
 | `npm run start` | Runs the built production application. |
 | `npm run lint` | Checks the codebase for linting errors. |
+| `npm run typecheck` | Runs TypeScript without emitting files. |
+| `npm run test:e2e` | Runs Playwright route, interaction and axe tests. |
+| `npm run review:visual` | Captures responsive visual evidence and performance metrics. |
+| `npm audit` | Checks dependency vulnerabilities. |
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-├── app/                # Next.js App Router pages and layouts
+├── app/                # Next.js App Router pages, localized routes and API handlers
+├── components/home/    # Server-rendered landing sections and interactive islands
 ├── components/         # Reusable UI components (atoms, molecules, organisms)
 ├── hooks/              # Custom React hooks
 ├── lib/                # Utility functions, constants, and configurations
 ├── public/             # Static assets (images, fonts, icons)
-├── styles/             # Global styles and CSS variables
-├── types/              # TypeScript type definitions
+├── docs/               # Current plan, skill catalog and performance reference
 └── ...config files
 ```
 

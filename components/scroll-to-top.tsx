@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { ArrowUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export default function ScrollToTop() {
+export default function ScrollToTop({ label = "Back to top" }: { label?: string }) {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export default function ScrollToTop() {
     <Button
       onClick={scrollToTop}
       size="icon"
-      className="fixed bottom-8 right-8 z-40 h-12 w-12 rounded-full bg-accent hover:bg-accent/90 shadow-lg transition-all duration-300 hover:scale-110"
-      aria-label="Volver arriba"
+      className="fixed bottom-8 right-8 z-40 h-12 w-12 rounded-full bg-accent shadow-lg transition-[background-color,transform] duration-300 hover:scale-105 hover:bg-accent/90"
+      aria-label={label}
     >
       <ArrowUp className="h-5 w-5" />
     </Button>
