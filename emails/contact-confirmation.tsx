@@ -15,22 +15,98 @@ import {
   Section,
   Text,
 } from "@react-email/components"
+import { contactEmail, siteUrl } from "@/lib/site"
+import { defaultEmailLogoUrl } from "./contact-submission"
+
+export type ContactConfirmationLocale = "es" | "en" | "fr"
+
+type ConfirmationCopy = {
+  subject: string
+  preview: string
+  badge: string
+  heading: string
+  greeting: (name: string) => string
+  received: string
+  addTitle: string
+  addCopy: string
+  visit: string
+  or: string
+  emailUs: string
+  footer: string
+}
+
+export const confirmationCopy: Record<ContactConfirmationLocale, ConfirmationCopy> = {
+  es: {
+    subject: "Confirmación: recibimos tu mensaje - GearsMap",
+    preview: "Confirmación: recibimos tu mensaje",
+    badge: "Confirmación",
+    heading: "Gracias por contactarnos",
+    greeting: (name) => `Hola ${name},`,
+    received:
+      "Hemos recibido tu mensaje correctamente. En breve te contactaremos para coordinar los próximos pasos y comenzar a trabajar.",
+    addTitle: "¿Necesitas agregar algo?",
+    addCopy: "Puedes responder a este correo o escribirnos directamente a",
+    visit: "Visitar sitio web",
+    or: "o",
+    emailUs: "escribirnos por correo",
+    footer:
+      "Este es un correo automático de confirmación. Si no realizaste esta solicitud, puedes ignorarlo.",
+  },
+  en: {
+    subject: "Confirmation: we received your message - GearsMap",
+    preview: "Confirmation: we received your message",
+    badge: "Confirmation",
+    heading: "Thank you for contacting us",
+    greeting: (name) => `Hi ${name},`,
+    received:
+      "We have received your message. We will contact you shortly to coordinate the next steps and get to work.",
+    addTitle: "Need to add something?",
+    addCopy: "You can reply to this email or write to us directly at",
+    visit: "Visit website",
+    or: "or",
+    emailUs: "email us",
+    footer:
+      "This is an automatic confirmation email. If you did not make this request, you can ignore it.",
+  },
+  fr: {
+    subject: "Confirmation : nous avons bien reçu votre message - GearsMap",
+    preview: "Confirmation : nous avons bien reçu votre message",
+    badge: "Confirmation",
+    heading: "Merci de nous avoir contactés",
+    greeting: (name) => `Bonjour ${name},`,
+    received:
+      "Nous avons bien reçu votre message. Nous vous contacterons très prochainement pour convenir des prochaines étapes et commencer à travailler.",
+    addTitle: "Vous souhaitez ajouter quelque chose ?",
+    addCopy: "Vous pouvez répondre à cet e-mail ou nous écrire directement à",
+    visit: "Visiter le site web",
+    or: "ou",
+    emailUs: "nous écrire par e-mail",
+    footer:
+      "Ceci est un e-mail de confirmation automatique. Si vous n’êtes pas à l’origine de cette demande, vous pouvez l’ignorer.",
+  },
+}
 
 export type ContactConfirmationEmailProps = {
   name: string
+  locale?: ContactConfirmationLocale
+  logoUrl?: string
 }
 
 export default function ContactConfirmationEmail({
   name,
+  locale = "es",
+  logoUrl = defaultEmailLogoUrl,
 }: ContactConfirmationEmailProps) {
-  const logoUrl = "https://www.gearsmap.com/images/logo/gears_map_hor.svg"
-  const contactHref = "mailto:gearsmap@gearsmap.com"
-  const websiteHref = "https://www.gearsmap.com"
+  const copy = confirmationCopy[locale]
+  const contactHref = `mailto:${contactEmail}`
+  const websiteHref = `${siteUrl}/${locale}`
+  // The zero-width space keeps mail clients from auto-linking the address a second time.
+  const displayEmail = contactEmail.replace("gearsmap@", "gearsm​ap@")
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
-      <Preview>Confirmación: recibimos tu mensaje</Preview>
+      <Preview>{copy.preview}</Preview>
       <Body style={body}>
         <Container style={container}>
           <Section style={header}>
@@ -39,52 +115,46 @@ export default function ContactConfirmationEmail({
                 <Img
                   src={logoUrl}
                   width={200}
-                  height={40}
+                  height={37}
                   alt="GearsMap"
                   style={logo}
                 />
               </Column>
               <Column style={headerRight}>
-                <Text style={headerBadge}>Confirmación</Text>
+                <Text style={headerBadge}>{copy.badge}</Text>
               </Column>
             </Row>
           </Section>
 
           <Section style={hero}>
-            <Heading style={h1}>Gracias por contactarnos</Heading>
-            <Text style={subhead}>Hola {name},</Text>
-            <Text style={copy}>
-              Hemos recibido tu mensaje correctamente. En breve te contactaremos para
-              coordinar los próximos pasos y comenzar a trabajar.
-            </Text>
+            <Heading style={h1}>{copy.heading}</Heading>
+            <Text style={subhead}>{copy.greeting(name)}</Text>
+            <Text style={copyText}>{copy.received}</Text>
           </Section>
 
           <Section style={card}>
             <Section style={cardTopAccent} />
-            <Text style={sectionTitle}>¿Necesitas agregar algo?</Text>
-            <Text style={copy}>
-              Puedes responder a este correo o escribirnos directamente a{" "}
+            <Text style={sectionTitle}>{copy.addTitle}</Text>
+            <Text style={copyText}>
+              {copy.addCopy}{" "}
               <Link href={contactHref} style={link}>
-                gearsm​ap@gearsmap.com
+                {displayEmail}
               </Link>.
             </Text>
 
             <Section style={actions}>
               <Button href={websiteHref} style={button}>
-                Visitar sitio web
+                {copy.visit}
               </Button>
               <Text style={actionsHint}>
-                o <Link href={contactHref} style={link}>escribirnos por correo</Link>
+                {copy.or} <Link href={contactHref} style={link}>{copy.emailUs}</Link>
               </Text>
             </Section>
           </Section>
 
           <Hr style={hr} />
 
-          <Text style={footer}>
-            Este es un correo automático de confirmación. Si no realizaste esta solicitud,
-            puedes ignorarlo.
-          </Text>
+          <Text style={footer}>{copy.footer}</Text>
         </Container>
       </Body>
     </Html>
@@ -150,7 +220,7 @@ const subhead: React.CSSProperties = {
   lineHeight: "20px",
 }
 
-const copy: React.CSSProperties = {
+const copyText: React.CSSProperties = {
   color: "#9ca3af",
   fontSize: 13,
   margin: "0 0 10px",
