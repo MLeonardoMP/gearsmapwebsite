@@ -36,7 +36,7 @@ export const translations = {
       title: "GearsMap",
       kicker: "Software a la medida, datos e IA",
       headline: "Software de alta calidad, del dato a la decisión.",
-      lede: "GearsMap S.A.S. es una empresa de software con sede en Bogotá. Construimos plataformas a la medida con interfaces claras y backend, frontend y bases de datos rápidos, guiados por expertos temáticos. Nuestro primer gran contrato, con KfW y MinMinas: los sistemas climáticos MRV y M&E del sector minero-energético.",
+      lede: "GearsMap S.A.S. es una empresa de software con sede en Bogotá. Construimos plataformas a la medida con interfaces claras y backend, frontend y bases de datos rápidos, guiados por expertos temáticos.",
       cta_primary: "Conversemos sobre tu proyecto",
       cta_secondary: "Solicitar una demo",
       product: {
@@ -233,7 +233,7 @@ export const translations = {
       title: "GearsMap",
       kicker: "Custom software, data and AI",
       headline: "High-quality software, from data to decisions.",
-      lede: "GearsMap S.A.S. is a software company based in Bogotá. We build custom platforms with clear interfaces and fast backends, frontends and databases, guided by subject-matter experts. Our first major contract, with KfW and MinMinas: the climate MRV and M&E systems for the mining and energy sector.",
+      lede: "GearsMap S.A.S. is a software company based in Bogotá. We build custom platforms with clear interfaces and fast backends, frontends and databases, guided by subject-matter experts.",
       cta_primary: "Talk about your project",
       cta_secondary: "Request a demo",
       product: {
@@ -430,7 +430,7 @@ export const translations = {
       title: "GearsMap",
       kicker: "Logiciels sur mesure, données et IA",
       headline: "Des logiciels de haute qualité, des données aux décisions.",
-      lede: "GearsMap S.A.S. est une entreprise de logiciels basée à Bogotá. Nous construisons des plateformes sur mesure aux interfaces claires, avec un backend, un frontend et des bases de données rapides, guidés par des experts métier. Notre premier grand contrat, avec la KfW et MinMinas : les systèmes climatiques MRV et S&E du secteur minier et énergétique.",
+      lede: "GearsMap S.A.S. est une entreprise de logiciels basée à Bogotá. Nous construisons des plateformes sur mesure aux interfaces claires, avec un backend, un frontend et des bases de données rapides, guidés par des experts métier.",
       cta_primary: "Parlons de votre projet",
       cta_secondary: "Demander une démo",
       product: {
