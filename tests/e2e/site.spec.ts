@@ -7,7 +7,7 @@ test.describe("GearsMap public site", () => {
     await page.goto("/")
 
     await expect(page).toHaveURL(/\/es$/)
-    await expect(page.locator("h1")).toContainText("GearsMap")
+    await expect(page.locator("h1")).toContainText("Del territorio al dato")
   })
 
   test("renders localized content and metadata", async ({ page }) => {
@@ -50,7 +50,7 @@ test.describe("GearsMap public site", () => {
     await page.goto("/es#contacto")
 
     await page.getByRole("button", { name: "Idioma" }).click()
-    await page.getByRole("menuitem", { name: /English/ }).click()
+    await page.getByRole("link", { name: /English/ }).click()
 
     await expect(page).toHaveURL(/\/en#contacto$/)
     await expect(page.locator("html")).toHaveAttribute("lang", "en")
@@ -62,9 +62,41 @@ test.describe("GearsMap public site", () => {
     await instant(page, async () => {
       await page.getByRole("link", { name: "Política de Privacidad" }).click()
       await expect(page).toHaveURL(/\/es\/privacidad$/)
+      await expect(page.getByRole("heading", { level: 1, name: "Política de Privacidad", exact: true })).toBeVisible()
     })
+  })
 
-    await expect(page.getByRole("heading", { level: 1, name: "Política de Privacidad", exact: true })).toBeVisible()
+  test("opens the climate hub instantly from the header", async ({ page }) => {
+    await page.goto("/es")
+
+    await instant(page, async () => {
+      await page.locator("header").getByRole("link", { name: "MRV / M&E", exact: true }).click()
+      await expect(page).toHaveURL(/\/es\/sistemas-climaticos$/)
+      await expect(page.getByRole("heading", { level: 1, name: /información climática/ })).toBeVisible()
+    })
+  })
+
+  test("collapses the header below the desktop breakpoint", async ({ page }) => {
+    const desktopNav = page.locator('[data-nav="desktop"]')
+    const menuButton = page.locator('button[aria-controls="mobile-navigation"]')
+
+    await page.setViewportSize({ width: 768, height: 1024 })
+    await page.goto("/es")
+    await expect(desktopNav).toBeHidden()
+    await expect(menuButton).toBeVisible()
+    await expect(page.locator("header").getByRole("link", { name: "GearsMap" })).toBeVisible()
+
+    await page.setViewportSize({ width: 1024, height: 768 })
+    await expect(desktopNav).toBeVisible()
+    await expect(menuButton).toBeHidden()
+
+    const links = desktopNav.locator(":scope > a")
+    await expect(links).toHaveCount(5)
+    for (const link of await links.all()) {
+      const box = await link.boundingBox()
+      expect(box?.height ?? Infinity).toBeLessThanOrEqual(28)
+    }
+    await expect(desktopNav.getByRole("link", { name: "Conversemos", exact: true })).toBeVisible()
   })
 
   test("supports the mobile navigation contract", async ({ page }) => {
@@ -96,11 +128,13 @@ test.describe("GearsMap public site", () => {
     await page.goto("/es")
 
     await expect(page.locator("html")).toHaveAttribute("data-scroll-behavior", "smooth")
-    const animationDuration = await page.locator(".hero-section__visual-ring--outer").evaluate((element) => (
-      Number.parseFloat(getComputedStyle(element).animationDuration)
+    const runningAnimationsAreInstant = await page.evaluate(() => (
+      document.getAnimations()
+        .filter((animation) => animation.playState === "running")
+        .every((animation) => (animation.effect?.getComputedTiming().duration as number) <= 10)
     ))
 
-    expect(animationDuration).toBeLessThanOrEqual(0.01)
+    expect(runningAnimationsAreInstant).toBe(true)
   })
 
   test("exposes generated SEO files and validates the API boundary", async ({ request }) => {
@@ -137,7 +171,7 @@ test.describe("GearsMap public site", () => {
 
     await page.goto("/en/sistemas-climaticos/mrv")
     await expect(page.locator("html")).toHaveAttribute("lang", "en")
-    await expect(page.locator("h1")).toContainText("Monitoring, reporting and verification")
+    await expect(page.locator("h1")).toContainText(/monitoring, reporting and verification/i)
 
     const llms = await request.get("/llms.txt")
     const full = await request.get("/llms-full.txt")

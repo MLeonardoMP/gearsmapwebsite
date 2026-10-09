@@ -28,7 +28,7 @@ The project uses a custom context-based i18n system. **Do not use external i18n 
 - **Tailwind CSS 4:** Use modern Tailwind 4 features.
 - **Class Merging:** Always use the `cn` utility from `@/lib/utils.ts`.
 - **Icons:** Use `lucide-react` for general icons and `@icons-pack/react-simple-icons` for brand icons.
-- **Animations:** Use `framer-motion` and `tailwindcss-animate`.
+- **Animations:** Use CSS transitions/keyframes with reduced-motion guards and React `<ViewTransition>`; no animation libraries.
 - **Key Components:**
   - **Globe 3D:** Interactive globe in the hero section (uses `cobe`).
   - **Smooth Scroll:** Navigation links use smooth scroll to IDs.
@@ -39,7 +39,7 @@ The project uses a custom context-based i18n system. **Do not use external i18n 
 - **Database Access:** Use `@vercel/postgres` (see `app/api/contact/route.ts` for connection patterns).
 
 ### 4. Development Workflow
-- **Installation:** Always use `npm install --legacy-peer-deps` to avoid dependency conflicts with React 19.
+- **Installation:** `npm install` (no `--legacy-peer-deps`), then `npx next typegen` once per fresh checkout.
 - **Scripts:**
   - `npm run dev`: Start development server.
   - `npm run build`: Production build.

@@ -8,10 +8,10 @@
   </p>
 
   <p align="center">
-    <img src="https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js" alt="Next.js" />
-    <img src="https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react" alt="React" />
+    <img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/React-19.3-blue?style=flat-square&logo=react" alt="React" />
     <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-4.3-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
     <img src="https://img.shields.io/badge/License-Proprietary-red?style=flat-square" alt="License" />
   </p>
 </div>
@@ -26,12 +26,12 @@ The platform is engineered for performance, accessibility, and scalability, leve
 
 ## ✨ Key Features
 
-- **⚡ High Performance:** Built on **Next.js 16.3.3** with App Router, Server Components, Cache Components and Partial Prefetching.
+- **⚡ High Performance:** Built on **Next.js 16.4** with App Router, Server Components, Cache Components and Partial Prefetching.
 - **🎨 Distinctive UI/UX:** A territory-to-data visual language with Sora, Manrope, geospatial layers and a deferred Cobe globe.
-- **🌙 Dark Mode:** Fully supported theming via `next-themes`.
-- **📊 Data Visualization:** Geospatial experiences powered by **Cobe** and modern web tooling.
-- **📝 Robust Forms:** Accessible contact forms with client-side feedback, **Zod** validation and project/demo intent routing.
-- **✨ Animations:** Smooth transitions and micro-interactions powered by `tailwindcss-animate`.
+- **🌙 Dark Mode:** Native theming: an inline script applies the saved theme before first paint (`lib/theme-script.ts`), and `lib/theme.ts` switches it with the View Transitions API.
+- **📊 Data Visualization:** A deferred **Cobe** globe, skipped on data-saver, low-memory and phone-sized devices.
+- **📝 Robust Forms:** Accessible contact form with **Zod** validation, project/demo intent routing, spam guards and a localized confirmation email.
+- **✨ Animations:** CSS micro-interactions and React 19.3 `<ViewTransition>` morphs, all with reduced-motion support.
 - **📱 Responsive:** Mobile-first design ensuring compatibility across all devices.
 
 ---
@@ -45,13 +45,15 @@ The platform is engineered for performance, accessibility, and scalability, leve
 
 ### Styling & UI
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Components:** [Radix UI](https://www.radix-ui.com/), [shadcn/ui](https://ui.shadcn.com/)
+- **Components:** [shadcn/ui](https://ui.shadcn.com/)-style primitives; native `popover` menus (no Radix dropdown or toast)
 - **Icons:** [Lucide React](https://lucide.dev/)
-- **Animations:** CSS microinteractions with reduced-motion support
+- **Animations:** CSS microinteractions and React `<ViewTransition>`, with reduced-motion support
+- **Globe:** [Cobe](https://cobe.vercel.app/)
 
 ### State & Logic
 - **Validation:** [Zod](https://zod.dev/)
-- **Utilities:** [date-fns](https://date-fns.org/), [clsx](https://github.com/lukeed/clsx)
+- **Utilities:** [clsx](https://github.com/lukeed/clsx), [tailwind-merge](https://github.com/dcastil/tailwind-merge)
+- **Data & email:** [@vercel/postgres](https://vercel.com/docs/storage/vercel-postgres) (Neon), [Nodemailer](https://nodemailer.com/), Microsoft Graph, [React Email](https://react.email/)
 
 ---
 
@@ -75,7 +77,8 @@ Ensure you have the following installed:
 
 2. **Install dependencies**
    ```bash
-   npm install --legacy-peer-deps
+   npm install
+   npx next typegen   # generates next-env.d.ts and route types for typecheck
    ```
 
 3. **Start the development server**
@@ -86,7 +89,9 @@ Ensure you have the following installed:
 4. **Access the application**
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The public site is available in Spanish, English and French at `/es`, `/en` and `/fr`. The root path redirects to `/es`.
+The public site is available in Spanish, English and French at `/es`, `/en` and `/fr`. The root path redirects to `/es`. Slugs are Spanish in every locale.
+
+The contact form needs a database and/or email provider; see the environment-variable table in [`CLAUDE.md`](CLAUDE.md). Without them the form still validates, and the API reports which delivery method is missing.
 
 ---
 
@@ -99,7 +104,7 @@ The public site is available in Spanish, English and French at `/es`, `/en` and 
 | `npm run start` | Runs the built production application. |
 | `npm run lint` | Checks the codebase for linting errors. |
 | `npm run typecheck` | Runs TypeScript without emitting files. |
-| `npm run test:e2e` | Runs Playwright route, interaction and axe tests. |
+| `npm run test:e2e` | Builds for production, serves it on port 3100 and runs the Playwright route, interaction and axe tests. |
 | `npm run review:visual` | Captures responsive visual evidence and performance metrics. |
 | `npm audit` | Checks dependency vulnerabilities. |
 
@@ -108,11 +113,13 @@ The public site is available in Spanish, English and French at `/es`, `/en` and 
 ## 📂 Project Structure
 
 ```text
-├── app/                # Next.js App Router pages, localized routes and API handlers
+├── app/[locale]/       # Root layout and localized routes (home, proyectos, servicios, sistemas-climaticos, legal)
+├── app/api/contact/    # Contact form API
 ├── components/home/    # Server-rendered landing sections and interactive islands
-├── components/         # Reusable UI components (atoms, molecules, organisms)
+├── components/         # Header, footer and other reusable UI components
+├── emails/             # React Email templates (admin notification, localized confirmation)
 ├── hooks/              # Custom React hooks
-├── lib/                # Utility functions, constants, and configurations
+├── lib/                # Content files (translations, project-content, team-content, services, climate), SEO and theme helpers
 ├── public/             # Static assets (images, fonts, icons)
 ├── docs/               # Current plan, skill catalog and performance reference
 └── ...config files
