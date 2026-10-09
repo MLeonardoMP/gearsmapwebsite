@@ -1,18 +1,16 @@
 import { climatePage } from "@/lib/climate"
-import { ogContentType, ogSize, renderOgCard } from "@/lib/og-card"
-import { isLocale } from "@/lib/translations"
+import { ogCardMetadata, ogLocale, renderOgCard, type OgRouteParams } from "@/lib/og-card"
 
-export const alt = "Sistemas climáticos MRV y M&E"
-export const size = ogSize
-export const contentType = ogContentType
+export function generateImageMetadata({ params }: { params: OgRouteParams }) {
+  return ogCardMetadata(climatePage(ogLocale(params.locale), "hub").title)
+}
 
 export default async function Image({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<OgRouteParams>
+  id: Promise<string | number>
 }) {
-  const { locale } = await params
-  const value = isLocale(locale) ? locale : "es"
-  const page = climatePage(value, "hub")
+  const page = climatePage(ogLocale((await params).locale), "hub")
   return renderOgCard(page.title, page.eyebrow)
 }

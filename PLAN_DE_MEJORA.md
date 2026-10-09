@@ -29,7 +29,7 @@ Completado:
 
 - [x] Next.js, `eslint-config-next` y `@next/playwright` en 16.3.3; React 19 compatible.
 - [x] Cache Components y Partial Prefetching habilitados en `next.config.mjs`.
-- [x] Fronteras `Suspense` para `params` localizados y shell reutilizable para evitar bloqueos de navegación.
+- [x] Contenido localizado en el HTML inicial (variante principal, sin fallbacks): las páginas leen el idioma con `getLocale()` (`next/root-params`, fijo por cada shell prerenderizado) en lugar de `await params`, y se eliminaron las fronteras `Suspense` + `InstantShell` del layout y de las páginas. `next build` marca `/es`, `/en`, `/fr` y sus rutas localizadas como estáticas (○). En `.next/server/app/{es,en,fr}{,/privacidad,/terminos,/sistemas-climaticos,/sistemas-climaticos/mrv,/sistemas-climaticos/monitoreo-y-evaluacion,/servicios/geovisores}.html` hay 0 segmentos `<div hidden id="S:` y `<h1` aparece antes de `<footer` (p. ej. `es.html` h1 23.053 < footer 83.016; `es/sistemas-climaticos/mrv.html` h1 19.865 < footer 28.583). No fue necesario el fallback A (`await params`) ni el B (`ensureStatic = 'shell'`).
 - [x] `instant()` cubierto por E2E para la navegación home → privacidad, con preservación de ancla al cambiar idioma.
 - [x] Contacto permanece dinámico: el formulario y `POST /api/contact` no participan en caché de contenido.
 - [x] Dependencias auditadas: `npm audit` sin vulnerabilidades conocidas.
@@ -66,4 +66,4 @@ Flujo vigente:
 
 ## Reversión segura
 
-Si la navegación instantánea genera una regresión en preview, desactivar temporalmente `cacheComponents` y `partialPrefetching` en `next.config.mjs`, conservar las fronteras `Suspense` y repetir lint, build y E2E. No eliminar el modelo tipado ni el contrato `intent`.
+Si la navegación instantánea genera una regresión en preview, desactivar temporalmente `cacheComponents` y `partialPrefetching` en `next.config.mjs` (las páginas siguen leyendo el idioma con `getLocale()`, sin fronteras `Suspense`) y repetir lint, build y E2E. No eliminar el modelo tipado ni el contrato `intent`.

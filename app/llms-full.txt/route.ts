@@ -1,4 +1,4 @@
-import { buildLlmsFullTxt } from "@/lib/climate"
+import { buildLlmsFullTxt } from "@/lib/llms"
 
 export function GET() {
   return new Response(buildLlmsFullTxt(), {

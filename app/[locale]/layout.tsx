@@ -1,17 +1,15 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Suspense } from "react"
+import type { Metadata, Viewport } from "next"
 import { Manrope, Sora } from "next/font/google"
 import "../globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { InstantShell } from "@/components/instant-shell"
 import ScrollToTop from "@/components/scroll-to-top"
 import { SkipLink } from "@/components/skip-link"
+import { getLocale } from "@/lib/i18n"
+import { openGraphLocale, siteName, siteUrl } from "@/lib/site"
+import { themeScript } from "@/lib/theme-script"
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/translations"
-import { siteName, siteUrl } from "@/lib/site"
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -25,6 +23,20 @@ const sora = Sora({
   variable: "--font-sora",
 })
 
+const skipLabels: Record<Locale, string> = {
+  es: "Saltar al contenido",
+  en: "Skip to content",
+  fr: "Aller au contenu",
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f2f8f8" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1720" },
+  ],
+  colorScheme: "dark light",
+}
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
@@ -35,7 +47,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const value: Locale = isLocale(locale) ? locale : "es"
+  if (!isLocale(locale)) return { robots: { index: false, follow: false } }
 
   return {
     metadataBase: new URL(siteUrl),
@@ -62,7 +74,7 @@ export async function generateMetadata({
     openGraph: {
       siteName,
       type: "website",
-      locale: value === "es" ? "es_CO" : value === "fr" ? "fr_FR" : "en_US",
+      locale: openGraphLocale(locale),
     },
     twitter: {
       card: "summary_large_image",
@@ -72,29 +84,28 @@ export async function generateMetadata({
 
 export default async function LocaleLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode
-  params: Promise<{ locale: string }>
 }>) {
-  const { locale } = await params
-  const value: Locale = isLocale(locale) ? locale : "es"
-  const t = getDictionary(value)
-  const skipLabel = value === "es" ? "Saltar al contenido" : value === "fr" ? "Aller au contenu" : "Skip to content"
+  const locale = await getLocale()
+  const t = getDictionary(locale)
 
   return (
-    <html lang={value} data-scroll-behavior="smooth" className={`${manrope.variable} ${sora.variable} antialiased`} suppressHydrationWarning>
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      className={`${manrope.variable} ${sora.variable} antialiased dark`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-screen bg-background font-sans antialiased selection:bg-accent/30 selection:text-accent-foreground">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <SkipLink label={skipLabel} />
-          <Header locale={value} nav={t.nav} common={t.common} />
-          <main id="main-content">
-            <Suspense fallback={<InstantShell />}>{children}</Suspense>
-          </main>
-          <Footer locale={value} t={t} />
-          <ScrollToTop label={t.common.backToTop} />
-          <Toaster />
-        </ThemeProvider>
+        <SkipLink label={skipLabels[locale]} />
+        <Header locale={locale} nav={t.nav} common={t.common} />
+        <main id="main-content">{children}</main>
+        <Footer locale={locale} t={t} />
+        <ScrollToTop label={t.common.backToTop} />
       </body>
     </html>
   )

@@ -1,12 +1,17 @@
 import type { Metadata } from "next"
-import { Suspense } from "react"
-import { notFound } from "next/navigation"
 import { HomePage } from "@/components/home/home-page"
-import { InstantShell } from "@/components/instant-shell"
 import { JsonLd } from "@/components/seo/json-ld"
-import { pageMetadata, organizationNode, serviceNode, structuredData, webPageNode, websiteNode } from "@/lib/seo"
+import { getLocale } from "@/lib/i18n"
+import { projectListNode } from "@/lib/project-schema"
+import {
+  offerCatalogNode,
+  organizationNode,
+  pageMetadata,
+  structuredData,
+  webPageNode,
+  websiteNode,
+} from "@/lib/seo"
 import { personNodes } from "@/lib/team-schema"
-import { absoluteUrl, siteUrl } from "@/lib/site"
 import { getDictionary, isLocale } from "@/lib/translations"
 
 export async function generateMetadata({
@@ -14,69 +19,38 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
-  const { locale: value } = await params
-  if (!isLocale(value)) return {}
+  const { locale } = await params
+  if (!isLocale(locale)) return {}
 
-  const t = getDictionary(value)
+  const t = getDictionary(locale)
 
   return pageMetadata({
-    locale: value,
+    locale,
     title: t.seo.title,
     description: t.seo.description,
-    keywords: [...t.seo.keywords],
   })
 }
 
-async function LocalizedHomeContent({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: value } = await params
-  if (!isLocale(value)) notFound()
-
-  const t = getDictionary(value)
-  const services = Object.values(t.portfolio.services)
+export default async function LocalizedHomePage() {
+  const locale = await getLocale()
+  const t = getDictionary(locale)
   const data = structuredData([
-    organizationNode(),
-    websiteNode(value),
-    ...personNodes(value),
+    organizationNode(locale),
+    websiteNode(locale),
     webPageNode({
-      locale: value,
+      locale,
       title: t.seo.title,
       description: t.seo.description,
     }),
-    {
-      "@type": "ItemList",
-      name: t.portfolio.header,
-      itemListElement: services.map((service, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: service.title,
-        description: service.desc,
-        url: absoluteUrl(`/${value}#portafolio`),
-      })),
-    },
-    serviceNode({
-      name: t.seo.title,
-      description: t.seo.description,
-      serviceType: "Geospatial software",
-      url: `${siteUrl}/${value}`,
-    }),
+    offerCatalogNode(locale),
+    projectListNode(locale),
+    ...personNodes(locale),
   ])
 
   return (
     <>
       <JsonLd data={data} />
-      <HomePage t={t} locale={value} />
+      <HomePage t={t} locale={locale} />
     </>
-  )
-}
-
-export default function LocalizedHomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
-  return (
-    <Suspense fallback={<InstantShell />}>
-      <LocalizedHomeContent params={params} />
-    </Suspense>
   )
 }

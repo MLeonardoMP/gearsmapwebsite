@@ -9,7 +9,6 @@ const sora = Sora({ subsets: ["latin"], display: "swap", variable: "--font-sora"
 export const metadata: Metadata = {
   title: "Página no encontrada | GearsMap",
   description: "La página solicitada no existe en GearsMap.",
-  robots: { index: false, follow: false },
 }
 
 export default function GlobalNotFound() {

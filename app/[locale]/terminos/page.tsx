@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
-import { Suspense } from "react"
-import { notFound } from "next/navigation"
-import { InstantShell } from "@/components/instant-shell"
 import TermsPage from "@/components/legal/terms-page"
+import { getLocale } from "@/lib/i18n"
 import { pageMetadata } from "@/lib/seo"
 import { isLocale, type Locale } from "@/lib/translations"
 
@@ -12,31 +10,24 @@ const titles: Record<Locale, string> = {
   fr: "Conditions Générales d'Utilisation",
 }
 
+const descriptions: Record<Locale, string> = {
+  es: "Términos de uso del sitio de GearsMap S.A.S., software geoespacial, geovisores e inteligencia artificial.",
+  en: "Terms of use for the GearsMap S.A.S. website, covering geospatial software, geoviewers, and artificial intelligence.",
+  fr: "Conditions d'utilisation du site de GearsMap S.A.S., logiciel géospatial, géovisionneuses et intelligence artificielle.",
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale: value } = await params
-  if (!isLocale(value)) return {}
+  const { locale } = await params
+  if (!isLocale(locale)) return {}
   return pageMetadata({
-    locale: value,
+    locale,
     path: "/terminos",
-    title: titles[value],
-    description: value === "es"
-      ? "Términos de uso del sitio de GearsMap S.A.S., software geoespacial, geovisores e inteligencia artificial."
-      : value === "fr"
-        ? "Conditions d'utilisation du site de GearsMap S.A.S., logiciel géospatial, géovisionneuses et intelligence artificielle."
-        : "Terms of use for the GearsMap S.A.S. website, covering geospatial software, geoviewers, and artificial intelligence.",
+    title: titles[locale],
+    description: descriptions[locale],
   })
 }
 
-async function LocalizedTermsContent({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: value } = await params
-  if (!isLocale(value)) notFound()
-  return <TermsPage locale={value} />
-}
-
-export default function LocalizedTermsPage({ params }: { params: Promise<{ locale: string }> }) {
-  return (
-    <Suspense fallback={<InstantShell />}>
-      <LocalizedTermsContent params={params} />
-    </Suspense>
-  )
+export default async function LocalizedTermsPage() {
+  const locale = await getLocale()
+  return <TermsPage locale={locale} />
 }

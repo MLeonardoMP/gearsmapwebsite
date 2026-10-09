@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { ClimateDocument } from "@/components/climate/climate-document"
-import { climatePage } from "@/lib/climate"
+import { ServiceDocument } from "@/components/services/service-document"
 import { getLocale } from "@/lib/i18n"
 import { pageMetadata } from "@/lib/seo"
-import { climatePaths } from "@/lib/site"
+import { servicePage } from "@/lib/services"
+import { servicePaths } from "@/lib/site"
 import { isLocale } from "@/lib/translations"
 
 export async function generateMetadata({
@@ -13,16 +13,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   if (!isLocale(locale)) return {}
-  const page = climatePage(locale, "me")
+  const page = servicePage(locale, "geoviewers")
   return pageMetadata({
     locale,
-    path: climatePaths.me,
+    path: servicePaths.geoviewers,
     title: page.seoTitle,
     description: page.description,
   })
 }
 
-export default async function MonitoringEvaluationPage() {
+export default async function GeoviewersPage() {
   const locale = await getLocale()
-  return <ClimateDocument locale={locale} page="me" />
+  return <ServiceDocument locale={locale} page="geoviewers" />
 }
