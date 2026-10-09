@@ -243,14 +243,6 @@
 }
 
 @layer utilities {
-  /* Aligns the header with .site-container. It sits in the utilities layer because
-     header.tsx still sets container/px-* utilities on the nav. */
-  .site-header .site-header__nav {
-    width: min(100% - 2 * var(--gutter), var(--container));
-    max-width: none;
-    padding-inline: 0;
-  }
-
   .font-display {
     font-family: var(--font-sora), sans-serif;
   }
@@ -341,6 +333,7 @@
 
   .status-chip {
     display: inline-flex;
+    width: fit-content;
     align-items: center;
     gap: 0.35rem;
     padding: 0.25rem 0.6rem;
@@ -426,59 +419,6 @@
       var(--background);
   }
 
-  .instant-shell {
-    position: relative;
-    min-height: 100svh;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 70% 10%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 28rem),
-      var(--background);
-  }
-
-  .instant-shell__grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
-      linear-gradient(90deg, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
-    background-size: 4rem 4rem;
-    mask-image: linear-gradient(to bottom, black, transparent 75%);
-  }
-
-  .instant-shell__content {
-    position: absolute;
-    top: 34%;
-    left: max(var(--gutter), calc((100vw - var(--container)) / 2));
-    display: grid;
-    gap: 1rem;
-    width: min(28rem, calc(100vw - 2 * var(--gutter)));
-  }
-
-  .instant-shell__eyebrow {
-    color: var(--accent);
-    font: 600 var(--font-size-meta) / 1.4 var(--font-sans);
-    letter-spacing: var(--tracking-meta);
-  }
-
-  .instant-shell__line {
-    display: block;
-    width: 72%;
-    height: 0.7rem;
-    border-radius: 999px;
-    background: color-mix(in oklab, var(--foreground) 12%, transparent);
-  }
-
-  .instant-shell__line--wide {
-    width: 100%;
-    height: 4rem;
-    border-radius: var(--radius-control);
-    background: color-mix(in oklab, var(--foreground) 8%, transparent);
-  }
-
-  .instant-shell__line--short {
-    width: 45%;
-  }
-
   .site-header {
     border-bottom: 1px solid transparent;
     transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms ease;
@@ -496,7 +436,7 @@
   }
 
   .globe-fallback__logo {
-    width: 48%;
+    width: 34%;
     height: auto;
     opacity: 0.72;
     filter: drop-shadow(0 0 2rem color-mix(in oklab, var(--accent) 30%, transparent));
@@ -785,6 +725,12 @@
 
     .hero-section__globe-wrap {
       width: min(34rem, 100%);
+    }
+
+    /* Keep the static mark clear of the overlapping product card. */
+    .hero-section__globe-wrap .globe-fallback__logo {
+      width: 30%;
+      translate: 0 -20%;
     }
 
     .hero-product {

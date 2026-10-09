@@ -11,5 +11,6 @@ export default defineConfig([
     "test-results/**",
     "skills/**",
     "specs/**",
+    ".claude/**",
   ]),
 ])

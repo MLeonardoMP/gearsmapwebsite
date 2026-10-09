@@ -137,7 +137,7 @@ export function caseStudyGraph(locale: Locale, key: ProjectKey = "acggp") {
   const image = screenshotNode(project, copy.caption)
 
   return structuredData([
-    organizationNode(),
+    organizationNode(locale),
     websiteNode(locale),
     {
       ...webPageNode({ locale, path, title, description }),
@@ -177,7 +177,7 @@ export function projectsCollectionGraph(locale: Locale) {
   })
 
   return structuredData([
-    organizationNode(),
+    organizationNode(locale),
     websiteNode(locale),
     {
       ...webPageNode({ locale, path, title: ui.index.seoTitle, description: ui.index.description }),

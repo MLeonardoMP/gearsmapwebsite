@@ -227,7 +227,7 @@ export const projectCopy: Record<Locale, Record<ProjectKey, ProjectCopy>> = {
       summary: "Un géovisualiseur pour explorer des informations régionales avec des couches, des filtres et un contexte territorial.",
       topics: ["Géovisualiseur", "Indicateurs", "Territoire"],
       seoTitle: "Visualiseur PPR ACGGP du Programme de pédagogie régionale",
-      description: "Géovisualiseur en production pour le Programme de pédagogie régionale (PPR) de l'ACGGP : carte de la Colombie, sélecteur territorial et indicateurs du programme.",
+      description: "Géovisualiseur en production pour le Programme de pédagogie régionale (PPR) de l'ACGGP : carte de la Colombie, sélecteur territorial et indicateurs.",
       lede: "Un géovisualiseur public pour le Programme de pédagogie régionale (Programa de Pedagogía Regional, PPR) de l'ACGGP. Il réunit sur la carte de la Colombie la présence territoriale du programme et ses indicateurs, avec des couches, des filtres et un contexte territorial.",
       context: {
         heading: "Le programme",

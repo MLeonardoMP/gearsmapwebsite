@@ -38,7 +38,10 @@ test.describe("home design system", () => {
           await useTheme(page, theme)
           await page.setViewportSize(viewport)
           await page.goto(path)
-          await expect(page.locator("html")).toHaveClass(new RegExp(theme))
+          // The theme script only toggles `dark`; light is the absence of that class.
+          const html = page.locator("html")
+          if (theme === "dark") await expect(html).toHaveClass(/\bdark\b/)
+          else await expect(html).not.toHaveClass(/\bdark\b/)
 
           const results = await new AxeBuilder({ page }).analyze()
           expect(results.violations).toEqual([])

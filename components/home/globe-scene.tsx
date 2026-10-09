@@ -54,11 +54,11 @@ export function GlobeScene({ fallbackAlt }: { fallbackAlt: string }) {
         <div className="flex h-full w-full items-center justify-center">
           <div className="flex aspect-square w-[min(72vw,22rem)] items-center justify-center rounded-full border-2 border-accent/30 bg-accent/5 p-10 shadow-[0_0_80px_color-mix(in_oklab,var(--accent)_25%,transparent)] animate-glow-breathe">
             <Image
-              src="/images/gearsmap-logo.png"
+              src="/images/gearsmap-mark.png"
               alt={fallbackAlt}
-              width={240}
-              height={220}
-              className="h-auto w-full object-contain opacity-80"
+              width={314}
+              height={352}
+              className="h-auto w-3/4 object-contain opacity-80"
             />
           </div>
         </div>

@@ -4,7 +4,6 @@ export type Locale = "es" | "en" | "fr"
 export const translations = {
   ES: {
     common: {
-      learnMore: "Saber más",
       language: "Idioma",
       backToTop: "Volver arriba",
       current: "actual",
@@ -179,36 +178,6 @@ export const translations = {
         cloud: "Nube",
       },
     },
-    gallery: {
-      title: "Proyectos Destacados",
-      subtitle: "Soluciones construidas para convertir datos complejos en operaciones más claras.",
-      liveLabel: "Ver solución",
-      caseLabel: "Ver el trabajo",
-      illustrativeLabel: "Visualización ilustrativa del proyecto",
-      ctaTitle: "¿Tienes un territorio complejo por entender?",
-      ctaDescription: "Cuéntanos dónde están los datos difíciles. Diseñamos la forma de volverlos utilizables.",
-      ctaLabel: "Conversemos",
-      project1: { title: "Visor PPR ACGGP", desc: "Un geovisor para explorar información regional con capas, filtros y contexto territorial." },
-      project2: { title: "MRV · Monitoreo, Reporte y Verificación", desc: "Implementación operativa para organizar y visualizar indicadores y emisiones del sector minero-energético, con MinMinas y apoyo de KfW." },
-      project3: { title: "M&E · Monitoreo y Evaluación", desc: "Implementación operativa para leer amenaza, vulnerabilidad y riesgo climático, con MinMinas y apoyo de KfW." },
-      project4: { title: "Análisis agrícola", desc: "Monitoreo de cultivos satelital para detectar patrones y apoyar decisiones de campo." },
-      project5: { title: "Gestión de flotas", desc: "Concepto de operación en tiempo real para optimizar rutas logísticas y recursos." },
-    },
-    projects: {
-      status: {
-        inDevelopment: "En Desarrollo",
-        live: "En producción",
-        operational: "Implementación operativa",
-      },
-    },
-    climateTeaser: {
-      eyebrow: "Trabajo complementario",
-      title: "Información climática para el sector minero-energético",
-      text: "Además de geovisores y plataformas de datos, acompañamos la implementación operativa de los módulos de MRV y de monitoreo y evaluación del sistema de información climática, con MinMinas y apoyo de KfW.",
-      cta: "Ver el trabajo de MRV y M&E",
-      mrv: "Monitoreo, reporte y verificación de emisiones",
-      me: "Monitoreo y evaluación del riesgo climático",
-    },
     process: {
       title: "Cómo trabajamos",
       subtitle: "Un ciclo claro para pasar de una pregunta difícil a una herramienta que el equipo puede usar.",
@@ -216,19 +185,6 @@ export const translations = {
         scope: { number: "01", title: "Entender el territorio", text: "Aterrizamos la pregunta, las fuentes y las decisiones que necesitan mejor información." },
         model: { number: "02", title: "Dar forma al sistema", text: "Diseñamos el modelo de datos, la experiencia y los flujos que conectan a las personas." },
         deliver: { number: "03", title: "Ponerlo en movimiento", text: "Entregamos una plataforma útil, medible y preparada para evolucionar con la operación." },
-      },
-    },
-    team: {
-      title: "Nuestro Equipo",
-      subtitle: "Fundadores expertos apasionados por la innovación y los datos",
-      role1: "CEO & Fundador",
-      role2: "Lead Developer",
-      role3: "Data Scientist",
-      roles: {
-        ceo: "CEO - Estrategia y Visión",
-        cpo: "CPO - Producto e Innovación",
-        cdo: "CDO - Ciencia de Datos e IA",
-        cco: "CCO - Negocios y Crecimiento",
       },
     },
     footer: {
@@ -245,7 +201,6 @@ export const translations = {
   },
   EN: {
     common: {
-      learnMore: "Learn more",
       language: "Language",
       backToTop: "Back to top",
       current: "current",
@@ -420,49 +375,6 @@ export const translations = {
         cloud: "Cloud",
       },
     },
-    gallery: {
-      title: "Featured Projects",
-      subtitle: "Solutions built to turn complex data into clearer operations.",
-      liveLabel: "View solution",
-      caseLabel: "View the work",
-      illustrativeLabel: "Illustrative visualization of the project",
-      ctaTitle: "Do you have complex territory to understand?",
-      ctaDescription: "Tell us where the difficult data is. We design a way to make it useful.",
-      ctaLabel: "Talk to us",
-      project1: { title: "PPR ACGGP Viewer", desc: "A geoviewer for exploring regional information with layers, filters, and territorial context." },
-      project2: { title: "MRV · Monitoring, Reporting and Verification", desc: "Operational implementation to organize and visualize indicators and emissions for the mining and energy sector, with MinMinas and KfW support." },
-      project3: { title: "M&E · Monitoring and Evaluation", desc: "Operational implementation to read climate hazard, vulnerability, and risk, with MinMinas and KfW support." },
-      project4: { title: "Agricultural analysis", desc: "Satellite crop monitoring to detect patterns and support field decisions." },
-      project5: { title: "Fleet management", desc: "A real-time operations concept for optimizing logistics routes and resources." },
-    },
-    team: {
-      title: "Our Team",
-      subtitle: "Founders and experts passionate about innovation and data",
-      role1: "CEO & Founder",
-      role2: "Lead Developer",
-      role3: "Data Scientist",
-      roles: {
-        ceo: "CEO - Strategy & Vision",
-        cpo: "CPO - Product & Innovation",
-        cdo: "CDO - Data Science & AI",
-        cco: "CCO - Business & Growth",
-      },
-    },
-    projects: {
-      status: {
-        inDevelopment: "In Development",
-        live: "In production",
-        operational: "Operational implementation",
-      },
-    },
-    climateTeaser: {
-      eyebrow: "Complementary work",
-      title: "Climate information for the mining and energy sector",
-      text: "Alongside geoviewers and data platforms, we supported the operational implementation of the MRV and monitoring-and-evaluation modules of the climate information system, with MinMinas and KfW support.",
-      cta: "View the MRV and M&E work",
-      mrv: "Monitoring, reporting and verification of emissions",
-      me: "Monitoring and evaluation of climate risk",
-    },
     process: {
       title: "How we work",
       subtitle: "A clear cycle from a difficult question to a tool your team can use.",
@@ -486,7 +398,6 @@ export const translations = {
   },
   FR: {
     common: {
-      learnMore: "En savoir plus",
       language: "Langue",
       backToTop: "Retour en haut",
       current: "actuel",
@@ -660,49 +571,6 @@ export const translations = {
         web: "Web",
         cloud: "Cloud",
       },
-    },
-    gallery: {
-      title: "Projets en vedette",
-      subtitle: "Des solutions conçues pour transformer des données complexes en opérations plus claires.",
-      liveLabel: "Voir la solution",
-      caseLabel: "Voir le travail",
-      illustrativeLabel: "Visualisation illustrative du projet",
-      ctaTitle: "Un territoire complexe à comprendre ?",
-      ctaDescription: "Dites-nous où se trouvent les données difficiles. Nous concevons une façon de les rendre utiles.",
-      ctaLabel: "Parlons-en",
-      project1: { title: "Visualiseur PPR ACGGP", desc: "Un géovisualiseur pour explorer des informations régionales avec des couches, des filtres et un contexte territorial." },
-      project2: { title: "MRV · Suivi, notification et vérification", desc: "Mise en œuvre opérationnelle pour organiser et visualiser les indicateurs et les émissions du secteur minier et énergétique, avec MinMinas et le soutien de KfW." },
-      project3: { title: "M&E · Suivi et évaluation", desc: "Mise en œuvre opérationnelle pour lire l'aléa, la vulnérabilité et le risque climatique, avec MinMinas et le soutien de KfW." },
-      project4: { title: "Analyse agricole", desc: "Suivi des cultures par satellite pour détecter des tendances et appuyer les décisions de terrain." },
-      project5: { title: "Gestion de flotte", desc: "Un concept opérationnel en temps réel pour optimiser les itinéraires logistiques et les ressources." },
-    },
-    team: {
-      title: "Notre équipe",
-      subtitle: "Fondateurs et experts passionnés par l'innovation et les données",
-      role1: "PDG et fondateur",
-      role2: "Développeur principal",
-      role3: "Data Scientist",
-      roles: {
-        ceo: "CEO - Stratégie et Vision",
-        cpo: "CPO - Produit et Innovation",
-        cdo: "CDO - Science des données et IA",
-        cco: "CCO - Commerce et Croissance",
-      },
-    },
-    projects: {
-      status: {
-        inDevelopment: "En développement",
-        live: "En production",
-        operational: "Mise en œuvre opérationnelle",
-      },
-    },
-    climateTeaser: {
-      eyebrow: "Travail complémentaire",
-      title: "Information climatique pour le secteur minier et énergétique",
-      text: "En plus des géovisionneuses et des plateformes de données, nous avons accompagné la mise en œuvre opérationnelle des modules MRV et de suivi-évaluation du système d'information climatique, avec MinMinas et le soutien de KfW.",
-      cta: "Voir le travail MRV et S&E",
-      mrv: "Suivi, notification et vérification des émissions",
-      me: "Suivi et évaluation du risque climatique",
     },
     process: {
       title: "Notre méthode",

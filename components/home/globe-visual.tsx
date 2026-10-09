@@ -7,7 +7,7 @@ import Image from "next/image"
 function GlobeFallback({ preload = false }: { preload?: boolean }) {
   return (
     <div className="globe-fallback" aria-hidden="true">
-      <Image src="/images/gearsmap-logo.png" alt="" width={240} height={220} preload={preload} className="globe-fallback__logo" />
+      <Image src="/images/gearsmap-mark.png" alt="" width={314} height={352} preload={preload} className="globe-fallback__logo" />
     </div>
   )
 }

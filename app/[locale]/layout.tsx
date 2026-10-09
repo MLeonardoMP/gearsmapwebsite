@@ -6,9 +6,9 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import ScrollToTop from "@/components/scroll-to-top"
 import { SkipLink } from "@/components/skip-link"
+import { ThemeScript } from "@/components/theme-script"
 import { getLocale } from "@/lib/i18n"
 import { openGraphLocale, siteName, siteUrl } from "@/lib/site"
-import { themeScript } from "@/lib/theme-script"
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/translations"
 
 const manrope = Manrope({
@@ -98,7 +98,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <ThemeScript />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased selection:bg-accent/30 selection:text-accent-foreground">
         <SkipLink label={skipLabels[locale]} />
