@@ -124,8 +124,8 @@ pnpm lint
 
 ## Notas Técnicas
 
-- Se usa Next.js 15.2.4 con App Router
-- React 19 (con warning menor de vaul sobre peer dependencies)
+- Se usa Next.js 16 con App Router y rutas localizadas `/es`, `/en` y `/fr`
+- React 19 con validación estricta de TypeScript
 - Tailwind CSS v4 con configuración inline
 - Globe 3D usando cobe
 - Todos los componentes son responsivos

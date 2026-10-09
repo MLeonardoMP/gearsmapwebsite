@@ -1,0 +1,184 @@
+COMPREHENSIVE CLAUDE CODE COMMUNITY RESOURCES CATALOG
+======================================================
+
+FINAL INVENTORY SUMMARY
+
+SLASH COMMANDS (23 Total)
+- Location: ~/.claude/commands/ or ./.claude/commands/
+- Code Quality: /clean, /commit, /husky, /pr-review, /testing_plan_integration
+- Git: /create-pr, /create-pull-request, /update-branch-name, /create-worktrees, /fix-github-issue
+- Docs: /add-to-changelog, /release, /update-docs, /initref
+- Planning: /create-jtbd, /create-prd, /create-prp, /todo, /act
+- Tools: /context-prime, /optimize, /load-llms-txt
+
+SUBAGENTS (127+ Total)
+Repository: https://github.com/VoltAgent/awesome-claude-code-subagents
+Installation: claude plugin install voltagent-[category]
+
+10 Categories:
+1. Core Development (10 agents) - voltagent-core-dev
+   - frontend-developer, nextjs-developer, react-specialist, typescript-pro, ui-designer
+   
+2. Language Specialists (29 agents) - voltagent-lang
+   - nextjs-developer, react-specialist, typescript-pro, vue-expert, angular-architect
+   
+3. Quality & Security (14 agents) - voltagent-qa-sec
+   - code-reviewer, test-automator, qa-expert, accessibility-tester, performance-engineer
+   
+4. Infrastructure (16 agents) - voltagent-infra
+   - devops-engineer, deployment-engineer, docker-expert, terraform-engineer
+   
+5. Developer Experience (13 agents) - voltagent-dev-exp
+   - git-workflow-manager, refactoring-specialist, documentation-engineer
+   
+6. Data & AI (12 agents) - voltagent-data-ai
+   - database-optimizer, postgres-pro, llm-architect, prompt-engineer
+   
+7. Specialized Domains (12 agents) - voltagent-domains
+   - api-documenter, seo-specialist, payment-integration
+   
+8. Business & Product (11 agents) - voltagent-biz
+   - product-manager, project-manager, ux-researcher
+   
+9. Meta & Orchestration (11 agents) - voltagent-meta
+   - agent-installer, agent-organizer, workflow-orchestrator
+   
+10. Research & Analysis (7 agents) - voltagent-research
+    - research-analyst, search-specialist, trend-analyst
+
+HOOKS (14 Total)
+Location: ~/.claude/hooks/ or ./.claude/hooks/
+Repository: https://github.com/[author]/[hook-name]
+
+Key Hooks:
+- TypeScript Quality Hooks (type safety)
+- TDD Guard (RED-GREEN-REFACTOR enforcement)
+- fcakyon Collection (comprehensive code quality)
+- parry (prompt injection scanner - EARLY STAGE)
+- CC Notify (notifications)
+
+MCP SERVERS (3+ Total)
+Location: ~/.claude/mcp.json or Claude settings
+
+- VoiceMode MCP (voice interaction)
+- MCP Engine (project scaffolding)
+- stt-mcp-server-linux (speech-to-text)
+
+TOOLING (5+ Total)
+- claude-code-statusline (Neovim, Zsh status)
+- claude-code-ide.el (Emacs integration)
+- claude-starter-kit (templates)
+- Rulesync (rule sync)
+- cc-tools (utility tools)
+
+================================================================================
+RECOMMENDED QUICK-START CONFIGURATIONS
+================================================================================
+
+FOR NEXT.JS/REACT DEVELOPMENT:
+claude plugin install voltagent-core-dev
+claude plugin install voltagent-lang
+claude plugin install voltagent-dev-exp
+claude plugin install voltagent-qa-sec
+
+Key Agents: frontend-developer, nextjs-developer, react-specialist, typescript-pro,
+ui-designer, git-workflow-manager, code-reviewer, test-automator, performance-engineer
+
+Slash Commands: /commit /create-pr /pr-review /clean /husky /testing_plan_integration /optimize
+
+Hooks: TypeScript Quality Hooks, TDD Guard, fcakyon Collection
+
+---
+
+FOR CODE QUALITY & TESTING:
+claude plugin install voltagent-qa-sec
+claude plugin install voltagent-dev-exp
+
+Key Agents: code-reviewer, test-automator, qa-expert, accessibility-tester,
+performance-engineer, refactoring-specialist
+
+Hooks: TypeScript Quality Hooks, TDD Guard, fcakyon Collection, parry
+
+---
+
+FOR GIT WORKFLOW:
+claude plugin install voltagent-dev-exp
+
+Slash Commands: /commit /create-pr /create-pull-request /update-branch-name
+/create-worktrees /update-docs /release
+
+---
+
+FOR PERFORMANCE OPTIMIZATION:
+claude plugin install voltagent-qa-sec
+claude plugin install voltagent-data-ai
+
+Key Agents: performance-engineer, database-optimizer, postgres-pro
+
+---
+
+FOR ACCESSIBILITY (A11Y):
+claude plugin install voltagent-qa-sec
+
+Key Agents: accessibility-tester, ui-designer, frontend-developer
+
+---
+
+FOR UI/UX & MINIMALIST DESIGN:
+claude plugin install voltagent-core-dev
+
+Key Agents: ui-designer, frontend-developer, react-specialist
+
+================================================================================
+INSTALLATION METHODS
+================================================================================
+
+METHOD 1 - INTERACTIVE (RECOMMENDED):
+git clone https://github.com/VoltAgent/awesome-claude-code-subagents.git
+cd awesome-claude-code-subagents
+./install-agents.sh
+
+METHOD 2 - INSTALL SPECIFIC PLUGIN:
+claude plugin install voltagent-core-dev
+
+METHOD 3 - STANDALONE INSTALLER:
+curl -sO https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/install-agents.sh
+chmod +x install-agents.sh
+./install-agents.sh
+
+METHOD 4 - MANUAL AGENT INSTALLATION:
+mkdir -p ~/.claude/agents
+git clone https://github.com/VoltAgent/awesome-claude-code-subagents.git
+cp awesome-claude-code-subagents/categories/01-core-development/frontend-developer.md ~/.claude/agents/
+
+METHOD 5 - SLASH COMMANDS:
+git clone https://github.com/hesreallyhim/awesome-claude-code.git
+cp -r awesome-claude-code/resources/slash-commands/* ~/.claude/commands/
+
+METHOD 6 - HOOKS:
+mkdir -p ~/.claude/hooks
+git clone https://github.com/bartolli/claude-code-typescript-hooks.git
+cp -r claude-code-typescript-hooks/* ~/.claude/hooks/
+
+================================================================================
+OFFICIAL RESOURCES
+================================================================================
+
+Repositories:
+- Awesome Claude Code: https://github.com/hesreallyhim/awesome-claude-code
+- Awesome Subagents: https://github.com/VoltAgent/awesome-claude-code-subagents
+- VoltAgent: https://github.com/VoltAgent/voltagent
+
+Documentation:
+- Claude Code: https://docs.anthropic.com/en/docs/claude-code
+- MCP Protocol: https://modelcontextprotocol.io/
+- MCP Spec: https://spec.modelcontextprotocol.io
+
+Community:
+- Discord: https://s.voltagent.dev/discord
+- GitHub Issues: Report bugs/features
+
+================================================================================
+TOTAL RESOURCE COUNT: 172+
+================================================================================
+
