@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
-import { useToast } from "@/hooks/use-toast"
 import {
   contactIntentEvent,
   contactIntentStorageKey,
   type ContactIntent,
 } from "@/components/home/contact-cta"
-import type { Dictionary } from "@/lib/translations"
+import { cn } from "@/lib/utils"
+import type { Dictionary, Locale } from "@/lib/translations"
 
 export { ContactCta, type ContactIntent } from "@/components/home/contact-cta"
 
@@ -28,15 +28,19 @@ const initialFormData: FormData = {
 
 type ContactIntentEvent = CustomEvent<ContactIntent>
 
-export function ContactForm({ t }: { t: ContactCopy }) {
+export function ContactForm({ t, locale }: { t: ContactCopy; locale: Locale }) {
   const [formData, setFormData] = useState<FormData>(initialFormData)
   const [errors, setErrors] = useState<FormErrors>({})
   const [formError, setFormError] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSent, setIsSent] = useState(false)
+  const [honeypot, setHoneypot] = useState("")
   const formRef = useRef<HTMLFormElement>(null)
-  const { toast } = useToast()
+  const startedAtRef = useRef(0)
 
   useEffect(() => {
+    startedAtRef.current = Date.now()
+
     const handleIntent = (event: Event) => {
       const intentEvent = event as ContactIntentEvent
       try {
@@ -104,6 +108,7 @@ export function ContactForm({ t }: { t: ContactCopy }) {
     setFormData((current) => ({ ...current, [name]: value } as FormData))
     setErrors((current) => ({ ...current, [name]: undefined }))
     setFormError("")
+    setIsSent(false)
   }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -112,57 +117,57 @@ export function ContactForm({ t }: { t: ContactCopy }) {
 
     setIsSubmitting(true)
     setFormError("")
+    setIsSent(false)
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          company_website: honeypot,
+          locale,
+          startedAt: startedAtRef.current,
+        }),
       })
 
       const payload = await response.json().catch(() => null)
 
       if (!response.ok) {
-        const message = payload?.issues ? t.toast.validationError : t.toast.errorDescription
-        setFormError(message)
-        toast({
-          title: t.toast.error,
-          description: message,
-          variant: "destructive",
-        })
+        setFormError(payload?.issues ? t.toast.validationError : t.toast.errorDescription)
         return
       }
 
-      toast({
-        title: t.toast.success,
-        description: t.toast.successDescription,
-      })
       setFormData(initialFormData)
       setErrors({})
+      setIsSent(true)
     } catch {
       setFormError(t.toast.errorDescription)
-      toast({
-        title: t.toast.error,
-        description: t.toast.errorDescription,
-        variant: "destructive",
-      })
     } finally {
       setIsSubmitting(false)
     }
   }
 
   const fieldClassName = (field: FieldName) =>
-    `w-full rounded-lg border bg-background/50 px-4 py-3 text-foreground placeholder:text-muted-foreground transition-[border-color,box-shadow] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-accent ${
-      errors[field] ? "border-destructive" : "border-border"
-    }`
+    cn(
+      "w-full rounded-control border bg-background px-4 py-3 text-base text-foreground placeholder:text-muted-foreground transition-[border-color,box-shadow] focus:border-accent focus:outline-none focus:ring-3 focus:ring-accent/25",
+      errors[field] ? "border-destructive" : "border-border",
+    )
 
   const errorFor = (field: FieldName) =>
     errors[field] ? <p id={`${field}-error`} className="mt-2 text-sm text-destructive">{errors[field]}</p> : null
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-6" aria-busy={isSubmitting}>
+    <form ref={formRef} onSubmit={handleSubmit} noValidate className="relative space-y-6" aria-busy={isSubmitting}>
+      {isSent ? (
+        <p role="status" className="contact-form__status">
+          <strong>{t.toast.success}</strong>
+          <span>{t.toast.successDescription}</span>
+        </p>
+      ) : null}
+
       {formError ? (
-        <p role="alert" className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+        <p role="alert" className="rounded-control border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive">
           {formError}
         </p>
       ) : null}
@@ -178,11 +183,12 @@ export function ContactForm({ t }: { t: ContactCopy }) {
             return (
               <label
                 key={intent}
-                className={`group relative flex cursor-pointer gap-3 rounded-xl border p-4 transition-[border-color,background-color,box-shadow] focus-within:ring-2 focus-within:ring-ring ${
+                className={cn(
+                  "group relative flex cursor-pointer gap-3 rounded-card border p-4 transition-[border-color,background-color,box-shadow] focus-within:ring-2 focus-within:ring-ring",
                   isSelected
-                    ? "border-accent bg-accent/10 shadow-[0_0_0_1px_color-mix(in_oklch,var(--accent)_25%,transparent)]"
-                    : "border-border/70 bg-background/40 hover:border-accent/50 hover:bg-accent/5"
-                }`}
+                    ? "border-accent bg-accent/10 shadow-[0_0_0_1px_color-mix(in_oklab,var(--accent)_25%,transparent)]"
+                    : "border-border/70 bg-background/40 hover:border-accent/50 hover:bg-accent/5",
+                )}
               >
                 <input
                   id={`contact-intent-${intent}`}
@@ -284,15 +290,30 @@ export function ContactForm({ t }: { t: ContactCopy }) {
         {errorFor("message")}
       </div>
 
+      <div className="contact-form__hp" aria-hidden="true">
+        <label>
+          Website{" "}
+          <input
+            name="company_website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(event) => setHoneypot(event.target.value)}
+          />
+        </label>
+      </div>
+
       <p className="sr-only" aria-live="polite">
         {isSubmitting ? t.sending : ""}
       </p>
 
       <Button
         type="submit"
+        variant="accent"
         size="lg"
         disabled={isSubmitting}
-        className="h-12 w-full bg-accent text-lg font-medium text-accent-foreground shadow-lg shadow-accent/20 transition-[background-color,box-shadow,transform] hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-accent/40 disabled:cursor-not-allowed"
+        className="h-12 w-full text-base font-semibold disabled:cursor-not-allowed"
       >
         {isSubmitting ? t.sending : t.form.submit}
       </Button>
