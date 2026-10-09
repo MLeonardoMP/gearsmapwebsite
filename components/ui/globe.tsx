@@ -85,14 +85,24 @@ export default function Globe({
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     const isDocumentVisible = () => document.visibilityState === "visible"
 
-    const animate = () => {
+    // About 30 fps: skip rAF ticks closer than 33ms, and scale rotation by elapsed time.
+    let lastFrame: number | null = null
+    const animate = (now = performance.now()) => {
       animationId = null
       if (!isDocumentVisible() || !isInViewportRef.current) {
+        lastFrame = null
         return
       }
 
-      if (!reducedMotion) phiRef.current += 0.004
-      dragDelta.current *= 0.94
+      if (!reducedMotion && lastFrame !== null && now - lastFrame < 33) {
+        animationId = requestAnimationFrame(animate)
+        return
+      }
+
+      const elapsed = lastFrame === null ? 33 : Math.min(now - lastFrame, 100)
+      lastFrame = now
+      if (!reducedMotion) phiRef.current += 0.00024 * elapsed
+      dragDelta.current *= 0.88
       globe.update({
         phi: phiRef.current + dragDelta.current,
         width: Math.max(widthRef.current * 1.35, 1),
