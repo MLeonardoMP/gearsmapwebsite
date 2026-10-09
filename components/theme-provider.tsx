@@ -1,11 +1,16 @@
-'use client'
+import type { ReactNode } from "react"
+import { ThemeScript } from "@/components/theme-script"
 
-import * as React from 'react'
-import {
-  ThemeProvider as NextThemesProvider,
-  type ThemeProviderProps,
-} from 'next-themes'
-
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+/**
+ * Temporary bridge: next-themes is gone (WS5), so this only renders the inline
+ * theme script. Delete this file once app/[locale]/layout.tsx (WS4) renders
+ * <ThemeScript /> in <head> and stops rendering <ThemeProvider>.
+ */
+export function ThemeProvider({ children }: { children: ReactNode } & Record<string, unknown>) {
+  return (
+    <>
+      <ThemeScript />
+      {children}
+    </>
+  )
 }

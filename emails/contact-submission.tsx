@@ -15,28 +15,34 @@ import {
   Section,
   Text,
 } from "@react-email/components"
+import { siteUrl } from "@/lib/site"
+
+export const defaultEmailLogoUrl = `${siteUrl}/images/gearsmap-wordmark.png`
+
+const localeNames = { es: "Español", en: "English", fr: "Français" } as const
 
 export type ContactSubmissionEmailProps = {
-  logoUrl: string
+  logoUrl?: string
   name: string
   email: string
   phone?: string | null
   message: string
   intent: "project" | "demo"
+  locale?: keyof typeof localeNames
 }
 
 export default function ContactSubmissionEmail({
-  logoUrl: _logoUrl, // ignorado
+  logoUrl = defaultEmailLogoUrl,
   name,
   email,
   phone,
   message,
   intent,
+  locale = "es",
 }: ContactSubmissionEmailProps) {
   const safePhone = phone?.trim() ? phone.trim() : "No proporcionado"
   const intentLabel = intent === "demo" ? "Solicitud de demo" : "Conversación sobre proyecto"
   const replyToHref = `mailto:${email}`
-  const logoUrl = "https://www.gearsmap.com/images/logo/gears_map_hor.svg"
 
   return (
     <Html>
@@ -50,7 +56,7 @@ export default function ContactSubmissionEmail({
                 <Img
                   src={logoUrl}
                   width={200}
-                  height={40}
+                  height={37}
                   alt="GearsMap"
                   style={logo}
                 />
@@ -107,6 +113,14 @@ export default function ContactSubmissionEmail({
               </Column>
               <Column style={colValue}>
                 <Text style={value}>{intentLabel}</Text>
+              </Column>
+            </Row>
+            <Row style={row}>
+              <Column style={colLabel}>
+                <Text style={label}>Idioma</Text>
+              </Column>
+              <Column style={colValue}>
+                <Text style={value}>{localeNames[locale]}</Text>
               </Column>
             </Row>
 

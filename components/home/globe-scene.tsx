@@ -2,8 +2,8 @@
 
 import Image from "next/image"
 import { useMemo } from "react"
-import { useTheme } from "next-themes"
 import Globe, { type GlobeConfig } from "@/components/ui/globe"
+import { useResolvedTheme } from "@/lib/theme"
 
 const markers = [
   { location: [4.5709, -74.2973] as [number, number], size: 0.12 },
@@ -26,43 +26,38 @@ const arcs = [
 ]
 
 export function GlobeScene({ fallbackAlt }: { fallbackAlt: string }) {
-  const { resolvedTheme } = useTheme()
-  const config = useMemo<Partial<GlobeConfig>>(() => {
-    const isDark = resolvedTheme !== "light"
-
-    return {
-      phi: 0,
-      theta: 0.3,
-      devicePixelRatio: 1.5,
-      mapSamples: 10000,
-      diffuse: isDark ? 0.6 : 0.4,
-      mapBrightness: isDark ? 1.5 : 1.2,
-      mapBaseBrightness: isDark ? 0.05 : 0.08,
-      baseColor: isDark ? [0.12, 0.5, 0.56] : [0.18, 0.69, 0.76],
-      glowColor: isDark ? [0.08, 0.35, 0.4] : [0.18, 0.69, 0.76],
-      markerColor: isDark ? [0.3, 0.85, 0.95] : [0.1, 0.55, 0.65],
-      markerElevation: 0.02,
-      markers,
-      arcs,
-      arcColor: isDark ? [0.25, 0.75, 0.85] : [0.14, 0.6, 0.68],
-      arcWidth: 0.4,
-      arcHeight: 0.3,
-    }
-  }, [resolvedTheme])
+  const isDark = useResolvedTheme() === "dark"
+  const config = useMemo<Partial<GlobeConfig>>(() => ({
+    phi: 0,
+    theta: 0.3,
+    devicePixelRatio: 1.5,
+    mapSamples: 10000,
+    diffuse: isDark ? 0.6 : 1.1,
+    mapBrightness: isDark ? 1.5 : 1.2,
+    mapBaseBrightness: isDark ? 0.05 : 0,
+    baseColor: isDark ? [0.12, 0.5, 0.56] : [0.93, 0.97, 0.97],
+    glowColor: isDark ? [0.08, 0.35, 0.4] : [0.8, 0.93, 0.94],
+    markerColor: isDark ? [0.3, 0.85, 0.95] : [0.02, 0.42, 0.47],
+    markerElevation: 0.02,
+    markers,
+    arcs,
+    arcColor: isDark ? [0.25, 0.75, 0.85] : [0.05, 0.45, 0.5],
+    arcWidth: 0.4,
+    arcHeight: 0.3,
+  }), [isDark])
 
   return (
     <Globe
-      dark={resolvedTheme === "light" ? 0 : 1}
+      dark={isDark ? 1 : 0}
       config={config}
       fallback={
         <div className="flex h-full w-full items-center justify-center">
-          <div className="flex aspect-square w-[min(72vw,22rem)] items-center justify-center rounded-full border-2 border-accent/30 bg-accent/5 p-10 shadow-[0_0_80px_color-mix(in_oklch,var(--accent)_25%,transparent)] animate-glow-breathe">
+          <div className="flex aspect-square w-[min(72vw,22rem)] items-center justify-center rounded-full border-2 border-accent/30 bg-accent/5 p-10 shadow-[0_0_80px_color-mix(in_oklab,var(--accent)_25%,transparent)] animate-glow-breathe">
             <Image
               src="/images/gearsmap-logo.png"
               alt={fallbackAlt}
               width={240}
               height={220}
-              priority
               className="h-auto w-full object-contain opacity-80"
             />
           </div>

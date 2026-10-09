@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server"
+import { NextResponse, after } from "next/server"
 import nodemailer, { type Transporter } from "nodemailer"
 import { createClient, sql } from "@vercel/postgres"
 import { ConfidentialClientApplication } from "@azure/msal-node"
 import React from "react"
 import { render } from "@react-email/render"
-import ContactSubmissionEmail from "@/emails/contact-submission"
-import ContactConfirmationEmail from "@/emails/contact-confirmation"
+import ContactSubmissionEmail, { defaultEmailLogoUrl } from "@/emails/contact-submission"
+import ContactConfirmationEmail, { confirmationCopy } from "@/emails/contact-confirmation"
 import { z } from "zod"
 
 const contactSchema = z.object({
@@ -14,11 +14,33 @@ const contactSchema = z.object({
   phone: z.string().trim().optional().nullable(),
   message: z.string().trim().min(1),
   intent: z.enum(["project", "demo"]).default("project"),
+  locale: z.enum(["es", "en", "fr"]).default("es"),
+  // Spam guards: a hidden field humans leave empty, and when the form was rendered.
+  company_website: z.string().optional().nullable(),
+  startedAt: z.number().optional().nullable(),
 })
+
+// Faster than this between render and submit is treated as a bot.
+const minimumFillTimeMs = 2000
 
 export async function POST(req: Request) {
   try {
-    const parsed = contactSchema.safeParse(await req.json())
+    const contentType = req.headers.get("content-type") ?? ""
+    if (!contentType.toLowerCase().startsWith("application/json")) {
+      return NextResponse.json(
+        { error: "Unsupported content type", hint: "Send application/json." },
+        { status: 400 }
+      )
+    }
+
+    let body: unknown
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json({ error: "Invalid JSON" }, { status: 400 })
+    }
+
+    const parsed = contactSchema.safeParse(body)
     if (!parsed.success) {
       return NextResponse.json(
         { error: "Invalid payload", issues: parsed.error.issues },
@@ -26,7 +48,15 @@ export async function POST(req: Request) {
       )
     }
 
-    const { name, email, phone, message, intent } = parsed.data
+    const { name, email, phone, message, intent, locale, company_website, startedAt } = parsed.data
+
+    // Answer bots exactly like a success so they learn nothing; store and send nothing.
+    const honeypotFilled = Boolean(company_website?.trim())
+    const submittedTooFast =
+      typeof startedAt === "number" && startedAt > 0 && Date.now() - startedAt < minimumFillTimeMs
+    if (honeypotFilled || submittedTooFast) {
+      return NextResponse.json({ success: true })
+    }
     const normalizedPhone = phone?.trim() ? phone.trim() : null
     const intentLabel = intent === "demo" ? "Demo request" : "Project inquiry"
     const storedMessage = `${message}\n\n[Contact intent: ${intentLabel}]`
@@ -146,12 +176,12 @@ export async function POST(req: Request) {
       .filter(Boolean)
 
     const subjectAdmin = `${intentLabel}: ${name}`
-    const subjectConfirmation = `Confirmación: recibimos tu mensaje - GearsMap`
+    const subjectConfirmation = confirmationCopy[locale].subject
 
     const logoUrl =
       process.env.CONTACT_EMAIL_LOGO_URL ||
       process.env.EMAIL_LOGO_URL ||
-      "https://www.gearsmap.com/images/logo/gears_map_hor.svg"
+      defaultEmailLogoUrl
 
     const adminEmailTemplate = React.createElement(ContactSubmissionEmail, {
       logoUrl,
@@ -160,19 +190,23 @@ export async function POST(req: Request) {
       phone: normalizedPhone,
       message,
       intent,
-    })
-
-    const confirmationEmailTemplate = React.createElement(ContactConfirmationEmail, {
-      name,
+      locale,
     })
 
     const adminHtmlBody = await render(adminEmailTemplate)
     const adminTextBody = await render(adminEmailTemplate, { plainText: true })
 
-    const confirmationHtmlBody = await render(confirmationEmailTemplate)
-    const confirmationTextBody = await render(confirmationEmailTemplate, {
-      plainText: true,
-    })
+    const renderConfirmation = async () => {
+      const template = React.createElement(ContactConfirmationEmail, {
+        name,
+        locale,
+        logoUrl,
+      })
+      return {
+        html: await render(template),
+        text: await render(template, { plainText: true }),
+      }
+    }
 
     const sendViaMicrosoftGraph = async (args: {
       to: string[]
@@ -394,12 +428,12 @@ export async function POST(req: Request) {
       }
     }
 
+    // Set once the admin email is out; the visitor's confirmation is sent after the response.
+    let sendConfirmation: ((content: { html: string; text: string }) => Promise<void>) | null = null
+
     if (emailEnabled && emailProvider !== "none") {
       emailAttempted = true
       try {
-        const confirmationEnabled =
-          process.env.CONTACT_EMAIL_CONFIRMATION_ENABLED !== "false"
-
         if (emailProvider === "graph") {
           await sendViaMicrosoftGraph({
             to: emailTo,
@@ -409,27 +443,12 @@ export async function POST(req: Request) {
             replyTo: [{ address: email, name }],
           })
           emailSent = true
-
-          if (confirmationEnabled) {
-            try {
-              await sendViaMicrosoftGraph({
-                to: [email],
-                subject: subjectConfirmation,
-                html: confirmationHtmlBody,
-              })
-            } catch (confirmationError) {
-              console.error("Error sending confirmation email:", confirmationError)
-              if (!isProd) {
-                console.info("[contact] Confirmation email failed (ignored)", {
-                  to: email,
-                  error:
-                    confirmationError instanceof Error
-                      ? confirmationError.message
-                      : String(confirmationError),
-                })
-              }
-            }
-          }
+          sendConfirmation = ({ html }) =>
+            sendViaMicrosoftGraph({
+              to: [email],
+              subject: subjectConfirmation,
+              html,
+            })
         } else {
           const transporter = createSmtpTransporter()
 
@@ -442,28 +461,13 @@ export async function POST(req: Request) {
             replyTo: email,
           })
           emailSent = true
-
-          if (confirmationEnabled) {
-            try {
-              await sendViaSmtp(transporter, {
-                to: [email],
-                subject: subjectConfirmation,
-                text: confirmationTextBody,
-                html: confirmationHtmlBody,
-              })
-            } catch (confirmationError) {
-              console.error("Error sending confirmation email:", confirmationError)
-              if (!isProd) {
-                console.info("[contact] Confirmation email failed (ignored)", {
-                  to: email,
-                  error:
-                    confirmationError instanceof Error
-                      ? confirmationError.message
-                      : String(confirmationError),
-                })
-              }
-            }
-          }
+          sendConfirmation = ({ html, text }) =>
+            sendViaSmtp(transporter, {
+              to: [email],
+              subject: subjectConfirmation,
+              text,
+              html,
+            })
         }
       } catch (emailError) {
         lastEmailError = emailError
@@ -530,6 +534,27 @@ export async function POST(req: Request) {
         { status: 500 }
       )
     }
+    const confirmationEnabled = process.env.CONTACT_EMAIL_CONFIRMATION_ENABLED !== "false"
+    const deliverConfirmation = sendConfirmation
+    if (emailSent && confirmationEnabled && deliverConfirmation) {
+      after(async () => {
+        try {
+          await deliverConfirmation(await renderConfirmation())
+        } catch (confirmationError) {
+          console.error("Error sending confirmation email:", confirmationError)
+          if (!isProd) {
+            console.info("[contact] Confirmation email failed (ignored)", {
+              to: email,
+              error:
+                confirmationError instanceof Error
+                  ? confirmationError.message
+                  : String(confirmationError),
+            })
+          }
+        }
+      })
+    }
+
     return NextResponse.json({
       success: true,
       dbSaved,
