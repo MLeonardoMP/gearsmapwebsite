@@ -16,7 +16,6 @@ export type PublicRoute = {
   images?: string[]
 }
 
-const legalUpdated = "2025-12-19"
 
 function homeImages() {
   const acggp = getProject("acggp")
@@ -41,6 +40,4 @@ export const publicRoutes: PublicRoute[] = [
   { path: climatePaths.hub, changeFrequency: "monthly", priority: 0.9 },
   { path: climatePaths.mrv, changeFrequency: "monthly", priority: 0.8 },
   { path: climatePaths.me, changeFrequency: "monthly", priority: 0.8 },
-  { path: "/privacidad", changeFrequency: "yearly", priority: 0.3, lastModified: legalUpdated },
-  { path: "/terminos", changeFrequency: "yearly", priority: 0.3, lastModified: legalUpdated },
 ]

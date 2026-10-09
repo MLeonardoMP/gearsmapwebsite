@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: "/privacidad",
     title: titles[locale],
     description: descriptions[locale],
+    noindex: true,
   })
 }
 

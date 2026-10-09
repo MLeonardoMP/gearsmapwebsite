@@ -28,15 +28,15 @@ export const translations = {
       projects: "Proyectos",
     },
     seo: {
-      title: "Software geoespacial y geovisores en Colombia",
-      description: "Desarrollamos software geoespacial, geovisores y tableros a la medida en Colombia, además de sistemas MRV y M&E climáticos para el sector minero-energético.",
-      keywords: ["GearsMap", "software geoespacial", "sistemas de información geográfica", "SIG", "geovisores", "inteligencia artificial", "visualización de datos", "dashboards", "Colombia", "MRV", "monitoreo y evaluación"],
+      title: "Software a la medida de alta calidad en Colombia",
+      description: "Desarrollamos software a la medida con foco en UI/UX, datos y rendimiento, respaldado por expertos temáticos y probado en sistemas climáticos MRV y M&E.",
+      keywords: ["GearsMap", "desarrollo de software a la medida", "ingeniería de software", "UI/UX", "visualización de datos", "tableros", "inteligencia artificial", "bases de datos", "geovisores", "MRV", "monitoreo y evaluación", "Colombia"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Software geoespacial, geovisores e IA en Colombia",
-      headline: "Del territorio al dato. Del dato a la decisión.",
-      lede: "GearsMap S.A.S. es una empresa de software geoespacial con sede en Bogotá. Diseñamos geovisores, tableros e inteligencia artificial a la medida, y acompañamos la implementación de sistemas climáticos MRV y M&E para el sector minero-energético.",
+      kicker: "Software a la medida, datos e IA en Colombia",
+      headline: "Del dato a la decisión, con software bien hecho.",
+      lede: "GearsMap S.A.S. es una empresa de software con sede en Bogotá. Construimos plataformas a la medida con tecnologías actuales, interfaces claras y backend, frontend y bases de datos pensados para el rendimiento. Nuestros expertos temáticos entienden el problema antes de escribir código: así implementamos los sistemas climáticos MRV y M&E del sector minero-energético.",
       cta_primary: "Conversemos sobre tu proyecto",
       cta_secondary: "Solicitar una demo",
       product: {
@@ -61,7 +61,7 @@ export const translations = {
     },
     about: {
       title: "Sobre GearsMap",
-      intro: "Buscamos nuevas formas de usar y visualizar datos para que procesos y decisiones ganen valor.",
+      intro: "Hacemos software de alta calidad y buscamos formas variadas y concretas de mostrar la información para que cada decisión gane valor.",
       imageAlt: "Equipo de GearsMap trabajando con visualización de datos",
       facts: {
         title: "Datos de la empresa",
@@ -79,7 +79,7 @@ export const translations = {
       },
       products: {
         title: "Productos y servicios",
-        text: "Nos especializamos en el desarrollo de soluciones de software basadas en Sistemas de Información Geográfica (SIG) y en la gestión y análisis de datos geoespaciales. Desarrollamos aplicaciones para gestionar y visualizar información, y para optimizar y automatizar procesos.",
+        text: "Diseñamos y desarrollamos software a la medida: plataformas web, tableros, geovisores, inteligencia artificial y automatización. Cuidamos la experiencia de usuario, elegimos la forma de visualización que mejor explica cada dato y optimizamos el rendimiento de backend, frontend y bases de datos.",
       },
     },
     mission: {
@@ -93,8 +93,8 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Servicios geoespaciales y de datos",
-      subheader: "Geovisores, sistemas de información geográfica, tableros, inteligencia artificial y automatización para convertir datos territoriales en decisiones.",
+      header: "Ingeniería de software, datos y visualización",
+      subheader: "Plataformas a la medida, tableros, visualización 2D y 3D, geovisores, inteligencia artificial y automatización, construidos con tecnologías actuales y foco en experiencia de usuario y rendimiento.",
       detailsLabel: "Detalles",
       geoviewersLink: "Ver el servicio de geovisores",
       services: {
@@ -225,15 +225,15 @@ export const translations = {
       projects: "Projects",
     },
     seo: {
-      title: "Geospatial software & web GIS viewers in Colombia",
-      description: "GearsMap builds custom geospatial software, web GIS viewers, dashboards and AI in Colombia, plus climate MRV and M&E systems for the mining and energy sector.",
-      keywords: ["GearsMap", "geospatial software", "GIS", "web GIS viewers", "artificial intelligence", "data visualization", "dashboards", "Colombia", "MRV", "monitoring and evaluation"],
+      title: "High-quality custom software in Colombia",
+      description: "GearsMap builds custom software focused on UI/UX, data and performance, backed by subject-matter experts and proven in climate MRV and M&E systems.",
+      keywords: ["GearsMap", "custom software development", "software engineering", "UI/UX", "data visualization", "dashboards", "artificial intelligence", "databases", "web GIS viewers", "MRV", "monitoring and evaluation", "Colombia"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Geospatial software, web GIS and AI in Colombia",
-      headline: "From territory to data. From data to decisions.",
-      lede: "GearsMap S.A.S. is a geospatial software company based in Bogotá, Colombia. We design custom web GIS viewers, dashboards and AI, and we support the implementation of climate MRV and M&E systems for the mining and energy sector.",
+      kicker: "Custom software, data and AI in Colombia",
+      headline: "From data to decisions, with well-built software.",
+      lede: "GearsMap S.A.S. is a software company based in Bogotá, Colombia. We build custom platforms with current technologies, clear interfaces, and backends, frontends and databases designed for performance. Our subject-matter experts understand the problem before writing code: that is how we implemented the climate MRV and M&E systems for the mining and energy sector.",
       cta_primary: "Talk about your project",
       cta_secondary: "Request a demo",
       product: {
@@ -258,7 +258,7 @@ export const translations = {
     },
     about: {
       title: "About GearsMap",
-      intro: "We look for new ways to use and visualize data so that processes and decisions gain value.",
+      intro: "We build high-quality software and look for varied, concrete ways to present information so that every decision gains value.",
       imageAlt: "GearsMap team working with data visualization",
       facts: {
         title: "Company facts",
@@ -276,7 +276,7 @@ export const translations = {
       },
       products: {
         title: "Products and services",
-        text: "We specialize in developing software solutions based on Geographic Information Systems (GIS) and geospatial data management and analysis. We build applications to manage and visualize information, and to optimize and automate processes.",
+        text: "We design and develop custom software: web platforms, dashboards, web GIS viewers, artificial intelligence and automation. We care about user experience, choose the visualization that best explains each piece of data, and optimize backend, frontend and database performance.",
       },
     },
     mission: {
@@ -290,8 +290,8 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Geospatial and data services",
-      subheader: "Web GIS viewers, geographic information systems, dashboards, artificial intelligence and automation that turn territorial data into decisions.",
+      header: "Software engineering, data and visualization",
+      subheader: "Custom platforms, dashboards, 2D and 3D visualization, web GIS viewers, artificial intelligence and automation, built with current technologies and a focus on user experience and performance.",
       detailsLabel: "Details",
       geoviewersLink: "See the web GIS viewer service",
       services: {
@@ -422,15 +422,15 @@ export const translations = {
       projects: "Projets",
     },
     seo: {
-      title: "Logiciel géospatial et SIG web en Colombie",
-      description: "GearsMap conçoit des logiciels géospatiaux, des SIG web, des tableaux de bord et de l'IA en Colombie, ainsi que des systèmes climatiques MRV et S&E pour le secteur minier et énergétique.",
-      keywords: ["GearsMap", "logiciel géospatial", "SIG", "visualiseurs cartographiques web", "intelligence artificielle", "visualisation de données", "tableaux de bord", "Colombie", "MRV", "suivi et évaluation"],
+      title: "Logiciels sur mesure de haute qualité en Colombie",
+      description: "GearsMap conçoit des logiciels sur mesure axés sur l'UI/UX, les données et la performance, appuyés par des experts métier et éprouvés en MRV et S&E climatiques.",
+      keywords: ["GearsMap", "développement de logiciels sur mesure", "ingénierie logicielle", "UI/UX", "visualisation de données", "tableaux de bord", "intelligence artificielle", "bases de données", "visualiseurs cartographiques web", "MRV", "suivi et évaluation", "Colombie"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Logiciel géospatial, SIG web et IA en Colombie",
-      headline: "Du territoire aux données. Des données aux décisions.",
-      lede: "GearsMap S.A.S. est une entreprise de logiciels géospatiaux basée à Bogotá, en Colombie. Nous concevons des SIG web, des tableaux de bord et de l'IA sur mesure, et accompagnons la mise en œuvre de systèmes climatiques MRV et S&E pour le secteur minier et énergétique.",
+      kicker: "Logiciels sur mesure, données et IA en Colombie",
+      headline: "Des données aux décisions, avec des logiciels bien conçus.",
+      lede: "GearsMap S.A.S. est une entreprise de logiciels basée à Bogotá, en Colombie. Nous construisons des plateformes sur mesure avec des technologies actuelles, des interfaces claires, et un backend, un frontend et des bases de données pensés pour la performance. Nos experts métier comprennent le problème avant d'écrire du code : c'est ainsi que nous avons mis en œuvre les systèmes climatiques MRV et S&E du secteur minier et énergétique.",
       cta_primary: "Parlons de votre projet",
       cta_secondary: "Demander une démo",
       product: {
@@ -455,7 +455,7 @@ export const translations = {
     },
     about: {
       title: "À propos de GearsMap",
-      intro: "Nous cherchons de nouvelles façons d'utiliser et de visualiser les données pour donner plus de valeur aux processus et aux décisions.",
+      intro: "Nous créons des logiciels de haute qualité et cherchons des façons variées et concrètes de présenter l'information pour donner plus de valeur à chaque décision.",
       imageAlt: "L'équipe GearsMap travaille sur la visualisation de données",
       facts: {
         title: "Fiche de l'entreprise",
@@ -473,7 +473,7 @@ export const translations = {
       },
       products: {
         title: "Produits et services",
-        text: "Nous sommes spécialisés dans le développement de solutions logicielles basées sur les systèmes d'information géographique (SIG) et dans la gestion et l'analyse de données géospatiales. Nous développons des applications pour gérer et visualiser l'information, et pour optimiser et automatiser les processus.",
+        text: "Nous concevons et développons des logiciels sur mesure : plateformes web, tableaux de bord, visualiseurs cartographiques web, intelligence artificielle et automatisation. Nous soignons l'expérience utilisateur, choisissons la visualisation qui explique le mieux chaque donnée et optimisons la performance du backend, du frontend et des bases de données.",
       },
     },
     mission: {
@@ -487,8 +487,8 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Services géospatiaux et de données",
-      subheader: "Visualiseurs cartographiques web, systèmes d'information géographique, tableaux de bord, intelligence artificielle et automatisation pour transformer des données territoriales en décisions.",
+      header: "Ingénierie logicielle, données et visualisation",
+      subheader: "Plateformes sur mesure, tableaux de bord, visualisation 2D et 3D, visualiseurs cartographiques web, intelligence artificielle et automatisation, avec des technologies actuelles et un accent sur l'expérience utilisateur et la performance.",
       detailsLabel: "Détails",
       geoviewersLink: "Voir le service de visualiseurs cartographiques web",
       services: {

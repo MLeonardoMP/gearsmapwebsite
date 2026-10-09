@@ -2,9 +2,9 @@ import { ogCardMetadata, ogLocale, renderOgCard, type OgRouteParams } from "@/li
 import { getDictionary, type Locale } from "@/lib/translations"
 
 const kickers: Record<Locale, string> = {
-  es: "SOFTWARE GEOESPACIAL",
-  en: "GEOSPATIAL SOFTWARE",
-  fr: "LOGICIEL GÉOSPATIAL",
+  es: "SOFTWARE A LA MEDIDA",
+  en: "CUSTOM SOFTWARE",
+  fr: "LOGICIELS SUR MESURE",
 }
 
 export function generateImageMetadata({ params }: { params: OgRouteParams }) {
