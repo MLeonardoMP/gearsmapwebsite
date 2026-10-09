@@ -148,11 +148,6 @@ const logo = {
   height: 477,
 }
 
-const colombia = {
-  "@type": "Country",
-  name: "Colombia",
-}
-
 export function organizationNode(locale: Locale = "es") {
   const t = getDictionary(locale)
 
@@ -180,13 +175,11 @@ export function organizationNode(locale: Locale = "es") {
       addressLocality: "Bogotá",
       addressCountry: "CO",
     },
-    areaServed: colombia,
     contactPoint: [
       {
         "@type": "ContactPoint",
         contactType: "sales",
         email: contactEmail,
-        areaServed: "CO",
         availableLanguage: ["es", "en", "fr"],
       },
     ],
@@ -300,7 +293,6 @@ export function serviceNode({
     serviceType,
     url,
     provider: { "@id": organizationId },
-    areaServed: colombia,
     ...(audienceType
       ? {
           audience: {
@@ -341,8 +333,7 @@ export function offerCatalogNode(locale: Locale) {
         name: service.title,
         description: service.desc,
         provider: { "@id": organizationId },
-        areaServed: colombia,
-      },
+          },
     })),
   }
 }

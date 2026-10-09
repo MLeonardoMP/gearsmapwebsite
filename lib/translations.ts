@@ -28,15 +28,15 @@ export const translations = {
       projects: "Proyectos",
     },
     seo: {
-      title: "Software a la medida de alta calidad en Colombia",
+      title: "Software a la medida de alta calidad",
       description: "Desarrollamos software a la medida con foco en UI/UX, datos y rendimiento, respaldado por expertos temáticos y probado en sistemas climáticos MRV y M&E.",
       keywords: ["GearsMap", "desarrollo de software a la medida", "ingeniería de software", "UI/UX", "visualización de datos", "tableros", "inteligencia artificial", "bases de datos", "geovisores", "MRV", "monitoreo y evaluación", "Colombia"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Software a la medida, datos e IA en Colombia",
+      kicker: "Software a la medida, datos e IA",
       headline: "Software de alta calidad, del dato a la decisión.",
-      lede: "GearsMap S.A.S. es una empresa de software con sede en Bogotá. Construimos plataformas a la medida con tecnologías actuales, interfaces claras y backend, frontend y bases de datos pensados para el rendimiento. Nuestros expertos temáticos entienden el problema antes de escribir código: así implementamos los sistemas climáticos MRV y M&E del sector minero-energético.",
+      lede: "GearsMap S.A.S. es una empresa de software con sede en Bogotá. Construimos plataformas a la medida con tecnologías actuales, interfaces claras y backend, frontend y bases de datos pensados para el rendimiento. Nuestros expertos temáticos entienden el problema antes de escribir código: así implementamos los sistemas climáticos MRV y M&E del sector minero-energético colombiano, nuestro primer gran contrato, con KfW y MinMinas. Trabajamos con clientes en Colombia y en otros países.",
       cta_primary: "Conversemos sobre tu proyecto",
       cta_secondary: "Solicitar una demo",
       product: {
@@ -49,7 +49,7 @@ export const translations = {
     proofBar: {
       title: "GearsMap en breve",
       live: "En producción · Visor PPR ACGGP",
-      climate: "Implementación operativa · MRV y M&E con MinMinas y apoyo de KfW",
+      climate: "Contrato con KfW y MinMinas · MRV y M&E del sector minero-energético",
       place: "Bogotá, Colombia",
       founded: "Fundada en 2025",
     },
@@ -225,15 +225,15 @@ export const translations = {
       projects: "Projects",
     },
     seo: {
-      title: "High-quality custom software in Colombia",
+      title: "High-quality custom software",
       description: "GearsMap builds custom software focused on UI/UX, data and performance, backed by subject-matter experts and proven in climate MRV and M&E systems.",
       keywords: ["GearsMap", "custom software development", "software engineering", "UI/UX", "data visualization", "dashboards", "artificial intelligence", "databases", "web GIS viewers", "MRV", "monitoring and evaluation", "Colombia"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Custom software, data and AI in Colombia",
+      kicker: "Custom software, data and AI",
       headline: "High-quality software, from data to decisions.",
-      lede: "GearsMap S.A.S. is a software company based in Bogotá, Colombia. We build custom platforms with current technologies, clear interfaces, and backends, frontends and databases designed for performance. Our subject-matter experts understand the problem before writing code: that is how we implemented the climate MRV and M&E systems for the mining and energy sector.",
+      lede: "GearsMap S.A.S. is a software company based in Bogotá, Colombia. We build custom platforms with current technologies, clear interfaces, and backends, frontends and databases designed for performance. Our subject-matter experts understand the problem before writing code: that is how we implemented the climate MRV and M&E systems for Colombia's mining and energy sector, our first major contract, with KfW and MinMinas. We work with clients in Colombia and abroad.",
       cta_primary: "Talk about your project",
       cta_secondary: "Request a demo",
       product: {
@@ -246,7 +246,7 @@ export const translations = {
     proofBar: {
       title: "GearsMap at a glance",
       live: "In production · PPR ACGGP Viewer",
-      climate: "Operational implementation · MRV and M&E with MinMinas and KfW support",
+      climate: "Contract with KfW and MinMinas · MRV and M&E for the mining and energy sector",
       place: "Bogotá, Colombia",
       founded: "Founded in 2025",
     },
@@ -422,15 +422,15 @@ export const translations = {
       projects: "Projets",
     },
     seo: {
-      title: "Logiciels sur mesure de haute qualité en Colombie",
+      title: "Logiciels sur mesure de haute qualité",
       description: "GearsMap conçoit des logiciels sur mesure axés sur l'UI/UX, les données et la performance, appuyés par des experts métier et éprouvés en MRV et S&E climatiques.",
       keywords: ["GearsMap", "développement de logiciels sur mesure", "ingénierie logicielle", "UI/UX", "visualisation de données", "tableaux de bord", "intelligence artificielle", "bases de données", "visualiseurs cartographiques web", "MRV", "suivi et évaluation", "Colombie"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Logiciels sur mesure, données et IA en Colombie",
+      kicker: "Logiciels sur mesure, données et IA",
       headline: "Des logiciels de haute qualité, des données aux décisions.",
-      lede: "GearsMap S.A.S. est une entreprise de logiciels basée à Bogotá, en Colombie. Nous construisons des plateformes sur mesure avec des technologies actuelles, des interfaces claires, et un backend, un frontend et des bases de données pensés pour la performance. Nos experts métier comprennent le problème avant d'écrire du code : c'est ainsi que nous avons mis en œuvre les systèmes climatiques MRV et S&E du secteur minier et énergétique.",
+      lede: "GearsMap S.A.S. est une entreprise de logiciels basée à Bogotá, en Colombie. Nous construisons des plateformes sur mesure avec des technologies actuelles, des interfaces claires, et un backend, un frontend et des bases de données pensés pour la performance. Nos experts métier comprennent le problème avant d'écrire du code : c'est ainsi que nous avons mis en œuvre les systèmes climatiques MRV et S&E du secteur minier et énergétique colombien, notre premier grand contrat, avec la KfW et MinMinas. Nous travaillons avec des clients en Colombie et à l'international.",
       cta_primary: "Parlons de votre projet",
       cta_secondary: "Demander une démo",
       product: {
@@ -443,7 +443,7 @@ export const translations = {
     proofBar: {
       title: "GearsMap en bref",
       live: "En production · Visualiseur PPR ACGGP",
-      climate: "Mise en œuvre opérationnelle · MRV et S&E avec MinMinas et le soutien de la KfW",
+      climate: "Contrat avec la KfW et MinMinas · MRV et S&E du secteur minier et énergétique",
       place: "Bogotá, Colombie",
       founded: "Fondée en 2025",
     },
