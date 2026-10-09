@@ -65,7 +65,7 @@ test.describe("home design system", () => {
 
     await page.locator("#contact-message").click()
     await page.keyboard.press("Tab")
-    const submit = page.getByRole("button", { name: "Enviar Mensaje" })
+    const submit = page.getByRole("button", { name: "Enviar mensaje" })
     await expect(submit).toBeFocused()
     expect(await submit.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe("none")
   })

@@ -19,7 +19,7 @@ export const translations = {
     nav: {
       home: "Inicio",
       about: "Sobre nosotros",
-      portfolio: "Portafolio",
+      portfolio: "Servicios",
       climate: "MRV / M&E",
       contact: "Contacto",
       openMenu: "Abrir menú",
@@ -61,7 +61,7 @@ export const translations = {
     },
     about: {
       title: "Sobre GearsMap",
-      intro: "Innovamos en nuevas formas de utilizar y visualizar datos para agregar valor a procesos y decisiones.",
+      intro: "Buscamos nuevas formas de usar y visualizar datos para que procesos y decisiones ganen valor.",
       imageAlt: "Equipo de GearsMap trabajando con visualización de datos",
       facts: {
         title: "Datos de la empresa",
@@ -75,21 +75,21 @@ export const translations = {
       },
       foundation: {
         title: "Fundación",
-        text: "Fundada en 2025, GearsMap reúne a profesionales experimentados del sector tecnológico, impulsados por la pasión de contribuir a la Cuarta Revolución Industrial. Innovamos en nuevas formas de utilizar y visualizar datos, añadiendo valor a los procesos empresariales.",
+        text: "Fundada en 2025, GearsMap reúne a profesionales experimentados del sector tecnológico, con el propósito de aportar a la cuarta revolución industrial. Buscamos nuevas formas de usar y visualizar datos para agregar valor a los procesos de cada organización.",
       },
       products: {
         title: "Productos y servicios",
-        text: "Nos especializamos en el desarrollo de soluciones de software basadas en Sistemas de Información Geográfica (SIG) y en la gestión y análisis de datos geoespaciales. Nuestras ofertas incluyen aplicaciones para la gestión y visualización de información, optimización y automatización de proyectos.",
+        text: "Nos especializamos en el desarrollo de soluciones de software basadas en Sistemas de Información Geográfica (SIG) y en la gestión y análisis de datos geoespaciales. Desarrollamos aplicaciones para gestionar y visualizar información, y para optimizar y automatizar procesos.",
       },
     },
     mission: {
       mission: {
         title: "Misión",
-        text: "Nuestro principal objetivo es asistir a entidades gubernamentales, empresas y organizaciones en su transformación digital hacia un futuro más próspero. Buscamos optimizar cada recurso y proceso mediante el uso innovador de la información.",
+        text: "Acompañar a entidades públicas, empresas y organizaciones en su transformación digital, para que aprovechen mejor cada recurso y proceso a partir de su información.",
       },
       vision: {
         title: "Visión",
-        text: "Aspiramos a llevar nuestras innovaciones a todos los rincones del mundo, colaborando con entidades e individuos para generar ideas y desarrollos revolucionarios. Buscamos contribuir a la transformación del desarrollo de la humanidad.",
+        text: "Llevar nuestras soluciones más allá de Colombia, trabajando con entidades y personas que necesitan entender su territorio para decidir mejor.",
       },
     },
     portfolio: {
@@ -100,39 +100,39 @@ export const translations = {
       services: {
         ai: {
           title: "Inteligencia artificial y Machine Learning",
-          desc: "Implementamos soluciones de inteligencia artificial y machine learning para ayudarle a extraer información valiosa de sus datos y mejorar la toma de decisiones.",
-          details: "Nuestras soluciones de IA incluyen análisis predictivo, procesamiento de lenguaje natural (NLP) y visión por computadora. Ayudamos a automatizar la clasificación de datos, detectar anomalías en tiempo real y generar insights accionables que impulsan el crecimiento de su negocio.",
+          desc: "Implementamos inteligencia artificial y machine learning para extraer información valiosa de tus datos y mejorar la toma de decisiones.",
+          details: "Nuestras soluciones de IA incluyen análisis predictivo, procesamiento de lenguaje natural (NLP) y visión por computadora. Ayudamos a automatizar la clasificación de datos, detectar anomalías en tiempo real y generar hallazgos accionables para tu organización.",
         },
         geoviewers: {
           title: "Geovisores",
-          desc: "Desarrollamos geovisores personalizados para visualizar y analizar información geoespacial de manera interactiva y dinámica.",
-          details: "Creamos visores de mapas interactivos utilizando tecnologías como Mapbox, Leaflet y OpenLayers. Integramos capas de datos complejos, herramientas de dibujo, análisis espacial en el navegador y filtrado avanzado para que pueda explorar su información geográfica sin límites.",
+          desc: "Desarrollamos geovisores a la medida para consultar y analizar información geoespacial de forma interactiva.",
+          details: "Creamos visores de mapas interactivos utilizando tecnologías como Mapbox, Leaflet y OpenLayers. Integramos capas de datos complejos, herramientas de dibujo, análisis espacial en el navegador y filtros avanzados para que explores tu información geográfica sin límites.",
         },
         visualization: {
           title: "Visualización 2D y 3D",
-          desc: "Potencie el análisis y comprensión de sus datos mediante herramientas avanzadas de visualización 2D y 3D, diseñadas a la medida.",
+          desc: "Herramientas de visualización 2D y 3D a la medida para analizar y entender mejor tus datos.",
           details: "Transformamos datos abstractos en experiencias visuales inmersivas. Desde gráficos interactivos hasta modelos 3D de ciudades y terrenos, nuestras herramientas permiten una comprensión profunda de patrones y tendencias que serían invisibles en tablas tradicionales.",
         },
         dashboards: {
-          title: "Dashboards y estadísticas",
-          desc: "Esta herramienta le permitirá presentar y analizar sus datos de manera clara y visual, facilitando una toma de decisiones más informada.",
-          details: "Diseñamos tableros de control ejecutivos y operativos que centralizan sus KPIs más importantes. Con actualizaciones en tiempo real, filtros dinámicos y exportación de reportes, tendrá el control total de sus métricas de rendimiento en una sola pantalla.",
+          title: "Tableros y estadísticas",
+          desc: "Presenta y analiza tus datos de forma clara y visual para tomar decisiones mejor informadas.",
+          details: "Diseñamos tableros de control ejecutivos y operativos que reúnen tus indicadores clave. Con actualización en tiempo real, filtros dinámicos y exportación de reportes, tienes tus métricas en una sola pantalla.",
         },
         automation: {
-          title: "Automatización de Procesos",
-          desc: "A través de la automatización de procesos, le ayudamos a mejorar la eficiencia operativa y reducir el tiempo dedicado a tareas repetitivas.",
-          details: "Identificamos cuellos de botella y tareas manuales propensas a errores para reemplazarlas con flujos de trabajo automatizados. Desde la ingesta de datos hasta la generación de notificaciones, optimizamos sus operaciones para que su equipo se enfoque en tareas de alto valor.",
+          title: "Automatización de procesos",
+          desc: "Automatizamos procesos para mejorar la eficiencia operativa y reducir el tiempo que tu equipo dedica a tareas repetitivas.",
+          details: "Identificamos cuellos de botella y tareas manuales propensas a errores para reemplazarlas con flujos de trabajo automatizados. Desde la carga de datos hasta el envío de notificaciones, optimizamos la operación para que tu equipo se enfoque en lo que aporta más valor.",
         },
         monitoring: {
-          title: "Monitoreo y Mantenimiento",
-          desc: "Proveemos servicios de monitoreo continuo y mantenimiento de productos, asegurando su funcionamiento óptimo a lo largo del tiempo.",
-          details: "Ofrecemos soporte técnico proactivo, actualizaciones de seguridad y monitoreo de rendimiento 24/7. Garantizamos que sus plataformas estén siempre disponibles, seguras y funcionando con la máxima eficiencia, adaptándonos a los cambios tecnológicos.",
+          title: "Monitoreo y mantenimiento",
+          desc: "Monitoreamos y mantenemos tus plataformas para que sigan funcionando bien con el tiempo.",
+          details: "Ofrecemos soporte técnico proactivo, actualizaciones de seguridad y monitoreo de rendimiento, y adaptamos tus plataformas a los cambios tecnológicos para que sigan disponibles, seguras y eficientes.",
         },
       },
     },
     contact: {
       header: "Contáctanos",
-      subheader: "Completa el formulario o escríbenos directamente para ponerte en contacto con nosotros.",
+      subheader: "Completa el formulario o escríbenos directamente.",
       promise: "Te respondemos con contexto, preguntas concretas y una ruta posible.",
       sending: "Enviando...",
       channels: {
@@ -165,7 +165,7 @@ export const translations = {
         emailPlaceholder: "Ingresa tu correo electrónico",
         message: "Tu mensaje *",
         messagePlaceholder: "Cuéntanos qué quieres visualizar, automatizar o mejorar",
-        submit: "Enviar Mensaje",
+        submit: "Enviar mensaje",
       },
     },
     techStack: {
@@ -189,12 +189,12 @@ export const translations = {
     },
     footer: {
       description: "Transformamos datos complejos en decisiones estratégicas mediante innovación, tecnología y soporte experto.",
-      quickLinks: "Enlaces Rápidos",
+      quickLinks: "Enlaces rápidos",
       services: "Servicios",
       contact: "Contacto",
       rights: "Todos los derechos reservados.",
-      privacy: "Política de Privacidad",
-      terms: "Términos de Uso",
+      privacy: "Política de privacidad",
+      terms: "Términos de uso",
       linkedinLabel: "LinkedIn de GearsMap",
       languages: "Idiomas",
     },
@@ -215,8 +215,8 @@ export const translations = {
     },
     nav: {
       home: "Home",
-      about: "About Us",
-      portfolio: "Portfolio",
+      about: "About us",
+      portfolio: "Services",
       climate: "MRV / M&E",
       contact: "Contact",
       openMenu: "Open menu",
@@ -227,13 +227,13 @@ export const translations = {
     seo: {
       title: "Geospatial software & web GIS viewers in Colombia",
       description: "GearsMap builds custom geospatial software, web GIS viewers, dashboards and AI in Colombia, plus climate MRV and M&E systems for the mining and energy sector.",
-      keywords: ["GearsMap", "geospatial software", "GIS", "geoviewers", "artificial intelligence", "data visualization", "dashboards", "Colombia", "MRV", "monitoring and evaluation"],
+      keywords: ["GearsMap", "geospatial software", "GIS", "web GIS viewers", "artificial intelligence", "data visualization", "dashboards", "Colombia", "MRV", "monitoring and evaluation"],
     },
     hero: {
       title: "GearsMap",
       kicker: "Geospatial software, web GIS and AI in Colombia",
       headline: "From territory to data. From data to decisions.",
-      lede: "GearsMap S.A.S. is a geospatial software company based in Bogotá, Colombia. We design custom web GIS viewers, dashboards and AI, and we supported the implementation of climate MRV and M&E systems for the mining and energy sector.",
+      lede: "GearsMap S.A.S. is a geospatial software company based in Bogotá, Colombia. We design custom web GIS viewers, dashboards and AI, and we support the implementation of climate MRV and M&E systems for the mining and energy sector.",
       cta_primary: "Talk about your project",
       cta_secondary: "Request a demo",
       product: {
@@ -258,7 +258,7 @@ export const translations = {
     },
     about: {
       title: "About GearsMap",
-      intro: "We innovate in new ways to use and visualize data to add value to processes and decisions.",
+      intro: "We look for new ways to use and visualize data so that processes and decisions gain value.",
       imageAlt: "GearsMap team working with data visualization",
       facts: {
         title: "Company facts",
@@ -272,21 +272,21 @@ export const translations = {
       },
       foundation: {
         title: "Foundation",
-        text: "Founded in 2025, GearsMap brings together experienced professionals from the technology sector, driven by the passion to contribute to the Fourth Industrial Revolution. We innovate in new ways to use and visualize data, adding value to business processes.",
+        text: "Founded in 2025, GearsMap brings together experienced professionals from the technology sector, committed to contributing to the Fourth Industrial Revolution. We look for new ways to use and visualize data to add value to each organization's processes.",
       },
       products: {
-        title: "Products and Services",
-        text: "We specialize in developing software solutions based on Geographic Information Systems (GIS) and geospatial data management and analysis. Our offerings include applications for information management and visualization, optimization, and project automation.",
+        title: "Products and services",
+        text: "We specialize in developing software solutions based on Geographic Information Systems (GIS) and geospatial data management and analysis. We build applications to manage and visualize information, and to optimize and automate processes.",
       },
     },
     mission: {
       mission: {
         title: "Mission",
-        text: "Our main goal is to assist government entities, companies, and organizations in their digital transformation towards a more prosperous future. We seek to optimize every resource and process through the innovative use of information.",
+        text: "To support public agencies, companies and organizations in their digital transformation, so they get more out of every resource and process through their own information.",
       },
       vision: {
         title: "Vision",
-        text: "We aspire to bring our innovations to every corner of the world, collaborating with entities and individuals to generate revolutionary ideas and developments. We seek to contribute to the transformation of human development.",
+        text: "To take our solutions beyond Colombia, working with organizations and people who need to understand their territory to make better decisions.",
       },
     },
     portfolio: {
@@ -298,7 +298,7 @@ export const translations = {
         ai: {
           title: "AI and Machine Learning",
           desc: "We implement artificial intelligence and machine learning solutions to help you extract valuable information from your data and improve decision-making.",
-          details: "Our AI solutions include predictive analytics, natural language processing (NLP), and computer vision. We help automate data classification, detect anomalies in real-time, and generate actionable insights that drive your business growth.",
+          details: "Our AI solutions include predictive analytics, natural language processing (NLP), and computer vision. We help automate data classification, detect anomalies in real-time, and generate actionable insights for your organization.",
         },
         geoviewers: {
           title: "Web GIS viewers",
@@ -306,24 +306,24 @@ export const translations = {
           details: "We create interactive map viewers using technologies like Mapbox, Leaflet, and OpenLayers. We integrate complex data layers, drawing tools, in-browser spatial analysis, and advanced filtering so you can explore your geographic information without limits.",
         },
         visualization: {
-          title: "2D and 3D Visualization",
-          desc: "Enhance the analysis and understanding of your data through advanced 2D and 3D visualization tools, designed to measure.",
+          title: "2D and 3D visualization",
+          desc: "Custom 2D and 3D visualization tools to analyze and understand your data better.",
           details: "We transform abstract data into immersive visual experiences. From interactive charts to 3D models of cities and terrain, our tools enable a deep understanding of patterns and trends that would be invisible in traditional tables.",
         },
         dashboards: {
-          title: "Dashboards and Statistics",
-          desc: "This tool will allow you to present and analyze your data clearly and visually, facilitating more informed decision-making.",
-          details: "We design executive and operational dashboards that centralize your most important KPIs. With real-time updates, dynamic filters, and report exporting, you'll have total control over your performance metrics on a single screen.",
+          title: "Dashboards and statistics",
+          desc: "Present and analyze your data clearly and visually to make better-informed decisions.",
+          details: "We design executive and operational dashboards that centralize your most important KPIs. With real-time updates, dynamic filters, and report exporting, you see your performance metrics on a single screen.",
         },
         automation: {
-          title: "Process Automation",
+          title: "Process automation",
           desc: "Through process automation, we help you improve operational efficiency and reduce time spent on repetitive tasks.",
           details: "We identify bottlenecks and error-prone manual tasks to replace them with automated workflows. From data ingestion to notification generation, we optimize your operations so your team can focus on high-value tasks.",
         },
         monitoring: {
-          title: "Monitoring and Maintenance",
-          desc: "We provide continuous monitoring and product maintenance services, ensuring optimal operation over time.",
-          details: "We offer proactive technical support, security updates, and 24/7 performance monitoring. We ensure your platforms are always available, secure, and running at maximum efficiency, adapting to technological changes.",
+          title: "Monitoring and maintenance",
+          desc: "We monitor and maintain your platforms so they keep running well over time.",
+          details: "We offer proactive technical support, security updates and performance monitoring, and we adapt your platforms to technological change so they stay available, secure and efficient.",
         },
       },
     },
@@ -339,7 +339,7 @@ export const translations = {
         title: "What happens next",
       },
       toast: {
-        success: "Message sent!",
+        success: "Message sent",
         successDescription: "We'll get back to you soon.",
         error: "Error",
         errorDescription: "Something went wrong. Please try again.",
@@ -362,7 +362,7 @@ export const translations = {
         emailPlaceholder: "Enter your email",
         message: "Your message *",
         messagePlaceholder: "Tell us what you want to visualize, automate, or improve",
-        submit: "Send Message",
+        submit: "Send message",
       },
     },
     techStack: {
@@ -386,12 +386,12 @@ export const translations = {
     },
     footer: {
       description: "We transform complex data into strategic decisions through innovation, technology, and expert support.",
-      quickLinks: "Quick Links",
+      quickLinks: "Quick links",
       services: "Services",
       contact: "Contact",
       rights: "All rights reserved.",
-      privacy: "Privacy Policy",
-      terms: "Terms of Use",
+      privacy: "Privacy policy",
+      terms: "Terms of use",
       linkedinLabel: "GearsMap on LinkedIn",
       languages: "Languages",
     },
@@ -412,8 +412,8 @@ export const translations = {
     },
     nav: {
       home: "Accueil",
-      about: "À Propos",
-      portfolio: "Portefeuille",
+      about: "À propos",
+      portfolio: "Services",
       climate: "MRV / S&E",
       contact: "Contact",
       openMenu: "Ouvrir le menu",
@@ -423,14 +423,14 @@ export const translations = {
     },
     seo: {
       title: "Logiciel géospatial et SIG web en Colombie",
-      description: "GearsMap conçoit des logiciels géospatiaux, des SIG web, des tableaux de bord et de l'IA en Colombie, ainsi que des systèmes climatiques MRV et S&E.",
-      keywords: ["GearsMap", "logiciel géospatial", "SIG", "géovisionneuses", "intelligence artificielle", "visualisation de données", "tableaux de bord", "Colombie", "MRV", "suivi et évaluation"],
+      description: "GearsMap conçoit des logiciels géospatiaux, des SIG web, des tableaux de bord et de l'IA en Colombie, ainsi que des systèmes climatiques MRV et S&E pour le secteur minier et énergétique.",
+      keywords: ["GearsMap", "logiciel géospatial", "SIG", "visualiseurs cartographiques web", "intelligence artificielle", "visualisation de données", "tableaux de bord", "Colombie", "MRV", "suivi et évaluation"],
     },
     hero: {
       title: "GearsMap",
       kicker: "Logiciel géospatial, SIG web et IA en Colombie",
       headline: "Du territoire aux données. Des données aux décisions.",
-      lede: "GearsMap S.A.S. est une entreprise de logiciels géospatiaux basée à Bogotá, en Colombie. Nous concevons des SIG web, des tableaux de bord et de l'IA sur mesure, et avons accompagné la mise en œuvre de systèmes climatiques MRV et S&E pour le secteur minier et énergétique.",
+      lede: "GearsMap S.A.S. est une entreprise de logiciels géospatiaux basée à Bogotá, en Colombie. Nous concevons des SIG web, des tableaux de bord et de l'IA sur mesure, et accompagnons la mise en œuvre de systèmes climatiques MRV et S&E pour le secteur minier et énergétique.",
       cta_primary: "Parlons de votre projet",
       cta_secondary: "Demander une démo",
       product: {
@@ -455,7 +455,7 @@ export const translations = {
     },
     about: {
       title: "À propos de GearsMap",
-      intro: "Nous innovons dans de nouvelles façons d'utiliser et de visualiser les données pour ajouter de la valeur aux processus et aux décisions.",
+      intro: "Nous cherchons de nouvelles façons d'utiliser et de visualiser les données pour donner plus de valeur aux processus et aux décisions.",
       imageAlt: "L'équipe GearsMap travaille sur la visualisation de données",
       facts: {
         title: "Fiche de l'entreprise",
@@ -469,33 +469,33 @@ export const translations = {
       },
       foundation: {
         title: "Fondation",
-        text: "Fondée en 2025, GearsMap rassemble des professionnels expérimentés du secteur technologique, animés par la passion de contribuer à la quatrième révolution industrielle. Nous innovons dans de nouvelles façons d'utiliser et de visualiser les données, ajoutant de la valeur aux processus commerciaux.",
+        text: "Fondée en 2025, GearsMap rassemble des professionnels expérimentés du secteur technologique, déterminés à contribuer à la quatrième révolution industrielle. Nous cherchons de nouvelles façons d'utiliser et de visualiser les données pour apporter de la valeur aux processus de chaque organisation.",
       },
       products: {
         title: "Produits et services",
-        text: "Nous sommes spécialisés dans le développement de solutions logicielles basées sur les systèmes d'information géographique (SIG) et dans la gestion et l'analyse de données géospatiales. Nos offres comprennent des applications pour la gestion et la visualisation de l'information, l'optimisation et l'automatisation de projets.",
+        text: "Nous sommes spécialisés dans le développement de solutions logicielles basées sur les systèmes d'information géographique (SIG) et dans la gestion et l'analyse de données géospatiales. Nous développons des applications pour gérer et visualiser l'information, et pour optimiser et automatiser les processus.",
       },
     },
     mission: {
       mission: {
         title: "Mission",
-        text: "Notre objectif principal est d'aider les entités gouvernementales, les entreprises et les organisations dans leur transformation numérique vers un avenir plus prospère. Nous cherchons à optimiser chaque ressource et processus grâce à l'utilisation innovante de l'information.",
+        text: "Accompagner les organismes publics, les entreprises et les organisations dans leur transformation numérique, pour qu'ils tirent le meilleur parti de chaque ressource et processus à partir de leurs données.",
       },
       vision: {
         title: "Vision",
-        text: "Nous aspirons à apporter nos innovations aux quatre coins du monde, en collaborant avec des entités et des individus pour générer des idées et des développements révolutionnaires. Nous cherchons à contribuer à la transformation du développement de l'humanité.",
+        text: "Porter nos solutions au-delà de la Colombie, avec des organisations et des personnes qui ont besoin de comprendre leur territoire pour mieux décider.",
       },
     },
     portfolio: {
       header: "Services géospatiaux et de données",
-      subheader: "SIG web, systèmes d'information géographique, tableaux de bord, intelligence artificielle et automatisation pour transformer des données territoriales en décisions.",
+      subheader: "Visualiseurs cartographiques web, systèmes d'information géographique, tableaux de bord, intelligence artificielle et automatisation pour transformer des données territoriales en décisions.",
       detailsLabel: "Détails",
-      geoviewersLink: "Voir le service SIG web",
+      geoviewersLink: "Voir le service de visualiseurs cartographiques web",
       services: {
         ai: {
-          title: "IA et Machine Learning",
+          title: "IA et apprentissage automatique",
           desc: "Nous mettons en œuvre des solutions d'intelligence artificielle et d'apprentissage automatique pour vous aider à extraire des informations précieuses de vos données et à améliorer la prise de décision.",
-          details: "Nos solutions d'IA incluent l'analyse prédictive, le traitement du langage naturel (NLP) et la vision par ordinateur. Nous aidons à automatiser la classification des données, à détecter les anomalies en temps réel et à générer des informations exploitables qui stimulent la croissance de votre entreprise.",
+          details: "Nos solutions d'IA incluent l'analyse prédictive, le traitement du langage naturel (NLP) et la vision par ordinateur. Nous aidons à automatiser la classification des données, à détecter les anomalies en temps réel et à générer des informations exploitables pour votre organisation.",
         },
         geoviewers: {
           title: "Visualiseurs cartographiques web",
@@ -505,12 +505,12 @@ export const translations = {
         visualization: {
           title: "Visualisation 2D et 3D",
           desc: "Améliorez l'analyse et la compréhension de vos données grâce à des outils de visualisation 2D et 3D avancés, conçus sur mesure.",
-          details: "Nous transformons des données abstraites en expériences visuelles immersives. Des graphiques interactifs aux modèles 3D de villes et de terrains, nos outils permettent une compréhension approfondie des modèles et des tendances qui seraient invisibles dans les tableaux traditionnels.",
+          details: "Nous transformons des données abstraites en expériences visuelles immersives. Des graphiques interactifs aux modèles 3D de villes et de terrains, nos outils permettent une compréhension approfondie des schémas et des tendances qui seraient invisibles dans les tableaux traditionnels.",
         },
         dashboards: {
           title: "Tableaux de bord et statistiques",
           desc: "Cet outil vous permettra de présenter et d'analyser vos données de manière claire et visuelle, facilitant une prise de décision plus éclairée.",
-          details: "Nous concevons des tableaux de bord exécutifs et opérationnels qui centralisent vos KPI les plus importants. Avec des mises à jour en temps réel, des filtres dynamiques et l'exportation de rapports, vous aurez un contrôle total sur vos mesures de performance sur un seul écran.",
+          details: "Nous concevons des tableaux de bord exécutifs et opérationnels qui centralisent vos KPI les plus importants. Avec des mises à jour en temps réel, des filtres dynamiques et l'exportation de rapports, vous suivez vos indicateurs de performance sur un seul écran.",
         },
         automation: {
           title: "Automatisation des processus",
@@ -519,8 +519,8 @@ export const translations = {
         },
         monitoring: {
           title: "Surveillance et maintenance",
-          desc: "Nous fournissons des services de surveillance continue et de maintenance des produits, assurant leur fonctionnement optimal dans le temps.",
-          details: "Nous offrons un support technique proactif, des mises à jour de sécurité et une surveillance des performances 24/7. Nous garantissons que vos plateformes sont toujours disponibles, sécurisées et fonctionnent avec une efficacité maximale, en s'adaptant aux changements technologiques.",
+          desc: "Nous surveillons et maintenons vos plateformes pour qu'elles continuent de bien fonctionner dans la durée.",
+          details: "Nous offrons un support technique proactif, des mises à jour de sécurité et une surveillance des performances, et nous adaptons vos plateformes aux évolutions technologiques pour qu'elles restent disponibles, sécurisées et efficaces.",
         },
       },
     },
@@ -539,7 +539,7 @@ export const translations = {
         success: "Message envoyé",
         successDescription: "Nous vous répondrons bientôt.",
         error: "Erreur",
-        errorDescription: "Une erreur est survenue. Réessayez.",
+        errorDescription: "Une erreur est survenue. Veuillez réessayer.",
         validationError: "Veuillez vérifier les champs.",
       },
       intent: {

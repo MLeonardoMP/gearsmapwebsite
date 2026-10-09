@@ -117,7 +117,7 @@ test.describe("GearsMap public site", () => {
   test("focuses the first invalid contact field", async ({ page }) => {
     await page.goto("/es#contacto")
 
-    await page.getByRole("button", { name: "Enviar Mensaje" }).click()
+    await page.getByRole("button", { name: "Enviar mensaje" }).click()
 
     await expect(page.locator("#name-error")).toBeVisible()
     await expect(page.locator("#contact-name")).toBeFocused()

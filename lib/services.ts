@@ -114,8 +114,8 @@ const geoviewers: Record<Locale, ServicePageCopy> = {
       ],
     },
     cta: {
-      title: "¿Tiene datos geográficos que su equipo aún no puede consultar?",
-      body: "Cuéntenos qué datos tiene y qué decisiones debe apoyar el mapa. Revisamos con usted la forma de construir el geovisor.",
+      title: "¿Tienes datos geográficos que tu equipo aún no puede consultar?",
+      body: "Cuéntanos qué datos tienes y qué decisiones debe apoyar el mapa. Revisamos contigo cómo construir el geovisor.",
       label: "Conversemos sobre un geovisor",
     },
   },
