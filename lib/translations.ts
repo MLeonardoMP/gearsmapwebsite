@@ -423,7 +423,7 @@ export const translations = {
     },
     seo: {
       title: "Logiciel géospatial et SIG web en Colombie",
-      description: "GearsMap conçoit des logiciels géospatiaux, des SIG web, des tableaux de bord et de l'IA en Colombie, ainsi que des systèmes climatiques MRV et S&E pour le secteur minier et énergétique.",
+      description: "Logiciels géospatiaux, SIG web, tableaux de bord et IA sur mesure en Colombie, et systèmes climatiques MRV et S&E pour le secteur minier et énergétique.",
       keywords: ["GearsMap", "logiciel géospatial", "SIG", "visualiseurs cartographiques web", "intelligence artificielle", "visualisation de données", "tableaux de bord", "Colombie", "MRV", "suivi et évaluation"],
     },
     hero: {
