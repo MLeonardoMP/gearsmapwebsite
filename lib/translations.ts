@@ -35,7 +35,7 @@ export const translations = {
     hero: {
       title: "GearsMap",
       kicker: "Software a la medida, datos e IA en Colombia",
-      headline: "Del dato a la decisión, con software bien hecho.",
+      headline: "Software de alta calidad, del dato a la decisión.",
       lede: "GearsMap S.A.S. es una empresa de software con sede en Bogotá. Construimos plataformas a la medida con tecnologías actuales, interfaces claras y backend, frontend y bases de datos pensados para el rendimiento. Nuestros expertos temáticos entienden el problema antes de escribir código: así implementamos los sistemas climáticos MRV y M&E del sector minero-energético.",
       cta_primary: "Conversemos sobre tu proyecto",
       cta_secondary: "Solicitar una demo",
@@ -232,7 +232,7 @@ export const translations = {
     hero: {
       title: "GearsMap",
       kicker: "Custom software, data and AI in Colombia",
-      headline: "From data to decisions, with well-built software.",
+      headline: "High-quality software, from data to decisions.",
       lede: "GearsMap S.A.S. is a software company based in Bogotá, Colombia. We build custom platforms with current technologies, clear interfaces, and backends, frontends and databases designed for performance. Our subject-matter experts understand the problem before writing code: that is how we implemented the climate MRV and M&E systems for the mining and energy sector.",
       cta_primary: "Talk about your project",
       cta_secondary: "Request a demo",
@@ -429,7 +429,7 @@ export const translations = {
     hero: {
       title: "GearsMap",
       kicker: "Logiciels sur mesure, données et IA en Colombie",
-      headline: "Des données aux décisions, avec des logiciels bien conçus.",
+      headline: "Des logiciels de haute qualité, des données aux décisions.",
       lede: "GearsMap S.A.S. est une entreprise de logiciels basée à Bogotá, en Colombie. Nous construisons des plateformes sur mesure avec des technologies actuelles, des interfaces claires, et un backend, un frontend et des bases de données pensés pour la performance. Nos experts métier comprennent le problème avant d'écrire du code : c'est ainsi que nous avons mis en œuvre les systèmes climatiques MRV et S&E du secteur minier et énergétique.",
       cta_primary: "Parlons de votre projet",
       cta_secondary: "Demander une démo",
