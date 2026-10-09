@@ -1,0 +1,84 @@
+/* Climate pages (WS2): content column plus a sticky aside (on-this-page nav and project facts). */
+@layer components {
+  .climate-layout,
+  .climate-layout__main {
+    display: grid;
+    gap: 3.5rem;
+    min-width: 0;
+  }
+
+  .climate-aside {
+    display: grid;
+    align-content: start;
+    gap: 1.25rem;
+    min-width: 0;
+  }
+
+  .climate-layout__main [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  .climate-updated {
+    margin-top: 1rem;
+    color: var(--muted-foreground);
+    font-size: var(--font-size-xs);
+  }
+
+  /* The on-this-page nav only helps next to the content; below 1100px the aside follows it, so it is hidden. */
+  .climate-toc {
+    display: none;
+  }
+
+  @media (max-width: 1099.98px) {
+    .climate-aside:not(:has(.project-facts)) {
+      display: none;
+    }
+  }
+
+  .climate-toc ol {
+    display: grid;
+    margin: 0.6rem 0 0;
+    padding: 0;
+    border-left: 1px solid var(--line);
+    list-style: none;
+  }
+
+  .climate-toc a {
+    display: block;
+    margin-left: -1px;
+    padding: 0.35rem 0 0.35rem 0.85rem;
+    border-left: 1px solid transparent;
+    color: var(--muted-foreground);
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .climate-toc a:hover {
+    border-left-color: var(--accent);
+    color: var(--foreground);
+  }
+
+  .climate-layout .method-diagram {
+    max-width: 52rem;
+  }
+
+  @media (min-width: 1100px) {
+    .climate-layout {
+      grid-template-columns: minmax(0, 46rem) minmax(16rem, 20rem);
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    /* The aside spans the whole column; the facts sit next to the hero and the nav follows the reader. */
+    .climate-aside {
+      align-self: stretch;
+    }
+
+    .climate-toc {
+      display: block;
+      position: sticky;
+      top: 6rem;
+    }
+  }
+}
