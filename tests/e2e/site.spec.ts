@@ -7,7 +7,7 @@ test.describe("GearsMap public site", () => {
     await page.goto("/")
 
     await expect(page).toHaveURL(/\/es$/)
-    await expect(page.locator("h1")).toContainText("Software de alta calidad")
+    await expect(page.locator("h1")).toContainText("Tienes claro lo que necesitas mejorar")
   })
 
   test("renders localized content and metadata", async ({ page }) => {
@@ -15,7 +15,7 @@ test.describe("GearsMap public site", () => {
 
     await expect(page.locator("html")).toHaveAttribute("lang", "en")
     await expect(page).toHaveTitle(/GearsMap/)
-    await expect(page.locator("h1")).toContainText("High-quality software")
+    await expect(page.locator("h1")).toContainText("You know what you need to improve")
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://gearsmap.com/en")
   })
 

@@ -28,15 +28,15 @@ export const translations = {
       projects: "Proyectos",
     },
     seo: {
-      title: "Software a la medida de alta calidad",
-      description: "Desarrollamos software a la medida con foco en UI/UX, datos y rendimiento, respaldado por expertos temáticos y probado en sistemas climáticos MRV y M&E.",
+      title: "Software a la medida, claro y rápido",
+      description: "Software a la medida, claro y rápido, hecho con expertos temáticos que entienden cómo trabaja tu equipo. Probado en sistemas MRV y M&E con KfW y MinMinas.",
       keywords: ["GearsMap", "desarrollo de software a la medida", "ingeniería de software", "UI/UX", "visualización de datos", "tableros", "inteligencia artificial", "bases de datos", "geovisores", "MRV", "monitoreo y evaluación", "Colombia"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Software a la medida, datos e IA",
-      headline: "Software de alta calidad, del dato a la decisión.",
-      lede: "GearsMap S.A.S. es una empresa de software con sede en Bogotá. Construimos plataformas a la medida con interfaces claras y backend, frontend y bases de datos rápidos, guiados por expertos temáticos.",
+      kicker: "Software a la medida",
+      headline: "Tienes claro lo que necesitas mejorar. Hagamos el software para lograrlo.",
+      lede: "En GearsMap entendemos cómo trabaja tu equipo y creamos herramientas claras, rápidas y fáciles de usar.",
       cta_primary: "Conversemos sobre tu proyecto",
       cta_secondary: "Solicitar una demo",
       product: {
@@ -61,7 +61,7 @@ export const translations = {
     },
     about: {
       title: "Sobre GearsMap",
-      intro: "Hacemos software de alta calidad y buscamos formas variadas y concretas de mostrar la información para que cada decisión gane valor.",
+      intro: "Entendemos cómo trabaja tu equipo y creamos software claro, rápido y fácil de usar, con expertos temáticos y formas concretas de mostrar la información.",
       imageAlt: "Equipo de GearsMap trabajando con visualización de datos",
       facts: {
         title: "Datos de la empresa",
@@ -93,7 +93,7 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Ingeniería de software, datos y visualización",
+      header: "Software a la medida para lo que necesitas mejorar",
       subheader: "Plataformas a la medida, tableros, visualización 2D y 3D, geovisores, inteligencia artificial y automatización, construidos con tecnologías actuales y foco en experiencia de usuario y rendimiento.",
       detailsLabel: "Detalles",
       geoviewersLink: "Ver el servicio de geovisores",
@@ -188,7 +188,7 @@ export const translations = {
       },
     },
     footer: {
-      description: "Transformamos datos complejos en decisiones estratégicas mediante innovación, tecnología y soporte experto.",
+      description: "Software a la medida, claro y rápido, creado con expertos temáticos que entienden cómo trabaja tu equipo.",
       quickLinks: "Enlaces rápidos",
       services: "Servicios",
       contact: "Contacto",
@@ -225,15 +225,15 @@ export const translations = {
       projects: "Projects",
     },
     seo: {
-      title: "High-quality custom software",
-      description: "GearsMap builds custom software focused on UI/UX, data and performance, backed by subject-matter experts and proven in climate MRV and M&E systems.",
+      title: "Custom software, clear and fast",
+      description: "Custom software, clear and fast, built with subject-matter experts who understand how your team works. Proven in MRV and M&E systems with KfW and MinMinas.",
       keywords: ["GearsMap", "custom software development", "software engineering", "UI/UX", "data visualization", "dashboards", "artificial intelligence", "databases", "web GIS viewers", "MRV", "monitoring and evaluation", "Colombia"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Custom software, data and AI",
-      headline: "High-quality software, from data to decisions.",
-      lede: "GearsMap S.A.S. is a software company based in Bogotá. We build custom platforms with clear interfaces and fast backends, frontends and databases, guided by subject-matter experts.",
+      kicker: "Custom software",
+      headline: "You know what you need to improve. Let's build the software to get there.",
+      lede: "At GearsMap we understand how your team works and build tools that are clear, fast and easy to use.",
       cta_primary: "Talk about your project",
       cta_secondary: "Request a demo",
       product: {
@@ -258,7 +258,7 @@ export const translations = {
     },
     about: {
       title: "About GearsMap",
-      intro: "We build high-quality software and look for varied, concrete ways to present information so that every decision gains value.",
+      intro: "We understand how your team works and build software that is clear, fast and easy to use, with subject-matter experts and concrete ways to present information.",
       imageAlt: "GearsMap team working with data visualization",
       facts: {
         title: "Company facts",
@@ -290,7 +290,7 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Software engineering, data and visualization",
+      header: "Custom software for what you need to improve",
       subheader: "Custom platforms, dashboards, 2D and 3D visualization, web GIS viewers, artificial intelligence and automation, built with current technologies and a focus on user experience and performance.",
       detailsLabel: "Details",
       geoviewersLink: "See the web GIS viewer service",
@@ -385,7 +385,7 @@ export const translations = {
       },
     },
     footer: {
-      description: "We transform complex data into strategic decisions through innovation, technology, and expert support.",
+      description: "Custom software, clear and fast, built with subject-matter experts who understand how your team works.",
       quickLinks: "Quick links",
       services: "Services",
       contact: "Contact",
@@ -422,15 +422,15 @@ export const translations = {
       projects: "Projets",
     },
     seo: {
-      title: "Logiciels sur mesure de haute qualité",
-      description: "GearsMap conçoit des logiciels sur mesure axés sur l'UI/UX, les données et la performance, appuyés par des experts métier et éprouvés en MRV et S&E climatiques.",
+      title: "Logiciels sur mesure, clairs et rapides",
+      description: "Logiciels sur mesure, clairs et rapides, conçus avec des experts métier qui comprennent le fonctionnement de votre équipe. Éprouvés en MRV et S&E avec la KfW.",
       keywords: ["GearsMap", "développement de logiciels sur mesure", "ingénierie logicielle", "UI/UX", "visualisation de données", "tableaux de bord", "intelligence artificielle", "bases de données", "visualiseurs cartographiques web", "MRV", "suivi et évaluation", "Colombie"],
     },
     hero: {
       title: "GearsMap",
-      kicker: "Logiciels sur mesure, données et IA",
-      headline: "Des logiciels de haute qualité, des données aux décisions.",
-      lede: "GearsMap S.A.S. est une entreprise de logiciels basée à Bogotá. Nous construisons des plateformes sur mesure aux interfaces claires, avec un backend, un frontend et des bases de données rapides, guidés par des experts métier.",
+      kicker: "Logiciels sur mesure",
+      headline: "Vous savez ce que vous voulez améliorer. Construisons le logiciel pour y arriver.",
+      lede: "Chez GearsMap, nous comprenons le fonctionnement de votre équipe et créons des outils clairs, rapides et faciles à utiliser.",
       cta_primary: "Parlons de votre projet",
       cta_secondary: "Demander une démo",
       product: {
@@ -455,7 +455,7 @@ export const translations = {
     },
     about: {
       title: "À propos de GearsMap",
-      intro: "Nous créons des logiciels de haute qualité et cherchons des façons variées et concrètes de présenter l'information pour donner plus de valeur à chaque décision.",
+      intro: "Nous comprenons le fonctionnement de votre équipe et créons des logiciels clairs, rapides et faciles à utiliser, avec des experts métier et des façons concrètes de présenter l'information.",
       imageAlt: "L'équipe GearsMap travaille sur la visualisation de données",
       facts: {
         title: "Fiche de l'entreprise",
@@ -487,7 +487,7 @@ export const translations = {
       },
     },
     portfolio: {
-      header: "Ingénierie logicielle, données et visualisation",
+      header: "Des logiciels sur mesure pour ce que vous voulez améliorer",
       subheader: "Plateformes sur mesure, tableaux de bord, visualisation 2D et 3D, visualiseurs cartographiques web, intelligence artificielle et automatisation, avec des technologies actuelles et un accent sur l'expérience utilisateur et la performance.",
       detailsLabel: "Détails",
       geoviewersLink: "Voir le service de visualiseurs cartographiques web",
@@ -582,7 +582,7 @@ export const translations = {
       },
     },
     footer: {
-      description: "Nous transformons des données complexes en décisions stratégiques grâce à l'innovation, la technologie et un support expert.",
+      description: "Des logiciels sur mesure, clairs et rapides, créés avec des experts métier qui comprennent le fonctionnement de votre équipe.",
       quickLinks: "Liens rapides",
       services: "Services",
       contact: "Contact",
