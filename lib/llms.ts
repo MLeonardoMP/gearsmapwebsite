@@ -191,7 +191,7 @@ export function buildLlmsTxt() {
   const lines = [
     "# GearsMap",
     "",
-    "> GearsMap S.A.S. designs geospatial platforms, geoviewers, dashboards, and artificial-intelligence systems in Colombia. It also implemented the operational MRV and M&E modules of the mining and energy sector climate information system, with the Ministry of Mines and Energy and support from KfW.",
+    "> GearsMap S.A.S. is a Colombian software company that builds high-quality custom software: web platforms, dashboards, varied data visualization (including geoviewers), artificial intelligence, and automation. It focuses on UI/UX, current technologies, and backend, frontend and database performance, with subject-matter experts on each project. As proof, it implemented the operational MRV and M&E modules of the mining and energy sector climate information system, with the Ministry of Mines and Energy and support from KfW.",
     "",
     "This website describes that implementation. It is not an official Ministry publication, it does not grant access to the institutional system, and it does not publish operational data, internal infrastructure, or contract documents.",
     "",

@@ -34,6 +34,8 @@ type PageMetadataInput = {
   ogType?: "website" | "article"
   /** ISO date; emitted as openGraph.modifiedTime when ogType is "article". */
   modifiedTime?: string
+  /** Keeps the page out of search results (legal pages). */
+  noindex?: boolean
 }
 
 /** Appends " | GearsMap" only when the result stays within 60 characters. */
@@ -48,6 +50,7 @@ export function pageMetadata({
   description,
   ogType = "website",
   modifiedTime,
+  noindex = false,
 }: PageMetadataInput): Metadata {
   const pathname = localePath(locale, path)
   const fullTitle = fullPageTitle(title)
@@ -58,6 +61,7 @@ export function pageMetadata({
   return {
     title: { absolute: fullTitle },
     description,
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: pathname,
       languages: languageAlternates(path),
@@ -85,11 +89,14 @@ export function inLanguage(locale: Locale) {
 
 const knowsAbout: Record<Locale, string[]> = {
   es: [
-    "Software geoespacial",
+    "Desarrollo de software a la medida",
+    "Ingeniería de software",
+    "Diseño UI/UX",
+    "Visualización de datos",
+    "Bases de datos",
+    "Inteligencia artificial",
     "Sistemas de información geográfica",
     "Geovisores",
-    "Inteligencia artificial",
-    "Visualización de datos",
     "Dashboards",
     "MRV",
     "Monitoreo, reporte y verificación",
@@ -99,11 +106,14 @@ const knowsAbout: Record<Locale, string[]> = {
     "Sector minero-energético",
   ],
   en: [
-    "Geospatial software",
+    "Custom software development",
+    "Software engineering",
+    "UI/UX design",
+    "Data visualization",
+    "Databases",
+    "Artificial intelligence",
     "Geographic information systems",
     "Web GIS viewers",
-    "Artificial intelligence",
-    "Data visualization",
     "Dashboards",
     "MRV",
     "Monitoring, reporting and verification",
@@ -113,11 +123,14 @@ const knowsAbout: Record<Locale, string[]> = {
     "Mining and energy sector",
   ],
   fr: [
-    "Logiciel géospatial",
-    "Systèmes d'information géographique",
-    "Visualiseurs SIG web",
-    "Intelligence artificielle",
+    "Développement de logiciels sur mesure",
+    "Ingénierie logicielle",
+    "Design UI/UX",
     "Visualisation de données",
+    "Bases de données",
+    "Intelligence artificielle",
+    "Systèmes d'information géographique",
+    "Visualiseurs cartographiques web",
     "Tableaux de bord",
     "MRV",
     "Suivi, notification et vérification",
@@ -133,11 +146,6 @@ const logo = {
   url: absoluteUrl("/images/gearsmap-logo.png"),
   width: 523,
   height: 477,
-}
-
-const colombia = {
-  "@type": "Country",
-  name: "Colombia",
 }
 
 export function organizationNode(locale: Locale = "es") {
@@ -167,13 +175,11 @@ export function organizationNode(locale: Locale = "es") {
       addressLocality: "Bogotá",
       addressCountry: "CO",
     },
-    areaServed: colombia,
     contactPoint: [
       {
         "@type": "ContactPoint",
         contactType: "sales",
         email: contactEmail,
-        areaServed: "CO",
         availableLanguage: ["es", "en", "fr"],
       },
     ],
@@ -287,7 +293,6 @@ export function serviceNode({
     serviceType,
     url,
     provider: { "@id": organizationId },
-    areaServed: colombia,
     ...(audienceType
       ? {
           audience: {
@@ -328,8 +333,7 @@ export function offerCatalogNode(locale: Locale) {
         name: service.title,
         description: service.desc,
         provider: { "@id": organizationId },
-        areaServed: colombia,
-      },
+          },
     })),
   }
 }
