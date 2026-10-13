@@ -206,10 +206,14 @@ const climateContent: Record<Locale, ClimateCopy> = {
           question: "¿Se pueden ver aquí las emisiones?",
           answer: "No. Esta página explica el trabajo. No publica series, factores ni tableros del sistema institucional.",
         },
+        {
+          question: "¿GearsMap desarrolla software MRV para otras organizaciones?",
+          answer: "Sí. Si tu equipo necesita medir, reportar y verificar emisiones o indicadores, podemos construir una plataforma MRV a la medida: fuentes, cálculo trazable y tableros. El punto de partida es una conversación.",
+        },
       ],
     },
     me: {
-      seoTitle: "Monitoreo y evaluación del riesgo climático",
+      seoTitle: "M&E climático: monitoreo y evaluación del riesgo",
       description: "M&E de amenaza, vulnerabilidad y riesgo climático del sector minero-energético: escenarios CMIP6, lectura municipal y visores. Con MinEnergía y KfW.",
       keywords: ["monitoreo y evaluación", "M&E", "riesgo climático", "vulnerabilidad climática", "amenaza climática", "adaptación al cambio climático", "CMIP6", "IPCC AR6", "SSP2-4.5", "geovisor climático", "sector minero-energético", "GearsMap"],
       eyebrow: "M&E · Adaptación",
@@ -273,6 +277,10 @@ const climateContent: Record<Locale, ClimateCopy> = {
         {
           question: "¿GearsMap certifica el riesgo de un proyecto?",
           answer: "No. El módulo organiza evidencia para equipos técnicos. No sustituye un estudio de riesgo de un proyecto ni una decisión oficial de adaptación.",
+        },
+        {
+          question: "¿GearsMap desarrolla plataformas de monitoreo y evaluación (M&E)?",
+          answer: "Sí. Construimos sistemas de M&E climático a la medida: indicadores, escenarios, visores territoriales y reportes para equipos técnicos. Cuéntanos la pregunta que necesitas responder.",
         },
       ],
     },
@@ -436,10 +444,14 @@ const climateContent: Record<Locale, ClimateCopy> = {
           question: "Can emissions be viewed here?",
           answer: "No. This page explains the work. It does not publish series, factors, or dashboards from the institutional system.",
         },
+        {
+          question: "Does GearsMap develop MRV software for other organizations?",
+          answer: "Yes. If your team needs to measure, report, and verify emissions or indicators, we can build a custom MRV platform: sources, traceable calculation, and dashboards. It starts with a conversation.",
+        },
       ],
     },
     me: {
-      seoTitle: "Monitoring and evaluation of climate risk",
+      seoTitle: "Climate M&E: monitoring and evaluation of risk",
       description: "Climate hazard, vulnerability and risk M&E for mining and energy: CMIP6 scenarios and viewers, with Colombia's Ministry of Mines and Energy and KfW support.",
       keywords: ["monitoring and evaluation", "M&E", "climate risk", "climate vulnerability", "climate hazard", "climate adaptation", "CMIP6", "IPCC AR6", "SSP2-4.5", "climate geoviewer", "mining and energy sector", "GearsMap"],
       eyebrow: "M&E · Adaptation",
@@ -503,6 +515,10 @@ const climateContent: Record<Locale, ClimateCopy> = {
         {
           question: "Does GearsMap certify a project's risk?",
           answer: "No. The module organizes evidence for technical teams. It does not replace a project risk study or an official adaptation decision.",
+        },
+        {
+          question: "Does GearsMap develop monitoring and evaluation (M&E) platforms?",
+          answer: "Yes. We build custom climate M&E systems: indicators, scenarios, territorial viewers, and reports for technical teams. Tell us the question you need to answer.",
         },
       ],
     },
@@ -666,10 +682,14 @@ const climateContent: Record<Locale, ClimateCopy> = {
           question: "Peut-on voir les émissions ici ?",
           answer: "Non. Cette page explique le travail. Elle ne publie ni séries, ni facteurs, ni tableaux du système institutionnel.",
         },
+        {
+          question: "GearsMap développe-t-il des logiciels MRV pour d'autres organisations ?",
+          answer: "Oui. Si votre équipe doit mesurer, notifier et vérifier des émissions ou des indicateurs, nous pouvons bâtir une plateforme MRV sur mesure : sources, calcul traçable et tableaux de bord. Tout commence par une conversation.",
+        },
       ],
     },
     me: {
-      seoTitle: "Suivi et évaluation du risque climatique",
+      seoTitle: "S&E climatique : suivi et évaluation du risque",
       description: "Suivi-évaluation de l'aléa, de la vulnérabilité et du risque climatique du secteur minier et énergétique, avec le Ministère et le soutien de la KfW.",
       keywords: ["suivi et évaluation", "risque climatique", "vulnérabilité climatique", "adaptation au changement climatique", "CMIP6", "GIEC AR6", "SSP2-4.5", "géovisionneuse", "secteur minier et énergétique", "GearsMap", "Colombie"],
       eyebrow: "S&E · Adaptation",
@@ -733,6 +753,10 @@ const climateContent: Record<Locale, ClimateCopy> = {
         {
           question: "GearsMap certifie-t-il le risque d'un projet ?",
           answer: "Non. Le module organise des éléments de preuve pour des équipes techniques. Il ne remplace ni une étude de risque de projet ni une décision officielle d'adaptation.",
+        },
+        {
+          question: "GearsMap développe-t-il des plateformes de suivi et évaluation (S&E) ?",
+          answer: "Oui. Nous construisons des systèmes de S&E climatique sur mesure : indicateurs, scénarios, visionneuses territoriales et rapports pour équipes techniques. Dites-nous la question à laquelle vous devez répondre.",
         },
       ],
     },
