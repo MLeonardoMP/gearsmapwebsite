@@ -8,6 +8,22 @@ const securityHeaders = [
   { key: "Link", value: '</llms.txt>; rel="describedby"; type="text/plain", </llms-full.txt>; rel="alternate"; type="text/plain"' },
 ]
 
+function mrvAppOrigin() {
+  const value = process.env.MRV_APP_ORIGIN
+  if (value === undefined) return null
+
+  let url
+  try {
+    url = new URL(value)
+  } catch {
+    throw new Error("MRV_APP_ORIGIN must be a valid HTTPS origin")
+  }
+  if (!/^https:\/\/[^/?#\\\s]+\/?$/i.test(value) || url.protocol !== "https:" || url.username || url.password || url.pathname !== "/" || url.search || url.hash) {
+    throw new Error("MRV_APP_ORIGIN must be an HTTPS origin without credentials, path, query, or fragment")
+  }
+  return url.origin
+}
+
 const nextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
@@ -51,12 +67,26 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    return [
-      {
-        source: "/api/:path((?!contact).*)",
-        destination: "https://gearsmap-api.vercel.app/api/:path*",
-      },
-    ]
+    const origin = mrvAppOrigin()
+    return {
+      beforeFiles: origin ? [
+        {
+          source: "/mrv-abierto-colombia",
+          destination: `${origin}/mrv-abierto-colombia`,
+        },
+        {
+          source: "/mrv-abierto-colombia/:path*",
+          destination: `${origin}/mrv-abierto-colombia/:path*`,
+        },
+      ] : [],
+      afterFiles: [
+        {
+          source: "/api/:path((?!contact).*)",
+          destination: "https://gearsmap-api.vercel.app/api/:path*",
+        },
+      ],
+      fallback: [],
+    }
   },
 }
 
